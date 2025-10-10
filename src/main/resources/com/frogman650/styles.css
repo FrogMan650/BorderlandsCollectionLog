@@ -1,0 +1,42 @@
+.root {
+    -fx-font-family:'Courier New', Courier, monospace;
+    -fx-text-fill: red;
+}
+.label {
+    -fx-text-fill: blue;
+    -fx-font-size: 20;
+}
+
+.toggle-button {
+    -fx-background-color: linear-gradient(to bottom, #c82323, #962323);
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+    -fx-pref-height: 35;
+    -fx-pref-width: 198;
+}
+
+.toggle-button:selected {
+    -fx-background-color: linear-gradient(to bottom, #23c823, #239623);
+}
+
+.toggle-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #c86464, #966464);
+}
+
+.toggle-button:selected:hover {
+    -fx-background-color: linear-gradient(to bottom, #82c882, #829682);
+}
+
+.button {
+    -fx-text-fill: green;
+    -fx-pref-height: 350;
+    -fx-pref-width: 200;
+    
+}
+
+#mainContainer {
+}
+
+#mainSplitPane {
+}
