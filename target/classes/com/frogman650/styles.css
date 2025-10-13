@@ -1,42 +1,176 @@
 .root {
-    -fx-font-family:'Courier New', Courier, monospace;
-    -fx-text-fill: red;
-}
-.label {
-    -fx-text-fill: blue;
-    -fx-font-size: 20;
+    -fx-font-family:"WillowBody";
 }
 
-.toggle-button {
+#anchorPane {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 95%, #5879b7, #282c3d);
+}
+
+#filterLabel {
+    -fx-font-size: 30;
+    -fx-background: transparent;
+}
+
+#filterLabel .text {
+    -fx-fill: white;
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+}
+
+/* #testLabel1, #testLabel2, #testLabel3, #testLabel4, #testLabel5 {
+    -fx-background-color: red;
+
+} */
+
+#testLabel1 .text {
+    -fx-font-size: 25;
+    -fx-fill: #fbff00;
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+}
+
+#testLabel2 .text {
+    -fx-font-size: 25;
+    -fx-fill: #ffc934;
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+}
+
+#testLabel3 .text {
+    -fx-font-size: 18;
+    -fx-fill: #ff6d6d;
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+}
+
+#testLabel1, #testLabel2, #testLabel3, #testLabel4, #testLabel5 {
+    -fx-max-width: 300;
+    -fx-alignment: CENTER;
+}
+
+#testLabel4 .text {
+    -fx-font-size: 12;
+    -fx-fill: rgb(177, 177, 177);
+}
+
+#testLabel5 .text {
+    -fx-font-size: 18;
+    -fx-fill: white;
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+    -fx-text-alignment: CENTER;
+}
+
+#testPane {
+    -fx-background-image: url("weapon_card.png");
+    -fx-pref-height: 470;
+    -fx-pref-width: 336;
+}
+
+#testPane2 {
+    -fx-background-image: url("obtained.png");
+    -fx-pref-height: 27;
+    -fx-pref-width: 27;
+    -fx-max-height: 27;
+    -fx-max-width: 27;
+    -fx-cursor: hand;
+}
+
+#testPane3 {
+    -fx-font-size: 18;
+    -fx-min-width: 24;
+    -fx-alignment: CENTER;
+}
+
+#testPane3 .text {
+    -fx-fill: #ff8800;
+}
+
+#testVBox {
+    -fx-max-width: 336;
+    -fx-max-height: 470;
+    -fx-pref-height: 470;
+    -fx-pref-width: 336;
+}
+
+#testHBox2 {
+    -fx-pref-height: 30;
+    -fx-max-width: 300;
+    -fx-alignment: CENTER;
+}
+
+#testImageView {
+}
+
+/* .pane {
+    -fx-background-color: transparent;
+    -fx-text-fill: green;
+    -fx-pref-height: 470;
+    -fx-pref-width: 336;
+    -fx-border-color: green;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+    -fx-border-radius: 5;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-padding: 0 0 0 0;
+} */
+
+.toggle-button, #none, #all {
     -fx-background-color: linear-gradient(to bottom, #c82323, #962323);
-    -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-font-size: 15;
+    -fx-font-size: 20;
     -fx-pref-height: 35;
     -fx-pref-width: 198;
+    -fx-border-color: #0d1b1e;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+    -fx-border-radius: 5;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-padding: 5 0 5 0;
 }
 
-.toggle-button:selected {
+.toggle-button .text, #all .text, #none .text {
+    -fx-fill: white;
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+}
+
+.toggle-button:selected, #all {
     -fx-background-color: linear-gradient(to bottom, #23c823, #239623);
 }
 
-.toggle-button:hover {
+.toggle-button:hover, #none:hover {
     -fx-background-color: linear-gradient(to bottom, #c86464, #966464);
 }
 
-.toggle-button:selected:hover {
+.toggle-button:selected:hover, #all:hover {
     -fx-background-color: linear-gradient(to bottom, #82c882, #829682);
 }
 
-.button {
-    -fx-text-fill: green;
-    -fx-pref-height: 350;
-    -fx-pref-width: 200;
-    
+#all:pressed {
+    -fx-background-color: linear-gradient(to bottom, #23c823, #239623);
 }
 
-#mainContainer {
+#none:pressed {
+    -fx-background-color: linear-gradient(to bottom, #c82323, #962323);
 }
 
-#mainSplitPane {
+.scroll-pane, .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+#itemScrollPane {
+    -fx-border-color: #282f49;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 0 2;
+}
+
+#bannerBox {
+    -fx-background-color: linear-gradient(to bottom, #71c5d6, #4671a9);
+    -fx-pref-height: 50;
+    -fx-border-color: #282f49;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-style: solid;
 }

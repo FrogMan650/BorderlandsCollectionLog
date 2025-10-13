@@ -1,0 +1,35 @@
+<items>
+	<item>
+		<name>Unkempt Harold</name>
+		<type>pistol</type>
+		<game>2</game>
+		<obtained>false</obtained>
+        <rarity>legendary</rarity>
+		<source>Savage Lee and Torgue Vending Machines</source>
+        <text>Did I fire six shots, or only five? Three? Seven. Whatever.</text>
+        <wiki>Unkempt_Harold</wiki>
+        <points>5</points>
+	</item>
+	<item>
+		<name>Nukem</name>
+		<type>launcher</type>
+		<game>2</game>
+		<obtained>false</obtained>
+        <rarity>legendary</rarity>
+		<source>The Black Queen and Torgue Vending Machines</source>
+        <text>Name Dropper.</text>
+        <wiki>Nukem</wiki>
+        <points>5</points>
+	</item>
+	<item>
+		<name>Rapier</name>
+		<type>ar</type>
+		<game>2</game>
+		<obtained>false</obtained>
+        <rarity>unique_blue</rarity>
+		<source>Mission: Message in a Bottle (Hayter's Folly)</source>
+        <text>As I end the refrain, thrust home.</text>
+        <wiki>Rapier</wiki>
+        <points>5</points>
+	</item>
+</items>
