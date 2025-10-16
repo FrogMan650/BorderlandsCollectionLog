@@ -1,0 +1,33 @@
+{
+  "resources":{
+  "includes":[
+    {
+      "pattern":"\\Qcom/frogman650/BLCL_logo_mini.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/Wiki_logo_mini.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/WillowBody-Regular.ttf\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/not_obtained.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/styles.css\\E"
+    }
+  ]},
+  "bundles":[
+    {
+      "name":"com.sun.javafx.tk.quantum.QuantumMessagesBundle",
+      "locales":[""]
+    }, 
+    {
+      "name":"com/sun/glass/ui/win/themes",
+      "locales":[
+        "", 
+        "en"
+      ]
+    }
+  ]
+}

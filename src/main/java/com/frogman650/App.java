@@ -21,11 +21,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.ColorInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -52,74 +57,35 @@ public class App extends Application {
         itemFlowPane.setVgap(5);
         itemFlowPane.setPadding(new Insets(5));
 
-        // Label testLabel = new Label("Captain Blade's Otto Idol extra words to wrap");
-        // testLabel.setMaxWidth(300);
-        // testLabel.setWrapText(true);
-        // testLabel.setLayoutX(10);
-        // testLabel.setLayoutY(5);
-        // testLabel.setId("cardLabel");
-        // Image image = new Image(getClass().getResourceAsStream("BLCL_logo_mini.png"));
-        // ImageView testImageView = new ImageView(image);
-        // testImageView.setId("testImage1");
-        // testImageView.setLayoutX(280);
-        // testImageView.setLayoutY(5);
-        // testImageView.setFitHeight(48);
-        // testImageView.setFitWidth(48);
-        // Image image2 = new Image("https://static.wikia.nocookie.net/borderlands/images/f/fe/Rapier.jpg/revision/latest?cb=20121211225230");
-        // ImageView testImageView2 = new ImageView(image2);
+        Image image2 = new Image(getClass().getResourceAsStream("pistol.png"));
+        ImageView testImageView2 = new ImageView(image2);
+        testImageView2.setId("testImageView2");
+        ColorAdjust colorAdjust = new ColorAdjust();
+        // colorAdjust.setBrightness(0.25);
+        colorAdjust.setSaturation(1);
+        colorAdjust.setHue(0.2);
+        testImageView2.setEffect(colorAdjust);
         // testImageView2.setFitHeight(162);
         // testImageView2.setFitWidth(288);
-        // testImageView2.setLayoutX(2);
-        // testImageView2.setLayoutY(2);
+        // Pane testPane5 = new Pane(testImageView2);
+        // testPane5.setId("testPane5");
         // Rectangle clip = new Rectangle(testImageView2.getFitWidth(), testImageView2.getFitHeight());
         // clip.setArcWidth(20);
         // clip.setArcHeight(20);
         // testImageView2.setClip(clip);
-        // Pane testImageView2Pane = new Pane(testImageView2);
-        // testImageView2Pane.setId("testImage2");
-        // testImageView2Pane.setLayoutX(20);
-        // testImageView2Pane.setLayoutY(50);
-        // Label testLabel3 = new Label("As I end the refrain, thrust home.");
-        // testLabel3.setStyle("-fx-text-fill: red");
-        // VBox testVBox = new VBox(testLabel3);
-        // testVBox.setAlignment(Pos.CENTER);
-        // testVBox.setLayoutX(20);
-        // testVBox.setLayoutY(250);
-        // Pane testPane = new Pane(testImageView, testImageView2Pane, testVBox, testLabel);
-        // testPane.setStyle("-fx-background-color: red; -fx-text-fill: green;\r\n" + //
-        //                 "    -fx-pref-height: 470;\r\n" + //
-        //                 "    -fx-pref-width: 336;\r\n" + //
-        //                 "    -fx-border-color: #3b83cc;\r\n" + //
-        //                 "    -fx-border-width: 2;\r\n" + //
-        //                 "    -fx-border-style: solid;\r\n" + //
-        //                 "    -fx-border-radius: 10;\r\n" + //
-        //                 "    -fx-background-insets: 0;\r\n" + //
-        //                 "    -fx-background-radius: 10;\r\n" + //
-        //                 "    -fx-padding: 0 0 0 0;");
-
-        // itemFlowPane.getChildren().add(testPane);
-        // for (int i = 0; i < 50; i++) {
-        //     Button tempButton = new Button("Button " + i);
-        //     itemFlowPane.getChildren().add(tempButton);
-        // }
-
-        Image image2 = new Image("https://static.wikia.nocookie.net/borderlands/images/1/19/Pistol_Torgue_Unkempt_Harold_%28Inspect_View%29.jpg/revision/latest?cb=20170706162939");
-        ImageView testImageView2 = new ImageView(image2);
-        testImageView2.setFitHeight(162);
-        testImageView2.setFitWidth(288);
-        Rectangle clip = new Rectangle(testImageView2.getFitWidth(), testImageView2.getFitHeight());
-        clip.setArcWidth(20);
-        clip.setArcHeight(20);
-        testImageView2.setClip(clip);
-        Label testLabel1 = new Label("Borderlands 3");
+        Label testLabel1 = new Label("Borderlands 2");
         testLabel1.setId("testLabel1");
         testLabel1.setPrefWidth(204);
         Pane testPane2 = new Pane();
         testPane2.setId("testPane2");
-        Label testPane3 = new Label("15");
+        Label testPane3 = new Label("10");
         testPane3.setId("testPane3");
         HBox testHBox = new HBox(testPane2, testLabel1, testPane3);
         HBox.setMargin(testPane2, new Insets(5, 0, 0, 12));
+        Image image = new Image(getClass().getResourceAsStream("obtained.png"));
+        testPane2.setOnMouseClicked(event -> {
+            testPane2.setBackground(new Background(new BackgroundImage(image, null, null, null, null)));
+        });
         HBox.setMargin(testPane3, new Insets(7, 0, 0, 23));
         HBox.setMargin(testLabel1, new Insets(0, 0, 0, 25));
         Label testLabel2 = new Label("Unkempt Harold");
@@ -160,13 +126,13 @@ public class App extends Application {
             textSize = 24;
         }
         testLabel2.setStyle("-fx-font-size: " + textSize + ";");
-        Label testLabel3 = new Label("Did I fire six shots, or only five? Three? Seven. Whatever. adding more words for another line and even more for another");
+        Label testLabel3 = new Label("\u2022 Did I fire six shots, or only five? Three? Seven. Whatever. Extra text for a new line");
         testLabel3.setId("testLabel3");
         testLabel3.setWrapText(true);
         testLabel3.setMaxHeight(81);
         Label testLabel4 = new Label("Sources");
         testLabel4.setId("testLabel4");
-        Label testLabel5 = new Label("Savage Lee\nTorgue Vending Machines\nThird location");
+        Label testLabel5 = new Label("\u2022 Savage Lee\n\u2022 Torgue Vending Machines\n\u2022 Third location");
         testLabel5.setWrapText(true);
         testLabel5.setId("testLabel5");
         testLabel5.setMaxHeight(81);
@@ -176,23 +142,29 @@ public class App extends Application {
         imageViewBLWiki1.setFitWidth(60);
         Pane wikiViewPane1 = new Pane(imageViewBLWiki1);
         wikiViewPane1.setStyle("-fx-cursor: hand;");
+        wikiViewPane1.setOnMouseClicked(event -> {
+            try {
+                Desktop.getDesktop().browse(new URI("https://borderlands.fandom.com/wiki/Unkempt_Harold"));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        });
         ImageView testImageView = new ImageView(imageBLWiki1);
         testImageView.setId("testImageView");
         testImageView.setFitHeight(30);
         testImageView.setFitWidth(60);
         Region testRegion = new Region();
         HBox.setHgrow(testRegion, Priority.ALWAYS);
-        HBox testHBox2 = new HBox(wikiViewPane1, testRegion, testImageView);
+        HBox testHBox2 = new HBox(wikiViewPane1, testRegion);
         testHBox2.setId("testHBox2");
+        Region testRegion2 = new Region();
+        VBox.setVgrow(testRegion2, Priority.ALWAYS);
         
-        VBox testVBox = new VBox(testHBox, testLabel2, testImageView2, testLabel3, testLabel4, testLabel5, testHBox2);
+        VBox testVBox = new VBox(testHBox, testLabel2, testImageView2, testLabel3, testLabel4, testLabel5, testRegion2, testHBox2);
         testVBox.setId("testVBox");
         testVBox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(testLabel2, new Insets(5, 0 ,0, 0));
         VBox.setMargin(testImageView2, new Insets(1, 0 ,0, 0));
-        VBox.setMargin(testLabel3, new Insets(0, 0, 0, 0));
-        VBox.setMargin(testLabel4, new Insets(0, 0, 0, 0));
-        VBox.setMargin(testLabel5, new Insets(0, 0, 0, 0));
         Pane testPane = new Pane(testVBox);
         testPane.setId("testPane");
         itemFlowPane.getChildren().addAll(testPane);
@@ -205,7 +177,7 @@ public class App extends Application {
         //Filters
         VBox filterVBox = new VBox();
         filterVBox.setSpacing(1);
-        Label filterLabel = new Label("Filters");
+        Label filterLabel = new Label("FILTERS");
         filterLabel.setId("filterLabel");
         Button allButton = new Button("All");
         allButton.setId("all");
@@ -218,7 +190,7 @@ public class App extends Application {
         allNoneHBox.getChildren().addAll(allButton, noneButton);
         filterVBox.getChildren().addAll(filterLabel, allNoneHBox);
         ArrayList<ToggleButton> toggleButtonArray = new ArrayList<>();
-        Label weaponLabel = new Label("Weapons");
+        Label weaponLabel = new Label("WEAPONS");
         weaponLabel.setId("filterLabel");
         ToggleButton pistolToggleButton = new ToggleButton("Pistols");
         toggleButtonArray.add(pistolToggleButton);
@@ -232,15 +204,17 @@ public class App extends Application {
         toggleButtonArray.add(sniperToggleButton);
         ToggleButton launcherToggleButton = new ToggleButton("Rocket Launchers");
         toggleButtonArray.add(launcherToggleButton);
-        ToggleButton ordnanceToggleButton = new ToggleButton("Ordnance");
-        toggleButtonArray.add(ordnanceToggleButton);
+        ToggleButton eridianToggleButton = new ToggleButton("Eridian");
+        toggleButtonArray.add(eridianToggleButton);
+        ToggleButton laserToggleButton = new ToggleButton("Lasers");
+        toggleButtonArray.add(laserToggleButton);
         filterVBox.getChildren().addAll(weaponLabel, pistolToggleButton, smgToggleButton, assaultRifleToggleButton, shotgunToggleButton, 
-        sniperToggleButton, launcherToggleButton, ordnanceToggleButton);
-        Label equipmentLabel = new Label("Equipment");
+        sniperToggleButton, launcherToggleButton, eridianToggleButton, laserToggleButton);
+        Label equipmentLabel = new Label("EQUIPMENT");
         equipmentLabel.setId("filterLabel");
         ToggleButton classModToggleButton = new ToggleButton("Class Mods");
         toggleButtonArray.add(classModToggleButton);
-        ToggleButton grenadeToggleButton = new ToggleButton("Grenades");
+        ToggleButton grenadeToggleButton = new ToggleButton("Grenade Mods");
         toggleButtonArray.add(grenadeToggleButton);
         ToggleButton relicToggleButton = new ToggleButton("Relics");
         toggleButtonArray.add(relicToggleButton);
@@ -252,9 +226,13 @@ public class App extends Application {
         toggleButtonArray.add(enhancementToggleButton);
         ToggleButton repkitToggleButton = new ToggleButton("Repkits");
         toggleButtonArray.add(repkitToggleButton);
+        ToggleButton grenadeOrdnanceToggleButton = new ToggleButton("Grenade Ordnance");
+        toggleButtonArray.add(grenadeOrdnanceToggleButton);
+        ToggleButton heavyOrdnanceToggleButton = new ToggleButton("Heavy Ordnance");
+        toggleButtonArray.add(heavyOrdnanceToggleButton);
         filterVBox.getChildren().addAll(equipmentLabel, classModToggleButton, grenadeToggleButton, relicToggleButton, shieldToggleButton, 
-        ozKitToggleButton, enhancementToggleButton, repkitToggleButton);
-        Label rarityLabel = new Label("Rarity");
+        ozKitToggleButton, enhancementToggleButton, repkitToggleButton, grenadeOrdnanceToggleButton, heavyOrdnanceToggleButton);
+        Label rarityLabel = new Label("RARITY");
         rarityLabel.setId("filterLabel");
         ToggleButton uniqueToggleButton = new ToggleButton("Unique");
         toggleButtonArray.add(uniqueToggleButton);
@@ -267,7 +245,7 @@ public class App extends Application {
         ToggleButton effervescentToggleButton = new ToggleButton("Effervescent");
         toggleButtonArray.add(effervescentToggleButton);
         filterVBox.getChildren().addAll(rarityLabel, uniqueToggleButton, legendaryToggleButton, seraphToggleButton, pearlToggleButton, effervescentToggleButton);
-        Label gameLabel = new Label("Game");
+        Label gameLabel = new Label("GAME");
         gameLabel.setId("filterLabel");
         ToggleButton bl1ToggleButton = new ToggleButton("Borderlands");
         toggleButtonArray.add(bl1ToggleButton);
@@ -280,7 +258,7 @@ public class App extends Application {
         ToggleButton bl4ToggleButton = new ToggleButton("Borderlands 4");
         toggleButtonArray.add(bl4ToggleButton);
         filterVBox.getChildren().addAll(gameLabel, bl1ToggleButton, bl2ToggleButton, blTPSToggleButton, bl3ToggleButton, bl4ToggleButton);
-        Label miscLabel = new Label("Misc.");
+        Label miscLabel = new Label("MISCELLANEOUS");
         miscLabel.setId("filterLabel");
         ToggleButton obtainedToggleButton = new ToggleButton("Obtained");
         toggleButtonArray.add(obtainedToggleButton);

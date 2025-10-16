@@ -7,7 +7,7 @@
 }
 
 #filterLabel {
-    -fx-font-size: 30;
+    -fx-font-size: 20;
     -fx-background: transparent;
 }
 
@@ -31,7 +31,7 @@
 
 #testLabel2 .text {
     -fx-font-size: 25;
-    -fx-fill: #ffc934;
+    -fx-fill: linear-gradient(to right, red 0%, orange 20%, yellow 40%, rgb(0, 255, 0) 60%, rgb(101, 101, 255) 80%, rgb(212, 0, 255) 100%);
     -fx-stroke: black;
     -fx-stroke-width: 1px;
 }
@@ -43,9 +43,14 @@
     -fx-stroke-width: 1px;
 }
 
-#testLabel1, #testLabel2, #testLabel3, #testLabel4, #testLabel5 {
+#testLabel1, #testLabel2, #testLabel3 {
     -fx-max-width: 300;
     -fx-alignment: CENTER;
+}
+
+#testLabel4, #testLabel5 {
+    -fx-max-width: 300;
+
 }
 
 #testLabel4 .text {
@@ -58,7 +63,6 @@
     -fx-fill: white;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
-    -fx-text-alignment: CENTER;
 }
 
 #testPane {
@@ -68,7 +72,7 @@
 }
 
 #testPane2 {
-    -fx-background-image: url("obtained.png");
+    -fx-background-image: url("not_obtained.png");
     -fx-pref-height: 27;
     -fx-pref-width: 27;
     -fx-max-height: 27;
@@ -86,9 +90,22 @@
     -fx-fill: #ff8800;
 }
 
+#testPane5 {
+    -fx-pref-width: 288;
+    -fx-pref-height: 162;
+    -fx-alignment: RIGHT;
+    -fx-background-color: red;
+}
+
+#testImageView2 {
+    -fx-alignment: RIGHT;
+    -fx-min-width: 288;
+    -fx-min-height: 162;
+}
+
 #testVBox {
     -fx-max-width: 336;
-    -fx-max-height: 470;
+    -fx-max-height: 453;
     -fx-pref-height: 470;
     -fx-pref-width: 336;
 }
@@ -117,18 +134,19 @@
 } */
 
 .toggle-button, #none, #all {
-    -fx-background-color: linear-gradient(to bottom, #c82323, #962323);
+    -fx-background-color: transparent;
     -fx-font-weight: bold;
     -fx-font-size: 20;
-    -fx-pref-height: 35;
+    -fx-pref-height: 50;
     -fx-pref-width: 198;
-    -fx-border-color: #0d1b1e;
-    -fx-border-width: 2;
-    -fx-border-style: solid;
-    -fx-border-radius: 5;
     -fx-background-insets: 0;
     -fx-background-radius: 10;
     -fx-padding: 5 0 5 0;
+}
+
+.toggle-button {
+    -fx-background-image: url("filter_background_off.png");
+
 }
 
 .toggle-button .text, #all .text, #none .text {
@@ -137,24 +155,42 @@
     -fx-stroke-width: 1px;
 }
 
-.toggle-button:selected, #all {
-    -fx-background-color: linear-gradient(to bottom, #23c823, #239623);
+.toggle-button:selected {
+    -fx-background-image: url("filter_background_on.png");
 }
 
-.toggle-button:hover, #none:hover {
-    -fx-background-color: linear-gradient(to bottom, #c86464, #966464);
+.toggle-button:hover {
+    -fx-background-image: url("filter_background_off_hover.png");
 }
 
-.toggle-button:selected:hover, #all:hover {
-    -fx-background-color: linear-gradient(to bottom, #82c882, #829682);
+.toggle-button:selected:hover {
+    -fx-background-image: url("filter_background_on_hover.png");
+}
+
+#all {
+    -fx-background-image: url("filter_background_on_mini.png");
+}
+
+#all:hover {
+    -fx-background-image: url("filter_background_on_mini_hover.png");
 }
 
 #all:pressed {
-    -fx-background-color: linear-gradient(to bottom, #23c823, #239623);
+    -fx-background-image: url("filter_background_on_mini.png");
+}
+
+#none {
+    -fx-background-image: url("filter_background_off_mini.png");
+
+}
+
+#none:hover {
+    -fx-background-image: url("filter_background_off_mini_hover.png");
+
 }
 
 #none:pressed {
-    -fx-background-color: linear-gradient(to bottom, #c82323, #962323);
+    -fx-background-image: url("filter_background_off_mini.png");
 }
 
 .scroll-pane, .scroll-pane > .viewport {
