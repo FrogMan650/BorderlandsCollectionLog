@@ -48,51 +48,40 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Image icon = new Image(App.class.getResourceAsStream("BLCL_logo_mini.png"));
-
+        Image wikiImage = new Image(getClass().getResourceAsStream("Wiki_logo_mini.png"));
         Font willowBody = Font.loadFont(getClass().getResourceAsStream("WillowBody-Regular.ttf"), 10);
 
+        //Item cards holder
         FlowPane itemFlowPane = new FlowPane();
-        itemFlowPane.setPrefWidth(1080);
-        itemFlowPane.setHgap(5);
-        itemFlowPane.setVgap(5);
+        itemFlowPane.setId("itemFlowPane");
         itemFlowPane.setPadding(new Insets(5));
 
-        Image image2 = new Image(getClass().getResourceAsStream("pistol.png"));
-        ImageView testImageView2 = new ImageView(image2);
-        testImageView2.setId("testImageView2");
+        //Item card
+        Image itemImage = new Image(getClass().getResourceAsStream("pistol.png"));
+        ImageView itemImageView = new ImageView(itemImage);
+        itemImageView.setId("itemImageView");
         ColorAdjust colorAdjust = new ColorAdjust();
-        // colorAdjust.setBrightness(0.25);
+        colorAdjust.setBrightness(0);
         colorAdjust.setSaturation(1);
         colorAdjust.setHue(0.2);
-        testImageView2.setEffect(colorAdjust);
-        // testImageView2.setFitHeight(162);
-        // testImageView2.setFitWidth(288);
-        // Pane testPane5 = new Pane(testImageView2);
-        // testPane5.setId("testPane5");
-        // Rectangle clip = new Rectangle(testImageView2.getFitWidth(), testImageView2.getFitHeight());
-        // clip.setArcWidth(20);
-        // clip.setArcHeight(20);
-        // testImageView2.setClip(clip);
-        Label testLabel1 = new Label("Borderlands 2");
-        testLabel1.setId("testLabel1");
-        testLabel1.setPrefWidth(204);
-        Pane testPane2 = new Pane();
-        testPane2.setId("testPane2");
-        Label testPane3 = new Label("10");
-        testPane3.setId("testPane3");
-        HBox testHBox = new HBox(testPane2, testLabel1, testPane3);
-        HBox.setMargin(testPane2, new Insets(5, 0, 0, 12));
-        Image image = new Image(getClass().getResourceAsStream("obtained.png"));
-        testPane2.setOnMouseClicked(event -> {
-            testPane2.setBackground(new Background(new BackgroundImage(image, null, null, null, null)));
+        itemImageView.setEffect(colorAdjust);
+        Label gameLabel = new Label("Borderlands 2");
+        gameLabel.setId("gameLabel");
+        Pane obtainedPane = new Pane();
+        obtainedPane.setId("obtainedPane");
+        Label huntPointsLabel = new Label("10");
+        huntPointsLabel.setId("huntPointsLabel");
+        HBox testHBox = new HBox(obtainedPane, gameLabel, huntPointsLabel);
+        HBox.setMargin(obtainedPane, new Insets(5, 0, 0, 12));
+        Image obtainedImage = new Image(getClass().getResourceAsStream("obtained.png"));
+        obtainedPane.setOnMouseClicked(event -> {
+            obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
         });
-        HBox.setMargin(testPane3, new Insets(7, 0, 0, 23));
-        HBox.setMargin(testLabel1, new Insets(0, 0, 0, 25));
-        Label testLabel2 = new Label("Unkempt Harold");
-        testLabel2.setId("testLabel2");
-        testLabel2.setMinHeight(37);
-        testLabel2.setMaxHeight(37);
-        int labelCount = testLabel2.getText().length();
+        HBox.setMargin(huntPointsLabel, new Insets(7, 0, 0, 23));
+        HBox.setMargin(gameLabel, new Insets(0, 0, 0, 25));
+        Label itemNameLabel = new Label("Unkempt Harold");
+        itemNameLabel.setId("itemNameLabel");
+        int labelCount = itemNameLabel.getText().length();
         int textSize = 25;
         if (labelCount > 39) {
             textSize = 10;
@@ -125,54 +114,58 @@ public class App extends Application {
         } else if (labelCount > 16) {
             textSize = 24;
         }
-        testLabel2.setStyle("-fx-font-size: " + textSize + ";");
-        Label testLabel3 = new Label("\u2022 Did I fire six shots, or only five? Three? Seven. Whatever. Extra text for a new line");
-        testLabel3.setId("testLabel3");
-        testLabel3.setWrapText(true);
-        testLabel3.setMaxHeight(81);
-        Label testLabel4 = new Label("Sources");
-        testLabel4.setId("testLabel4");
-        Label testLabel5 = new Label("\u2022 Savage Lee\n\u2022 Torgue Vending Machines\n\u2022 Third location");
-        testLabel5.setWrapText(true);
-        testLabel5.setId("testLabel5");
-        testLabel5.setMaxHeight(81);
-        Image imageBLWiki1 = new Image(getClass().getResourceAsStream("Wiki_logo_mini.png"));
-        ImageView imageViewBLWiki1 = new ImageView(imageBLWiki1);
-        imageViewBLWiki1.setFitHeight(30);
-        imageViewBLWiki1.setFitWidth(60);
-        Pane wikiViewPane1 = new Pane(imageViewBLWiki1);
-        wikiViewPane1.setStyle("-fx-cursor: hand;");
-        wikiViewPane1.setOnMouseClicked(event -> {
+        itemNameLabel.setStyle("-fx-font-size: " + textSize + ";");
+        Label flavorTextLabel = new Label("\u2022 Did I fire six shots, or only five? Three? Seven. Whatever. Extra text for a new line");
+        flavorTextLabel.setId("flavorTextLabel");
+        Label sourcesLabel = new Label("Sources");
+        sourcesLabel.setId("sourcesLabel");
+        Label sourcesListLabel = new Label("\u2022 Savage Lee\n\u2022 Torgue Vending Machines\n\u2022 Third location");
+        sourcesListLabel.setId("sourcesListLabel");
+        ImageView itemWikiLinkImageView = new ImageView(wikiImage);
+        itemWikiLinkImageView.setId("itemWikiLinkImageView");
+        itemWikiLinkImageView.setFitHeight(30);
+        itemWikiLinkImageView.setFitWidth(60);
+        Pane itemWikiLinkPane = new Pane(itemWikiLinkImageView);
+        itemWikiLinkPane.setStyle("-fx-cursor: hand;");
+        itemWikiLinkPane.setOnMouseClicked(event -> {
             try {
                 Desktop.getDesktop().browse(new URI("https://borderlands.fandom.com/wiki/Unkempt_Harold"));
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
         });
-        ImageView testImageView = new ImageView(imageBLWiki1);
-        testImageView.setId("testImageView");
-        testImageView.setFitHeight(30);
-        testImageView.setFitWidth(60);
-        Region testRegion = new Region();
-        HBox.setHgrow(testRegion, Priority.ALWAYS);
-        HBox testHBox2 = new HBox(wikiViewPane1, testRegion);
-        testHBox2.setId("testHBox2");
-        Region testRegion2 = new Region();
-        VBox.setVgrow(testRegion2, Priority.ALWAYS);
+        Region hPusherRegion = new Region();
+        HBox.setHgrow(hPusherRegion, Priority.ALWAYS);
+        HBox itemBottomHBox = new HBox(itemWikiLinkPane, hPusherRegion);
+        itemBottomHBox.setId("itemBottomHBox");
+        Region vPusherRegion = new Region();
+        VBox.setVgrow(vPusherRegion, Priority.ALWAYS);
         
-        VBox testVBox = new VBox(testHBox, testLabel2, testImageView2, testLabel3, testLabel4, testLabel5, testRegion2, testHBox2);
-        testVBox.setId("testVBox");
-        testVBox.setAlignment(Pos.TOP_CENTER);
-        VBox.setMargin(testLabel2, new Insets(5, 0 ,0, 0));
-        VBox.setMargin(testImageView2, new Insets(1, 0 ,0, 0));
-        Pane testPane = new Pane(testVBox);
-        testPane.setId("testPane");
-        itemFlowPane.getChildren().addAll(testPane);
+        VBox itemVBox = new VBox(testHBox, itemNameLabel, itemImageView, flavorTextLabel, sourcesLabel, sourcesListLabel, vPusherRegion, itemBottomHBox);
+        itemVBox.setId("itemVBox");
+        VBox.setMargin(itemNameLabel, new Insets(5, 0 ,0, 0));
+        VBox.setMargin(itemImageView, new Insets(1, 0 ,0, 0));
+        Pane itemPane = new Pane(itemVBox);
+        Pane itemPane2 = new Pane();
+        Pane itemPane3 = new Pane();
+        Pane itemPane4 = new Pane();
+        Pane itemPane5 = new Pane();
+        Pane itemPane8 = new Pane();
+        Pane itemPane6 = new Pane();
+        Pane itemPane7 = new Pane();
+        itemPane.setId("itemPane");
+        itemPane3.setId("itemPane");
+        itemPane2.setId("itemPane");
+        itemPane4.setId("itemPane");
+        itemPane5.setId("itemPane");
+        itemPane6.setId("itemPane");
+        itemPane7.setId("itemPane");
+        itemPane8.setId("itemPane");
+        itemFlowPane.getChildren().addAll(itemPane);
+        itemFlowPane.getChildren().addAll(itemPane2, itemPane3, itemPane4, itemPane5, itemPane6, itemPane7, itemPane8);
 
         ScrollPane itemScrollPane = new ScrollPane(itemFlowPane);
         itemScrollPane.setId("itemScrollPane");
-        itemScrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
-        itemScrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
 
         //Filters
         VBox filterVBox = new VBox();
@@ -181,10 +174,8 @@ public class App extends Application {
         filterLabel.setId("filterLabel");
         Button allButton = new Button("All");
         allButton.setId("all");
-        allButton.setMaxWidth(98);
         Button noneButton = new Button("None");
         noneButton.setId("none");
-        noneButton.setMaxWidth(98);
         HBox allNoneHBox = new HBox(2);
         allNoneHBox.setAlignment(Pos.CENTER);
         allNoneHBox.getChildren().addAll(allButton, noneButton);
@@ -245,8 +236,8 @@ public class App extends Application {
         ToggleButton effervescentToggleButton = new ToggleButton("Effervescent");
         toggleButtonArray.add(effervescentToggleButton);
         filterVBox.getChildren().addAll(rarityLabel, uniqueToggleButton, legendaryToggleButton, seraphToggleButton, pearlToggleButton, effervescentToggleButton);
-        Label gameLabel = new Label("GAME");
-        gameLabel.setId("filterLabel");
+        Label gameFilterLabel = new Label("GAME");
+        gameFilterLabel.setId("filterLabel");
         ToggleButton bl1ToggleButton = new ToggleButton("Borderlands");
         toggleButtonArray.add(bl1ToggleButton);
         ToggleButton bl2ToggleButton = new ToggleButton("Borderlands 2");
@@ -257,7 +248,7 @@ public class App extends Application {
         toggleButtonArray.add(bl3ToggleButton);
         ToggleButton bl4ToggleButton = new ToggleButton("Borderlands 4");
         toggleButtonArray.add(bl4ToggleButton);
-        filterVBox.getChildren().addAll(gameLabel, bl1ToggleButton, bl2ToggleButton, blTPSToggleButton, bl3ToggleButton, bl4ToggleButton);
+        filterVBox.getChildren().addAll(gameFilterLabel, bl1ToggleButton, bl2ToggleButton, blTPSToggleButton, bl3ToggleButton, bl4ToggleButton);
         Label miscLabel = new Label("MISCELLANEOUS");
         miscLabel.setId("filterLabel");
         ToggleButton obtainedToggleButton = new ToggleButton("Obtained");
@@ -265,21 +256,25 @@ public class App extends Application {
         ToggleButton notObtainedToggleButton = new ToggleButton("Not Obtained");
         toggleButtonArray.add(notObtainedToggleButton);
         filterVBox.getChildren().addAll(miscLabel, obtainedToggleButton, notObtainedToggleButton);
-        filterVBox.setPrefWidth(200);
-        filterVBox.setAlignment(Pos.CENTER);
+        filterVBox.setId("filterVBox");
         allToggleButtonsOn(toggleButtonArray);
         ScrollPane filterScrollPane = new ScrollPane(filterVBox);
-        filterScrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
-        filterScrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
-        filterScrollPane.setPrefWidth(202);
+        filterScrollPane.setId("filterScrollPane");
 
         //Banner
-        Image imageBLWiki = new Image(getClass().getResourceAsStream("Wiki_logo_mini.png"));
-        ImageView imageViewBLWiki = new ImageView(imageBLWiki);
-        imageViewBLWiki.setFitHeight(48);
-        imageViewBLWiki.setFitWidth(87);
-        Pane wikiViewPane = new Pane(imageViewBLWiki);
+        ImageView wikiLinkImageView = new ImageView(wikiImage);
+        wikiLinkImageView.setId("wikiLinkImageView");
+        wikiLinkImageView.setFitHeight(48);
+        wikiLinkImageView.setFitWidth(87);
+        Pane wikiViewPane = new Pane(wikiLinkImageView);
         wikiViewPane.setStyle("-fx-cursor: hand;");
+        wikiViewPane.setOnMouseClicked(event -> {
+            try {
+                Desktop.getDesktop().browse(new URI("https://borderlands.fandom.com/wiki/Borderlands_Wiki"));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        });
         Label label2 = new Label("Other info here");
         Label label3 = new Label("Other info here");
         VBox sizeVBox = new VBox(label2, label3);
@@ -303,9 +298,6 @@ public class App extends Application {
 
         root.getChildren().addAll(bannerHBox, filterScrollPane, itemScrollPane);
 
-        // Parent testRoot = FXMLLoader.load(getClass().getResource("scene copy.fxml"));
-        // Scene scene = new Scene(testRoot);
-
         Scene scene = new Scene(root, 1280, 720);
         scene.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
         
@@ -315,8 +307,6 @@ public class App extends Application {
 
         stage.setScene(scene);
         stage.show();
-        System.out.println(testPane3.getWidth());
-
         scene.widthProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 label2.setText("Width: " + scene.getWidth());
@@ -335,13 +325,7 @@ public class App extends Application {
             allToggleButtonsOff(toggleButtonArray);
         });
 
-        wikiViewPane.setOnMouseClicked(event -> {
-            try {
-                Desktop.getDesktop().browse(new URI("https://borderlands.fandom.com/wiki/Borderlands_Wiki"));
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-            }
-        });
+        
     }
 
     public static void allToggleButtonsOn(ArrayList<ToggleButton> toggleButtonArray) {
@@ -354,5 +338,9 @@ public class App extends Application {
         for (int i = 0; i < toggleButtonArray.size(); i++) {
                 toggleButtonArray.get(i).setSelected(false);
             }
+    }
+
+    public static void buildItemCards() {
+        
     }
 }

@@ -17,61 +17,80 @@
     -fx-stroke-width: 1px;
 }
 
-/* #testLabel1, #testLabel2, #testLabel3, #testLabel4, #testLabel5 {
-    -fx-background-color: red;
+#itemFlowPane {
+    -fx-pref-width: 1080;
+    -fx-hgap: 5;
+    -fx-vgap: 5;
+}
 
-} */
-
-#testLabel1 .text {
+#gameLabel .text {
     -fx-font-size: 25;
     -fx-fill: #fbff00;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
 }
 
-#testLabel2 .text {
+#itemNameLabel .text {
     -fx-font-size: 25;
     -fx-fill: linear-gradient(to right, red 0%, orange 20%, yellow 40%, rgb(0, 255, 0) 60%, rgb(101, 101, 255) 80%, rgb(212, 0, 255) 100%);
     -fx-stroke: black;
     -fx-stroke-width: 1px;
 }
 
-#testLabel3 .text {
+#flavorTextLabel .text {
     -fx-font-size: 18;
     -fx-fill: #ff6d6d;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
 }
 
-#testLabel1, #testLabel2, #testLabel3 {
+#gameLabel {
+    -fx-pref-width: 204;
+}
+
+#itemNameLabel {
+    -fx-min-height: 37;
+    -fx-min-width: 37;
+}
+
+#flavorTextLabel {
+    -fx-max-height: 81;
+    -fx-wrap-text: true;
+}
+
+#gameLabel, #itemNameLabel, #flavorTextLabel {
     -fx-max-width: 300;
     -fx-alignment: CENTER;
 }
 
-#testLabel4, #testLabel5 {
+#sourcesLabel, #sourcesListLabel {
     -fx-max-width: 300;
-
 }
 
-#testLabel4 .text {
+#sourcesListLabel {
+    -fx-max-height: 81;
+    -fx-wrap-text: true;
+}
+
+#sourcesLabel .text {
     -fx-font-size: 12;
     -fx-fill: rgb(177, 177, 177);
 }
 
-#testLabel5 .text {
+#sourcesListLabel .text {
     -fx-font-size: 18;
     -fx-fill: white;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
 }
 
-#testPane {
+#itemPane {
     -fx-background-image: url("weapon_card.png");
     -fx-pref-height: 470;
     -fx-pref-width: 336;
 }
 
-#testPane2 {
+#obtainedPane {
     -fx-background-image: url("not_obtained.png");
     -fx-pref-height: 27;
     -fx-pref-width: 27;
@@ -80,58 +99,35 @@
     -fx-cursor: hand;
 }
 
-#testPane3 {
+#huntPointsLabel {
     -fx-font-size: 18;
     -fx-min-width: 24;
     -fx-alignment: CENTER;
 }
 
-#testPane3 .text {
+#huntPointsLabel .text {
     -fx-fill: #ff8800;
 }
 
-#testPane5 {
-    -fx-pref-width: 288;
-    -fx-pref-height: 162;
-    -fx-alignment: RIGHT;
-    -fx-background-color: red;
-}
-
-#testImageView2 {
+#itemImageView {
     -fx-alignment: RIGHT;
     -fx-min-width: 288;
     -fx-min-height: 162;
 }
 
-#testVBox {
+#itemVBox {
     -fx-max-width: 336;
     -fx-max-height: 453;
     -fx-pref-height: 470;
     -fx-pref-width: 336;
+    -fx-alignment: TOP_CENTER;
 }
 
-#testHBox2 {
+#itemBottomHBox {
     -fx-pref-height: 30;
     -fx-max-width: 300;
     -fx-alignment: CENTER;
 }
-
-#testImageView {
-}
-
-/* .pane {
-    -fx-background-color: transparent;
-    -fx-text-fill: green;
-    -fx-pref-height: 470;
-    -fx-pref-width: 336;
-    -fx-border-color: green;
-    -fx-border-width: 2;
-    -fx-border-style: solid;
-    -fx-border-radius: 5;
-    -fx-background-insets: 0;
-    -fx-background-radius: 10;
-    -fx-padding: 0 0 0 0;
-} */
 
 .toggle-button, #none, #all {
     -fx-background-color: transparent;
@@ -144,15 +140,14 @@
     -fx-padding: 5 0 5 0;
 }
 
-.toggle-button {
-    -fx-background-image: url("filter_background_off.png");
-
-}
-
 .toggle-button .text, #all .text, #none .text {
     -fx-fill: white;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
+}
+
+.toggle-button {
+    -fx-background-image: url("filter_background_off.png");
 }
 
 .toggle-button:selected {
@@ -179,6 +174,10 @@
     -fx-background-image: url("filter_background_on_mini.png");
 }
 
+#all, #none {
+    -fx-max-width: 98;
+}
+
 #none {
     -fx-background-image: url("filter_background_off_mini.png");
 
@@ -201,6 +200,19 @@
     -fx-border-color: #282f49;
     -fx-border-style: solid;
     -fx-border-width: 0 0 0 2;
+    -fx-hbar-policy: NEVER;
+    -fx-vbar-policy: NEVER;
+}
+
+#filterVBox {
+    -fx-pref-width: 200;
+    -fx-alignment: CENTER;
+}
+
+#filterScrollPane {
+    -fx-hbar-policy: NEVER;
+    -fx-vbar-policy: NEVER;
+    -fx-pref-width: 202;
 }
 
 #bannerBox {
