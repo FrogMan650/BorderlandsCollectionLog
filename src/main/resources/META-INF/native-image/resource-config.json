@@ -11,10 +11,91 @@
       "pattern":"\\Qcom/frogman650/WillowBody-Regular.ttf\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/ar.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/class_mod.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/effervescent_rev2.gif\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/eridian.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/filter_background_off.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/filter_background_off_hover.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/filter_background_off_mini.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/filter_background_off_mini_hover.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/filter_background_on.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/filter_background_on_hover.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/filter_background_on_mini.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/filter_background_on_mini_hover.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/grenade.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/grenade_ordnance.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/heavy_ordnance.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/items.xml\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/laser.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/launcher.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/not_obtained.png\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/obtained.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/oz_kit.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/pistol.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/relic.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/shield.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/shotgun.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/smg.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/sniper.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/styles.css\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/weapon_card.png\\E"
     }
   ]},
   "bundles":[
