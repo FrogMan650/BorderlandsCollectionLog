@@ -25,7 +25,7 @@
 		<name>Test item 3</name>
 		<type>ar</type>
 		<game>3</game>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>unique</rarity>
 		<source>Hidden Basement (only accessable during the mission Another Piece of the Puzzle)</source>
 		<text>As I end the refrain, thrust home.</text>
@@ -36,7 +36,7 @@
 		<name>Test item 4</name>
 		<type>shield</type>
 		<game>3</game>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>effervescent</rarity>
 		<source>Sand Worms</source>
 		<text>Retains your guts inside your body, where they belong.</text>
@@ -69,7 +69,7 @@
 		<name>Troll</name>
 		<type>pistol</type>
 		<game/>
-		<obtained>false</obtained>
+		<obtained>true</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>Pain Heals.</text>
@@ -80,7 +80,7 @@
 		<name>Chimera</name>
 		<type>pistol</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>A beast of many forms - Fire, Lightning, and Poison</text>

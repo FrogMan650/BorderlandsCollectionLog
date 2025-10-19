@@ -14,13 +14,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.awt.Desktop;
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.nio.file.Paths;
 
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -71,6 +70,8 @@ public class App extends Application {
     public static Document itemDocument;
     public static NodeList itemNodes;
     public static ArrayList<Pane> itemCardArray = new ArrayList<>();
+    public static File itemsXML;
+    public static HostServices hostService;
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -100,10 +101,15 @@ public class App extends Application {
         eridianImage = new Image(getClass().getResourceAsStream("eridian.png"));
         effervescentBackground = new Image(getClass().getResourceAsStream("effervescent_rev2.gif"));
 
+        hostService = getHostServices();
+
+        URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
+        File executableDirectory = Paths.get(uri).getParent().toFile();
+        itemsXML = new File(executableDirectory, "items.xml");
+
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        // itemDocument = builder.parse(getClass().getResourceAsStream("items.xml"));
-        itemDocument = builder.parse(new File("src/main/resources/com/frogman650/items.xml"));
+        itemDocument = builder.parse(itemsXML);
         itemNodes = itemDocument.getDocumentElement().getElementsByTagName("item");
 
         //Item cards holder
@@ -219,11 +225,7 @@ public class App extends Application {
         Pane wikiViewPane = new Pane(wikiLinkImageView);
         wikiViewPane.setStyle("-fx-cursor: hand;");
         wikiViewPane.setOnMouseClicked(event -> {
-            try {
-                Desktop.getDesktop().browse(new URI("https://borderlands.fandom.com/wiki/Borderlands_Wiki"));
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-            }
+            hostService.showDocument("https://borderlands.fandom.com/wiki/Borderlands_Wiki");
         });
         Label label2 = new Label("Other info here");
         Label label3 = new Label("Other info here");
@@ -261,6 +263,7 @@ public class App extends Application {
 
         stage.setScene(scene);
         stage.show();
+        label2.setText(itemsXML.getAbsolutePath());
         itemFlowPane.setPrefWidth(scene.getWidth()-210);
         scene.widthProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -308,7 +311,8 @@ public class App extends Application {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource docSource = new DOMSource(itemDocument);
-            StreamResult docResult = new StreamResult(new File("src/main/resources/com/frogman650/items.xml"));
+            // StreamResult docResult = new StreamResult(new File("src/main/resources/com/frogman650/items.xml"));
+            StreamResult docResult = new StreamResult(itemsXML);
             transformer.transform(docSource, docResult);
         } catch (Exception e) {
             System.out.println("Exception: " + e);
@@ -489,11 +493,7 @@ public class App extends Application {
         Pane itemWikiLinkPane = new Pane(itemWikiLinkImageView);
         itemWikiLinkPane.setStyle("-fx-cursor: hand;");
         itemWikiLinkPane.setOnMouseClicked(event -> {
-            try {
-                Desktop.getDesktop().browse(new URI(wiki));
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-            }
+            hostService.showDocument(wiki);
         });
         Region hPusherRegion = new Region();
         HBox.setHgrow(hPusherRegion, Priority.ALWAYS);

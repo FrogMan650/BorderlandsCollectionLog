@@ -3,7 +3,7 @@
 		<name>Test item 1</name>
 		<type>pistol</type>
 		<game>TPS</game>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>legendary</rarity>
 		<source>Savage Lee_Torgue Vending Machines</source>
 		<text>Did I fire six shots, or only five? Three? Seven. Whatever.</text>
@@ -25,7 +25,7 @@
 		<name>Test item 3</name>
 		<type>ar</type>
 		<game>3</game>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>unique</rarity>
 		<source>Hidden Basement (only accessable during the mission Another Piece of the Puzzle)</source>
 		<text>As I end the refrain, thrust home.</text>
@@ -36,7 +36,7 @@
 		<name>Test item 4</name>
 		<type>shield</type>
 		<game>3</game>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>effervescent</rarity>
 		<source>Sand Worms</source>
 		<text>Retains your guts inside your body, where they belong.</text>
@@ -80,7 +80,7 @@
 		<name>Chimera</name>
 		<type>pistol</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>A beast of many forms - Fire, Lightning, and Poison</text>
@@ -91,7 +91,7 @@
 		<name>Hydra</name>
 		<type>shotgun</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>Five heads of Death</text>
@@ -102,7 +102,7 @@
 		<name>Cyclops</name>
 		<type>sniper</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>I have you in my eye, sir.</text>
@@ -135,7 +135,7 @@
 		<name>Hornet</name>
 		<type>pistol</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>Feel the Sting</text>
@@ -146,7 +146,7 @@
 		<name>Bulldog</name>
 		<type>shotgun</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>One Bad Dog!</text>
@@ -157,7 +157,7 @@
 		<name>Penetrator</name>
 		<type>sniper</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>Sniper Killer... Qu'est que c'est</text>
@@ -190,7 +190,7 @@
 		<name>Firebomb</name>
 		<type>eridian</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>"Bad is Good, BABY!"</text>
@@ -214,7 +214,7 @@
 </name>
 		<type>shotgun</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Middle chest in the The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
 		<text>Giving you a leg up on the competition!</text>
@@ -250,7 +250,7 @@
 </name>
 		<type>sniper</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Middle chest in the The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
 		<text>It knows when you're awake</text>
@@ -262,7 +262,7 @@
 </name>
 		<type>pistol</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Middle chest in the The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
 		<text>Your shoelace is untied...</text>
@@ -284,7 +284,7 @@
 		<name>Destroyer</name>
 		<type>ar</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>The destructor has come</text>
@@ -317,7 +317,7 @@
 		<name>Reaper</name>
 		<type>pistol</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>Slice Slice</text>
@@ -438,7 +438,7 @@
 		<name>Defiler</name>
 		<type>pistol</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
 		<source>Any Loot Source</source>
 		<text>Give Sick</text>
@@ -724,7 +724,7 @@
 		<name>Atlas Omega</name>
 		<type>shield</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Pearlescent</rarity>
 		<source>Crawmerax the Invincible_Badass Engineers, Defenders, and Infantry_Crimson Lance weapon chests</source>
 		<text>The Alpha and that other thing.</text>
@@ -735,7 +735,7 @@
 		<name>Jackal</name>
 		<type>shotgun</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>Pearlescent</rarity>
 		<source>Crawmerax the Invincible_Badass Engineers, Defenders, and Infantry_Crimson Lance weapon chests</source>
 		<text>This dog bites.</text>
@@ -834,7 +834,7 @@
 		<name>Ajax's Spear</name>
 		<type>ar</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>unique</rarity>
 		<source>Ajax</source>
 		<text>Useful for kicking Hector's bitch ass.</text>
@@ -889,7 +889,7 @@
 		<name>Cracked Sash</name>
 		<type>shield</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>unique_green</rarity>
 		<source>Rakkinishu</source>
 		<text>Fast Recharge</text>
@@ -1241,7 +1241,7 @@
 		<name>Rolling Spatter Gun</name>
 		<type>eridian</type>
 		<game/>
-		<obtained>true</obtained>
+		<obtained>false</obtained>
 		<rarity>unique_green</rarity>
 		<source>Any Loot Source</source>
 		<text>Splat! Splach! Spluch!</text>

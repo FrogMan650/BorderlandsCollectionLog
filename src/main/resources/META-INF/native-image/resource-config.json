@@ -101,13 +101,21 @@
   "bundles":[
     {
       "name":"com.sun.javafx.tk.quantum.QuantumMessagesBundle",
+      "locales":[
+        "", 
+        "und"
+      ]
+    }, 
+    {
+      "name":"com.sun.org.apache.xml.internal.serializer.XMLEntities",
       "locales":[""]
     }, 
     {
       "name":"com/sun/glass/ui/win/themes",
       "locales":[
         "", 
-        "en"
+        "en", 
+        "und"
       ]
     }
   ]
