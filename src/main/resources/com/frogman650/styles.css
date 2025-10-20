@@ -9,6 +9,7 @@
 #filterLabel {
     -fx-font-size: 20;
     -fx-background: transparent;
+    -fx-cursor: hand;
 }
 
 #filterLabel .text {
@@ -137,6 +138,26 @@
     -fx-background-insets: 0;
     -fx-background-radius: 10;
     -fx-padding: 5 0 5 0;
+}
+
+#searchTextField {
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-pref-height: 50;
+    -fx-pref-width: 198;
+    -fx-background-repeat: no-repeat;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-padding: 5 6 5 10;
+    -fx-background-image: url("filter_background_search.png");
+    -fx-text-fill: white;
+    /* -fx-text-fill: #eb8a01; */
+}
+
+#searchTextField .text {
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
 }
 
 .toggle-button .text, #all .text, #none .text {

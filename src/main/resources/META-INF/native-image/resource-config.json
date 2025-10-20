@@ -20,10 +20,16 @@
       "pattern":"\\Qcom/frogman650/effervescent_rev2.gif\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/enhancement.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/eridian.png\\E"
     }, 
     {
       "pattern":"\\Qcom/frogman650/filter_background_off.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/filter_background_search.png\\E"
     }, 
     {
       "pattern":"\\Qcom/frogman650/filter_background_off_hover.png\\E"
@@ -80,6 +86,9 @@
       "pattern":"\\Qcom/frogman650/relic.png\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/repkit.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/shield.png\\E"
     }, 
     {
@@ -108,7 +117,10 @@
     }, 
     {
       "name":"com.sun.org.apache.xml.internal.serializer.XMLEntities",
-      "locales":[""]
+      "locales":[
+        "", 
+        "und"
+      ]
     }, 
     {
       "name":"com/sun/glass/ui/win/themes",

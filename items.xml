@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><items>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items>
 	<item>
 		<name>Test item 1</name>
 		<type>pistol</type>
@@ -216,7 +217,7 @@
 		<game/>
 		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
-		<source>Middle chest in the The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
+		<source>Middle chest in The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
 		<text>Giving you a leg up on the competition!</text>
 		<wiki>https://borderlands.fandom.com/wiki/Baha%27s_Bigger_Blaster</wiki>
 		<points>1</points>
@@ -228,7 +229,7 @@
 		<game/>
 		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
-		<source>Middle chest in the The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
+		<source>Middle chest in The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
 		<text>That's gonna leave a Marx</text>
 		<wiki>https://borderlands.fandom.com/wiki/Hive_Mind</wiki>
 		<points>1</points>
@@ -240,7 +241,7 @@
 		<game/>
 		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
-		<source>Middle chest in the The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
+		<source>Middle chest in The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
 		<text>Does your face hurt? It's killin'me...</text>
 		<wiki>https://borderlands.fandom.com/wiki/Mug_Shot</wiki>
 		<points>1</points>
@@ -252,7 +253,7 @@
 		<game/>
 		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
-		<source>Middle chest in the The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
+		<source>Middle chest in The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
 		<text>It knows when you're awake</text>
 		<wiki>https://borderlands.fandom.com/wiki/Silent_Night</wiki>
 		<points>1</points>
@@ -264,7 +265,7 @@
 		<game/>
 		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
-		<source>Middle chest in the The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
+		<source>Middle chest in The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
 		<text>Your shoelace is untied...</text>
 		<wiki>https://borderlands.fandom.com/wiki/Sucker_Punch</wiki>
 		<points>1</points>
@@ -275,7 +276,7 @@
 		<game/>
 		<obtained>false</obtained>
 		<rarity>Legendary</rarity>
-		<source>Middle chest in the The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
+		<source>Middle chest in The Vault_Fyrestone Golden Chest_Crawmerax the Invincible</source>
 		<text>Death will reign.</text>
 		<wiki>https://borderlands.fandom.com/wiki/Violence</wiki>
 		<points>1</points>

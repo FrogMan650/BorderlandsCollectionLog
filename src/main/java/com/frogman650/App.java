@@ -1,6 +1,9 @@
 package com.frogman650;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,6 +17,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.net.URI;
 import java.nio.file.Paths;
@@ -24,10 +28,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.AccessibleRole;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -65,11 +71,15 @@ public class App extends Application {
     public static Image sniperImage;
     public static Image relicImage;
     public static Image eridianImage;
+    public static Image repkitImage;
+    public static Image enhancementImage;
     public static Image effervescentBackground;
     public static FlowPane itemFlowPane;
+    public static TextField searchTextField;
     public static Document itemDocument;
     public static NodeList itemNodes;
     public static ArrayList<Pane> itemCardArray = new ArrayList<>();
+    public static ArrayList<ToggleButton> toggleButtonArray = new ArrayList<>();
     public static File itemsXML;
     public static HostServices hostService;
 
@@ -99,8 +109,9 @@ public class App extends Application {
         sniperImage = new Image(getClass().getResourceAsStream("sniper.png"));
         relicImage = new Image(getClass().getResourceAsStream("relic.png"));
         eridianImage = new Image(getClass().getResourceAsStream("eridian.png"));
+        repkitImage = new Image(getClass().getResourceAsStream("repkit.png"));
+        enhancementImage = new Image(getClass().getResourceAsStream("enhancement.png"));
         effervescentBackground = new Image(getClass().getResourceAsStream("effervescent_rev2.gif"));
-
         hostService = getHostServices();
 
         URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
@@ -121,101 +132,230 @@ public class App extends Application {
         itemScrollPane.setId("itemScrollPane");
 
         //Filters
+        searchTextField = new TextField();
+        searchTextField.setId("searchTextField");
+        searchTextField.setPromptText("Search Item Name");
+        VBox.setMargin(searchTextField, new Insets(0, 0, 0, 1));
         VBox filterVBox = new VBox();
         filterVBox.setSpacing(1);
         Label filterLabel = new Label("FILTERS");
         filterLabel.setId("filterLabel");
         Button allButton = new Button("All");
         allButton.setId("all");
+        allButton.setOnAction(event -> {
+            allToggleButtonsOn(toggleButtonArray);
+            addAllItemCards(searchTextField.getText());
+        });
         Button noneButton = new Button("None");
         noneButton.setId("none");
+        noneButton.setOnAction(event -> {
+            allToggleButtonsOff(toggleButtonArray);
+            addAllItemCards(searchTextField.getText());
+        });
         HBox allNoneHBox = new HBox(2);
         allNoneHBox.setAlignment(Pos.CENTER);
         allNoneHBox.getChildren().addAll(allButton, noneButton);
-        filterVBox.getChildren().addAll(filterLabel, allNoneHBox);
-        ArrayList<ToggleButton> toggleButtonArray = new ArrayList<>();
+
+        // TEST BUTTONS============================================================================================
+        // Button testingButton = new Button("Testing");
+        // testingButton.setOnAction(event -> {
+        //     getCardName(itemCardArray.get(0));
+        // });
+        // Button testingButton2 = new Button("Testing 2");
+        // testingButton2.setOnAction(event -> {
+        //     addAllItemCards(searchTextField.getText());
+        // });
+
+        filterVBox.getChildren().addAll(filterLabel, allNoneHBox, searchTextField);
         Label weaponLabel = new Label("WEAPONS");
         weaponLabel.setId("filterLabel");
-        ToggleButton pistolToggleButton = new ToggleButton("Pistols");
+        ToggleButton pistolToggleButton = new ToggleButton("Pistols");//0
         toggleButtonArray.add(pistolToggleButton);
-        ToggleButton smgToggleButton = new ToggleButton("Submachine Guns");
+        ToggleButton smgToggleButton = new ToggleButton("Submachine Guns");//1
         toggleButtonArray.add(smgToggleButton);
-        ToggleButton assaultRifleToggleButton = new ToggleButton("Assault Rifles");
+        ToggleButton assaultRifleToggleButton = new ToggleButton("Assault Rifles");//2
         toggleButtonArray.add(assaultRifleToggleButton);
-        ToggleButton shotgunToggleButton = new ToggleButton("Shotguns");
+        ToggleButton shotgunToggleButton = new ToggleButton("Shotguns");//3
         toggleButtonArray.add(shotgunToggleButton);
-        ToggleButton sniperToggleButton = new ToggleButton("Sniper Rifles");
+        ToggleButton sniperToggleButton = new ToggleButton("Sniper Rifles");//4
         toggleButtonArray.add(sniperToggleButton);
-        ToggleButton launcherToggleButton = new ToggleButton("Rocket Launchers");
+        ToggleButton launcherToggleButton = new ToggleButton("Rocket Launchers");//5
         toggleButtonArray.add(launcherToggleButton);
-        ToggleButton eridianToggleButton = new ToggleButton("Eridian");
+        ToggleButton eridianToggleButton = new ToggleButton("Eridian");//6
         toggleButtonArray.add(eridianToggleButton);
-        ToggleButton laserToggleButton = new ToggleButton("Lasers");
+        ToggleButton laserToggleButton = new ToggleButton("Lasers");//7
         toggleButtonArray.add(laserToggleButton);
         filterVBox.getChildren().addAll(weaponLabel, pistolToggleButton, smgToggleButton, assaultRifleToggleButton, shotgunToggleButton, 
         sniperToggleButton, launcherToggleButton, eridianToggleButton, laserToggleButton);
         Label equipmentLabel = new Label("EQUIPMENT");
         equipmentLabel.setId("filterLabel");
-        ToggleButton classModToggleButton = new ToggleButton("Class Mods");
+        ToggleButton classModToggleButton = new ToggleButton("Class Mods");//8
         toggleButtonArray.add(classModToggleButton);
-        ToggleButton grenadeToggleButton = new ToggleButton("Grenade Mods");
+        ToggleButton grenadeToggleButton = new ToggleButton("Grenade Mods");//9
         toggleButtonArray.add(grenadeToggleButton);
-        ToggleButton relicToggleButton = new ToggleButton("Relifacts");
+        ToggleButton relicToggleButton = new ToggleButton("Relifacts");//10
         toggleButtonArray.add(relicToggleButton);
-        ToggleButton shieldToggleButton = new ToggleButton("Shields");
+        ToggleButton shieldToggleButton = new ToggleButton("Shields");//11
         toggleButtonArray.add(shieldToggleButton);
-        ToggleButton ozKitToggleButton = new ToggleButton("Oz Kits");
+        ToggleButton ozKitToggleButton = new ToggleButton("Oz Kits");//12
         toggleButtonArray.add(ozKitToggleButton);
-        ToggleButton enhancementToggleButton = new ToggleButton("Enhancements");
+        ToggleButton enhancementToggleButton = new ToggleButton("Enhancements");//13
         toggleButtonArray.add(enhancementToggleButton);
-        ToggleButton repkitToggleButton = new ToggleButton("Repkits");
+        ToggleButton repkitToggleButton = new ToggleButton("Repkits");//14
         toggleButtonArray.add(repkitToggleButton);
-        ToggleButton grenadeOrdnanceToggleButton = new ToggleButton("Grenade Ordnance");
+        ToggleButton grenadeOrdnanceToggleButton = new ToggleButton("Grenade Ordnance");//15
         toggleButtonArray.add(grenadeOrdnanceToggleButton);
-        ToggleButton heavyOrdnanceToggleButton = new ToggleButton("Heavy Ordnance");
+        ToggleButton heavyOrdnanceToggleButton = new ToggleButton("Heavy Ordnance");//16
         toggleButtonArray.add(heavyOrdnanceToggleButton);
         filterVBox.getChildren().addAll(equipmentLabel, classModToggleButton, grenadeToggleButton, relicToggleButton, shieldToggleButton, 
         ozKitToggleButton, enhancementToggleButton, repkitToggleButton, grenadeOrdnanceToggleButton, heavyOrdnanceToggleButton);
         Label rarityLabel = new Label("RARITY");
         rarityLabel.setId("filterLabel");
-        ToggleButton uniqueToggleButton = new ToggleButton("Unique");
+        ToggleButton uniqueToggleButton = new ToggleButton("Unique");//17
         toggleButtonArray.add(uniqueToggleButton);
-        ToggleButton legendaryToggleButton = new ToggleButton("Legendary");
+        ToggleButton legendaryToggleButton = new ToggleButton("Legendary");//18
         toggleButtonArray.add(legendaryToggleButton);
-        ToggleButton seraphToggleButton = new ToggleButton("Seraph");
+        ToggleButton seraphToggleButton = new ToggleButton("Seraph");//19
         toggleButtonArray.add(seraphToggleButton);
-        ToggleButton pearlToggleButton = new ToggleButton("Pearlescent");
+        ToggleButton pearlToggleButton = new ToggleButton("Pearlescent");//20
         toggleButtonArray.add(pearlToggleButton);
-        ToggleButton glitchToggleButton = new ToggleButton("Glitch");
+        ToggleButton glitchToggleButton = new ToggleButton("Glitch");//27
         toggleButtonArray.add(glitchToggleButton);
-        ToggleButton effervescentToggleButton = new ToggleButton("Effervescent");
+        ToggleButton effervescentToggleButton = new ToggleButton("Effervescent");//22
         toggleButtonArray.add(effervescentToggleButton);
         filterVBox.getChildren().addAll(rarityLabel, uniqueToggleButton, legendaryToggleButton, seraphToggleButton, 
         pearlToggleButton, glitchToggleButton, effervescentToggleButton);
         Label gameFilterLabel = new Label("GAME");
         gameFilterLabel.setId("filterLabel");
-        ToggleButton bl1ToggleButton = new ToggleButton("Borderlands");
+        ToggleButton bl1ToggleButton = new ToggleButton("Borderlands");//23
         toggleButtonArray.add(bl1ToggleButton);
-        ToggleButton bl2ToggleButton = new ToggleButton("Borderlands 2");
+        ToggleButton bl2ToggleButton = new ToggleButton("Borderlands 2");//24
         toggleButtonArray.add(bl2ToggleButton);
-        ToggleButton blTPSToggleButton = new ToggleButton("Borderlands TPS");
+        ToggleButton blTPSToggleButton = new ToggleButton("Borderlands TPS");//25
         toggleButtonArray.add(blTPSToggleButton);
-        ToggleButton bl3ToggleButton = new ToggleButton("Borderlands 3");
+        ToggleButton bl3ToggleButton = new ToggleButton("Borderlands 3");//26
         toggleButtonArray.add(bl3ToggleButton);
-        ToggleButton bl4ToggleButton = new ToggleButton("Borderlands 4");
+        ToggleButton bl4ToggleButton = new ToggleButton("Borderlands 4");//27
         toggleButtonArray.add(bl4ToggleButton);
         filterVBox.getChildren().addAll(gameFilterLabel, bl1ToggleButton, bl2ToggleButton, blTPSToggleButton, bl3ToggleButton, bl4ToggleButton);
         Label miscLabel = new Label("MISCELLANEOUS");
         miscLabel.setId("filterLabel");
-        ToggleButton obtainedToggleButton = new ToggleButton("Obtained");
+        ToggleButton obtainedToggleButton = new ToggleButton("Obtained");//28
         toggleButtonArray.add(obtainedToggleButton);
-        ToggleButton notObtainedToggleButton = new ToggleButton("Not Obtained");
+        ToggleButton notObtainedToggleButton = new ToggleButton("Not Obtained");//29
         toggleButtonArray.add(notObtainedToggleButton);
+        for (int i = 0; i < toggleButtonArray.size(); i++) {
+            toggleButtonArray.get(i).setOnAction(event -> {
+                addAllItemCards(searchTextField.getText());
+            });
+        }
         filterVBox.getChildren().addAll(miscLabel, obtainedToggleButton, notObtainedToggleButton);
         filterVBox.setId("filterVBox");
         allToggleButtonsOn(toggleButtonArray);
         ScrollPane filterScrollPane = new ScrollPane(filterVBox);
         filterScrollPane.setId("filterScrollPane");
+        weaponLabel.setOnMouseClicked(event -> {
+            Boolean allEnabled = pistolToggleButton.isSelected() && smgToggleButton.isSelected() && 
+            assaultRifleToggleButton.isSelected() && shotgunToggleButton.isSelected() && sniperToggleButton.isSelected() && 
+            launcherToggleButton.isSelected() && eridianToggleButton.isSelected() && laserToggleButton.isSelected();
+            if (allEnabled) {
+                pistolToggleButton.setSelected(false);
+                smgToggleButton.setSelected(false);
+                assaultRifleToggleButton.setSelected(false);
+                shotgunToggleButton.setSelected(false);
+                sniperToggleButton.setSelected(false);
+                launcherToggleButton.setSelected(false);
+                eridianToggleButton.setSelected(false);
+                laserToggleButton.setSelected(false);
+            } else {
+                pistolToggleButton.setSelected(true);
+                smgToggleButton.setSelected(true);
+                assaultRifleToggleButton.setSelected(true);
+                shotgunToggleButton.setSelected(true);
+                sniperToggleButton.setSelected(true);
+                launcherToggleButton.setSelected(true);
+                eridianToggleButton.setSelected(true);
+                laserToggleButton.setSelected(true);
+            }
+            addAllItemCards(searchTextField.getText());
+        });
+        equipmentLabel.setOnMouseClicked(event -> {
+            Boolean allEnabled = classModToggleButton.isSelected() && grenadeToggleButton.isSelected() && 
+            relicToggleButton.isSelected() && shieldToggleButton.isSelected() && ozKitToggleButton.isSelected() && 
+            enhancementToggleButton.isSelected() && repkitToggleButton.isSelected() && grenadeOrdnanceToggleButton.isSelected() && heavyOrdnanceToggleButton.isSelected();
+            if (allEnabled) {
+                classModToggleButton.setSelected(false);
+                grenadeToggleButton.setSelected(false);
+                relicToggleButton.setSelected(false);
+                shieldToggleButton.setSelected(false);
+                ozKitToggleButton.setSelected(false);
+                enhancementToggleButton.setSelected(false);
+                repkitToggleButton.setSelected(false);
+                grenadeOrdnanceToggleButton.setSelected(false);
+                heavyOrdnanceToggleButton.setSelected(false);
+            } else {
+                classModToggleButton.setSelected(true);
+                grenadeToggleButton.setSelected(true);
+                relicToggleButton.setSelected(true);
+                shieldToggleButton.setSelected(true);
+                ozKitToggleButton.setSelected(true);
+                enhancementToggleButton.setSelected(true);
+                repkitToggleButton.setSelected(true);
+                grenadeOrdnanceToggleButton.setSelected(true);
+                heavyOrdnanceToggleButton.setSelected(true);
+            }
+            addAllItemCards(searchTextField.getText());
+        });
+        rarityLabel.setOnMouseClicked(event -> {
+            Boolean allEnabled = uniqueToggleButton.isSelected() && legendaryToggleButton.isSelected() && 
+            seraphToggleButton.isSelected() && pearlToggleButton.isSelected() && glitchToggleButton.isSelected() && 
+            effervescentToggleButton.isSelected();
+            if (allEnabled) {
+                uniqueToggleButton.setSelected(false);
+                legendaryToggleButton.setSelected(false);
+                seraphToggleButton.setSelected(false);
+                pearlToggleButton.setSelected(false);
+                glitchToggleButton.setSelected(false);
+                effervescentToggleButton.setSelected(false);
+            } else {
+                uniqueToggleButton.setSelected(true);
+                legendaryToggleButton.setSelected(true);
+                seraphToggleButton.setSelected(true);
+                pearlToggleButton.setSelected(true);
+                glitchToggleButton.setSelected(true);
+                effervescentToggleButton.setSelected(true);
+            }
+            addAllItemCards(searchTextField.getText());
+        });
+        gameFilterLabel.setOnMouseClicked(event -> {
+            Boolean allEnabled = bl1ToggleButton.isSelected() && bl2ToggleButton.isSelected() && 
+            blTPSToggleButton.isSelected() && bl3ToggleButton.isSelected() && bl4ToggleButton.isSelected();
+            if (allEnabled) {
+                bl1ToggleButton.setSelected(false);
+                bl2ToggleButton.setSelected(false);
+                blTPSToggleButton.setSelected(false);
+                bl3ToggleButton.setSelected(false);
+                bl4ToggleButton.setSelected(false);
+            } else {
+                bl1ToggleButton.setSelected(true);
+                bl2ToggleButton.setSelected(true);
+                blTPSToggleButton.setSelected(true);
+                bl3ToggleButton.setSelected(true);
+                bl4ToggleButton.setSelected(true);
+            }
+            addAllItemCards(searchTextField.getText());
+        });
+        miscLabel.setOnMouseClicked(event -> {
+            Boolean allEnabled = obtainedToggleButton.isSelected() && notObtainedToggleButton.isSelected();
+            if (allEnabled) {
+                obtainedToggleButton.setSelected(false);
+                notObtainedToggleButton.setSelected(false);
+            } else {
+                obtainedToggleButton.setSelected(true);
+                notObtainedToggleButton.setSelected(true);
+            }
+            addAllItemCards(searchTextField.getText());
+        });
 
         //Banner
         ImageView wikiLinkImageView = new ImageView(wikiImage);
@@ -235,7 +375,12 @@ public class App extends Application {
 
         //Build item cards
         buildAllItemCards();
-        addAllItemCards();
+        Collections.sort(itemCardArray, new Comparator<Pane>() {
+            public int compare(Pane p1, Pane p2) {
+                return p1.getAccessibleText().compareTo(p2.getAccessibleText());
+            }
+        });
+        addAllItemCards(searchTextField.getText());
 
         AnchorPane root = new AnchorPane();
         root.setId("anchorPane");
@@ -284,14 +429,10 @@ public class App extends Application {
                 label3.setText("Height: " + scene.getHeight());
             }
         });
-        allButton.setOnAction(event -> {
-            allToggleButtonsOn(toggleButtonArray);
-        });
-        noneButton.setOnAction(event -> {
-            allToggleButtonsOff(toggleButtonArray);
-        });
 
-        
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            addAllItemCards(searchTextField.getText());
+        });
     }
 
     public static void allToggleButtonsOn(ArrayList<ToggleButton> toggleButtonArray) {
@@ -311,12 +452,16 @@ public class App extends Application {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource docSource = new DOMSource(itemDocument);
-            // StreamResult docResult = new StreamResult(new File("src/main/resources/com/frogman650/items.xml"));
             StreamResult docResult = new StreamResult(itemsXML);
             transformer.transform(docSource, docResult);
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
+    }
+
+    public static void getCardName(Pane pane) {
+        System.out.println(pane.getAccessibleText());
+        
     }
 
     public static int getCardNumber(String itemName) {
@@ -329,8 +474,85 @@ public class App extends Application {
         return -1;
     }
 
-    public static void addAllItemCards() {
+    public static void clearAllItemCards() {
+        itemFlowPane.getChildren().clear();
+    }
+
+    public static void addAllItemCards(String searchTerm) {
+        clearAllItemCards();
         for (int i = 0; i < itemCardArray.size(); i++) {
+            String name = itemCardArray.get(i).getAccessibleText().split("_")[0];
+            String type = itemCardArray.get(i).getAccessibleText().split("_")[1];
+            String game = itemCardArray.get(i).getAccessibleText().split("_")[2];
+            String obtained = itemCardArray.get(i).getAccessibleText().split("_")[3];
+            String rarity = itemCardArray.get(i).getAccessibleText().split("_")[4];
+            if (game.equals("") && !toggleButtonArray.get(23).isSelected()) {
+                continue;
+            } else if (game.equals("2") && !toggleButtonArray.get(24).isSelected()) {
+                continue;
+            } else if (game.equals("TPS") && !toggleButtonArray.get(25).isSelected()) {
+                continue;
+            } else if (game.equals("3") && !toggleButtonArray.get(26).isSelected()) {
+                continue;
+            } else if (game.equals("4") && !toggleButtonArray.get(27).isSelected()) {
+                continue;
+            } else if (obtained.equals("true") && !toggleButtonArray.get(28).isSelected()) {
+                continue;
+            } else if (obtained.equals("false") && !toggleButtonArray.get(29).isSelected()) {
+                continue;
+            } else if ((rarity.equals("unique") || rarity.equals("Unique") || rarity.equals("unique_purple") || 
+            rarity.equals("unique_green")) && !toggleButtonArray.get(17).isSelected()) {
+                continue;
+            } else if ((rarity.equals("legendary") || rarity.equals("Legendary")) && !toggleButtonArray.get(18).isSelected()) {
+                continue;
+            } else if ((rarity.equals("seraph") || rarity.equals("Seraph")) && !toggleButtonArray.get(19).isSelected()) {
+                continue;
+            } else if ((rarity.equals("pearl") || rarity.equals("Pearlescent")) && !toggleButtonArray.get(20).isSelected()) {
+                continue;
+            } else if ((rarity.equals("glitch") || rarity.equals("Glitch")) && !toggleButtonArray.get(21).isSelected()) {
+                continue;
+            } else if ((rarity.equals("effervescent") || rarity.equals("Effervescent")) && !toggleButtonArray.get(22).isSelected()) {
+                continue;
+            } else if ((type.equals("pistol") || type.equals("Pistol")) && !toggleButtonArray.get(0).isSelected()) {
+                continue;
+            } else if ((type.equals("smg") || type.equals("Submachine Gun")) && !toggleButtonArray.get(1).isSelected()) {
+                continue;
+            } else if ((type.equals("ar") || type.equals("Assault Rifle")) && !toggleButtonArray.get(2).isSelected()) {
+                continue;
+            } else if ((type.equals("shotgun") || type.equals("Shotgun")) && !toggleButtonArray.get(3).isSelected()) {
+                continue;
+            } else if ((type.equals("sniper") || type.equals("Sniper") || type.equals("Sniper Rifle")) && 
+            !toggleButtonArray.get(4).isSelected()) {
+                continue;
+            } else if ((type.equals("launcher") || type.equals("Launcher") || type.equals("Rocket Launcher")) && 
+            !toggleButtonArray.get(5).isSelected()) {
+                continue;
+            } else if ((type.equals("eridian") || type.equals("Eridian")) && !toggleButtonArray.get(6).isSelected()) {
+                continue;
+            } else if ((type.equals("laser") || type.equals("Laser")) && !toggleButtonArray.get(7).isSelected()) {
+                continue;
+            } else if ((type.equals("class mod") || type.equals("Class Mod")) && !toggleButtonArray.get(8).isSelected()) {
+                continue;
+            } else if ((type.equals("grenade mod") || type.equals("Grenade Mod")) && !toggleButtonArray.get(9).isSelected()) {
+                continue;
+            } else if ((type.equals("relic") || type.equals("Relic") || type.equals("artifact") || type.equals("Artifact")) && 
+            !toggleButtonArray.get(10).isSelected()) {
+                continue;
+            } else if ((type.equals("shield") || type.equals("Shield")) && !toggleButtonArray.get(11).isSelected()) {
+                continue;
+            } else if ((type.equals("oz kit") || type.equals("Oz Kit")) && !toggleButtonArray.get(12).isSelected()) {
+                continue;
+            } else if ((type.equals("enhancement") || type.equals("Enhancement")) && !toggleButtonArray.get(13).isSelected()) {
+                continue;
+            } else if ((type.equals("repkit") || type.equals("Repkit")) && !toggleButtonArray.get(14).isSelected()) {
+                continue;
+            } else if ((type.equals("grenade ordnance") || type.equals("Grenade Ordnance")) && !toggleButtonArray.get(15).isSelected()) {
+                continue;
+            } else if ((type.equals("heavy ordnance") || type.equals("Heavy Ordnance")) && !toggleButtonArray.get(16).isSelected()) {
+                continue;
+            } else if (!name.toLowerCase().contains(searchTerm.toLowerCase())) {
+                continue;
+            }
             itemFlowPane.getChildren().add(itemCardArray.get(i));
         }
     }
@@ -360,6 +582,7 @@ public class App extends Application {
     }
 
     public static void buildItemCard(String name, String type, String game, Boolean obtained, String rarity, String source, String text, String wiki, String points) {
+        Pane itemPane = new Pane();
         StackPane itemImageStackPane = new StackPane();
         itemImageStackPane.setId("itemImageStackPane");
         ImageView itemImageView = new ImageView();
@@ -393,6 +616,10 @@ public class App extends Application {
             itemImageView.setImage(relicImage);
         } else if (type.equals("eridian") || type.equals("Eridian")) {
             itemImageView.setImage(eridianImage);
+        } else if (type.equals("repkit") || type.equals("Repkit")) {
+            itemImageView.setImage(repkitImage);
+        } else if (type.equals("enhancement") || type.equals("Enhancement")) {
+            itemImageView.setImage(enhancementImage);
         }
         Pane itemBackgroundColor = new Pane();
         itemBackgroundColor.setId("itemBackgroundColor");
@@ -408,7 +635,7 @@ public class App extends Application {
         obtainedPane.setId("obtainedPane");
         Label huntPointsLabel = new Label(points);
         huntPointsLabel.setId("huntPointsLabel");
-        HBox testHBox = new HBox(obtainedPane, gameLabel, huntPointsLabel);
+        HBox topHBox = new HBox(obtainedPane, gameLabel, huntPointsLabel);
         HBox.setMargin(obtainedPane, new Insets(5, 0, 0, 12));
         obtainedPane.setOnMouseClicked(event -> {
             Element node = (Element) itemNodes.item(getCardNumber(name));
@@ -416,11 +643,14 @@ public class App extends Application {
             if (obtainedNode.getTextContent().equals("true")) {
                 obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
                 obtainedNode.setTextContent("false");
+                itemPane.setAccessibleText(name + "_" + type + "_" + game + "_false_" + rarity);
             } else {
                 obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
                 obtainedNode.setTextContent("true");
+                itemPane.setAccessibleText(name + "_" + type + "_" + game + "_true_" + rarity);
             }
             writeToXml();
+            addAllItemCards(searchTextField.getText());
         });
         HBox.setMargin(huntPointsLabel, new Insets(7, 0, 0, 23));
         HBox.setMargin(gameLabel, new Insets(0, 0, 0, 25));
@@ -502,13 +732,14 @@ public class App extends Application {
         Region vPusherRegion = new Region();
         VBox.setVgrow(vPusherRegion, Priority.ALWAYS);
         
-        VBox itemVBox = new VBox(testHBox, itemNameLabel, itemImageStackPane, flavorTextLabel, 
+        VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane, flavorTextLabel, 
         sourcesLabel, sourcesListLabel, vPusherRegion, itemBottomHBox);
         itemVBox.setId("itemVBox");
         VBox.setMargin(itemNameLabel, new Insets(5, 0 ,0, 0));
         VBox.setMargin(itemImageStackPane, new Insets(1, 0 ,0, 0));
-        Pane itemPane = new Pane(itemVBox);
+        itemPane.getChildren().add(itemVBox);
         itemPane.setId("itemPane");
+        itemPane.setAccessibleText(name + "_" + type + "_" + game + "_" + obtained + "_" + rarity);
         itemCardArray.add(itemPane);
     }
 }
