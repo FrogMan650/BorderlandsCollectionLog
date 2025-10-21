@@ -702,8 +702,19 @@ public class App extends Application {
             textSize = 24;
         }
         itemNameLabel.setStyle("-fx-font-size: " + textSize + ";");
-        Label flavorTextLabel = new Label("\u2022 " + text);
+        String[] textSplit = text.split("_");
+        String newTextText = "";
+        for (int i = 0; i < textSplit.length; i++) {
+            if (i > 0) {
+                newTextText = newTextText + "\n";
+            }
+            newTextText += "\u2022 " + textSplit[i];
+        }
+        Label flavorTextLabel = new Label(newTextText);
         flavorTextLabel.setId("flavorTextLabel");
+        if (name.equals("Norfleet")) {
+            flavorTextLabel.setStyle("-fx-text-fill:#eb8a01;");
+        }
         Label sourcesLabel = new Label("Sources");
         sourcesLabel.setId("sourcesLabel");
         String[] sourceSplit = source.split("_");
@@ -732,8 +743,11 @@ public class App extends Application {
         Region vPusherRegion = new Region();
         VBox.setVgrow(vPusherRegion, Priority.ALWAYS);
         
-        VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane, flavorTextLabel, 
-        sourcesLabel, sourcesListLabel, vPusherRegion, itemBottomHBox);
+        VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane);
+        if (!text.isEmpty()) {
+            itemVBox.getChildren().add(flavorTextLabel);
+        }
+        itemVBox.getChildren().addAll(sourcesLabel, sourcesListLabel, vPusherRegion, itemBottomHBox);
         itemVBox.setId("itemVBox");
         VBox.setMargin(itemNameLabel, new Insets(5, 0 ,0, 0));
         VBox.setMargin(itemImageStackPane, new Insets(1, 0 ,0, 0));

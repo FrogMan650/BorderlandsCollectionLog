@@ -38,7 +38,6 @@
 
 #flavorTextLabel .text {
     -fx-font-size: 18;
-    -fx-fill: #ff6d6d;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
     -fx-alignment: LEFT;
@@ -54,6 +53,7 @@
 }
 
 #flavorTextLabel {
+    -fx-text-fill: #ff6d6d;
     -fx-max-height: 81;
     -fx-wrap-text: true;
     -fx-max-width: 300;
@@ -152,7 +152,6 @@
     -fx-padding: 5 6 5 10;
     -fx-background-image: url("filter_background_search.png");
     -fx-text-fill: white;
-    /* -fx-text-fill: #eb8a01; */
 }
 
 #searchTextField .text {
