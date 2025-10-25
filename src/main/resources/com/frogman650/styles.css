@@ -19,8 +19,8 @@
 }
 
 #itemFlowPane {
-    -fx-hgap: 5;
-    -fx-vgap: 5;
+    /* -fx-hgap: 5;
+    -fx-vgap: 5; */
 }
 
 #gameLabel .text {
@@ -88,6 +88,15 @@
     -fx-background-image: url("weapon_card.png");
     -fx-pref-height: 470;
     -fx-pref-width: 336;
+}
+
+#blankPane {
+    -fx-pref-height: 470;
+    -fx-pref-width: 336;
+}
+
+#testLabel {
+    -fx-font-size: 20;
 }
 
 #obtainedPane {

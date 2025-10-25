@@ -1,61 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <items>
 	<item>
-		<name>Test item 1</name>
-		<type>pistol</type>
-		<game>TPS</game>
-		<obtained>false</obtained>
-		<rarity>unique_etech</rarity>
-		<source>Sorcerers_Badass Sorcerers_Necromancers_Badass Necromancers_Handsome Dragon</source>
-		<text>What's a jigawatt?</text>
-		<wiki>https://borderlands.fandom.com/wiki/Unkempt_Harold</wiki>
-		<points>5</points>
-	</item>
-	<item>
-		<name>Test item 2</name>
-		<type>launcher</type>
-		<game>2</game>
-		<obtained>false</obtained>
-		<rarity>seraph</rarity>
-		<source>The Black Queen_Torgue Vending Machines</source>
-		<text>Name Dropper.</text>
-		<wiki>https://borderlands.fandom.com/wiki/Nukem</wiki>
-		<points>6</points>
-	</item>
-	<item>
-		<name>Test item 3</name>
-		<type>ar</type>
-		<game>3</game>
-		<obtained>false</obtained>
-		<rarity>unique</rarity>
-		<source>Hidden Basement (only accessable during the mission Another Piece of the Puzzle)</source>
-		<text>As I end the refrain, thrust home.</text>
-		<wiki>https://borderlands.fandom.com/wiki/Rapier</wiki>
-		<points>7</points>
-	</item>
-	<item>
-		<name>Test item 4</name>
-		<type>shield</type>
-		<game>3</game>
-		<obtained>false</obtained>
-		<rarity>effervescent</rarity>
-		<source>Sand Worms</source>
-		<text>Retains your guts inside your body, where they belong.</text>
-		<wiki>https://borderlands.fandom.com/wiki/Retainer</wiki>
-		<points>10</points>
-	</item>
-	<item>
-		<name>Test item 5</name>
-		<type>relic</type>
-		<game/>
-		<obtained>false</obtained>
-		<rarity>seraph</rarity>
-		<source>Oasis Seraph Vendor</source>
-		<text>Their power courses through you…</text>
-		<wiki>https://borderlands.fandom.com/wiki/Blood_of_the_Seraphs</wiki>
-		<points>11</points>
-	</item>
-	<item>
 		<name>Ogre</name>
 		<type>ar</type>
 		<game/>

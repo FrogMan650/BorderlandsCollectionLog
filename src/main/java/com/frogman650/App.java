@@ -22,8 +22,10 @@ import java.io.File;
 import java.net.URI;
 import java.nio.file.Paths;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.HostServices;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -35,6 +37,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.skin.VirtualContainerBase;
+import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -75,13 +79,19 @@ public class App extends Application {
     public static Image enhancementImage;
     public static Image effervescentBackground;
     public static FlowPane itemFlowPane;
+    public static ScrollPane itemScrollPane;
     public static TextField searchTextField;
     public static Document itemDocument;
     public static NodeList itemNodes;
     public static ArrayList<Pane> itemCardArray = new ArrayList<>();
+    public static ArrayList<Pane> itemCardFilteredArray = new ArrayList<>();
     public static ArrayList<ToggleButton> toggleButtonArray = new ArrayList<>();
     public static File itemsXML;
     public static HostServices hostService;
+
+    private final long[] frameTimes = new long[100];
+    private int frameTimeIndex = 0;
+    private boolean arrayFilled = false;
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -126,9 +136,9 @@ public class App extends Application {
         //Item cards holder
         itemFlowPane = new FlowPane();
         itemFlowPane.setId("itemFlowPane");
-        itemFlowPane.setPadding(new Insets(5));
+        itemFlowPane.setPadding(new Insets(0));
 
-        ScrollPane itemScrollPane = new ScrollPane(itemFlowPane);
+        itemScrollPane = new ScrollPane(itemFlowPane);
         itemScrollPane.setId("itemScrollPane");
 
         //Filters
@@ -144,29 +154,23 @@ public class App extends Application {
         allButton.setId("all");
         allButton.setOnAction(event -> {
             allToggleButtonsOn(toggleButtonArray);
-            addAllItemCards(searchTextField.getText());
+            resetDisplayedCards(searchTextField.getText());
         });
         Button noneButton = new Button("None");
         noneButton.setId("none");
         noneButton.setOnAction(event -> {
             allToggleButtonsOff(toggleButtonArray);
-            addAllItemCards(searchTextField.getText());
+            resetDisplayedCards(searchTextField.getText());
         });
         HBox allNoneHBox = new HBox(2);
         allNoneHBox.setAlignment(Pos.CENTER);
         allNoneHBox.getChildren().addAll(allButton, noneButton);
 
         // TEST BUTTONS============================================================================================
-        // Button testingButton = new Button("Testing");
-        // testingButton.setOnAction(event -> {
-        //     getCardName(itemCardArray.get(0));
-        // });
-        // Button testingButton2 = new Button("Testing 2");
-        // testingButton2.setOnAction(event -> {
-        //     addAllItemCards(searchTextField.getText());
-        // });
+        Button testingButton = new Button("Testing");
+        Button testingButton2 = new Button("Testing 2");
 
-        filterVBox.getChildren().addAll(filterLabel, allNoneHBox, searchTextField);
+        filterVBox.getChildren().addAll(testingButton, testingButton2, filterLabel, allNoneHBox, searchTextField);
         Label weaponLabel = new Label("WEAPONS");
         weaponLabel.setId("filterLabel");
         ToggleButton pistolToggleButton = new ToggleButton("Pistols");//0
@@ -246,7 +250,7 @@ public class App extends Application {
         toggleButtonArray.add(notObtainedToggleButton);
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             toggleButtonArray.get(i).setOnAction(event -> {
-                addAllItemCards(searchTextField.getText());
+                resetDisplayedCards(searchTextField.getText());
             });
         }
         filterVBox.getChildren().addAll(miscLabel, obtainedToggleButton, notObtainedToggleButton);
@@ -277,7 +281,7 @@ public class App extends Application {
                 eridianToggleButton.setSelected(true);
                 laserToggleButton.setSelected(true);
             }
-            addAllItemCards(searchTextField.getText());
+            resetDisplayedCards(searchTextField.getText());
         });
         equipmentLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = classModToggleButton.isSelected() && grenadeToggleButton.isSelected() && 
@@ -304,7 +308,7 @@ public class App extends Application {
                 grenadeOrdnanceToggleButton.setSelected(true);
                 heavyOrdnanceToggleButton.setSelected(true);
             }
-            addAllItemCards(searchTextField.getText());
+            resetDisplayedCards(searchTextField.getText());
         });
         rarityLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = uniqueToggleButton.isSelected() && legendaryToggleButton.isSelected() && 
@@ -325,7 +329,7 @@ public class App extends Application {
                 glitchToggleButton.setSelected(true);
                 effervescentToggleButton.setSelected(true);
             }
-            addAllItemCards(searchTextField.getText());
+            resetDisplayedCards(searchTextField.getText());
         });
         gameFilterLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = bl1ToggleButton.isSelected() && bl2ToggleButton.isSelected() && 
@@ -343,7 +347,7 @@ public class App extends Application {
                 bl3ToggleButton.setSelected(true);
                 bl4ToggleButton.setSelected(true);
             }
-            addAllItemCards(searchTextField.getText());
+            resetDisplayedCards(searchTextField.getText());
         });
         miscLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = obtainedToggleButton.isSelected() && notObtainedToggleButton.isSelected();
@@ -354,7 +358,7 @@ public class App extends Application {
                 obtainedToggleButton.setSelected(true);
                 notObtainedToggleButton.setSelected(true);
             }
-            addAllItemCards(searchTextField.getText());
+            resetDisplayedCards(searchTextField.getText());
         });
 
         //Banner
@@ -367,10 +371,39 @@ public class App extends Application {
         wikiViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://borderlands.fandom.com/wiki/Borderlands_Wiki");
         });
+
+        //FPS label
         Label label2 = new Label("Other info here");
+        AnimationTimer frameRateMeter = new AnimationTimer() {
+
+            @Override
+            public void handle(long now) {
+                long oldFrameTime = frameTimes[frameTimeIndex];
+                frameTimes[frameTimeIndex] = now;
+                frameTimeIndex = (frameTimeIndex + 1) % frameTimes.length;
+                if (frameTimeIndex == 0) {
+                    arrayFilled = true;
+                }
+                if (arrayFilled) {
+                    long elapsedNanos = now - oldFrameTime;
+                    long elapsedNanosPerFrame = elapsedNanos / frameTimes.length;
+                    double frameRate = Math.floor(1_000_000_000.0 / elapsedNanosPerFrame);
+                    label2.setText("FPS: " + frameRate);
+                }
+            }
+            
+        };
+        frameRateMeter.start();
+
         Label label3 = new Label("Other info here");
         VBox sizeVBox = new VBox(label2, label3);
-        HBox bannerHBox = new HBox(5, wikiViewPane, sizeVBox);
+        Label label4 = new Label("Other info here");
+        Label label5 = new Label("Other info here");
+        VBox sizeVBox2 = new VBox(label4, label5);
+        Label label6 = new Label("Other info here");
+        Label label7 = new Label("Other info here");
+        VBox sizeVBox3 = new VBox(label6, label7);
+        HBox bannerHBox = new HBox(5, wikiViewPane, sizeVBox, sizeVBox2, sizeVBox3);
         bannerHBox.setId("bannerBox");
 
         //Build item cards
@@ -380,7 +413,9 @@ public class App extends Application {
                 return p1.getAccessibleText().compareTo(p2.getAccessibleText());
             }
         });
-        addAllItemCards(searchTextField.getText());
+        resetDisplayedCards(searchTextField.getText());
+
+
 
         AnchorPane root = new AnchorPane();
         root.setId("anchorPane");
@@ -408,30 +443,85 @@ public class App extends Application {
 
         stage.setScene(scene);
         stage.show();
-        label2.setText(itemsXML.getAbsolutePath());
-        itemFlowPane.setPrefWidth(scene.getWidth()-210);
+        itemFlowPane.setPrefWidth(scene.getWidth()-206);
+        int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
+        int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
+        if (cardsThatFit > 1) {
+            int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
+            itemFlowPane.setHgap(hGapValue);
+        }
         scene.widthProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                label2.setText("Width: " + scene.getWidth());
-                if (scene.getWidth() == 2560) {
-                    itemFlowPane.setStyle("-fx-hgap: 0;");
-                    itemFlowPane.setPadding(new Insets(0));
-                    itemFlowPane.setPrefWidth(scene.getWidth()-208);
-                } else {
-                    itemFlowPane.setStyle("-fx-hgap: 5;");
-                    itemFlowPane.setPadding(new Insets(5));
-                    itemFlowPane.setPrefWidth(scene.getWidth()-210);
+                // label2.setText("Width: " + itemFlowPane.getWidth());
+                itemScrollPane.setVvalue(0);
+                itemFlowPane.setPrefWidth(scene.getWidth()-206);
+                int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
+                int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
+                if (cardsThatFit > 1) {
+                int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
+                itemFlowPane.setHgap(hGapValue);
                 }
             }
         });
         scene.heightProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                label3.setText("Height: " + scene.getHeight());
+                // label3.setText("Height: " + scene.getHeight());
             }
         });
 
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            addAllItemCards(searchTextField.getText());
+            resetDisplayedCards(searchTextField.getText());
+        });
+
+        itemScrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                double flowPaneWidth = itemFlowPane.getWidth();
+                int cardsOnScreenH = (int) Math.floor(flowPaneWidth/336);
+                int cardsOnScreenV = (int) Math.ceil(itemScrollPane.getViewportBounds().getHeight()/470);
+                Double newValueDouble = newValue.doubleValue();
+
+                int cardOnScreen = (int) Math.round(itemCardFilteredArray.size()*newValueDouble);
+                int growingValue = (int) Math.floor(cardsOnScreenH*(newValueDouble));
+                int shrinkingValue = (int) Math.ceil(cardsOnScreenH*(1-newValueDouble));
+                int minBound = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV)+growingValue);
+                int lowBounds = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV-1)+growingValue);
+                int highBounds = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV)+shrinkingValue);
+                int maxBound = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV+1)+shrinkingValue);
+                // label3.setText("cardOnScreen: " + cardOnScreen);
+                // label4.setText("cardsOnScreenH: " + cardsOnScreenH);
+                // label5.setText("cardsOnScreenV: " + cardsOnScreenV);
+                // label6.setText("growingValue: " + growingValue);
+                // label7.setText("shrinkingValue: " + shrinkingValue);
+                for (int i = minBound; i < maxBound; i++) {
+                    if (i >= 0 && i < itemCardFilteredArray.size()) {
+                        if (i < lowBounds) {
+                            itemFlowPane.getChildren().get(i).setVisible(false);
+                        } else if (i >= lowBounds && i <= highBounds) {
+                            itemFlowPane.getChildren().get(i).setVisible(true);
+                        } else if (i > highBounds) {
+                            itemFlowPane.getChildren().get(i).setVisible(false);
+                        }
+                    }
+                }
+            }
+        });
+
+        testingButton.setOnAction(event -> {
+            int visibleCards = 0;
+            for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
+                if(itemFlowPane.getChildren().get(i).isVisible()) {
+                    visibleCards += 1;
+                }
+            }
+            System.out.println("Visible cards: " + visibleCards);
+            System.out.println("Total cards: " + itemFlowPane.getChildren().size());
+        });
+        testingButton2.setOnAction(event -> {
+            Pane blankPane = new Pane();
+            blankPane.setId("blankPane");
+            blankPane.setAccessibleText("name_type_game_obtained_rarity");
+            itemCardArray.set(0, blankPane);
+            resetDisplayedCards("");
         });
     }
 
@@ -459,15 +549,11 @@ public class App extends Application {
         }
     }
 
-    public static void getCardName(Pane pane) {
-        System.out.println(pane.getAccessibleText());
-        
-    }
-
-    public static int getCardNumber(String itemName) {
+    public static int getCardNumber(String name, String game) {
         for (int i = 0; i < itemNodes.getLength(); i++) {
             Element node = (Element) itemNodes.item(i);
-            if (node.getElementsByTagName("name").item(0).getTextContent().equals(itemName)) {
+            if (node.getElementsByTagName("name").item(0).getTextContent().equals(name) && 
+            node.getElementsByTagName("game").item(0).getTextContent().equals(game)) {
                 return i;
             }
         }
@@ -478,8 +564,26 @@ public class App extends Application {
         itemFlowPane.getChildren().clear();
     }
 
-    public static void addAllItemCards(String searchTerm) {
+    public static void clearFilteredItemCards() {
+        itemCardFilteredArray.clear();
+    }
+
+    public static void resetDisplayedCards(String searchTerm) {
+        filterAllItemCards(searchTerm);
         clearAllItemCards();
+        for (int i = 0; i < itemCardFilteredArray.size(); i++) {
+            itemFlowPane.getChildren().add(itemCardFilteredArray.get(i));
+            if (i < 50) {
+                itemFlowPane.getChildren().get(i).setVisible(true);
+            } else {
+                itemFlowPane.getChildren().get(i).setVisible(false);
+            }
+        }
+        itemScrollPane.setVvalue(0);
+    }
+
+    public static void filterAllItemCards(String searchTerm) {
+        clearFilteredItemCards();
         for (int i = 0; i < itemCardArray.size(); i++) {
             String name = itemCardArray.get(i).getAccessibleText().split("_")[0];
             String type = itemCardArray.get(i).getAccessibleText().split("_")[1];
@@ -553,7 +657,7 @@ public class App extends Application {
             } else if (!name.toLowerCase().contains(searchTerm.toLowerCase())) {
                 continue;
             }
-            itemFlowPane.getChildren().add(itemCardArray.get(i));
+            itemCardFilteredArray.add(itemCardArray.get(i));
         }
     }
 
@@ -638,7 +742,7 @@ public class App extends Application {
         HBox topHBox = new HBox(obtainedPane, gameLabel, huntPointsLabel);
         HBox.setMargin(obtainedPane, new Insets(5, 0, 0, 12));
         obtainedPane.setOnMouseClicked(event -> {
-            Element node = (Element) itemNodes.item(getCardNumber(name));
+            Element node = (Element) itemNodes.item(getCardNumber(name, game));
             Node obtainedNode = node.getElementsByTagName("obtained").item(0);
             if (obtainedNode.getTextContent().equals("true")) {
                 obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
@@ -650,7 +754,7 @@ public class App extends Application {
                 itemPane.setAccessibleText(name + "_" + type + "_" + game + "_true_" + rarity);
             }
             writeToXml();
-            addAllItemCards(searchTextField.getText());
+            resetDisplayedCards(searchTextField.getText());
         });
         HBox.setMargin(huntPointsLabel, new Insets(7, 0, 0, 23));
         HBox.setMargin(gameLabel, new Insets(0, 0, 0, 25));
@@ -672,6 +776,9 @@ public class App extends Application {
         } else if (rarity.equals("unique_green")) {
             itemNameLabel.setTextFill(Paint.valueOf("#3ac80a"));
             itemBackgroundColor.setStyle("-fx-background-color: #3ac80a;");
+        } else if (rarity.equals("unique_etech")) {
+            itemNameLabel.setTextFill(Paint.valueOf("#e700e7"));
+            itemBackgroundColor.setStyle("-fx-background-color: #e700e7;");
         } else if (rarity.equals("seraph") || rarity.equals("glitch") || 
         rarity.equals("Seraph") || rarity.equals("Glitch")) {
             itemNameLabel.setTextFill(Paint.valueOf("#ff69b4"));
@@ -753,6 +860,7 @@ public class App extends Application {
         VBox.setMargin(itemImageStackPane, new Insets(1, 0 ,0, 0));
         itemPane.getChildren().add(itemVBox);
         itemPane.setId("itemPane");
+        itemPane.setVisible(false);
         itemPane.setAccessibleText(name + "_" + type + "_" + game + "_" + obtained + "_" + rarity);
         itemCardArray.add(itemPane);
     }
