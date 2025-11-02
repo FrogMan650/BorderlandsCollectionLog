@@ -118,6 +118,9 @@
   "name":"javafx.scene.Camera"
 },
 {
+  "name":"javafx.scene.Group"
+},
+{
   "name":"javafx.scene.Node"
 },
 {
@@ -148,6 +151,18 @@
   "name":"javafx.scene.layout.Region"
 },
 {
+  "name":"javafx.scene.shape.LineTo"
+},
+{
+  "name":"javafx.scene.shape.MoveTo"
+},
+{
+  "name":"javafx.scene.shape.Path"
+},
+{
+  "name":"javafx.scene.shape.PathElement"
+},
+{
   "name":"javafx.scene.shape.Rectangle"
 },
 {
@@ -164,6 +179,9 @@
 },
 {
   "name":"javafx.scene.transform.Transform"
+},
+{
+  "name":"javafx.stage.PopupWindow"
 },
 {
   "name":"javafx.stage.Stage"

@@ -18,9 +18,19 @@
     -fx-stroke-width: 1px;
 }
 
+#toolTip {
+    -fx-effect: none;
+    -fx-font-size: 10;
+    -fx-opacity: 0.8;
+    -fx-padding: 3;
+}
+
+#toolTip .text {
+    -fx-stroke: none;
+}
+
 #itemFlowPane {
-    /* -fx-hgap: 5;
-    -fx-vgap: 5; */
+    -fx-vgap: 5;
 }
 
 #gameLabel .text {
@@ -31,7 +41,6 @@
 }
 
 #itemNameLabel .text {
-    -fx-font-size: 25;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
 }
@@ -47,6 +56,10 @@
     -fx-pref-width: 204;
 }
 
+/* .tooltip .text {
+    -fx-font-size: 30;
+} */
+
 #itemNameLabel {
     -fx-min-height: 37;
     -fx-min-width: 37;
@@ -54,7 +67,6 @@
 
 #flavorTextLabel {
     -fx-text-fill: #ff6d6d;
-    -fx-max-height: 81;
     -fx-wrap-text: true;
     -fx-max-width: 300;
 }
@@ -90,15 +102,6 @@
     -fx-pref-width: 336;
 }
 
-#blankPane {
-    -fx-pref-height: 470;
-    -fx-pref-width: 336;
-}
-
-#testLabel {
-    -fx-font-size: 20;
-}
-
 #obtainedPane {
     -fx-pref-height: 27;
     -fx-pref-width: 27;
@@ -124,12 +127,37 @@
     -fx-max-height: 162;
 }
 
-#itemVBox {
+#itemVBox{
     -fx-max-width: 336;
     -fx-max-height: 453;
     -fx-pref-height: 470;
     -fx-pref-width: 336;
     -fx-alignment: TOP_CENTER;
+}
+
+#itemTextScrollPane {
+    -fx-max-width: 320;
+    -fx-hbar-policy: NEVER;
+    -fx-pref-height: 230;
+}
+
+.scroll-bar:vertical, .scroll-bar:vertical .increment-button, .scroll-bar:vertical .decrement-button , .scroll-bar:vertical .increment-arrow , .scroll-bar:vertical .decrement-arrow {
+    -fx-background-color:transparent;
+    -fx-pref-width: 7;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgb(177, 177, 177);
+    -fx-opacity: 0.5;
+}
+
+#itemTextVBox {
+    -fx-max-width: 305;
+}
+
+#itemWikiLinkPane {
+    -fx-cursor: hand;
+    -fx-max-width: 60;
 }
 
 #itemBottomHBox {

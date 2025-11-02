@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<settings>
+	<setting>
+		<name>pistol</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>smg</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>ar</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>shotgun</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>sniper</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>launcher</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>eridian</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>laser</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>class mod</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>grenade mod</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>relifact</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>shield</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>oz kit</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>enhancement</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>repkit</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>grenade ordnance</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>heavy ordnance</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>unique</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>legendary</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>seraph</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>pearlescent</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>glitch</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>effervescent</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>1</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>2</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>tps</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>3</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>4</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>obtained</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>not obtained</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>world drop</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>non world drop</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>non hunt</name>
+		<enabled>true</enabled>
+	</setting>
+</settings>

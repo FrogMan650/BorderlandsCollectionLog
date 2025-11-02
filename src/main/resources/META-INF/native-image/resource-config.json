@@ -29,9 +29,6 @@
       "pattern":"\\Qcom/frogman650/filter_background_off.png\\E"
     }, 
     {
-      "pattern":"\\Qcom/frogman650/filter_background_search.png\\E"
-    }, 
-    {
       "pattern":"\\Qcom/frogman650/filter_background_off_hover.png\\E"
     }, 
     {
@@ -51,6 +48,9 @@
     }, 
     {
       "pattern":"\\Qcom/frogman650/filter_background_on_mini_hover.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/filter_background_search.png\\E"
     }, 
     {
       "pattern":"\\Qcom/frogman650/grenade.png\\E"
@@ -117,10 +117,7 @@
     }, 
     {
       "name":"com.sun.org.apache.xml.internal.serializer.XMLEntities",
-      "locales":[
-        "", 
-        "und"
-      ]
+      "locales":["und"]
     }, 
     {
       "name":"com/sun/glass/ui/win/themes",
@@ -129,6 +126,10 @@
         "en", 
         "und"
       ]
+    }, 
+    {
+      "name":"com/sun/javafx/scene/control/skin/resources/controls",
+      "locales":[""]
     }
   ]
 }

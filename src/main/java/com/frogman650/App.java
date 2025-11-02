@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.URI;
 import java.nio.file.Paths;
@@ -31,12 +32,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.AccessibleRole;
+import javafx.scene.CacheHint;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.skin.VirtualContainerBase;
 import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.image.Image;
@@ -54,6 +57,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class App extends Application {
     public static Image icon;
@@ -78,15 +82,19 @@ public class App extends Application {
     public static Image repkitImage;
     public static Image enhancementImage;
     public static Image effervescentBackground;
+    public static Image itemCardBackground;
     public static FlowPane itemFlowPane;
     public static ScrollPane itemScrollPane;
     public static TextField searchTextField;
     public static Document itemDocument;
+    public static Document settingsDocument;
     public static NodeList itemNodes;
+    public static NodeList settingsNodes;
     public static ArrayList<Pane> itemCardArray = new ArrayList<>();
     public static ArrayList<Pane> itemCardFilteredArray = new ArrayList<>();
     public static ArrayList<ToggleButton> toggleButtonArray = new ArrayList<>();
     public static File itemsXML;
+    public static File settingsXML;
     public static HostServices hostService;
 
     private final long[] frameTimes = new long[100];
@@ -122,16 +130,20 @@ public class App extends Application {
         repkitImage = new Image(getClass().getResourceAsStream("repkit.png"));
         enhancementImage = new Image(getClass().getResourceAsStream("enhancement.png"));
         effervescentBackground = new Image(getClass().getResourceAsStream("effervescent_rev2.gif"));
+        itemCardBackground = new Image(getClass().getResourceAsStream("weapon_card.png"));
         hostService = getHostServices();
 
         URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
         File executableDirectory = Paths.get(uri).getParent().toFile();
         itemsXML = new File(executableDirectory, "items.xml");
+        settingsXML = new File(executableDirectory, "settings.xml");
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         itemDocument = builder.parse(itemsXML);
+        settingsDocument = builder.parse(settingsXML);
         itemNodes = itemDocument.getDocumentElement().getElementsByTagName("item");
+        settingsNodes = settingsDocument.getDocumentElement().getElementsByTagName("setting");
 
         //Item cards holder
         itemFlowPane = new FlowPane();
@@ -154,13 +166,11 @@ public class App extends Application {
         allButton.setId("all");
         allButton.setOnAction(event -> {
             allToggleButtonsOn(toggleButtonArray);
-            resetDisplayedCards(searchTextField.getText());
         });
         Button noneButton = new Button("None");
         noneButton.setId("none");
         noneButton.setOnAction(event -> {
             allToggleButtonsOff(toggleButtonArray);
-            resetDisplayedCards(searchTextField.getText());
         });
         HBox allNoneHBox = new HBox(2);
         allNoneHBox.setAlignment(Pos.CENTER);
@@ -170,7 +180,7 @@ public class App extends Application {
         Button testingButton = new Button("Testing");
         Button testingButton2 = new Button("Testing 2");
 
-        filterVBox.getChildren().addAll(testingButton, testingButton2, filterLabel, allNoneHBox, searchTextField);
+        filterVBox.getChildren().addAll(filterLabel, allNoneHBox, searchTextField);
         Label weaponLabel = new Label("WEAPONS");
         weaponLabel.setId("filterLabel");
         ToggleButton pistolToggleButton = new ToggleButton("Pistols");//0
@@ -223,7 +233,7 @@ public class App extends Application {
         toggleButtonArray.add(seraphToggleButton);
         ToggleButton pearlToggleButton = new ToggleButton("Pearlescent");//20
         toggleButtonArray.add(pearlToggleButton);
-        ToggleButton glitchToggleButton = new ToggleButton("Glitch");//27
+        ToggleButton glitchToggleButton = new ToggleButton("Glitch");//21
         toggleButtonArray.add(glitchToggleButton);
         ToggleButton effervescentToggleButton = new ToggleButton("Effervescent");//22
         toggleButtonArray.add(effervescentToggleButton);
@@ -241,125 +251,137 @@ public class App extends Application {
         toggleButtonArray.add(bl3ToggleButton);
         ToggleButton bl4ToggleButton = new ToggleButton("Borderlands 4");//27
         toggleButtonArray.add(bl4ToggleButton);
-        filterVBox.getChildren().addAll(gameFilterLabel, bl1ToggleButton, bl2ToggleButton, blTPSToggleButton, bl3ToggleButton, bl4ToggleButton);
+        filterVBox.getChildren().addAll(gameFilterLabel, bl1ToggleButton, bl2ToggleButton, 
+        blTPSToggleButton, bl3ToggleButton, bl4ToggleButton);
         Label miscLabel = new Label("MISCELLANEOUS");
         miscLabel.setId("filterLabel");
         ToggleButton obtainedToggleButton = new ToggleButton("Obtained");//28
         toggleButtonArray.add(obtainedToggleButton);
         ToggleButton notObtainedToggleButton = new ToggleButton("Not Obtained");//29
         toggleButtonArray.add(notObtainedToggleButton);
+        ToggleButton worldDropToggleButton = new ToggleButton("World Drop");//30
+        toggleButtonArray.add(worldDropToggleButton);
+        ToggleButton nonWorldDropToggleButton = new ToggleButton("Non World Drop");//31
+        toggleButtonArray.add(nonWorldDropToggleButton);
+        ToggleButton nonHuntToggleButton = new ToggleButton("Non Hunt");//32
+        toggleButtonArray.add(nonHuntToggleButton);
         for (int i = 0; i < toggleButtonArray.size(); i++) {
-            toggleButtonArray.get(i).setOnAction(event -> {
-                resetDisplayedCards(searchTextField.getText());
+            int toggleButton = i;
+            toggleButtonArray.get(toggleButton).setOnAction(event -> {
+                new Thread(() -> {
+                    Platform.runLater(() -> {
+                        resetDisplayedCards(searchTextField.getText());
+                    });
+                }).start();
+                Element settingElement = (Element) settingsNodes.item(toggleButton);
+                if (toggleButtonArray.get(toggleButton).isSelected()) {
+                    settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
+                } else {
+                    settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
+                }
+                writeToXml(settingsDocument, settingsXML);
+                itemScrollPane.setVvalue(0);
             });
         }
-        filterVBox.getChildren().addAll(miscLabel, obtainedToggleButton, notObtainedToggleButton);
+        filterVBox.getChildren().addAll(miscLabel, obtainedToggleButton, notObtainedToggleButton, 
+        worldDropToggleButton, nonWorldDropToggleButton, nonHuntToggleButton);
         filterVBox.setId("filterVBox");
-        allToggleButtonsOn(toggleButtonArray);
         ScrollPane filterScrollPane = new ScrollPane(filterVBox);
         filterScrollPane.setId("filterScrollPane");
         weaponLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = pistolToggleButton.isSelected() && smgToggleButton.isSelected() && 
             assaultRifleToggleButton.isSelected() && shotgunToggleButton.isSelected() && sniperToggleButton.isSelected() && 
             launcherToggleButton.isSelected() && eridianToggleButton.isSelected() && laserToggleButton.isSelected();
-            if (allEnabled) {
-                pistolToggleButton.setSelected(false);
-                smgToggleButton.setSelected(false);
-                assaultRifleToggleButton.setSelected(false);
-                shotgunToggleButton.setSelected(false);
-                sniperToggleButton.setSelected(false);
-                launcherToggleButton.setSelected(false);
-                eridianToggleButton.setSelected(false);
-                laserToggleButton.setSelected(false);
-            } else {
-                pistolToggleButton.setSelected(true);
-                smgToggleButton.setSelected(true);
-                assaultRifleToggleButton.setSelected(true);
-                shotgunToggleButton.setSelected(true);
-                sniperToggleButton.setSelected(true);
-                launcherToggleButton.setSelected(true);
-                eridianToggleButton.setSelected(true);
-                laserToggleButton.setSelected(true);
+            String enabledString = allEnabled ? "false" : "true";
+            for (int i = 0; i < 8; i++) {
+                Element settingElement = (Element) settingsNodes.item(i);
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
+                toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            resetDisplayedCards(searchTextField.getText());
+            new Thread(() -> {
+                    Platform.runLater(() -> {
+                        resetDisplayedCards(searchTextField.getText());
+                    });
+                }).start();
+            writeToXml(settingsDocument, settingsXML);
+            itemScrollPane.setVvalue(0);
         });
         equipmentLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = classModToggleButton.isSelected() && grenadeToggleButton.isSelected() && 
             relicToggleButton.isSelected() && shieldToggleButton.isSelected() && ozKitToggleButton.isSelected() && 
             enhancementToggleButton.isSelected() && repkitToggleButton.isSelected() && grenadeOrdnanceToggleButton.isSelected() && heavyOrdnanceToggleButton.isSelected();
-            if (allEnabled) {
-                classModToggleButton.setSelected(false);
-                grenadeToggleButton.setSelected(false);
-                relicToggleButton.setSelected(false);
-                shieldToggleButton.setSelected(false);
-                ozKitToggleButton.setSelected(false);
-                enhancementToggleButton.setSelected(false);
-                repkitToggleButton.setSelected(false);
-                grenadeOrdnanceToggleButton.setSelected(false);
-                heavyOrdnanceToggleButton.setSelected(false);
-            } else {
-                classModToggleButton.setSelected(true);
-                grenadeToggleButton.setSelected(true);
-                relicToggleButton.setSelected(true);
-                shieldToggleButton.setSelected(true);
-                ozKitToggleButton.setSelected(true);
-                enhancementToggleButton.setSelected(true);
-                repkitToggleButton.setSelected(true);
-                grenadeOrdnanceToggleButton.setSelected(true);
-                heavyOrdnanceToggleButton.setSelected(true);
+            String enabledString = allEnabled ? "false" : "true";
+            for (int i = 8; i < 17; i++) {
+                Element settingElement = (Element) settingsNodes.item(i);
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
+                toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            resetDisplayedCards(searchTextField.getText());
+            new Thread(() -> {
+                    Platform.runLater(() -> {
+                        resetDisplayedCards(searchTextField.getText());
+                    });
+                }).start();
+            writeToXml(settingsDocument, settingsXML);
+            itemScrollPane.setVvalue(0);
         });
         rarityLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = uniqueToggleButton.isSelected() && legendaryToggleButton.isSelected() && 
             seraphToggleButton.isSelected() && pearlToggleButton.isSelected() && glitchToggleButton.isSelected() && 
             effervescentToggleButton.isSelected();
-            if (allEnabled) {
-                uniqueToggleButton.setSelected(false);
-                legendaryToggleButton.setSelected(false);
-                seraphToggleButton.setSelected(false);
-                pearlToggleButton.setSelected(false);
-                glitchToggleButton.setSelected(false);
-                effervescentToggleButton.setSelected(false);
-            } else {
-                uniqueToggleButton.setSelected(true);
-                legendaryToggleButton.setSelected(true);
-                seraphToggleButton.setSelected(true);
-                pearlToggleButton.setSelected(true);
-                glitchToggleButton.setSelected(true);
-                effervescentToggleButton.setSelected(true);
+            String enabledString = allEnabled ? "false" : "true";
+            for (int i = 17; i < 23; i++) {
+                Element settingElement = (Element) settingsNodes.item(i);
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
+                toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            resetDisplayedCards(searchTextField.getText());
+            new Thread(() -> {
+                    Platform.runLater(() -> {
+                        resetDisplayedCards(searchTextField.getText());
+                    });
+                }).start();
+            writeToXml(settingsDocument, settingsXML);
+            itemScrollPane.setVvalue(0);
         });
         gameFilterLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = bl1ToggleButton.isSelected() && bl2ToggleButton.isSelected() && 
             blTPSToggleButton.isSelected() && bl3ToggleButton.isSelected() && bl4ToggleButton.isSelected();
-            if (allEnabled) {
-                bl1ToggleButton.setSelected(false);
-                bl2ToggleButton.setSelected(false);
-                blTPSToggleButton.setSelected(false);
-                bl3ToggleButton.setSelected(false);
-                bl4ToggleButton.setSelected(false);
-            } else {
-                bl1ToggleButton.setSelected(true);
-                bl2ToggleButton.setSelected(true);
-                blTPSToggleButton.setSelected(true);
-                bl3ToggleButton.setSelected(true);
-                bl4ToggleButton.setSelected(true);
+            String enabledString = allEnabled ? "false" : "true";
+            for (int i = 23; i < 28; i++) {
+                Element settingElement = (Element) settingsNodes.item(i);
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
+                toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            resetDisplayedCards(searchTextField.getText());
+            new Thread(() -> {
+                    Platform.runLater(() -> {
+                        resetDisplayedCards(searchTextField.getText());
+                    });
+                }).start();
+            writeToXml(settingsDocument, settingsXML);
+            itemScrollPane.setVvalue(0);
         });
         miscLabel.setOnMouseClicked(event -> {
-            Boolean allEnabled = obtainedToggleButton.isSelected() && notObtainedToggleButton.isSelected();
-            if (allEnabled) {
-                obtainedToggleButton.setSelected(false);
-                notObtainedToggleButton.setSelected(false);
-            } else {
-                obtainedToggleButton.setSelected(true);
-                notObtainedToggleButton.setSelected(true);
+            Boolean allEnabled = obtainedToggleButton.isSelected() && notObtainedToggleButton.isSelected() && 
+            worldDropToggleButton.isSelected() && nonWorldDropToggleButton.isSelected() && nonHuntToggleButton.isSelected();
+            String enabledString = allEnabled ? "false" : "true";
+            for (int i = 28; i < toggleButtonArray.size(); i++) {
+                Element settingElement = (Element) settingsNodes.item(i);
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
+                toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            resetDisplayedCards(searchTextField.getText());
+            new Thread(() -> {
+                    Platform.runLater(() -> {
+                        resetDisplayedCards(searchTextField.getText());
+                    });
+                }).start();
+            writeToXml(settingsDocument, settingsXML);
+            itemScrollPane.setVvalue(0);
         });
+
+        for (int i = 0; i < toggleButtonArray.size(); i++) {
+            Element settingElement = (Element) settingsNodes.item(i);
+            Boolean elementText = Boolean.parseBoolean(settingElement.getElementsByTagName("enabled").item(0).getTextContent());
+            toggleButtonArray.get(i).setSelected(elementText);
+        }
 
         //Banner
         ImageView wikiLinkImageView = new ImageView(wikiImage);
@@ -368,9 +390,20 @@ public class App extends Application {
         wikiLinkImageView.setFitWidth(87);
         Pane wikiViewPane = new Pane(wikiLinkImageView);
         wikiViewPane.setStyle("-fx-cursor: hand;");
+        Tooltip wikiViewPaneToolTip = new Tooltip("https://borderlands.fandom.com/wiki/Borderlands_Wiki");
+        wikiViewPaneToolTip.setId("toolTip");
+        wikiViewPane.setOnMouseMoved(event -> {
+            wikiViewPaneToolTip.show(wikiViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        wikiViewPane.setOnMouseExited(event -> {
+            wikiViewPaneToolTip.hide();
+        });
         wikiViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://borderlands.fandom.com/wiki/Borderlands_Wiki");
         });
+        Region bannerHPusher = new Region();
+        HBox.setHgrow(bannerHPusher, Priority.ALWAYS);
+        ImageView settingsButtonImageView = new ImageView();
 
         //FPS label
         Label label2 = new Label("Other info here");
@@ -403,7 +436,7 @@ public class App extends Application {
         Label label6 = new Label("Other info here");
         Label label7 = new Label("Other info here");
         VBox sizeVBox3 = new VBox(label6, label7);
-        HBox bannerHBox = new HBox(5, wikiViewPane, sizeVBox, sizeVBox2, sizeVBox3);
+        HBox bannerHBox = new HBox(5, wikiViewPane, sizeVBox, sizeVBox2, sizeVBox3, bannerHPusher);
         bannerHBox.setId("bannerBox");
 
         //Build item cards
@@ -450,9 +483,10 @@ public class App extends Application {
             int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
             itemFlowPane.setHgap(hGapValue);
         }
+        displayCardsInViewport();
+
         scene.widthProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                // label2.setText("Width: " + itemFlowPane.getWidth());
                 itemScrollPane.setVvalue(0);
                 itemFlowPane.setPrefWidth(scene.getWidth()-206);
                 int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
@@ -460,104 +494,126 @@ public class App extends Application {
                 if (cardsThatFit > 1) {
                 int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
                 itemFlowPane.setHgap(hGapValue);
+                new Thread(() -> {
+                    Platform.runLater(() -> {
+                        displayCardsInViewport();
+                    });
+                }).start();
                 }
             }
         });
+
         scene.heightProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 // label3.setText("Height: " + scene.getHeight());
             }
         });
 
+        //Filter cards as you type in the search box like a live search
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            resetDisplayedCards(searchTextField.getText());
+            new Thread(() -> {
+                    Platform.runLater(() -> {
+                        resetDisplayedCards(searchTextField.getText());
+                    });
+                }).start();
         });
 
+        //Load and un-load cards as you scroll to save on performance
         itemScrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double flowPaneWidth = itemFlowPane.getWidth();
-                int cardsOnScreenH = (int) Math.floor(flowPaneWidth/336);
-                int cardsOnScreenV = (int) Math.ceil(itemScrollPane.getViewportBounds().getHeight()/470);
-                Double newValueDouble = newValue.doubleValue();
-
-                int cardOnScreen = (int) Math.round(itemCardFilteredArray.size()*newValueDouble);
-                int growingValue = (int) Math.floor(cardsOnScreenH*(newValueDouble));
-                int shrinkingValue = (int) Math.ceil(cardsOnScreenH*(1-newValueDouble));
-                int minBound = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV)+growingValue);
-                int lowBounds = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV-1)+growingValue);
-                int highBounds = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV)+shrinkingValue);
-                int maxBound = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV+1)+shrinkingValue);
-                // label3.setText("cardOnScreen: " + cardOnScreen);
-                // label4.setText("cardsOnScreenH: " + cardsOnScreenH);
-                // label5.setText("cardsOnScreenV: " + cardsOnScreenV);
-                // label6.setText("growingValue: " + growingValue);
-                // label7.setText("shrinkingValue: " + shrinkingValue);
-                for (int i = minBound; i < maxBound; i++) {
-                    if (i >= 0 && i < itemCardFilteredArray.size()) {
-                        if (i < lowBounds) {
-                            itemFlowPane.getChildren().get(i).setVisible(false);
-                        } else if (i >= lowBounds && i <= highBounds) {
-                            itemFlowPane.getChildren().get(i).setVisible(true);
-                        } else if (i > highBounds) {
-                            itemFlowPane.getChildren().get(i).setVisible(false);
-                        }
-                    }
-                }
+                new Thread(() -> {
+                    Platform.runLater(() -> {
+                        displayCardsInViewport();
+                    });
+                }).start();
             }
         });
 
         testingButton.setOnAction(event -> {
-            int visibleCards = 0;
-            for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
-                if(itemFlowPane.getChildren().get(i).isVisible()) {
-                    visibleCards += 1;
-                }
-            }
-            System.out.println("Visible cards: " + visibleCards);
-            System.out.println("Total cards: " + itemFlowPane.getChildren().size());
         });
+
         testingButton2.setOnAction(event -> {
-            Pane blankPane = new Pane();
-            blankPane.setId("blankPane");
-            blankPane.setAccessibleText("name_type_game_obtained_rarity");
-            itemCardArray.set(0, blankPane);
-            resetDisplayedCards("");
         });
     }
 
     public static void allToggleButtonsOn(ArrayList<ToggleButton> toggleButtonArray) {
         for (int i = 0; i < toggleButtonArray.size(); i++) {
-                toggleButtonArray.get(i).setSelected(true);
-            }
+            toggleButtonArray.get(i).setSelected(true);
+            Element settingElement = (Element) settingsNodes.item(i);
+            settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
+        }
+        writeToXml(settingsDocument, settingsXML);
+        new Thread(() -> {
+                Platform.runLater(() -> {
+                    resetDisplayedCards(searchTextField.getText());
+                });
+            }).start();
+        itemScrollPane.setVvalue(0);
     }
 
     public static void allToggleButtonsOff(ArrayList<ToggleButton> toggleButtonArray) {
         for (int i = 0; i < toggleButtonArray.size(); i++) {
-                toggleButtonArray.get(i).setSelected(false);
-            }
+            toggleButtonArray.get(i).setSelected(false);
+            Element settingElement = (Element) settingsNodes.item(i);
+            settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
+        }
+        writeToXml(settingsDocument, settingsXML);
+        new Thread(() -> {
+                Platform.runLater(() -> {
+                    resetDisplayedCards(searchTextField.getText());
+                });
+            }).start();
+        itemScrollPane.setVvalue(0);
     }
 
-    public static void writeToXml() {
+    public static void writeToXml(Document document, File file) {
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
-            DOMSource docSource = new DOMSource(itemDocument);
-            StreamResult docResult = new StreamResult(itemsXML);
+            DOMSource docSource = new DOMSource(document);
+            StreamResult docResult = new StreamResult(file);
             transformer.transform(docSource, docResult);
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
     }
 
-    public static int getCardNumber(String name, String game) {
+    public static int getCardNumber(String name, String game, String type) {
         for (int i = 0; i < itemNodes.getLength(); i++) {
             Element node = (Element) itemNodes.item(i);
             if (node.getElementsByTagName("name").item(0).getTextContent().equals(name) && 
-            node.getElementsByTagName("game").item(0).getTextContent().equals(game)) {
+            node.getElementsByTagName("game").item(0).getTextContent().equals(game) && 
+            node.getElementsByTagName("type").item(0).getTextContent().equals(type)) {
                 return i;
             }
         }
         return -1;
+    }
+
+    public static void displayCardsInViewport() {
+        double flowPaneWidth = itemFlowPane.getPrefWidth();
+        int cardsOnScreenH = (int) Math.floor(flowPaneWidth/336);
+        int cardsOnScreenV = (int) Math.ceil((itemScrollPane.getViewportBounds().getHeight()+itemFlowPane.getVgap())/(470+itemFlowPane.getVgap()));
+        Double scrollPaneVValue = itemScrollPane.getVvalue();
+
+        int cardOnScreen = (int) Math.round(itemCardFilteredArray.size()*scrollPaneVValue);
+        int growingValue = (int) Math.floor(cardsOnScreenH*(scrollPaneVValue));
+        int shrinkingValue = (int) Math.ceil(cardsOnScreenH*(1-scrollPaneVValue));
+        int minBound = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV)+growingValue);
+        int lowBounds = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV-1)+growingValue);
+        int highBounds = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV)+shrinkingValue);
+        int maxBound = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV+1)+shrinkingValue);
+        for (int i = minBound; i < maxBound; i++) {
+            if (i >= 0 && i < itemCardFilteredArray.size()) {
+                if (i < lowBounds) {
+                    itemFlowPane.getChildren().get(i).setVisible(false);
+                } else if (i >= lowBounds && i <= highBounds) {
+                    itemFlowPane.getChildren().get(i).setVisible(true);
+                } else if (i > highBounds) {
+                    itemFlowPane.getChildren().get(i).setVisible(false);
+                }
+            }
+        }
     }
 
     public static void clearAllItemCards() {
@@ -573,23 +629,21 @@ public class App extends Application {
         clearAllItemCards();
         for (int i = 0; i < itemCardFilteredArray.size(); i++) {
             itemFlowPane.getChildren().add(itemCardFilteredArray.get(i));
-            if (i < 50) {
-                itemFlowPane.getChildren().get(i).setVisible(true);
-            } else {
-                itemFlowPane.getChildren().get(i).setVisible(false);
-            }
         }
-        itemScrollPane.setVvalue(0);
+        displayCardsInViewport();
     }
 
     public static void filterAllItemCards(String searchTerm) {
         clearFilteredItemCards();
         for (int i = 0; i < itemCardArray.size(); i++) {
-            String name = itemCardArray.get(i).getAccessibleText().split("_")[0];
-            String type = itemCardArray.get(i).getAccessibleText().split("_")[1];
-            String game = itemCardArray.get(i).getAccessibleText().split("_")[2];
-            String obtained = itemCardArray.get(i).getAccessibleText().split("_")[3];
-            String rarity = itemCardArray.get(i).getAccessibleText().split("_")[4];
+            String[] accessibilityText = itemCardArray.get(i).getAccessibleText().split("#%");
+            String name = accessibilityText[0].toLowerCase();
+            String type = accessibilityText[1].toLowerCase();
+            String game = accessibilityText[2];
+            String obtained = accessibilityText[3].toLowerCase();
+            String rarity = accessibilityText[4].toLowerCase();
+            String source = accessibilityText[5].toLowerCase();
+            String points = accessibilityText[6];
             if (game.equals("") && !toggleButtonArray.get(23).isSelected()) {
                 continue;
             } else if (game.equals("2") && !toggleButtonArray.get(24).isSelected()) {
@@ -604,57 +658,62 @@ public class App extends Application {
                 continue;
             } else if (obtained.equals("false") && !toggleButtonArray.get(29).isSelected()) {
                 continue;
-            } else if ((rarity.equals("unique") || rarity.equals("Unique") || rarity.equals("unique_purple") || 
-            rarity.equals("unique_green")) && !toggleButtonArray.get(17).isSelected()) {
+            } else if ((rarity.contains("unique")) && !toggleButtonArray.get(17).isSelected()) {
                 continue;
-            } else if ((rarity.equals("legendary") || rarity.equals("Legendary")) && !toggleButtonArray.get(18).isSelected()) {
+            } else if ((rarity.equals("legendary")) && !toggleButtonArray.get(18).isSelected()) {
                 continue;
-            } else if ((rarity.equals("seraph") || rarity.equals("Seraph")) && !toggleButtonArray.get(19).isSelected()) {
+            } else if ((rarity.equals("seraph")) && !toggleButtonArray.get(19).isSelected()) {
                 continue;
-            } else if ((rarity.equals("pearl") || rarity.equals("Pearlescent")) && !toggleButtonArray.get(20).isSelected()) {
+            } else if ((rarity.equals("pearl") || rarity.equals("pearlescent")) && !toggleButtonArray.get(20).isSelected()) {
                 continue;
-            } else if ((rarity.equals("glitch") || rarity.equals("Glitch")) && !toggleButtonArray.get(21).isSelected()) {
+            } else if ((rarity.equals("glitch")) && !toggleButtonArray.get(21).isSelected()) {
                 continue;
-            } else if ((rarity.equals("effervescent") || rarity.equals("Effervescent")) && !toggleButtonArray.get(22).isSelected()) {
+            } else if ((rarity.equals("effervescent")) && !toggleButtonArray.get(22).isSelected()) {
                 continue;
-            } else if ((type.equals("pistol") || type.equals("Pistol")) && !toggleButtonArray.get(0).isSelected()) {
+            } else if ((type.equals("pistol")) && !toggleButtonArray.get(0).isSelected()) {
                 continue;
-            } else if ((type.equals("smg") || type.equals("Submachine Gun")) && !toggleButtonArray.get(1).isSelected()) {
+            } else if ((type.equals("smg") || type.equals("submachine gun")) && !toggleButtonArray.get(1).isSelected()) {
                 continue;
-            } else if ((type.equals("ar") || type.equals("Assault Rifle")) && !toggleButtonArray.get(2).isSelected()) {
+            } else if ((type.equals("ar") || type.equals("assault rifle")) && !toggleButtonArray.get(2).isSelected()) {
                 continue;
-            } else if ((type.equals("shotgun") || type.equals("Shotgun")) && !toggleButtonArray.get(3).isSelected()) {
+            } else if ((type.equals("shotgun")) && !toggleButtonArray.get(3).isSelected()) {
                 continue;
-            } else if ((type.equals("sniper") || type.equals("Sniper") || type.equals("Sniper Rifle")) && 
+            } else if ((type.equals("sniper") || type.equals("sniper rifle")) && 
             !toggleButtonArray.get(4).isSelected()) {
                 continue;
-            } else if ((type.equals("launcher") || type.equals("Launcher") || type.equals("Rocket Launcher")) && 
+            } else if ((type.equals("launcher") || type.equals("rocket launcher")) && 
             !toggleButtonArray.get(5).isSelected()) {
                 continue;
-            } else if ((type.equals("eridian") || type.equals("Eridian")) && !toggleButtonArray.get(6).isSelected()) {
+            } else if ((type.equals("eridian")) && !toggleButtonArray.get(6).isSelected()) {
                 continue;
-            } else if ((type.equals("laser") || type.equals("Laser")) && !toggleButtonArray.get(7).isSelected()) {
+            } else if ((type.equals("laser")) && !toggleButtonArray.get(7).isSelected()) {
                 continue;
-            } else if ((type.equals("class mod") || type.equals("Class Mod")) && !toggleButtonArray.get(8).isSelected()) {
+            } else if ((type.equals("class mod")) && !toggleButtonArray.get(8).isSelected()) {
                 continue;
-            } else if ((type.equals("grenade mod") || type.equals("Grenade Mod")) && !toggleButtonArray.get(9).isSelected()) {
+            } else if ((type.equals("grenade mod")) && !toggleButtonArray.get(9).isSelected()) {
                 continue;
-            } else if ((type.equals("relic") || type.equals("Relic") || type.equals("artifact") || type.equals("Artifact")) && 
+            } else if ((type.equals("relic") || type.equals("artifact")) && 
             !toggleButtonArray.get(10).isSelected()) {
                 continue;
-            } else if ((type.equals("shield") || type.equals("Shield")) && !toggleButtonArray.get(11).isSelected()) {
+            } else if ((type.equals("shield")) && !toggleButtonArray.get(11).isSelected()) {
                 continue;
-            } else if ((type.equals("oz kit") || type.equals("Oz Kit")) && !toggleButtonArray.get(12).isSelected()) {
+            } else if ((type.equals("oz kit")) && !toggleButtonArray.get(12).isSelected()) {
                 continue;
-            } else if ((type.equals("enhancement") || type.equals("Enhancement")) && !toggleButtonArray.get(13).isSelected()) {
+            } else if ((type.equals("enhancement")) && !toggleButtonArray.get(13).isSelected()) {
                 continue;
-            } else if ((type.equals("repkit") || type.equals("Repkit")) && !toggleButtonArray.get(14).isSelected()) {
+            } else if ((type.equals("repkit")) && !toggleButtonArray.get(14).isSelected()) {
                 continue;
-            } else if ((type.equals("grenade ordnance") || type.equals("Grenade Ordnance")) && !toggleButtonArray.get(15).isSelected()) {
+            } else if ((type.equals("grenade ordnance") || type.equals("grenade (ordnance)")) && !toggleButtonArray.get(15).isSelected()) {
                 continue;
-            } else if ((type.equals("heavy ordnance") || type.equals("Heavy Ordnance")) && !toggleButtonArray.get(16).isSelected()) {
+            } else if ((type.equals("heavy ordnance") || type.equals("heavy weapon (ordnance)")) && !toggleButtonArray.get(16).isSelected()) {
                 continue;
-            } else if (!name.toLowerCase().contains(searchTerm.toLowerCase())) {
+            } else if (!name.contains(searchTerm)) {
+                continue;
+            } else if (!source.contains("any suitable loot source") && !toggleButtonArray.get(31).isSelected()) {
+                continue;
+            } else if (source.contains("any suitable loot source") && !toggleButtonArray.get(30).isSelected()) {
+                continue;
+            } else if (points.equals("0") && !toggleButtonArray.get(32).isSelected()) {
                 continue;
             }
             itemCardFilteredArray.add(itemCardArray.get(i));
@@ -690,39 +749,39 @@ public class App extends Application {
         StackPane itemImageStackPane = new StackPane();
         itemImageStackPane.setId("itemImageStackPane");
         ImageView itemImageView = new ImageView();
-        if (type.equals("pistol") || type.equals("Pistol")) {
+        if (type.toLowerCase().equals("pistol")) {
             itemImageView.setImage(pistolImage);
-        } else if (type.equals("ar") || type.equals("Assault Rifle")) {
+        } else if (type.equals("ar") || type.toLowerCase().equals("assault rifle")) {
             itemImageView.setImage(arImage);
-        } else if (type.equals("class mod") || type.equals("Class Mod")) {
+        } else if (type.toLowerCase().equals("class mod")) {
             itemImageView.setImage(classModImage);
-        } else if (type.equals("grenade mod") || type.equals("Grenade Mod")) {
+        } else if (type.toLowerCase().equals("grenade mod")) {
             itemImageView.setImage(grenadeImage);
-        } else if (type.equals("grenade ordnance") || type.equals("Grenade Ordnance") || type.equals("Grenade (Ordnance)")) {
+        } else if (type.toLowerCase().equals("grenade ordnance") || type.toLowerCase().equals("grenade (ordnance)")) {
             itemImageView.setImage(grenadeOrdnanceImage);
-        } else if (type.equals("heavy ordnance") || type.equals("Heavy Ordnance") || type.equals("Heavy Weapon (Ordnance)")) {
+        } else if (type.toLowerCase().equals("heavy ordnance") || type.toLowerCase().equals("heavy weapon (ordnance)")) {
             itemImageView.setImage(heavyOrdnanceImage);
-        } else if (type.equals("laser") || type.equals("Laser")) {
+        } else if (type.toLowerCase().equals("laser")) {
             itemImageView.setImage(laserImage);
-        } else if (type.equals("launcher") || type.equals("Launcher") || type.equals("Rocket Launcher")) {
+        } else if (type.toLowerCase().equals("launcher") || type.toLowerCase().equals("rocket launcher")) {
             itemImageView.setImage(launcherImage);
-        } else if (type.equals("oz kit") || type.equals("Oz Kit")) {
+        } else if (type.toLowerCase().equals("oz kit")) {
             itemImageView.setImage(ozKitImage);
-        } else if (type.equals("shield") || type.equals("Shield")) {
+        } else if (type.toLowerCase().equals("shield")) {
             itemImageView.setImage(shieldImage);
-        } else if (type.equals("shotgun") || type.equals("Shotgun")) {
+        } else if (type.toLowerCase().equals("shotgun")) {
             itemImageView.setImage(shotgunImage);
-        } else if (type.equals("smg") || type.equals("Submachine Gun")) {
+        } else if (type.equals("smg") || type.toLowerCase().equals("submachine gun")) {
             itemImageView.setImage(smgImage);
-        } else if (type.equals("sniper") || type.equals("Sniper") || type.equals("Sniper Rifle")) {
+        } else if (type.toLowerCase().equals("sniper") || type.toLowerCase().equals("sniper rifle")) {
             itemImageView.setImage(sniperImage);
-        } else if (type.equals("relic") || type.equals("Relic") || type.equals("artifact") || type.equals("Artifact")) {
+        } else if (type.toLowerCase().equals("relic") || type.toLowerCase().equals("artifact")) {
             itemImageView.setImage(relicImage);
-        } else if (type.equals("eridian") || type.equals("Eridian")) {
+        } else if (type.toLowerCase().equals("eridian")) {
             itemImageView.setImage(eridianImage);
-        } else if (type.equals("repkit") || type.equals("Repkit")) {
+        } else if (type.toLowerCase().equals("repkit")) {
             itemImageView.setImage(repkitImage);
-        } else if (type.equals("enhancement") || type.equals("Enhancement")) {
+        } else if (type.toLowerCase().equals("enhancement")) {
             itemImageView.setImage(enhancementImage);
         }
         Pane itemBackgroundColor = new Pane();
@@ -742,32 +801,36 @@ public class App extends Application {
         HBox topHBox = new HBox(obtainedPane, gameLabel, huntPointsLabel);
         HBox.setMargin(obtainedPane, new Insets(5, 0, 0, 12));
         obtainedPane.setOnMouseClicked(event -> {
-            Element node = (Element) itemNodes.item(getCardNumber(name, game));
+            Element node = (Element) itemNodes.item(getCardNumber(name, game, type));
             Node obtainedNode = node.getElementsByTagName("obtained").item(0);
             if (obtainedNode.getTextContent().equals("true")) {
                 obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
                 obtainedNode.setTextContent("false");
-                itemPane.setAccessibleText(name + "_" + type + "_" + game + "_false_" + rarity);
+                itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%false#%" + rarity + "#%" + source + "#%" + points);
             } else {
                 obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
                 obtainedNode.setTextContent("true");
-                itemPane.setAccessibleText(name + "_" + type + "_" + game + "_true_" + rarity);
+                itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%true#%" + rarity + "#%" +  source + "#%" + points);
             }
-            writeToXml();
-            resetDisplayedCards(searchTextField.getText());
+            new Thread(() -> {
+                Platform.runLater(() -> {
+                    resetDisplayedCards(searchTextField.getText());
+                });
+            }).start();
+            writeToXml(itemDocument, itemsXML);
         });
         HBox.setMargin(huntPointsLabel, new Insets(7, 0, 0, 23));
         HBox.setMargin(gameLabel, new Insets(0, 0, 0, 25));
         Label itemNameLabel = new Label(name);
         itemNameLabel.setId("itemNameLabel");
 
-        if (rarity.equals("legendary") || rarity.equals("Legendary")) {
+        if (rarity.toLowerCase().equals("legendary")) {
             itemNameLabel.setTextFill(Paint.valueOf("#eb8a01"));
             itemBackgroundColor.setStyle("-fx-background-color: #eb8a01;");
-        } else if (rarity.equals("pearl") || rarity.equals("Pearlescent")) {
+        } else if (rarity.toLowerCase().equals("pearl") || rarity.toLowerCase().equals("pearlescent")) {
             itemNameLabel.setTextFill(Paint.valueOf("#00ffff"));
             itemBackgroundColor.setStyle("-fx-background-color: #00ffff;");
-        } else if (rarity.equals("unique") || rarity.equals("Unique")) {
+        } else if (rarity.toLowerCase().equals("unique")) {
             itemNameLabel.setTextFill(Paint.valueOf("#2760ca"));
             itemBackgroundColor.setStyle("-fx-background-color: #2760ca;");
         } else if (rarity.equals("unique_purple")) {
@@ -779,11 +842,13 @@ public class App extends Application {
         } else if (rarity.equals("unique_etech")) {
             itemNameLabel.setTextFill(Paint.valueOf("#e700e7"));
             itemBackgroundColor.setStyle("-fx-background-color: #e700e7;");
-        } else if (rarity.equals("seraph") || rarity.equals("glitch") || 
-        rarity.equals("Seraph") || rarity.equals("Glitch")) {
+        } else if (rarity.equals("unique_white")) {
+            itemNameLabel.setTextFill(Paint.valueOf("#bdbdbdff"));
+            itemBackgroundColor.setStyle("-fx-background-color: #bdbdbdff;");
+        } else if (rarity.toLowerCase().equals("seraph") || rarity.toLowerCase().equals("glitch")) {
             itemNameLabel.setTextFill(Paint.valueOf("#ff69b4"));
             itemBackgroundColor.setStyle("-fx-background-color: #ff69b4;");
-        } else if (rarity.equals("effervescent") || rarity.equals("Effervescent")) {
+        } else if (rarity.toLowerCase().equals("effervescent")) {
             itemBackgroundColor.setBackground(new Background(new BackgroundImage(effervescentBackground, null, null, null, null)));
             itemNameLabel.setTextFill(Paint.valueOf("linear-gradient(to right, red 0%, orange 20%, yellow 40%, rgb(0, 255, 0) 60%, rgb(101, 101, 255) 80%, rgb(212, 0, 255) 100%)"));
         }
@@ -839,29 +904,44 @@ public class App extends Application {
         itemWikiLinkImageView.setFitHeight(30);
         itemWikiLinkImageView.setFitWidth(60);
         Pane itemWikiLinkPane = new Pane(itemWikiLinkImageView);
-        itemWikiLinkPane.setStyle("-fx-cursor: hand;");
+        itemWikiLinkPane.setId("itemWikiLinkPane");
+        Tooltip itemWikiLinkPaneToolTip = new Tooltip(wiki);
+        itemWikiLinkPaneToolTip.setId("toolTip");
+        itemWikiLinkPane.setOnMouseMoved(event -> {
+            itemWikiLinkPaneToolTip.show(itemWikiLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        itemWikiLinkPane.setOnMouseExited(event -> {
+            itemWikiLinkPaneToolTip.hide();
+        });
         itemWikiLinkPane.setOnMouseClicked(event -> {
             hostService.showDocument(wiki);
         });
-        Region hPusherRegion = new Region();
-        HBox.setHgrow(hPusherRegion, Priority.ALWAYS);
-        HBox itemBottomHBox = new HBox(itemWikiLinkPane, hPusherRegion);
-        itemBottomHBox.setId("itemBottomHBox");
-        Region vPusherRegion = new Region();
-        VBox.setVgrow(vPusherRegion, Priority.ALWAYS);
-        
-        VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane);
+
+        StackPane.setMargin(itemWikiLinkPane, new Insets(130, 200, 0, -50));
+        itemImageStackPane.getChildren().add(itemWikiLinkPane);
+
+        VBox itemTextVBox = new VBox();
+        itemTextVBox.setId("itemTextVBox");
+        ScrollPane itemTextScrollPane = new ScrollPane(itemTextVBox);
+        itemTextScrollPane.setId("itemTextScrollPane");
         if (!text.isEmpty()) {
-            itemVBox.getChildren().add(flavorTextLabel);
+            itemTextVBox.getChildren().add(flavorTextLabel);
         }
-        itemVBox.getChildren().addAll(sourcesLabel, sourcesListLabel, vPusherRegion, itemBottomHBox);
+        itemTextVBox.getChildren().addAll(sourcesLabel, sourcesListLabel);
+        
+        VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane, itemTextScrollPane);
         itemVBox.setId("itemVBox");
         VBox.setMargin(itemNameLabel, new Insets(5, 0 ,0, 0));
         VBox.setMargin(itemImageStackPane, new Insets(1, 0 ,0, 0));
+        VBox.setMargin(flavorTextLabel, new Insets(0, 0 ,0, 10));
+        VBox.setMargin(sourcesLabel, new Insets(0, 0 ,0, 10));
+        VBox.setMargin(sourcesListLabel, new Insets(0, 0 ,0, 10));
         itemPane.getChildren().add(itemVBox);
         itemPane.setId("itemPane");
+        itemPane.setCache(true);
+        itemPane.setCacheHint(CacheHint.SPEED);
         itemPane.setVisible(false);
-        itemPane.setAccessibleText(name + "_" + type + "_" + game + "_" + obtained + "_" + rarity);
+        itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%" + obtained + "#%" + rarity + "#%" + source + "#%" + points);
         itemCardArray.add(itemPane);
     }
 }
