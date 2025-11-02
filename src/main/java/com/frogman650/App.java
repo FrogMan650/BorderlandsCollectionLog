@@ -101,6 +101,13 @@ public class App extends Application {
     private int frameTimeIndex = 0;
     private boolean arrayFilled = false;
 
+    public static Label label2 = new Label();
+    public static Label label3 = new Label();
+    public static Label label4 = new Label();
+    public static Label label5 = new Label();
+    public static Label label6 = new Label();
+    public static Label label7 = new Label();
+
     public static void main(String[] args) throws Exception {
         launch(args);
     }
@@ -180,7 +187,7 @@ public class App extends Application {
         Button testingButton = new Button("Testing");
         Button testingButton2 = new Button("Testing 2");
 
-        filterVBox.getChildren().addAll(filterLabel, allNoneHBox, searchTextField);
+        filterVBox.getChildren().addAll(testingButton, testingButton2, filterLabel, allNoneHBox, searchTextField);
         Label weaponLabel = new Label("WEAPONS");
         weaponLabel.setId("filterLabel");
         ToggleButton pistolToggleButton = new ToggleButton("Pistols");//0
@@ -406,7 +413,7 @@ public class App extends Application {
         ImageView settingsButtonImageView = new ImageView();
 
         //FPS label
-        Label label2 = new Label("Other info here");
+        label2.setText("Other info here");
         AnimationTimer frameRateMeter = new AnimationTimer() {
 
             @Override
@@ -428,13 +435,13 @@ public class App extends Application {
         };
         frameRateMeter.start();
 
-        Label label3 = new Label("Other info here");
+        label3.setText("Other info here");
         VBox sizeVBox = new VBox(label2, label3);
-        Label label4 = new Label("Other info here");
-        Label label5 = new Label("Other info here");
+        label4.setText("Other info here");
+        label5.setText("Other info here");
         VBox sizeVBox2 = new VBox(label4, label5);
-        Label label6 = new Label("Other info here");
-        Label label7 = new Label("Other info here");
+        label6.setText("Other info here");
+        label7.setText("Other info here");
         VBox sizeVBox3 = new VBox(label6, label7);
         HBox bannerHBox = new HBox(5, wikiViewPane, sizeVBox, sizeVBox2, sizeVBox3, bannerHPusher);
         bannerHBox.setId("bannerBox");
@@ -530,6 +537,13 @@ public class App extends Application {
         });
 
         testingButton.setOnAction(event -> {
+            int enabled = 0;
+            for (int i = 0; i < itemCardFilteredArray.size(); i++) {
+                if (itemCardFilteredArray.get(i).isVisible()) {
+                    enabled++;
+                }
+            }
+            System.out.println(enabled);
         });
 
         testingButton2.setOnAction(event -> {
@@ -596,13 +610,26 @@ public class App extends Application {
         int cardsOnScreenV = (int) Math.ceil((itemScrollPane.getViewportBounds().getHeight()+itemFlowPane.getVgap())/(470+itemFlowPane.getVgap()));
         Double scrollPaneVValue = itemScrollPane.getVvalue();
 
-        int cardOnScreen = (int) Math.round(itemCardFilteredArray.size()*scrollPaneVValue);
+        int cardOnScreen = (int) Math.round((itemCardFilteredArray.size()*scrollPaneVValue));
         int growingValue = (int) Math.floor(cardsOnScreenH*(scrollPaneVValue));
         int shrinkingValue = (int) Math.ceil(cardsOnScreenH*(1-scrollPaneVValue));
-        int minBound = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV)+growingValue);
-        int lowBounds = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV-1)+growingValue);
-        int highBounds = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV)+shrinkingValue);
-        int maxBound = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV+1)+shrinkingValue);
+        int minBound = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV)+shrinkingValue);
+        int lowBounds = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV-1)+shrinkingValue);
+        int highBounds = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV)+growingValue);
+        int maxBound = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV+1)+growingValue);
+        // int cardOnScreen = (int) Math.round((itemCardFilteredArray.size()*scrollPaneVValue));
+        // int growingValue = (int) Math.floor(cardsOnScreenH*(scrollPaneVValue));
+        // int shrinkingValue = (int) Math.ceil(cardsOnScreenH*(1-scrollPaneVValue));
+        // int minBound = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV+1));
+        // int lowBounds = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV));
+        // int highBounds = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV));
+        // int maxBound = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV+1));
+
+        label3.setText("cardOnScreen: "+cardOnScreen);
+        label4.setText("growingValue: "+growingValue);
+        label5.setText("shrinkingValue: "+shrinkingValue);
+        label6.setText("cardsOnScreenH: "+cardsOnScreenH);
+        label7.setText("cardsOnScreenV: "+cardsOnScreenV);
         for (int i = minBound; i < maxBound; i++) {
             if (i >= 0 && i < itemCardFilteredArray.size()) {
                 if (i < lowBounds) {
@@ -722,33 +749,29 @@ public class App extends Application {
 
     public static void buildAllItemCards() {
         for (int i = 0; i < itemNodes.getLength(); i++) {
-            Element nameItemNode = (Element) itemNodes.item(i);
-            String name = nameItemNode.getElementsByTagName("name").item(0).getTextContent();
-            Element typeItemNode = (Element) itemNodes.item(i);
-            String type = typeItemNode.getElementsByTagName("type").item(0).getTextContent();
-            Element gameItemNode = (Element) itemNodes.item(i);
-            String game = gameItemNode.getElementsByTagName("game").item(0).getTextContent();
-            Element obtainedItemNode = (Element) itemNodes.item(i);
-            Boolean obtained = Boolean.parseBoolean(obtainedItemNode.getElementsByTagName("obtained").item(0).getTextContent());
-            Element rarityItemNode = (Element) itemNodes.item(i);
-            String rarity = rarityItemNode.getElementsByTagName("rarity").item(0).getTextContent();
-            Element sourceItemNode = (Element) itemNodes.item(i);
-            String source = sourceItemNode.getElementsByTagName("source").item(0).getTextContent();
-            Element textItemNode = (Element) itemNodes.item(i);
-            String text = textItemNode.getElementsByTagName("text").item(0).getTextContent();
-            Element wikiItemNode = (Element) itemNodes.item(i);
-            String wiki = wikiItemNode.getElementsByTagName("wiki").item(0).getTextContent();
-            Element pointsItemNode = (Element) itemNodes.item(i);
-            String points = pointsItemNode.getElementsByTagName("points").item(0).getTextContent();
-            buildItemCard(name, type, game, obtained, rarity, source, text, wiki, points);
+            Element itemNode = (Element) itemNodes.item(i);
+            String name = itemNode.getElementsByTagName("name").item(0).getTextContent();
+            String type = itemNode.getElementsByTagName("type").item(0).getTextContent();
+            String game = itemNode.getElementsByTagName("game").item(0).getTextContent();
+            Boolean obtained = Boolean.parseBoolean(itemNode.getElementsByTagName("obtained").item(0).getTextContent());
+            String rarity = itemNode.getElementsByTagName("rarity").item(0).getTextContent();
+            String source = itemNode.getElementsByTagName("source").item(0).getTextContent();
+            String text = itemNode.getElementsByTagName("text").item(0).getTextContent();
+            String wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
+            String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
+            String location = itemNode.getElementsByTagName("location").item(0).getTextContent();
+            String chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
+            buildItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance);
         }
     }
 
-    public static void buildItemCard(String name, String type, String game, Boolean obtained, String rarity, String source, String text, String wiki, String points) {
+    public static void buildItemCard(String name, String type, String game, Boolean obtained, String rarity, 
+    String source, String text, String wiki, String points, String location, String chance) {
         Pane itemPane = new Pane();
         StackPane itemImageStackPane = new StackPane();
         itemImageStackPane.setId("itemImageStackPane");
         ImageView itemImageView = new ImageView();
+        //Setting the item type image
         if (type.toLowerCase().equals("pistol")) {
             itemImageView.setImage(pistolImage);
         } else if (type.equals("ar") || type.toLowerCase().equals("assault rifle")) {
@@ -800,6 +823,7 @@ public class App extends Application {
         huntPointsLabel.setId("huntPointsLabel");
         HBox topHBox = new HBox(obtainedPane, gameLabel, huntPointsLabel);
         HBox.setMargin(obtainedPane, new Insets(5, 0, 0, 12));
+        //Defining what happens when you click the obtained/not obtained pane
         obtainedPane.setOnMouseClicked(event -> {
             Element node = (Element) itemNodes.item(getCardNumber(name, game, type));
             Node obtainedNode = node.getElementsByTagName("obtained").item(0);
@@ -823,7 +847,7 @@ public class App extends Application {
         HBox.setMargin(gameLabel, new Insets(0, 0, 0, 25));
         Label itemNameLabel = new Label(name);
         itemNameLabel.setId("itemNameLabel");
-
+        //Setting the color of item image and text
         if (rarity.toLowerCase().equals("legendary")) {
             itemNameLabel.setTextFill(Paint.valueOf("#eb8a01"));
             itemBackgroundColor.setStyle("-fx-background-color: #eb8a01;");
@@ -852,6 +876,7 @@ public class App extends Application {
             itemBackgroundColor.setBackground(new Background(new BackgroundImage(effervescentBackground, null, null, null, null)));
             itemNameLabel.setTextFill(Paint.valueOf("linear-gradient(to right, red 0%, orange 20%, yellow 40%, rgb(0, 255, 0) 60%, rgb(101, 101, 255) 80%, rgb(212, 0, 255) 100%)"));
         }
+        //Setting size of item name text to fit in the label
         int labelCount = itemNameLabel.getText().length();
         int textSize = 25;
         if (labelCount > 25) {
@@ -874,31 +899,53 @@ public class App extends Application {
             textSize = 24;
         }
         itemNameLabel.setStyle("-fx-font-size: " + textSize + ";");
-        String[] textSplit = text.split("_");
-        String newTextText = "";
-        for (int i = 0; i < textSplit.length; i++) {
-            if (i > 0) {
-                newTextText = newTextText + "\n";
+
+        //Item text VBox to store flavor text and sources text
+        VBox itemTextVBox = new VBox();
+        itemTextVBox.setId("itemTextVBox");
+
+        //Flavor text start
+        String[] flavorTextSplit = text.split("_");
+        for (int i = 0; i < flavorTextSplit.length; i++) {
+            Label tempFlavorTextLabel = new Label();
+            VBox.setMargin(tempFlavorTextLabel, new Insets(0, 0 ,0, 10));
+            tempFlavorTextLabel.setId("flavorTextLabel");
+            tempFlavorTextLabel.setText("\u2022 " + flavorTextSplit[i]);
+            if (name.equals("Norfleet")) {
+                tempFlavorTextLabel.setStyle("-fx-text-fill:#eb8a01;");
+            } else if (flavorTextSplit[i].contains("See red text for description")) {
+                tempFlavorTextLabel.setStyle("-fx-text-fill:#3dd20b;");
             }
-            newTextText += "\u2022 " + textSplit[i];
+            if (!text.isEmpty()) {
+                itemTextVBox.getChildren().add(tempFlavorTextLabel);
+            }
         }
-        Label flavorTextLabel = new Label(newTextText);
-        flavorTextLabel.setId("flavorTextLabel");
-        if (name.equals("Norfleet")) {
-            flavorTextLabel.setStyle("-fx-text-fill:#eb8a01;");
-        }
+
+        //Sources text start
         Label sourcesLabel = new Label("Sources");
         sourcesLabel.setId("sourcesLabel");
-        String[] sourceSplit = source.split("_");
-        String newSourceText = "";
-        for (int i = 0; i < sourceSplit.length; i++) {
-            if (i > 0) {
-                newSourceText = newSourceText + "\n";
-            }
-            newSourceText += "\u2022 " + sourceSplit[i];
+        itemTextVBox.getChildren().addAll(sourcesLabel);
+        itemTextVBox.setFillWidth(false);
+        String[] sourceTextSplit = source.split("_");
+        String[] locationTextSplit = location.split("_");
+        String[] chanceTextSplit = chance.split("_");
+        for (int i = 0; i < sourceTextSplit.length; i++) {
+            Label tempSourceTextLabel = new Label();
+            VBox.setMargin(tempSourceTextLabel, new Insets(0, 0 ,0, 10));
+            tempSourceTextLabel.setId("sourcesListLabel");
+            tempSourceTextLabel.setText("\u2022 " + sourceTextSplit[i]);
+            itemTextVBox.getChildren().addAll(tempSourceTextLabel);
+            Tooltip tempSourceTextToolTip = new Tooltip();
+            tempSourceTextToolTip.setText(locationTextSplit[i] + "\n" + chanceTextSplit[i]);
+            tempSourceTextToolTip.setId("toolTip");
+            tempSourceTextLabel.setOnMouseMoved(event -> {
+                tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            tempSourceTextLabel.setOnMouseExited(event -> {
+                tempSourceTextToolTip.hide();
+            });
         }
-        Label sourcesListLabel = new Label(newSourceText);
-        sourcesListLabel.setId("sourcesListLabel");
+        //Item wiki button
         ImageView itemWikiLinkImageView = new ImageView(wikiImage);
         itemWikiLinkImageView.setId("itemWikiLinkImageView");
         itemWikiLinkImageView.setFitHeight(30);
@@ -920,22 +967,14 @@ public class App extends Application {
         StackPane.setMargin(itemWikiLinkPane, new Insets(130, 200, 0, -50));
         itemImageStackPane.getChildren().add(itemWikiLinkPane);
 
-        VBox itemTextVBox = new VBox();
-        itemTextVBox.setId("itemTextVBox");
         ScrollPane itemTextScrollPane = new ScrollPane(itemTextVBox);
         itemTextScrollPane.setId("itemTextScrollPane");
-        if (!text.isEmpty()) {
-            itemTextVBox.getChildren().add(flavorTextLabel);
-        }
-        itemTextVBox.getChildren().addAll(sourcesLabel, sourcesListLabel);
         
         VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane, itemTextScrollPane);
         itemVBox.setId("itemVBox");
         VBox.setMargin(itemNameLabel, new Insets(5, 0 ,0, 0));
         VBox.setMargin(itemImageStackPane, new Insets(1, 0 ,0, 0));
-        VBox.setMargin(flavorTextLabel, new Insets(0, 0 ,0, 10));
         VBox.setMargin(sourcesLabel, new Insets(0, 0 ,0, 10));
-        VBox.setMargin(sourcesListLabel, new Insets(0, 0 ,0, 10));
         itemPane.getChildren().add(itemVBox);
         itemPane.setId("itemPane");
         itemPane.setCache(true);
