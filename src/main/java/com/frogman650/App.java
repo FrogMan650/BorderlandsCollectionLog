@@ -1,7 +1,6 @@
 package com.frogman650;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -17,8 +16,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.URI;
 import java.nio.file.Paths;
@@ -31,7 +28,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.AccessibleRole;
 import javafx.scene.CacheHint;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -40,8 +36,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.skin.VirtualContainerBase;
-import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -57,7 +51,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class App extends Application {
     public static Image icon;
@@ -275,11 +268,8 @@ public class App extends Application {
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             int toggleButton = i;
             toggleButtonArray.get(toggleButton).setOnAction(event -> {
-                new Thread(() -> {
-                    Platform.runLater(() -> {
-                        resetDisplayedCards(searchTextField.getText());
-                    });
-                }).start();
+                resetDisplayedCards(searchTextField.getText());
+                itemScrollPane.setVvalue(0);
                 Element settingElement = (Element) settingsNodes.item(toggleButton);
                 if (toggleButtonArray.get(toggleButton).isSelected()) {
                     settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
@@ -287,7 +277,6 @@ public class App extends Application {
                     settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
                 }
                 writeToXml(settingsDocument, settingsXML);
-                itemScrollPane.setVvalue(0);
             });
         }
         filterVBox.getChildren().addAll(miscLabel, obtainedToggleButton, notObtainedToggleButton, 
@@ -305,13 +294,9 @@ public class App extends Application {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            new Thread(() -> {
-                    Platform.runLater(() -> {
-                        resetDisplayedCards(searchTextField.getText());
-                    });
-                }).start();
-            writeToXml(settingsDocument, settingsXML);
+            resetDisplayedCards(searchTextField.getText());
             itemScrollPane.setVvalue(0);
+            writeToXml(settingsDocument, settingsXML);
         });
         equipmentLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = classModToggleButton.isSelected() && grenadeToggleButton.isSelected() && 
@@ -323,13 +308,9 @@ public class App extends Application {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            new Thread(() -> {
-                    Platform.runLater(() -> {
-                        resetDisplayedCards(searchTextField.getText());
-                    });
-                }).start();
-            writeToXml(settingsDocument, settingsXML);
+            resetDisplayedCards(searchTextField.getText());
             itemScrollPane.setVvalue(0);
+            writeToXml(settingsDocument, settingsXML);
         });
         rarityLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = uniqueToggleButton.isSelected() && legendaryToggleButton.isSelected() && 
@@ -341,13 +322,9 @@ public class App extends Application {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            new Thread(() -> {
-                    Platform.runLater(() -> {
-                        resetDisplayedCards(searchTextField.getText());
-                    });
-                }).start();
-            writeToXml(settingsDocument, settingsXML);
+            resetDisplayedCards(searchTextField.getText());
             itemScrollPane.setVvalue(0);
+            writeToXml(settingsDocument, settingsXML);
         });
         gameFilterLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = bl1ToggleButton.isSelected() && bl2ToggleButton.isSelected() && 
@@ -358,13 +335,9 @@ public class App extends Application {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            new Thread(() -> {
-                    Platform.runLater(() -> {
-                        resetDisplayedCards(searchTextField.getText());
-                    });
-                }).start();
-            writeToXml(settingsDocument, settingsXML);
+            resetDisplayedCards(searchTextField.getText());
             itemScrollPane.setVvalue(0);
+            writeToXml(settingsDocument, settingsXML);
         });
         miscLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = obtainedToggleButton.isSelected() && notObtainedToggleButton.isSelected() && 
@@ -375,15 +348,12 @@ public class App extends Application {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            new Thread(() -> {
-                    Platform.runLater(() -> {
-                        resetDisplayedCards(searchTextField.getText());
-                    });
-                }).start();
-            writeToXml(settingsDocument, settingsXML);
+            resetDisplayedCards(searchTextField.getText());
             itemScrollPane.setVvalue(0);
+            writeToXml(settingsDocument, settingsXML);
         });
 
+        //set Toggle buttons to on or off based on settings.xml
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             Element settingElement = (Element) settingsNodes.item(i);
             Boolean elementText = Boolean.parseBoolean(settingElement.getElementsByTagName("enabled").item(0).getTextContent());
@@ -446,17 +416,6 @@ public class App extends Application {
         HBox bannerHBox = new HBox(5, wikiViewPane, sizeVBox, sizeVBox2, sizeVBox3, bannerHPusher);
         bannerHBox.setId("bannerBox");
 
-        //Build item cards
-        buildAllItemCards();
-        Collections.sort(itemCardArray, new Comparator<Pane>() {
-            public int compare(Pane p1, Pane p2) {
-                return p1.getAccessibleText().compareTo(p2.getAccessibleText());
-            }
-        });
-        resetDisplayedCards(searchTextField.getText());
-
-
-
         AnchorPane root = new AnchorPane();
         root.setId("anchorPane");
         AnchorPane.setTopAnchor(bannerHBox, 0.0);
@@ -490,7 +449,10 @@ public class App extends Application {
             int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
             itemFlowPane.setHgap(hGapValue);
         }
-        displayCardsInViewport();
+
+        //Build item cards
+        buildAllItemCards();
+        resetDisplayedCards(searchTextField.getText());
 
         scene.widthProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -499,13 +461,9 @@ public class App extends Application {
                 int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
                 int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
                 if (cardsThatFit > 1) {
-                int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
-                itemFlowPane.setHgap(hGapValue);
-                new Thread(() -> {
-                    Platform.runLater(() -> {
-                        displayCardsInViewport();
-                    });
-                }).start();
+                    int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
+                    itemFlowPane.setHgap(hGapValue);
+                    displayCardsInViewport();
                 }
             }
         });
@@ -518,28 +476,20 @@ public class App extends Application {
 
         //Filter cards as you type in the search box like a live search
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            new Thread(() -> {
-                    Platform.runLater(() -> {
-                        resetDisplayedCards(searchTextField.getText());
-                    });
-                }).start();
+            resetDisplayedCards(searchTextField.getText());
         });
 
         //Load and un-load cards as you scroll to save on performance
         itemScrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                new Thread(() -> {
-                    Platform.runLater(() -> {
-                        displayCardsInViewport();
-                    });
-                }).start();
+                displayCardsInViewport();
             }
         });
 
         testingButton.setOnAction(event -> {
             int enabled = 0;
-            for (int i = 0; i < itemCardFilteredArray.size(); i++) {
-                if (itemCardFilteredArray.get(i).isVisible()) {
+            for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
+                if (itemFlowPane.getChildren().get(i).isVisible()) {
                     enabled++;
                 }
             }
@@ -547,6 +497,7 @@ public class App extends Application {
         });
 
         testingButton2.setOnAction(event -> {
+            System.out.println(itemFlowPane.getChildren().size());
         });
     }
 
@@ -556,13 +507,11 @@ public class App extends Application {
             Element settingElement = (Element) settingsNodes.item(i);
             settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
         }
-        writeToXml(settingsDocument, settingsXML);
-        new Thread(() -> {
-                Platform.runLater(() -> {
-                    resetDisplayedCards(searchTextField.getText());
-                });
-            }).start();
+        resetDisplayedCards(searchTextField.getText());
         itemScrollPane.setVvalue(0);
+        new Thread(() -> {
+            writeToXml(settingsDocument, settingsXML);
+        }).start();
     }
 
     public static void allToggleButtonsOff(ArrayList<ToggleButton> toggleButtonArray) {
@@ -571,13 +520,11 @@ public class App extends Application {
             Element settingElement = (Element) settingsNodes.item(i);
             settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
         }
-        writeToXml(settingsDocument, settingsXML);
-        new Thread(() -> {
-                Platform.runLater(() -> {
-                    resetDisplayedCards(searchTextField.getText());
-                });
-            }).start();
+        resetDisplayedCards(searchTextField.getText());
         itemScrollPane.setVvalue(0);
+        new Thread(() -> {
+            writeToXml(settingsDocument, settingsXML); 
+        }).start();
     }
 
     public static void writeToXml(Document document, File file) {
@@ -605,63 +552,38 @@ public class App extends Application {
     }
 
     public static void displayCardsInViewport() {
-        double flowPaneWidth = itemFlowPane.getPrefWidth();
-        int cardsOnScreenH = (int) Math.floor(flowPaneWidth/336);
-        int cardsOnScreenV = (int) Math.ceil((itemScrollPane.getViewportBounds().getHeight()+itemFlowPane.getVgap())/(470+itemFlowPane.getVgap()));
+        double flowPaneHeight = itemFlowPane.getHeight();
         Double scrollPaneVValue = itemScrollPane.getVvalue();
 
-        int cardOnScreen = (int) Math.round((itemCardFilteredArray.size()*scrollPaneVValue));
-        int growingValue = (int) Math.floor(cardsOnScreenH*(scrollPaneVValue));
-        int shrinkingValue = (int) Math.ceil(cardsOnScreenH*(1-scrollPaneVValue));
-        int minBound = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV)+shrinkingValue);
-        int lowBounds = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV-1)+shrinkingValue);
-        int highBounds = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV)+growingValue);
-        int maxBound = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV+1)+growingValue);
-        // int cardOnScreen = (int) Math.round((itemCardFilteredArray.size()*scrollPaneVValue));
-        // int growingValue = (int) Math.floor(cardsOnScreenH*(scrollPaneVValue));
-        // int shrinkingValue = (int) Math.ceil(cardsOnScreenH*(1-scrollPaneVValue));
-        // int minBound = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV+1));
-        // int lowBounds = cardOnScreen-(cardsOnScreenH*(cardsOnScreenV));
-        // int highBounds = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV));
-        // int maxBound = cardOnScreen+(cardsOnScreenH*(cardsOnScreenV+1));
-
-        label3.setText("cardOnScreen: "+cardOnScreen);
-        label4.setText("growingValue: "+growingValue);
-        label5.setText("shrinkingValue: "+shrinkingValue);
-        label6.setText("cardsOnScreenH: "+cardsOnScreenH);
-        label7.setText("cardsOnScreenV: "+cardsOnScreenV);
-        for (int i = minBound; i < maxBound; i++) {
-            if (i >= 0 && i < itemCardFilteredArray.size()) {
-                if (i < lowBounds) {
-                    itemFlowPane.getChildren().get(i).setVisible(false);
-                } else if (i >= lowBounds && i <= highBounds) {
-                    itemFlowPane.getChildren().get(i).setVisible(true);
-                } else if (i > highBounds) {
-                    itemFlowPane.getChildren().get(i).setVisible(false);
+        double scrollPaneViewPortHeight = itemScrollPane.getViewportBounds().getHeight();
+        double flowPaneLocation = flowPaneHeight*scrollPaneVValue;
+        int lowBounds = (int) Math.round(flowPaneLocation-(scrollPaneViewPortHeight+(scrollPaneViewPortHeight*scrollPaneVValue)));
+        System.out.println(scrollPaneViewPortHeight+(scrollPaneViewPortHeight*scrollPaneVValue));
+        int highBounds = (int) Math.round(flowPaneLocation+(scrollPaneViewPortHeight-(scrollPaneViewPortHeight*scrollPaneVValue)));
+        System.out.println(scrollPaneViewPortHeight-(scrollPaneViewPortHeight*scrollPaneVValue));
+        Platform.runLater(() -> {
+            for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
+                int number = i;
+                if (itemFlowPane.getChildren().get(number).getLayoutY() >= lowBounds && highBounds >= itemFlowPane.getChildren().get(number).getLayoutY()) {
+                    itemFlowPane.getChildren().get(number).setVisible(true);
+                } else {
+                    itemFlowPane.getChildren().get(number).setVisible(false);
                 }
-            }
-        }
+            } 
+        });
     }
 
     public static void clearAllItemCards() {
         itemFlowPane.getChildren().clear();
     }
 
-    public static void clearFilteredItemCards() {
-        itemCardFilteredArray.clear();
-    }
-
     public static void resetDisplayedCards(String searchTerm) {
         filterAllItemCards(searchTerm);
-        clearAllItemCards();
-        for (int i = 0; i < itemCardFilteredArray.size(); i++) {
-            itemFlowPane.getChildren().add(itemCardFilteredArray.get(i));
-        }
         displayCardsInViewport();
     }
 
     public static void filterAllItemCards(String searchTerm) {
-        clearFilteredItemCards();
+        clearAllItemCards();
         for (int i = 0; i < itemCardArray.size(); i++) {
             String[] accessibilityText = itemCardArray.get(i).getAccessibleText().split("#%");
             String name = accessibilityText[0].toLowerCase();
@@ -743,7 +665,7 @@ public class App extends Application {
             } else if (points.equals("0") && !toggleButtonArray.get(32).isSelected()) {
                 continue;
             }
-            itemCardFilteredArray.add(itemCardArray.get(i));
+            itemFlowPane.getChildren().add(itemCardArray.get(i));
         }
     }
 
@@ -763,6 +685,11 @@ public class App extends Application {
             String chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
             buildItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance);
         }
+        Collections.sort(itemCardArray, new Comparator<Pane>() {
+            public int compare(Pane p1, Pane p2) {
+                return p1.getAccessibleText().compareTo(p2.getAccessibleText());
+            }
+        });
     }
 
     public static void buildItemCard(String name, String type, String game, Boolean obtained, String rarity, 
@@ -771,6 +698,8 @@ public class App extends Application {
         StackPane itemImageStackPane = new StackPane();
         itemImageStackPane.setId("itemImageStackPane");
         ImageView itemImageView = new ImageView();
+        itemImageView.setCache(true);
+        itemImageView.setCacheHint(CacheHint.SPEED);
         //Setting the item type image
         if (type.toLowerCase().equals("pistol")) {
             itemImageView.setImage(pistolImage);
@@ -836,12 +765,10 @@ public class App extends Application {
                 obtainedNode.setTextContent("true");
                 itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%true#%" + rarity + "#%" +  source + "#%" + points);
             }
+            resetDisplayedCards(searchTextField.getText());
             new Thread(() -> {
-                Platform.runLater(() -> {
-                    resetDisplayedCards(searchTextField.getText());
-                });
+                writeToXml(itemDocument, itemsXML);
             }).start();
-            writeToXml(itemDocument, itemsXML);
         });
         HBox.setMargin(huntPointsLabel, new Insets(7, 0, 0, 23));
         HBox.setMargin(gameLabel, new Insets(0, 0, 0, 25));
@@ -935,15 +862,17 @@ public class App extends Application {
             tempSourceTextLabel.setId("sourcesListLabel");
             tempSourceTextLabel.setText("\u2022 " + sourceTextSplit[i]);
             itemTextVBox.getChildren().addAll(tempSourceTextLabel);
-            Tooltip tempSourceTextToolTip = new Tooltip();
-            tempSourceTextToolTip.setText(locationTextSplit[i] + "\n" + chanceTextSplit[i]);
-            tempSourceTextToolTip.setId("toolTip");
-            tempSourceTextLabel.setOnMouseMoved(event -> {
-                tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            tempSourceTextLabel.setOnMouseExited(event -> {
-                tempSourceTextToolTip.hide();
-            });
+            if (!location.isEmpty()) {
+                Tooltip tempSourceTextToolTip = new Tooltip();
+                tempSourceTextToolTip.setText(locationTextSplit[i] + "\n" + chanceTextSplit[i]);
+                tempSourceTextToolTip.setId("toolTip");
+                tempSourceTextLabel.setOnMouseMoved(event -> {
+                    tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+                });
+                tempSourceTextLabel.setOnMouseExited(event -> {
+                    tempSourceTextToolTip.hide();
+                });
+            }
         }
         //Item wiki button
         ImageView itemWikiLinkImageView = new ImageView(wikiImage);

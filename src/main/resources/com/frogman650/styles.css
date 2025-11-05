@@ -127,7 +127,7 @@
 }
 
 .scroll-bar:vertical, .scroll-bar:vertical .increment-button, .scroll-bar:vertical .decrement-button , .scroll-bar:vertical .increment-arrow , .scroll-bar:vertical .decrement-arrow {
-    -fx-background-color:transparent;
+    -fx-background-color: transparent;
     -fx-pref-width: 7;
 }
 
