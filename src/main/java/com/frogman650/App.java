@@ -3,6 +3,10 @@ package com.frogman650;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -89,6 +93,7 @@ public class App extends Application {
     public static File itemsXML;
     public static File settingsXML;
     public static HostServices hostService;
+    public static Lock lock = new ReentrantLock();
 
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0;
@@ -180,7 +185,7 @@ public class App extends Application {
         Button testingButton = new Button("Testing");
         Button testingButton2 = new Button("Testing 2");
 
-        filterVBox.getChildren().addAll(testingButton, testingButton2, filterLabel, allNoneHBox, searchTextField);
+        filterVBox.getChildren().addAll(filterLabel, allNoneHBox, searchTextField);
         Label weaponLabel = new Label("WEAPONS");
         weaponLabel.setId("filterLabel");
         ToggleButton pistolToggleButton = new ToggleButton("Pistols");//0
@@ -268,8 +273,8 @@ public class App extends Application {
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             int toggleButton = i;
             toggleButtonArray.get(toggleButton).setOnAction(event -> {
-                resetDisplayedCards(searchTextField.getText());
                 itemScrollPane.setVvalue(0);
+                resetDisplayedCards(searchTextField.getText());
                 Element settingElement = (Element) settingsNodes.item(toggleButton);
                 if (toggleButtonArray.get(toggleButton).isSelected()) {
                     settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
@@ -294,8 +299,8 @@ public class App extends Application {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            resetDisplayedCards(searchTextField.getText());
             itemScrollPane.setVvalue(0);
+            resetDisplayedCards(searchTextField.getText());
             writeToXml(settingsDocument, settingsXML);
         });
         equipmentLabel.setOnMouseClicked(event -> {
@@ -308,8 +313,8 @@ public class App extends Application {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            resetDisplayedCards(searchTextField.getText());
             itemScrollPane.setVvalue(0);
+            resetDisplayedCards(searchTextField.getText());
             writeToXml(settingsDocument, settingsXML);
         });
         rarityLabel.setOnMouseClicked(event -> {
@@ -322,8 +327,8 @@ public class App extends Application {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            resetDisplayedCards(searchTextField.getText());
             itemScrollPane.setVvalue(0);
+            resetDisplayedCards(searchTextField.getText());
             writeToXml(settingsDocument, settingsXML);
         });
         gameFilterLabel.setOnMouseClicked(event -> {
@@ -335,8 +340,8 @@ public class App extends Application {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            resetDisplayedCards(searchTextField.getText());
             itemScrollPane.setVvalue(0);
+            resetDisplayedCards(searchTextField.getText());
             writeToXml(settingsDocument, settingsXML);
         });
         miscLabel.setOnMouseClicked(event -> {
@@ -348,8 +353,8 @@ public class App extends Application {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
-            resetDisplayedCards(searchTextField.getText());
             itemScrollPane.setVvalue(0);
+            resetDisplayedCards(searchTextField.getText());
             writeToXml(settingsDocument, settingsXML);
         });
 
@@ -463,14 +468,14 @@ public class App extends Application {
                 if (cardsThatFit > 1) {
                     int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
                     itemFlowPane.setHgap(hGapValue);
-                    displayCardsInViewport();
+                    resetCardsInViewport();
                 }
             }
         });
 
         scene.heightProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                // label3.setText("Height: " + scene.getHeight());
+                resetCardsInViewport();
             }
         });
 
@@ -497,7 +502,10 @@ public class App extends Application {
         });
 
         testingButton2.setOnAction(event -> {
-            System.out.println(itemFlowPane.getChildren().size());
+            System.out.println("Nodes: " + itemNodes.getLength());
+            System.out.println("All Array: " + itemCardArray.size());
+            System.out.println("Filtered Array: " + itemCardFilteredArray.size());
+            System.out.println("Flow Pane: " + itemFlowPane.getChildren().size());
         });
     }
 
@@ -539,37 +547,68 @@ public class App extends Application {
         }
     }
 
-    public static int getCardNumber(String name, String game, String type) {
+    public static int getCardNumber(String name, String game, String type, String rarity) {
         for (int i = 0; i < itemNodes.getLength(); i++) {
             Element node = (Element) itemNodes.item(i);
             if (node.getElementsByTagName("name").item(0).getTextContent().equals(name) && 
             node.getElementsByTagName("game").item(0).getTextContent().equals(game) && 
-            node.getElementsByTagName("type").item(0).getTextContent().equals(type)) {
+            node.getElementsByTagName("type").item(0).getTextContent().equals(type) && 
+            node.getElementsByTagName("rarity").item(0).getTextContent().equals(rarity)) {
                 return i;
             }
         }
         return -1;
     }
 
+    public static void setAllCardsVisible() {
+        for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
+            itemFlowPane.getChildren().get(i).setVisible(true);
+        }
+    }
+
     public static void displayCardsInViewport() {
         double flowPaneHeight = itemFlowPane.getHeight();
         Double scrollPaneVValue = itemScrollPane.getVvalue();
-
         double scrollPaneViewPortHeight = itemScrollPane.getViewportBounds().getHeight();
-        double flowPaneLocation = flowPaneHeight*scrollPaneVValue;
+        double flowPaneLocation = Math.round(flowPaneHeight*scrollPaneVValue);
+        int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
+        int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
+        int cardOnScreen = (int) Math.round(flowPaneLocation/(475/cardsThatFit));
+        int cardToLoad = cardOnScreen+(cardsThatFit*5);
+        if (itemFlowPane.getChildren().size() < cardToLoad && itemFlowPane.getChildren().size() != itemCardFilteredArray.size()) {
+            for (int i = itemFlowPane.getChildren().size(); i < cardToLoad; i++) {
+                itemFlowPane.getChildren().add(itemCardFilteredArray.get(i));
+            }
+        }
         int lowBounds = (int) Math.round(flowPaneLocation-(scrollPaneViewPortHeight+(scrollPaneViewPortHeight*scrollPaneVValue)));
-        System.out.println(scrollPaneViewPortHeight+(scrollPaneViewPortHeight*scrollPaneVValue));
         int highBounds = (int) Math.round(flowPaneLocation+(scrollPaneViewPortHeight-(scrollPaneViewPortHeight*scrollPaneVValue)));
-        System.out.println(scrollPaneViewPortHeight-(scrollPaneViewPortHeight*scrollPaneVValue));
+        for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
+            int number = i;
+            if (itemFlowPane.getChildren().get(number).getLayoutY() >= lowBounds && highBounds >= itemFlowPane.getChildren().get(number).getLayoutY()) {
+                itemFlowPane.getChildren().get(number).setVisible(true);
+            } else {
+                itemFlowPane.getChildren().get(number).setVisible(false);
+            }
+        }  
+    }
+
+    public static void resetCardsInViewport() {
         Platform.runLater(() -> {
-            for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
-                int number = i;
-                if (itemFlowPane.getChildren().get(number).getLayoutY() >= lowBounds && highBounds >= itemFlowPane.getChildren().get(number).getLayoutY()) {
-                    itemFlowPane.getChildren().get(number).setVisible(true);
-                } else {
-                    itemFlowPane.getChildren().get(number).setVisible(false);
-                }
-            } 
+        double flowPaneHeight = itemFlowPane.getHeight();
+        Double scrollPaneVValue = itemScrollPane.getVvalue();
+        double flowPaneLocation = Math.round(flowPaneHeight*scrollPaneVValue);
+        int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
+        int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
+        int cardOnScreen = (int) Math.round(flowPaneLocation/(475/cardsThatFit));
+        int cardToLoad = cardOnScreen+(cardsThatFit*5);
+        if (cardToLoad > itemCardFilteredArray.size()) {
+            cardToLoad = itemCardFilteredArray.size();
+        }
+        if (itemFlowPane.getChildren().size() < cardToLoad && itemFlowPane.getChildren().size() != itemCardFilteredArray.size()) {
+            for (int i = itemFlowPane.getChildren().size(); i < cardToLoad; i++) {
+                itemFlowPane.getChildren().add(itemCardFilteredArray.get(i));
+            }
+        }  
         });
     }
 
@@ -577,13 +616,19 @@ public class App extends Application {
         itemFlowPane.getChildren().clear();
     }
 
+    public static void clearFilteredItemCards() {
+        itemCardFilteredArray.clear();
+    }
+
     public static void resetDisplayedCards(String searchTerm) {
+        setAllCardsVisible();
         filterAllItemCards(searchTerm);
-        displayCardsInViewport();
+        resetCardsInViewport();
     }
 
     public static void filterAllItemCards(String searchTerm) {
         clearAllItemCards();
+        clearFilteredItemCards();
         for (int i = 0; i < itemCardArray.size(); i++) {
             String[] accessibilityText = itemCardArray.get(i).getAccessibleText().split("#%");
             String name = accessibilityText[0].toLowerCase();
@@ -665,7 +710,7 @@ public class App extends Application {
             } else if (points.equals("0") && !toggleButtonArray.get(32).isSelected()) {
                 continue;
             }
-            itemFlowPane.getChildren().add(itemCardArray.get(i));
+            itemCardFilteredArray.add(itemCardArray.get(i));
         }
     }
 
@@ -683,7 +728,11 @@ public class App extends Application {
             String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
             String location = itemNode.getElementsByTagName("location").item(0).getTextContent();
             String chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
-            buildItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance);
+            new Thread(() -> {
+                buildItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance);
+            }).start();
+        }
+        while (itemCardArray.size() != itemNodes.getLength()) {
         }
         Collections.sort(itemCardArray, new Comparator<Pane>() {
             public int compare(Pane p1, Pane p2) {
@@ -754,7 +803,7 @@ public class App extends Application {
         HBox.setMargin(obtainedPane, new Insets(5, 0, 0, 12));
         //Defining what happens when you click the obtained/not obtained pane
         obtainedPane.setOnMouseClicked(event -> {
-            Element node = (Element) itemNodes.item(getCardNumber(name, game, type));
+            Element node = (Element) itemNodes.item(getCardNumber(name, game, type, rarity));
             Node obtainedNode = node.getElementsByTagName("obtained").item(0);
             if (obtainedNode.getTextContent().equals("true")) {
                 obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
@@ -863,15 +912,17 @@ public class App extends Application {
             tempSourceTextLabel.setText("\u2022 " + sourceTextSplit[i]);
             itemTextVBox.getChildren().addAll(tempSourceTextLabel);
             if (!location.isEmpty()) {
-                Tooltip tempSourceTextToolTip = new Tooltip();
-                tempSourceTextToolTip.setText(locationTextSplit[i] + "\n" + chanceTextSplit[i]);
-                tempSourceTextToolTip.setId("toolTip");
-                tempSourceTextLabel.setOnMouseMoved(event -> {
-                    tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-                });
-                tempSourceTextLabel.setOnMouseExited(event -> {
-                    tempSourceTextToolTip.hide();
-                });
+                if (!locationTextSplit[i].isEmpty()) {
+                    Tooltip tempSourceTextToolTip = new Tooltip();
+                    tempSourceTextToolTip.setText(locationTextSplit[i] + "\n" + chanceTextSplit[i] + "%");
+                    tempSourceTextToolTip.setId("toolTip");
+                    tempSourceTextLabel.setOnMouseMoved(event -> {
+                        tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+                    });
+                    tempSourceTextLabel.setOnMouseExited(event -> {
+                        tempSourceTextToolTip.hide();
+                    });
+                }
             }
         }
         //Item wiki button
@@ -908,8 +959,14 @@ public class App extends Application {
         itemPane.setId("itemPane");
         itemPane.setCache(true);
         itemPane.setCacheHint(CacheHint.SPEED);
-        itemPane.setVisible(false);
+        itemPane.setVisible(true);
         itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%" + obtained + "#%" + rarity + "#%" + source + "#%" + points);
-        itemCardArray.add(itemPane);
+        //Lock the Array as multithreading can cause cards to be lost if multiple threads try to add a card at the same time
+        lock.lock();
+        try {
+            itemCardArray.add(itemPane);
+        } finally {
+            lock.unlock();
+        }
     }
 }
