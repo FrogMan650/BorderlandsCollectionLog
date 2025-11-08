@@ -99,12 +99,12 @@ public class App extends Application {
     private int frameTimeIndex = 0;
     private boolean arrayFilled = false;
 
-    public static Label label2 = new Label();
-    public static Label label3 = new Label();
-    public static Label label4 = new Label();
-    public static Label label5 = new Label();
-    public static Label label6 = new Label();
-    public static Label label7 = new Label();
+    public static Label label2;
+    public static Label label3;
+    public static Label label4;
+    public static Label label5;
+    public static Label label6;
+    public static Label label7;
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -281,7 +281,9 @@ public class App extends Application {
                 } else {
                     settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
                 }
-                writeToXml(settingsDocument, settingsXML);
+                new Thread(() -> {
+                    writeToXml(settingsDocument, settingsXML);
+                }).start();
             });
         }
         filterVBox.getChildren().addAll(miscLabel, obtainedToggleButton, notObtainedToggleButton, 
@@ -301,7 +303,9 @@ public class App extends Application {
             }
             itemScrollPane.setVvalue(0);
             resetDisplayedCards(searchTextField.getText());
-            writeToXml(settingsDocument, settingsXML);
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
         });
         equipmentLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = classModToggleButton.isSelected() && grenadeToggleButton.isSelected() && 
@@ -315,7 +319,9 @@ public class App extends Application {
             }
             itemScrollPane.setVvalue(0);
             resetDisplayedCards(searchTextField.getText());
-            writeToXml(settingsDocument, settingsXML);
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
         });
         rarityLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = uniqueToggleButton.isSelected() && legendaryToggleButton.isSelected() && 
@@ -329,7 +335,9 @@ public class App extends Application {
             }
             itemScrollPane.setVvalue(0);
             resetDisplayedCards(searchTextField.getText());
-            writeToXml(settingsDocument, settingsXML);
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
         });
         gameFilterLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = bl1ToggleButton.isSelected() && bl2ToggleButton.isSelected() && 
@@ -342,7 +350,9 @@ public class App extends Application {
             }
             itemScrollPane.setVvalue(0);
             resetDisplayedCards(searchTextField.getText());
-            writeToXml(settingsDocument, settingsXML);
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
         });
         miscLabel.setOnMouseClicked(event -> {
             Boolean allEnabled = obtainedToggleButton.isSelected() && notObtainedToggleButton.isSelected() && 
@@ -355,7 +365,9 @@ public class App extends Application {
             }
             itemScrollPane.setVvalue(0);
             resetDisplayedCards(searchTextField.getText());
-            writeToXml(settingsDocument, settingsXML);
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
         });
 
         //set Toggle buttons to on or off based on settings.xml
@@ -388,7 +400,7 @@ public class App extends Application {
         ImageView settingsButtonImageView = new ImageView();
 
         //FPS label
-        label2.setText("Other info here");
+        label2 = new Label("Other info here");
         AnimationTimer frameRateMeter = new AnimationTimer() {
 
             @Override
@@ -410,13 +422,13 @@ public class App extends Application {
         };
         frameRateMeter.start();
 
-        label3.setText("Other info here");
+        label3 = new Label("Other info here");
         VBox sizeVBox = new VBox(label2, label3);
-        label4.setText("Other info here");
-        label5.setText("Other info here");
+        label4 = new Label("Other info here");
+        label5 = new Label("Other info here");
         VBox sizeVBox2 = new VBox(label4, label5);
-        label6.setText("Other info here");
-        label7.setText("Other info here");
+        label6 = new Label("Other info here");
+        label7 = new Label("Other info here");
         VBox sizeVBox3 = new VBox(label6, label7);
         HBox bannerHBox = new HBox(5, wikiViewPane, sizeVBox, sizeVBox2, sizeVBox3, bannerHPusher);
         bannerHBox.setId("bannerBox");
@@ -468,25 +480,31 @@ public class App extends Application {
                 if (cardsThatFit > 1) {
                     int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
                     itemFlowPane.setHgap(hGapValue);
-                    resetCardsInViewport();
+                    clearAllItemCards();
+                    displayCardsInViewport();
+                    setAllCardsVisible();
                 }
             }
         });
 
         scene.heightProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                resetCardsInViewport();
+                clearAllItemCards();
+                displayCardsInViewport();
+                setAllCardsVisible();
             }
         });
 
         //Filter cards as you type in the search box like a live search
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            itemScrollPane.setVvalue(0);
             resetDisplayedCards(searchTextField.getText());
         });
 
         //Load and un-load cards as you scroll to save on performance
         itemScrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                label3.setText(newValue+"");
                 displayCardsInViewport();
             }
         });
@@ -515,8 +533,8 @@ public class App extends Application {
             Element settingElement = (Element) settingsNodes.item(i);
             settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
         }
-        resetDisplayedCards(searchTextField.getText());
         itemScrollPane.setVvalue(0);
+        resetDisplayedCards(searchTextField.getText());
         new Thread(() -> {
             writeToXml(settingsDocument, settingsXML);
         }).start();
@@ -528,8 +546,8 @@ public class App extends Application {
             Element settingElement = (Element) settingsNodes.item(i);
             settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
         }
-        resetDisplayedCards(searchTextField.getText());
         itemScrollPane.setVvalue(0);
+        resetDisplayedCards(searchTextField.getText());
         new Thread(() -> {
             writeToXml(settingsDocument, settingsXML); 
         }).start();
@@ -567,6 +585,7 @@ public class App extends Application {
     }
 
     public static void displayCardsInViewport() {
+        // clearAllItemCards();
         double flowPaneHeight = itemFlowPane.getHeight();
         Double scrollPaneVValue = itemScrollPane.getVvalue();
         double scrollPaneViewPortHeight = itemScrollPane.getViewportBounds().getHeight();
@@ -575,6 +594,7 @@ public class App extends Application {
         int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
         int cardOnScreen = (int) Math.round(flowPaneLocation/(475/cardsThatFit));
         int cardToLoad = cardOnScreen+(cardsThatFit*5);
+        cardToLoad = cardToLoad > itemCardFilteredArray.size() ? itemCardFilteredArray.size() : cardToLoad;
         if (itemFlowPane.getChildren().size() < cardToLoad && itemFlowPane.getChildren().size() != itemCardFilteredArray.size()) {
             for (int i = itemFlowPane.getChildren().size(); i < cardToLoad; i++) {
                 itemFlowPane.getChildren().add(itemCardFilteredArray.get(i));
@@ -592,26 +612,6 @@ public class App extends Application {
         }  
     }
 
-    public static void resetCardsInViewport() {
-        Platform.runLater(() -> {
-        double flowPaneHeight = itemFlowPane.getHeight();
-        Double scrollPaneVValue = itemScrollPane.getVvalue();
-        double flowPaneLocation = Math.round(flowPaneHeight*scrollPaneVValue);
-        int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
-        int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
-        int cardOnScreen = (int) Math.round(flowPaneLocation/(475/cardsThatFit));
-        int cardToLoad = cardOnScreen+(cardsThatFit*5);
-        if (cardToLoad > itemCardFilteredArray.size()) {
-            cardToLoad = itemCardFilteredArray.size();
-        }
-        if (itemFlowPane.getChildren().size() < cardToLoad && itemFlowPane.getChildren().size() != itemCardFilteredArray.size()) {
-            for (int i = itemFlowPane.getChildren().size(); i < cardToLoad; i++) {
-                itemFlowPane.getChildren().add(itemCardFilteredArray.get(i));
-            }
-        }  
-        });
-    }
-
     public static void clearAllItemCards() {
         itemFlowPane.getChildren().clear();
     }
@@ -621,9 +621,9 @@ public class App extends Application {
     }
 
     public static void resetDisplayedCards(String searchTerm) {
-        setAllCardsVisible();
         filterAllItemCards(searchTerm);
-        resetCardsInViewport();
+        displayCardsInViewport();
+        setAllCardsVisible();
     }
 
     public static void filterAllItemCards(String searchTerm) {
