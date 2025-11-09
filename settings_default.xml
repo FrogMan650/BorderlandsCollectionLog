@@ -1,135 +1,174 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<settings>
-	<setting>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><settings>
+	<filter>
 		<name>pistol</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>smg</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>ar</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>shotgun</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>sniper</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>launcher</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>eridian</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>laser</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>class mod</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>grenade mod</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>relifact</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>shield</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>oz kit</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>enhancement</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>repkit</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>grenade ordnance</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>heavy ordnance</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>unique</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>legendary</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>seraph</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>pearlescent</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>glitch</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>effervescent</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>1</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>2</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>tps</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>3</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>4</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>obtained</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>not obtained</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>world drop</name>
 		<enabled>true</enabled>
-	</setting>
-	<setting>
+	</filter>
+	<filter>
 		<name>non world drop</name>
+		<enabled>true</enabled>
+	</filter>
+	<filter>
+		<name>non hunt</name>
+		<enabled>true</enabled>
+	</filter>
+	<setting>
+		<name>bl collection</name>
 		<enabled>true</enabled>
 	</setting>
 	<setting>
-		<name>non hunt</name>
+		<name>bl2 collection</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>bltps collection</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>bl3 collection</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>bl4 collection</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>bl hunt</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>bl2 hunt</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>bltps hunt</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>bl3 hunt</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
+		<name>bl4 hunt</name>
 		<enabled>true</enabled>
 	</setting>
 </settings>

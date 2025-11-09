@@ -3,8 +3,6 @@ package com.frogman650;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -27,7 +25,6 @@ import java.nio.file.Paths;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.HostServices;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -53,6 +50,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -80,16 +78,20 @@ public class App extends Application {
     public static Image enhancementImage;
     public static Image effervescentBackground;
     public static Image itemCardBackground;
+    public static Image theHuntImage;
+    public static Image settingsImage;
     public static FlowPane itemFlowPane;
     public static ScrollPane itemScrollPane;
     public static TextField searchTextField;
     public static Document itemDocument;
     public static Document settingsDocument;
     public static NodeList itemNodes;
+    public static NodeList filterNodes;
     public static NodeList settingsNodes;
     public static ArrayList<Pane> itemCardArray = new ArrayList<>();
     public static ArrayList<Pane> itemCardFilteredArray = new ArrayList<>();
     public static ArrayList<ToggleButton> toggleButtonArray = new ArrayList<>();
+    public static ArrayList<ToggleButton> settingsToggleButtonArray = new ArrayList<>();
     public static File itemsXML;
     public static File settingsXML;
     public static HostServices hostService;
@@ -105,6 +107,32 @@ public class App extends Application {
     public static Label label5;
     public static Label label6;
     public static Label label7;
+
+    public static int huntBL= 0;
+    public static int huntObtainedBL= 0;
+    public static int huntBL2= 0;
+    public static int huntObtainedBL2= 0;
+    public static int huntBLTPS= 0;
+    public static int huntObtainedBLTPS= 0;
+    public static int huntBL3= 0;
+    public static int huntObtainedBL3= 0;
+    public static int huntBL4= 0;
+    public static int huntObtainedBL4= 0;
+    public static Label huntItemsCollectedLabel;
+    public static Label huntItemsTotalLabel;
+
+    public static int countBL= 0;
+    public static int countObtainedBL= 0;
+    public static int countBL2= 0;
+    public static int countObtainedBL2= 0;
+    public static int countBLTPS= 0;
+    public static int countObtainedBLTPS= 0;
+    public static int countBL3= 0;
+    public static int countObtainedBL3= 0;
+    public static int countBL4= 0;
+    public static int countObtainedBL4= 0;
+    public static Label itemsCollectedLabel;
+    public static Label itemsTotalLabel;
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -136,6 +164,8 @@ public class App extends Application {
         enhancementImage = new Image(getClass().getResourceAsStream("enhancement.png"));
         effervescentBackground = new Image(getClass().getResourceAsStream("effervescent_rev2.gif"));
         itemCardBackground = new Image(getClass().getResourceAsStream("weapon_card.png"));
+        theHuntImage = new Image(getClass().getResourceAsStream("Hunt_logo_mini.png"));
+        settingsImage = new Image(getClass().getResourceAsStream("settings.png"));
         hostService = getHostServices();
 
         URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
@@ -148,6 +178,7 @@ public class App extends Application {
         itemDocument = builder.parse(itemsXML);
         settingsDocument = builder.parse(settingsXML);
         itemNodes = itemDocument.getDocumentElement().getElementsByTagName("item");
+        filterNodes = settingsDocument.getDocumentElement().getElementsByTagName("filter");
         settingsNodes = settingsDocument.getDocumentElement().getElementsByTagName("setting");
 
         //Item cards holder
@@ -185,7 +216,7 @@ public class App extends Application {
         Button testingButton = new Button("Testing");
         Button testingButton2 = new Button("Testing 2");
 
-        filterVBox.getChildren().addAll(filterLabel, allNoneHBox, searchTextField);
+        filterVBox.getChildren().addAll(testingButton, testingButton2, filterLabel, allNoneHBox, searchTextField);
         Label weaponLabel = new Label("WEAPONS");
         weaponLabel.setId("filterLabel");
         ToggleButton pistolToggleButton = new ToggleButton("Pistols");//0
@@ -275,11 +306,11 @@ public class App extends Application {
             toggleButtonArray.get(toggleButton).setOnAction(event -> {
                 itemScrollPane.setVvalue(0);
                 resetDisplayedCards(searchTextField.getText());
-                Element settingElement = (Element) settingsNodes.item(toggleButton);
+                Element filterElement = (Element) filterNodes.item(toggleButton);
                 if (toggleButtonArray.get(toggleButton).isSelected()) {
-                    settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
+                    filterElement.getElementsByTagName("enabled").item(0).setTextContent("true");
                 } else {
-                    settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
+                    filterElement.getElementsByTagName("enabled").item(0).setTextContent("false");
                 }
                 new Thread(() -> {
                     writeToXml(settingsDocument, settingsXML);
@@ -297,7 +328,7 @@ public class App extends Application {
             launcherToggleButton.isSelected() && eridianToggleButton.isSelected() && laserToggleButton.isSelected();
             String enabledString = allEnabled ? "false" : "true";
             for (int i = 0; i < 8; i++) {
-                Element settingElement = (Element) settingsNodes.item(i);
+                Element settingElement = (Element) filterNodes.item(i);
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
@@ -313,7 +344,7 @@ public class App extends Application {
             enhancementToggleButton.isSelected() && repkitToggleButton.isSelected() && grenadeOrdnanceToggleButton.isSelected() && heavyOrdnanceToggleButton.isSelected();
             String enabledString = allEnabled ? "false" : "true";
             for (int i = 8; i < 17; i++) {
-                Element settingElement = (Element) settingsNodes.item(i);
+                Element settingElement = (Element) filterNodes.item(i);
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
@@ -329,7 +360,7 @@ public class App extends Application {
             effervescentToggleButton.isSelected();
             String enabledString = allEnabled ? "false" : "true";
             for (int i = 17; i < 23; i++) {
-                Element settingElement = (Element) settingsNodes.item(i);
+                Element settingElement = (Element) filterNodes.item(i);
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
@@ -344,7 +375,7 @@ public class App extends Application {
             blTPSToggleButton.isSelected() && bl3ToggleButton.isSelected() && bl4ToggleButton.isSelected();
             String enabledString = allEnabled ? "false" : "true";
             for (int i = 23; i < 28; i++) {
-                Element settingElement = (Element) settingsNodes.item(i);
+                Element settingElement = (Element) filterNodes.item(i);
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
@@ -359,7 +390,7 @@ public class App extends Application {
             worldDropToggleButton.isSelected() && nonWorldDropToggleButton.isSelected() && nonHuntToggleButton.isSelected();
             String enabledString = allEnabled ? "false" : "true";
             for (int i = 28; i < toggleButtonArray.size(); i++) {
-                Element settingElement = (Element) settingsNodes.item(i);
+                Element settingElement = (Element) filterNodes.item(i);
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 toggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
             }
@@ -370,14 +401,89 @@ public class App extends Application {
             }).start();
         });
 
-        //set Toggle buttons to on or off based on settings.xml
-        for (int i = 0; i < toggleButtonArray.size(); i++) {
-            Element settingElement = (Element) settingsNodes.item(i);
-            Boolean elementText = Boolean.parseBoolean(settingElement.getElementsByTagName("enabled").item(0).getTextContent());
-            toggleButtonArray.get(i).setSelected(elementText);
+        //Settings
+        VBox settingsVBox = new VBox();
+        settingsVBox.setSpacing(1);
+        settingsVBox.setId("filterVBox");
+        Label settingsLabel = new Label("SETTINGS");
+        settingsLabel.setId("filterLabel");
+        settingsLabel.setStyle("-fx-cursor: none;");
+        Label itemCollectionLabel = new Label("COLLECTION");
+        itemCollectionLabel.setId("filterLabel");
+        itemCollectionLabel.setStyle("-fx-cursor: none;");
+        Tooltip itemCollectionToolTip = new Tooltip("These settings control which games items\nwill contribute to the items collected\non the banner at the top.");
+        itemCollectionToolTip.setId("toolTip");
+        itemCollectionLabel.setOnMouseMoved(event -> {
+            itemCollectionToolTip.show(itemCollectionLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        itemCollectionLabel.setOnMouseExited(event -> {
+            itemCollectionToolTip.hide();
+        });
+        ToggleButton toggleButtonCollectionBL = new ToggleButton("Borderlands");//0
+        settingsToggleButtonArray.add(toggleButtonCollectionBL);
+        ToggleButton toggleButtonCollectionBL2 = new ToggleButton("Borderlands 2");//1
+        settingsToggleButtonArray.add(toggleButtonCollectionBL2);
+        ToggleButton toggleButtonCollectionBLTPS = new ToggleButton("Borderlands TPS");//2
+        settingsToggleButtonArray.add(toggleButtonCollectionBLTPS);
+        ToggleButton toggleButtonCollectionBL3 = new ToggleButton("Borderlands 3");//3
+        settingsToggleButtonArray.add(toggleButtonCollectionBL3);
+        ToggleButton toggleButtonCollectionBL4 = new ToggleButton("Borderlands 4");//4
+        settingsToggleButtonArray.add(toggleButtonCollectionBL4);
+        settingsVBox.getChildren().addAll(settingsLabel, itemCollectionLabel, toggleButtonCollectionBL, toggleButtonCollectionBL2,
+        toggleButtonCollectionBLTPS, toggleButtonCollectionBL3, toggleButtonCollectionBL4);
+        Label theHuntLabel = new Label("THE HUNT");
+        theHuntLabel.setId("filterLabel");
+        theHuntLabel.setStyle("-fx-cursor: none;");
+        Tooltip huntCollectionToolTip = new Tooltip("These settings control which games items\nwill contribute to the hunt point\ntotal on the banner at the top.");
+        huntCollectionToolTip.setId("toolTip");
+        theHuntLabel.setOnMouseMoved(event -> {
+            huntCollectionToolTip.show(theHuntLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        theHuntLabel.setOnMouseExited(event -> {
+            huntCollectionToolTip.hide();
+        });
+        ToggleButton toggleButtonHuntBL = new ToggleButton("Borderlands");//5
+        settingsToggleButtonArray.add(toggleButtonHuntBL);
+        ToggleButton toggleButtonHuntBL2 = new ToggleButton("Borderlands 2");//6
+        settingsToggleButtonArray.add(toggleButtonHuntBL2);
+        ToggleButton toggleButtonHuntBLTPS = new ToggleButton("Borderlands TPS");//7
+        settingsToggleButtonArray.add(toggleButtonHuntBLTPS);
+        ToggleButton toggleButtonHuntBL3 = new ToggleButton("Borderlands 3");//8
+        settingsToggleButtonArray.add(toggleButtonHuntBL3);
+        ToggleButton toggleButtonHuntBL4 = new ToggleButton("Borderlands 4");//9
+        settingsToggleButtonArray.add(toggleButtonHuntBL4);
+        settingsVBox.getChildren().addAll(theHuntLabel, toggleButtonHuntBL, toggleButtonHuntBL2,
+        toggleButtonHuntBLTPS, toggleButtonHuntBL3, toggleButtonHuntBL4);
+        for (int i = 0; i < settingsToggleButtonArray.size(); i++) {
+            int toggleButton = i;
+            settingsToggleButtonArray.get(toggleButton).setOnAction(event -> {
+                Element settingElement = (Element) settingsNodes.item(toggleButton);
+                if (settingsToggleButtonArray.get(toggleButton).isSelected()) {
+                    settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
+                } else {
+                    settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
+                }
+                updateBannerLabels();
+                new Thread(() -> {
+                    writeToXml(settingsDocument, settingsXML);
+                }).start();
+            });
         }
 
-        //Banner
+        //set Toggle buttons to on or off based on settings.xml
+        for (int i = 0; i < toggleButtonArray.size(); i++) {
+            Element filterElement = (Element) filterNodes.item(i);
+            Boolean elementText = Boolean.parseBoolean(filterElement.getElementsByTagName("enabled").item(0).getTextContent());
+            toggleButtonArray.get(i).setSelected(elementText);
+        }
+        for (int i = 0; i < settingsToggleButtonArray.size(); i++) {
+            Element settingElement = (Element) settingsNodes.item(i);
+            Boolean elementText = Boolean.parseBoolean(settingElement.getElementsByTagName("enabled").item(0).getTextContent());
+            settingsToggleButtonArray.get(i).setSelected(elementText);
+        }
+
+        //Banner start
+        //Wiki image with link
         ImageView wikiLinkImageView = new ImageView(wikiImage);
         wikiLinkImageView.setId("wikiLinkImageView");
         wikiLinkImageView.setFitHeight(48);
@@ -395,9 +501,126 @@ public class App extends Application {
         wikiViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://borderlands.fandom.com/wiki/Borderlands_Wiki");
         });
+        //BLCL item collection
+        ImageView BLCLImageView = new ImageView(icon);
+        BLCLImageView.setId("wikiLinkImageView");
+        BLCLImageView.setFitHeight(48);
+        BLCLImageView.setFitWidth(48);
+        Pane BLCLViewPane = new Pane(BLCLImageView);
+        BLCLViewPane.setStyle("-fx-cursor: hand;");
+        Tooltip BLCLViewPaneToolTip = new Tooltip("https://github.com/FrogMan650/BorderlandsCollectionLog");
+        BLCLViewPaneToolTip.setId("toolTip");
+        BLCLViewPane.setOnMouseMoved(event -> {
+            BLCLViewPaneToolTip.show(BLCLViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        BLCLViewPane.setOnMouseExited(event -> {
+            BLCLViewPaneToolTip.hide();
+        });
+        BLCLViewPane.setOnMouseClicked(event -> {
+            hostService.showDocument("https://github.com/FrogMan650/BorderlandsCollectionLog");
+        });
+        itemsCollectedLabel = new Label();
+        itemsCollectedLabel.setId("collectionLabel");
+        Tooltip itemsCollectedToolTip = new Tooltip("Items obtained");
+        itemsCollectedToolTip.setId("toolTip");
+        itemsCollectedLabel.setOnMouseMoved(event -> {
+            itemsCollectedToolTip.show(itemsCollectedLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        itemsCollectedLabel.setOnMouseExited(event -> {
+            itemsCollectedToolTip.hide();
+        });
+        Line itemsCollectedLine = new Line();
+        itemsCollectedLine.setId("collectionLine");
+        itemsCollectedLine.setStartX(0);
+        itemsCollectedLine.setEndX(35);
+        itemsTotalLabel = new Label();
+        Tooltip itemsTotalToolTip = new Tooltip("Total items");
+        itemsTotalToolTip.setId("toolTip");
+        itemsTotalLabel.setOnMouseMoved(event -> {
+            itemsTotalToolTip.show(itemsTotalLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        itemsTotalLabel.setOnMouseExited(event -> {
+            itemsTotalToolTip.hide();
+        });
+        itemsTotalLabel.setId("collectionLabel");
+        VBox itemsCollectedVBox = new VBox(itemsCollectedLabel, itemsCollectedLine, itemsTotalLabel);
+        itemsCollectedVBox.setId("collectionVBox");
+        //Hunt points collected
+        ImageView huntImageView = new ImageView(theHuntImage);
+        huntImageView.setId("wikiLinkImageView");
+        huntImageView.setFitHeight(48);
+        huntImageView.setFitWidth(87);
+        Pane huntViewPane = new Pane(huntImageView);
+        huntViewPane.setStyle("-fx-cursor: hand;");
+        Tooltip huntViewPaneToolTip = new Tooltip("The Hunt is a Borderlands community\n" +
+        "scavenger hunt to raise money for\nSt. Jude Children's Research Hospital.\nClick here for more info");
+        huntViewPaneToolTip.setId("toolTip");
+        huntViewPane.setOnMouseMoved(event -> {
+            huntViewPaneToolTip.show(huntViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        huntViewPane.setOnMouseExited(event -> {
+            huntViewPaneToolTip.hide();
+        });
+        huntViewPane.setOnMouseClicked(event -> {
+            hostService.showDocument("https://borderlandshunt.com");
+        });
+        huntItemsCollectedLabel = new Label();
+        huntItemsCollectedLabel.setId("collectionLabel");
+        Tooltip huntItemsCollectedToolTip = new Tooltip("Hunt points obtained");
+        huntItemsCollectedToolTip.setId("toolTip");
+        huntItemsCollectedLabel.setOnMouseMoved(event -> {
+            huntItemsCollectedToolTip.show(huntItemsCollectedLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        huntItemsCollectedLabel.setOnMouseExited(event -> {
+            huntItemsCollectedToolTip.hide();
+        });
+        Line huntItemsCollectedLine = new Line();
+        huntItemsCollectedLine.setId("collectionLine");
+        huntItemsCollectedLine.setStartX(0);
+        huntItemsCollectedLine.setEndX(35);
+        huntItemsTotalLabel = new Label();
+        huntItemsTotalLabel.setId("collectionLabel");
+        Tooltip huntItemsTotalToolTip = new Tooltip("Total hunt points");
+        huntItemsTotalToolTip.setId("toolTip");
+        huntItemsTotalLabel.setOnMouseMoved(event -> {
+            huntItemsTotalToolTip.show(huntItemsTotalLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        huntItemsTotalLabel.setOnMouseExited(event -> {
+            huntItemsTotalToolTip.hide();
+        });
+        VBox huntItemsCollectedVBox = new VBox(huntItemsCollectedLabel, huntItemsCollectedLine, huntItemsTotalLabel);
+        huntItemsCollectedVBox.setId("collectionVBox");
+
         Region bannerHPusher = new Region();
         HBox.setHgrow(bannerHPusher, Priority.ALWAYS);
-        ImageView settingsButtonImageView = new ImageView();
+
+        //Settings
+        ImageView settingsImageView = new ImageView(settingsImage);
+        settingsImageView.setId("wikiLinkImageView");
+        settingsImageView.setFitHeight(48);
+        settingsImageView.setFitWidth(48);
+        Pane settingsViewPane = new Pane(settingsImageView);
+        settingsViewPane.setStyle("-fx-cursor: hand;");
+        Tooltip settingsViewPaneToolTip = new Tooltip("Settings");
+        settingsViewPaneToolTip.setId("toolTip");
+        settingsViewPane.setOnMouseMoved(event -> {
+            settingsViewPaneToolTip.show(settingsViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        settingsViewPane.setOnMouseExited(event -> {
+            settingsViewPaneToolTip.hide();
+        });
+        settingsViewPane.setOnMouseClicked(event -> {
+            if (filterVBox.isVisible()) {
+                filterVBox.setVisible(false);
+                settingsVBox.setVisible(true);
+                filterScrollPane.setContent(settingsVBox);
+            } else {
+                settingsVBox.setVisible(false);
+                filterVBox.setVisible(true);
+                filterScrollPane.setContent(filterVBox);
+
+            }
+        });
 
         //FPS label
         label2 = new Label("Other info here");
@@ -422,15 +645,22 @@ public class App extends Application {
         };
         frameRateMeter.start();
 
-        label3 = new Label("Other info here");
+        //testing labels
+        label3 = new Label("BL1 hunt: " + huntObtainedBL + " / " + huntObtainedBL + " BL1 total: " + countObtainedBL + " / " + countBL);
         VBox sizeVBox = new VBox(label2, label3);
-        label4 = new Label("Other info here");
-        label5 = new Label("Other info here");
+        label4 = new Label("BL2 hunt: " + huntObtainedBL2 + " / " + huntObtainedBL2 + " BL2 total: " + countObtainedBL2 + " / " + countBL2);
+        label5 = new Label("BLTPS hunt: " + huntObtainedBLTPS + " / " + huntObtainedBLTPS + " BLTPS total: " + countObtainedBLTPS + " / " + countBLTPS);
         VBox sizeVBox2 = new VBox(label4, label5);
-        label6 = new Label("Other info here");
-        label7 = new Label("Other info here");
+        label6 = new Label("BL3 hunt: " + huntObtainedBL3 + " / " + huntObtainedBL3 + " BL3 total: " + countObtainedBL3 + " / " + countBL3);
+        label7 = new Label("BL4 hunt: " + huntObtainedBL4 + " / " + huntObtainedBL4 + " BL4 total: " + countObtainedBL4 + " / " + countBL4);
         VBox sizeVBox3 = new VBox(label6, label7);
-        HBox bannerHBox = new HBox(5, wikiViewPane, sizeVBox, sizeVBox2, sizeVBox3, bannerHPusher);
+
+        HBox bannerHBox = new HBox(0, wikiViewPane, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox,bannerHPusher, settingsViewPane);
+        HBox.setMargin(wikiViewPane, new Insets(0, 10, 0, 0));
+        HBox.setMargin(BLCLViewPane, new Insets(0, 5, 0, 0));
+        HBox.setMargin(itemsCollectedVBox, new Insets(0, 10, 0, 0));
+        HBox.setMargin(huntViewPane, new Insets(0, 5, 0, 0));
+        HBox.setMargin(huntItemsCollectedVBox, new Insets(0, 10, 0, 0));
         bannerHBox.setId("bannerBox");
 
         AnchorPane root = new AnchorPane();
@@ -452,13 +682,12 @@ public class App extends Application {
 
         Scene scene = new Scene(root, 1280, 720);
         scene.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
-        
+        //Set stage and scene
         stage.setTitle("Borderlands Collection Log");
         stage.getIcons().add(icon);
-        stage.setResizable(true);
-
         stage.setScene(scene);
         stage.show();
+        //itemFlowPane spacing
         itemFlowPane.setPrefWidth(scene.getWidth()-206);
         int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
         int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
@@ -470,6 +699,7 @@ public class App extends Application {
         //Build item cards
         buildAllItemCards();
         resetDisplayedCards(searchTextField.getText());
+        updateBannerLabels();
 
         scene.widthProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -510,27 +740,18 @@ public class App extends Application {
         });
 
         testingButton.setOnAction(event -> {
-            int enabled = 0;
-            for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
-                if (itemFlowPane.getChildren().get(i).isVisible()) {
-                    enabled++;
-                }
-            }
-            System.out.println(enabled);
+            updateBannerLabels();
         });
 
         testingButton2.setOnAction(event -> {
-            System.out.println("Nodes: " + itemNodes.getLength());
-            System.out.println("All Array: " + itemCardArray.size());
-            System.out.println("Filtered Array: " + itemCardFilteredArray.size());
-            System.out.println("Flow Pane: " + itemFlowPane.getChildren().size());
+            
         });
     }
 
     public static void allToggleButtonsOn(ArrayList<ToggleButton> toggleButtonArray) {
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             toggleButtonArray.get(i).setSelected(true);
-            Element settingElement = (Element) settingsNodes.item(i);
+            Element settingElement = (Element) filterNodes.item(i);
             settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
         }
         itemScrollPane.setVvalue(0);
@@ -543,7 +764,7 @@ public class App extends Application {
     public static void allToggleButtonsOff(ArrayList<ToggleButton> toggleButtonArray) {
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             toggleButtonArray.get(i).setSelected(false);
-            Element settingElement = (Element) settingsNodes.item(i);
+            Element settingElement = (Element) filterNodes.item(i);
             settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
         }
         itemScrollPane.setVvalue(0);
@@ -576,6 +797,37 @@ public class App extends Application {
             }
         }
         return -1;
+    }
+
+    public static void updateBannerLabels() {
+        int totalItemsObtained = 0;
+        totalItemsObtained = settingsToggleButtonArray.get(0).isSelected() ? totalItemsObtained+countObtainedBL : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(1).isSelected() ? totalItemsObtained+countObtainedBL2 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(2).isSelected() ? totalItemsObtained+countObtainedBLTPS : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(3).isSelected() ? totalItemsObtained+countObtainedBL3 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(4).isSelected() ? totalItemsObtained+countObtainedBL4 : totalItemsObtained;
+        int totalItemsAvailable = 0;
+        totalItemsAvailable = settingsToggleButtonArray.get(0).isSelected() ? totalItemsAvailable+countBL : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(1).isSelected() ? totalItemsAvailable+countBL2 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(2).isSelected() ? totalItemsAvailable+countBLTPS : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(3).isSelected() ? totalItemsAvailable+countBL3 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(4).isSelected() ? totalItemsAvailable+countBL4 : totalItemsAvailable;
+        int totalHuntPointsObtained = 0;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(5).isSelected() ? totalHuntPointsObtained+huntObtainedBL : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(6).isSelected() ? totalHuntPointsObtained+huntObtainedBL2 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsObtained+huntObtainedBLTPS : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsObtained+huntObtainedBL3 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsObtained+huntObtainedBL4 : totalHuntPointsObtained;
+        int totalHuntPointsAvailable = 0;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(5).isSelected() ? totalHuntPointsAvailable+huntBL : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(6).isSelected() ? totalHuntPointsAvailable+huntBL2 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsAvailable+huntBLTPS : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsAvailable+huntBL3 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsAvailable+huntBL4 : totalHuntPointsAvailable;
+        itemsCollectedLabel.setText(""+totalItemsObtained);
+        itemsTotalLabel.setText(""+totalItemsAvailable);
+        huntItemsCollectedLabel.setText(""+totalHuntPointsObtained);
+        huntItemsTotalLabel.setText(""+totalHuntPointsAvailable);
     }
 
     public static void setAllCardsVisible() {
@@ -790,9 +1042,52 @@ public class App extends Application {
         itemImageStackPane.getChildren().addAll(itemBackgroundColor, itemImageView);
         Label gameLabel = new Label("Borderlands " + game);
         gameLabel.setId("gameLabel");
+        lock.lock();
+        try {
+            if (game.equals("")) {
+                gameLabel.setText("Borderlands");
+                countBL++;
+                huntBL += Integer.parseInt(points);
+            } else if (game.equals("2")) {
+                countBL2++;
+                huntBL2 += Integer.parseInt(points);
+            } else if (game.equals("TPS")) {
+                countBLTPS++;
+                huntBLTPS += Integer.parseInt(points);
+            } else if (game.equals("3")) {
+                countBL3++;
+                huntBL3 += Integer.parseInt(points);
+            } else if (game.equals("4")) {
+                countBL4++;
+                huntBL4 += Integer.parseInt(points);
+            }
+        } finally {
+            lock.unlock();
+        }
         Pane obtainedPane = new Pane();
         if (obtained) {
             obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
+            lock.lock();
+            try {
+                if (game.equals("")) {
+                    countObtainedBL++;
+                    huntObtainedBL += Integer.parseInt(points);
+                } else if (game.equals("2")) {
+                    countObtainedBL2++;
+                    huntObtainedBL2 += Integer.parseInt(points);
+                } else if (game.equals("TPS")) {
+                    countObtainedBLTPS++;
+                    huntObtainedBLTPS += Integer.parseInt(points);
+                } else if (game.equals("3")) {
+                    countObtainedBL3++;
+                    huntObtainedBL3 += Integer.parseInt(points);
+                } else if (game.equals("4")) {
+                    countObtainedBL4++;
+                    huntObtainedBL4 += Integer.parseInt(points);
+                }
+            } finally {
+                lock.unlock();
+            }
         } else {
             obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
         }
@@ -809,12 +1104,45 @@ public class App extends Application {
                 obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
                 obtainedNode.setTextContent("false");
                 itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%false#%" + rarity + "#%" + source + "#%" + points);
+                if (game.equals("")) {
+                    countObtainedBL--;
+                    huntObtainedBL -= Integer.parseInt(points);
+                } else if (game.equals("2")) {
+                    countObtainedBL2--;
+                    huntObtainedBL2 -= Integer.parseInt(points);
+                } else if (game.equals("TPS")) {
+                    countObtainedBLTPS--;
+                    huntObtainedBLTPS -= Integer.parseInt(points);
+                } else if (game.equals("3")) {
+                    countObtainedBL3--;
+                    huntObtainedBL3 -= Integer.parseInt(points);
+                } else if (game.equals("4")) {
+                    countObtainedBL4--;
+                    huntObtainedBL4 -= Integer.parseInt(points);
+                }
             } else {
                 obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
                 obtainedNode.setTextContent("true");
                 itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%true#%" + rarity + "#%" +  source + "#%" + points);
+                if (game.equals("")) {
+                    countObtainedBL++;
+                    huntObtainedBL += Integer.parseInt(points);
+                } else if (game.equals("2")) {
+                    countObtainedBL2++;
+                    huntObtainedBL2 += Integer.parseInt(points);
+                } else if (game.equals("TPS")) {
+                    countObtainedBLTPS++;
+                    huntObtainedBLTPS += Integer.parseInt(points);
+                } else if (game.equals("3")) {
+                    countObtainedBL3++;
+                    huntObtainedBL3 += Integer.parseInt(points);
+                } else if (game.equals("4")) {
+                    countObtainedBL4++;
+                    huntObtainedBL4 += Integer.parseInt(points);
+                }
             }
             resetDisplayedCards(searchTextField.getText());
+            updateBannerLabels();
             new Thread(() -> {
                 writeToXml(itemDocument, itemsXML);
             }).start();

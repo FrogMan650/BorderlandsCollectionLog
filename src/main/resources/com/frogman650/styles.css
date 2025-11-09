@@ -24,7 +24,7 @@
 
 #gameLabel .text {
     -fx-font-size: 25;
-    -fx-fill: #fbff00;
+    -fx-fill: #fde217;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
 }
@@ -264,10 +264,24 @@
     -fx-border-style: solid;
 }
 
+#collectionLabel {
+    -fx-text-fill: #fde217;
+    -fx-font-size: 15;
+    /* -fx-border-color: red;
+    -fx-border-width: 1; */
+}
+#collectionLine {
+    -fx-stroke: #fde217;
+}
+
+#collectionVBox {
+    -fx-alignment: CENTER;
+}
+
 #toolTip {
     -fx-effect: none;
     -fx-font-size: 10;
-    -fx-opacity: 0.8;
+    -fx-opacity: 0.9;
     -fx-padding: 3;
     -fx-text-alignment: CENTER;
 }
