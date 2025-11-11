@@ -80,6 +80,7 @@ public class App extends Application {
     public static Image itemCardBackground;
     public static Image theHuntImage;
     public static Image settingsImage;
+    public static Image settingsHoverImage;
     public static FlowPane itemFlowPane;
     public static ScrollPane itemScrollPane;
     public static TextField searchTextField;
@@ -166,6 +167,7 @@ public class App extends Application {
         itemCardBackground = new Image(getClass().getResourceAsStream("weapon_card.png"));
         theHuntImage = new Image(getClass().getResourceAsStream("Hunt_logo_mini.png"));
         settingsImage = new Image(getClass().getResourceAsStream("settings.png"));
+        settingsHoverImage = new Image(getClass().getResourceAsStream("settings_hover.png"));
         hostService = getHostServices();
 
         URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
@@ -408,10 +410,27 @@ public class App extends Application {
         Label settingsLabel = new Label("SETTINGS");
         settingsLabel.setId("filterLabel");
         settingsLabel.setStyle("-fx-cursor: none;");
+        settingsVBox.getChildren().add(settingsLabel);
+        Label modeSelectionLabel = new Label("MODE");
+        modeSelectionLabel.setId("filterLabel");
+        modeSelectionLabel.setStyle("-fx-cursor: none;");
+        Tooltip modeSelectionToolTip = new Tooltip("Turning on Hunt Mode will only show item\n" +
+        "sources that abide by The Hunt rules.\nMore information on rules and regulations for\n The Hunt can be found on borderlandshunt.com.");
+        modeSelectionToolTip.setId("toolTip");
+        modeSelectionLabel.setOnMouseMoved(event -> {
+            modeSelectionToolTip.show(modeSelectionLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        modeSelectionLabel.setOnMouseExited(event -> {
+            modeSelectionToolTip.hide();
+        });
+        ToggleButton modeToggleButton = new ToggleButton("Hunt Mode");//0
+        settingsToggleButtonArray.add(modeToggleButton);
+        settingsVBox.getChildren().addAll(modeSelectionLabel, modeToggleButton);
         Label itemCollectionLabel = new Label("COLLECTION");
         itemCollectionLabel.setId("filterLabel");
         itemCollectionLabel.setStyle("-fx-cursor: none;");
-        Tooltip itemCollectionToolTip = new Tooltip("These settings control which games items\nwill contribute to the items collected\non the banner at the top.");
+        Tooltip itemCollectionToolTip = new Tooltip("These settings control which games items\nwill " + 
+        "contribute to the items collected\non the banner at the top.");
         itemCollectionToolTip.setId("toolTip");
         itemCollectionLabel.setOnMouseMoved(event -> {
             itemCollectionToolTip.show(itemCollectionLabel, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -419,22 +438,23 @@ public class App extends Application {
         itemCollectionLabel.setOnMouseExited(event -> {
             itemCollectionToolTip.hide();
         });
-        ToggleButton toggleButtonCollectionBL = new ToggleButton("Borderlands");//0
+        ToggleButton toggleButtonCollectionBL = new ToggleButton("Borderlands");//1
         settingsToggleButtonArray.add(toggleButtonCollectionBL);
-        ToggleButton toggleButtonCollectionBL2 = new ToggleButton("Borderlands 2");//1
+        ToggleButton toggleButtonCollectionBL2 = new ToggleButton("Borderlands 2");//2
         settingsToggleButtonArray.add(toggleButtonCollectionBL2);
-        ToggleButton toggleButtonCollectionBLTPS = new ToggleButton("Borderlands TPS");//2
+        ToggleButton toggleButtonCollectionBLTPS = new ToggleButton("Borderlands TPS");//3
         settingsToggleButtonArray.add(toggleButtonCollectionBLTPS);
-        ToggleButton toggleButtonCollectionBL3 = new ToggleButton("Borderlands 3");//3
+        ToggleButton toggleButtonCollectionBL3 = new ToggleButton("Borderlands 3");//4
         settingsToggleButtonArray.add(toggleButtonCollectionBL3);
-        ToggleButton toggleButtonCollectionBL4 = new ToggleButton("Borderlands 4");//4
+        ToggleButton toggleButtonCollectionBL4 = new ToggleButton("Borderlands 4");//5
         settingsToggleButtonArray.add(toggleButtonCollectionBL4);
-        settingsVBox.getChildren().addAll(settingsLabel, itemCollectionLabel, toggleButtonCollectionBL, toggleButtonCollectionBL2,
+        settingsVBox.getChildren().addAll(itemCollectionLabel, toggleButtonCollectionBL, toggleButtonCollectionBL2,
         toggleButtonCollectionBLTPS, toggleButtonCollectionBL3, toggleButtonCollectionBL4);
         Label theHuntLabel = new Label("THE HUNT");
         theHuntLabel.setId("filterLabel");
         theHuntLabel.setStyle("-fx-cursor: none;");
-        Tooltip huntCollectionToolTip = new Tooltip("These settings control which games items\nwill contribute to the hunt point\ntotal on the banner at the top.");
+        Tooltip huntCollectionToolTip = new Tooltip("These settings control which games items\nwill " +
+        "contribute to the hunt point\ntotal on the banner at the top.");
         huntCollectionToolTip.setId("toolTip");
         theHuntLabel.setOnMouseMoved(event -> {
             huntCollectionToolTip.show(theHuntLabel, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -442,15 +462,15 @@ public class App extends Application {
         theHuntLabel.setOnMouseExited(event -> {
             huntCollectionToolTip.hide();
         });
-        ToggleButton toggleButtonHuntBL = new ToggleButton("Borderlands");//5
+        ToggleButton toggleButtonHuntBL = new ToggleButton("Borderlands");//6
         settingsToggleButtonArray.add(toggleButtonHuntBL);
-        ToggleButton toggleButtonHuntBL2 = new ToggleButton("Borderlands 2");//6
+        ToggleButton toggleButtonHuntBL2 = new ToggleButton("Borderlands 2");//7
         settingsToggleButtonArray.add(toggleButtonHuntBL2);
-        ToggleButton toggleButtonHuntBLTPS = new ToggleButton("Borderlands TPS");//7
+        ToggleButton toggleButtonHuntBLTPS = new ToggleButton("Borderlands TPS");//8
         settingsToggleButtonArray.add(toggleButtonHuntBLTPS);
-        ToggleButton toggleButtonHuntBL3 = new ToggleButton("Borderlands 3");//8
+        ToggleButton toggleButtonHuntBL3 = new ToggleButton("Borderlands 3");//9
         settingsToggleButtonArray.add(toggleButtonHuntBL3);
-        ToggleButton toggleButtonHuntBL4 = new ToggleButton("Borderlands 4");//9
+        ToggleButton toggleButtonHuntBL4 = new ToggleButton("Borderlands 4");//10
         settingsToggleButtonArray.add(toggleButtonHuntBL4);
         settingsVBox.getChildren().addAll(theHuntLabel, toggleButtonHuntBL, toggleButtonHuntBL2,
         toggleButtonHuntBLTPS, toggleButtonHuntBL3, toggleButtonHuntBL4);
@@ -485,7 +505,6 @@ public class App extends Application {
         //Banner start
         //Wiki image with link
         ImageView wikiLinkImageView = new ImageView(wikiImage);
-        wikiLinkImageView.setId("wikiLinkImageView");
         wikiLinkImageView.setFitHeight(48);
         wikiLinkImageView.setFitWidth(87);
         Pane wikiViewPane = new Pane(wikiLinkImageView);
@@ -503,7 +522,6 @@ public class App extends Application {
         });
         //BLCL item collection
         ImageView BLCLImageView = new ImageView(icon);
-        BLCLImageView.setId("wikiLinkImageView");
         BLCLImageView.setFitHeight(48);
         BLCLImageView.setFitWidth(48);
         Pane BLCLViewPane = new Pane(BLCLImageView);
@@ -547,7 +565,6 @@ public class App extends Application {
         itemsCollectedVBox.setId("collectionVBox");
         //Hunt points collected
         ImageView huntImageView = new ImageView(theHuntImage);
-        huntImageView.setId("wikiLinkImageView");
         huntImageView.setFitHeight(48);
         huntImageView.setFitWidth(87);
         Pane huntViewPane = new Pane(huntImageView);
@@ -596,7 +613,7 @@ public class App extends Application {
 
         //Settings
         ImageView settingsImageView = new ImageView(settingsImage);
-        settingsImageView.setId("wikiLinkImageView");
+        settingsImageView.setId("settingsImageView");
         settingsImageView.setFitHeight(48);
         settingsImageView.setFitWidth(48);
         Pane settingsViewPane = new Pane(settingsImageView);
@@ -605,9 +622,11 @@ public class App extends Application {
         settingsViewPaneToolTip.setId("toolTip");
         settingsViewPane.setOnMouseMoved(event -> {
             settingsViewPaneToolTip.show(settingsViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            settingsImageView.setImage(settingsHoverImage);
         });
         settingsViewPane.setOnMouseExited(event -> {
             settingsViewPaneToolTip.hide();
+            settingsImageView.setImage(settingsImage);
         });
         settingsViewPane.setOnMouseClicked(event -> {
             if (filterVBox.isVisible()) {
@@ -1242,7 +1261,7 @@ public class App extends Application {
             if (!location.isEmpty()) {
                 if (!locationTextSplit[i].isEmpty()) {
                     Tooltip tempSourceTextToolTip = new Tooltip();
-                    tempSourceTextToolTip.setText(locationTextSplit[i] + "\n" + chanceTextSplit[i] + "%");
+                    tempSourceTextToolTip.setText(locationTextSplit[i] + "\n" + chanceTextSplit[i]);
                     tempSourceTextToolTip.setId("toolTip");
                     tempSourceTextLabel.setOnMouseMoved(event -> {
                         tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
