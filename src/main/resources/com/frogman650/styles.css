@@ -62,11 +62,13 @@
 }
 
 #sourcesLabel, #sourcesListLabel {
-    -fx-max-width: 300;
+    /* -fx-border-color: red;
+    -fx-border-width: 1; */
 }
 
 #sourcesListLabel {
     -fx-wrap-text: true;
+    -fx-max-width: 300;
 }
 
 #sourcesLabel .text {
@@ -137,7 +139,9 @@
 }
 
 #itemTextVBox {
-    -fx-max-width: 305;
+    -fx-max-width: 310;
+    /* -fx-border-color: green;
+    -fx-border-width: 1; */
 }
 
 #itemWikiLinkPane {
@@ -185,14 +189,6 @@
     -fx-fill: white;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
-}
-
-#settingsImageView {
-
-}
-
-#settingsImageView:hover {
-
 }
 
 .toggle-button {
@@ -286,7 +282,7 @@
 
 #toolTip {
     -fx-effect: none;
-    -fx-font-size: 10;
+    -fx-font-size: 12;
     -fx-opacity: 0.9;
     -fx-padding: 3;
     -fx-text-alignment: CENTER;

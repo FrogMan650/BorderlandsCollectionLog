@@ -132,6 +132,10 @@
 		<enabled>true</enabled>
 	</filter>
 	<setting>
+		<name>hunt mode</name>
+		<enabled>true</enabled>
+	</setting>
+	<setting>
 		<name>bl collection</name>
 		<enabled>true</enabled>
 	</setting>

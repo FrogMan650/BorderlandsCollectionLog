@@ -1061,6 +1061,7 @@ public class App extends Application {
         itemImageStackPane.getChildren().addAll(itemBackgroundColor, itemImageView);
         Label gameLabel = new Label("Borderlands " + game);
         gameLabel.setId("gameLabel");
+        //lock the shared variables so only 1 thread can access them at a time
         lock.lock();
         try {
             if (game.equals("")) {
@@ -1086,6 +1087,7 @@ public class App extends Application {
         Pane obtainedPane = new Pane();
         if (obtained) {
             obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
+            //lock the shared variables so only 1 thread can access them at a time
             lock.lock();
             try {
                 if (game.equals("")) {
@@ -1231,7 +1233,6 @@ public class App extends Application {
         String[] flavorTextSplit = text.split("_");
         for (int i = 0; i < flavorTextSplit.length; i++) {
             Label tempFlavorTextLabel = new Label();
-            VBox.setMargin(tempFlavorTextLabel, new Insets(0, 0 ,0, 10));
             tempFlavorTextLabel.setId("flavorTextLabel");
             tempFlavorTextLabel.setText("\u2022 " + flavorTextSplit[i]);
             if (name.equals("Norfleet")) {
@@ -1249,12 +1250,12 @@ public class App extends Application {
         sourcesLabel.setId("sourcesLabel");
         itemTextVBox.getChildren().addAll(sourcesLabel);
         itemTextVBox.setFillWidth(false);
+        itemTextVBox.setPadding(new Insets(0, 0, 0, 10));
         String[] sourceTextSplit = source.split("_");
         String[] locationTextSplit = location.split("_");
         String[] chanceTextSplit = chance.split("_");
         for (int i = 0; i < sourceTextSplit.length; i++) {
             Label tempSourceTextLabel = new Label();
-            VBox.setMargin(tempSourceTextLabel, new Insets(0, 0 ,0, 10));
             tempSourceTextLabel.setId("sourcesListLabel");
             tempSourceTextLabel.setText("\u2022 " + sourceTextSplit[i]);
             itemTextVBox.getChildren().addAll(tempSourceTextLabel);
@@ -1301,7 +1302,6 @@ public class App extends Application {
         itemVBox.setId("itemVBox");
         VBox.setMargin(itemNameLabel, new Insets(5, 0 ,0, 0));
         VBox.setMargin(itemImageStackPane, new Insets(1, 0 ,0, 0));
-        VBox.setMargin(sourcesLabel, new Insets(0, 0 ,0, 10));
         itemPane.getChildren().add(itemVBox);
         itemPane.setId("itemPane");
         itemPane.setCache(true);
