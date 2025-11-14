@@ -8,6 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -17,14 +18,17 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Paths;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.HostServices;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -84,9 +88,9 @@ public class App extends Application {
     public static FlowPane itemFlowPane;
     public static ScrollPane itemScrollPane;
     public static TextField searchTextField;
-    public static Document itemDocument;
     public static Document settingsDocument;
-    public static NodeList itemNodes;
+    public static Document saveDocument;
+    public static Element saveNode;
     public static NodeList filterNodes;
     public static NodeList settingsNodes;
     public static ArrayList<Pane> itemCardArray = new ArrayList<>();
@@ -95,6 +99,7 @@ public class App extends Application {
     public static ArrayList<ToggleButton> settingsToggleButtonArray = new ArrayList<>();
     public static File itemsXML;
     public static File settingsXML;
+    public static File saveXML;
     public static HostServices hostService;
     public static Lock lock = new ReentrantLock();
 
@@ -135,6 +140,11 @@ public class App extends Application {
     public static Label itemsCollectedLabel;
     public static Label itemsTotalLabel;
 
+    public static DocumentBuilderFactory factory;
+    public static DocumentBuilder builder;
+    public static File executableDirectory;
+    public static int totalNodes = 0;
+
     public static void main(String[] args) throws Exception {
         launch(args);
     }
@@ -171,15 +181,15 @@ public class App extends Application {
         hostService = getHostServices();
 
         URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
-        File executableDirectory = Paths.get(uri).getParent().toFile();
-        itemsXML = new File(executableDirectory, "items.xml");
+        executableDirectory = Paths.get(uri).getParent().toFile();
         settingsXML = new File(executableDirectory, "settings.xml");
+        saveXML = new File(executableDirectory, "save.xml");
 
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        itemDocument = builder.parse(itemsXML);
+        factory = DocumentBuilderFactory.newInstance();
+        builder = factory.newDocumentBuilder();
         settingsDocument = builder.parse(settingsXML);
-        itemNodes = itemDocument.getDocumentElement().getElementsByTagName("item");
+        saveDocument = builder.parse(saveXML);
+        saveNode = saveDocument.getDocumentElement();
         filterNodes = settingsDocument.getDocumentElement().getElementsByTagName("filter");
         settingsNodes = settingsDocument.getDocumentElement().getElementsByTagName("setting");
 
@@ -642,7 +652,7 @@ public class App extends Application {
         });
 
         //FPS label
-        label2 = new Label("Other info here");
+        label2 = new Label("0");
         AnimationTimer frameRateMeter = new AnimationTimer() {
 
             @Override
@@ -665,16 +675,16 @@ public class App extends Application {
         frameRateMeter.start();
 
         //testing labels
-        label3 = new Label("BL1 hunt: " + huntObtainedBL + " / " + huntObtainedBL + " BL1 total: " + countObtainedBL + " / " + countBL);
+        label3 = new Label(executableDirectory.toString());
         VBox sizeVBox = new VBox(label2, label3);
-        label4 = new Label("BL2 hunt: " + huntObtainedBL2 + " / " + huntObtainedBL2 + " BL2 total: " + countObtainedBL2 + " / " + countBL2);
-        label5 = new Label("BLTPS hunt: " + huntObtainedBLTPS + " / " + huntObtainedBLTPS + " BLTPS total: " + countObtainedBLTPS + " / " + countBLTPS);
+        label4 = new Label("label4");
+        label5 = new Label("label5");
         VBox sizeVBox2 = new VBox(label4, label5);
-        label6 = new Label("BL3 hunt: " + huntObtainedBL3 + " / " + huntObtainedBL3 + " BL3 total: " + countObtainedBL3 + " / " + countBL3);
-        label7 = new Label("BL4 hunt: " + huntObtainedBL4 + " / " + huntObtainedBL4 + " BL4 total: " + countObtainedBL4 + " / " + countBL4);
+        label6 = new Label("label6");
+        label7 = new Label("label7");
         VBox sizeVBox3 = new VBox(label6, label7);
 
-        HBox bannerHBox = new HBox(0, wikiViewPane, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox,bannerHPusher, settingsViewPane);
+        HBox bannerHBox = new HBox(0, wikiViewPane, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox, sizeVBox, sizeVBox2, sizeVBox3, bannerHPusher, settingsViewPane);
         HBox.setMargin(wikiViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(BLCLViewPane, new Insets(0, 5, 0, 0));
         HBox.setMargin(itemsCollectedVBox, new Insets(0, 10, 0, 0));
@@ -753,7 +763,6 @@ public class App extends Application {
         //Load and un-load cards as you scroll to save on performance
         itemScrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                label3.setText(newValue+"");
                 displayCardsInViewport();
             }
         });
@@ -796,26 +805,15 @@ public class App extends Application {
     public static void writeToXml(Document document, File file) {
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            transformerFactory.setAttribute("indent-number", 2);
             Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource docSource = new DOMSource(document);
             StreamResult docResult = new StreamResult(file);
             transformer.transform(docSource, docResult);
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
-    }
-
-    public static int getCardNumber(String name, String game, String type, String rarity) {
-        for (int i = 0; i < itemNodes.getLength(); i++) {
-            Element node = (Element) itemNodes.item(i);
-            if (node.getElementsByTagName("name").item(0).getTextContent().equals(name) && 
-            node.getElementsByTagName("game").item(0).getTextContent().equals(game) && 
-            node.getElementsByTagName("type").item(0).getTextContent().equals(type) && 
-            node.getElementsByTagName("rarity").item(0).getTextContent().equals(rarity)) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public static void updateBannerLabels() {
@@ -985,25 +983,47 @@ public class App extends Application {
         }
     }
 
-    public static void buildAllItemCards() {
-        for (int i = 0; i < itemNodes.getLength(); i++) {
-            Element itemNode = (Element) itemNodes.item(i);
-            String name = itemNode.getElementsByTagName("name").item(0).getTextContent();
-            String type = itemNode.getElementsByTagName("type").item(0).getTextContent();
-            String game = itemNode.getElementsByTagName("game").item(0).getTextContent();
-            Boolean obtained = Boolean.parseBoolean(itemNode.getElementsByTagName("obtained").item(0).getTextContent());
-            String rarity = itemNode.getElementsByTagName("rarity").item(0).getTextContent();
-            String source = itemNode.getElementsByTagName("source").item(0).getTextContent();
-            String text = itemNode.getElementsByTagName("text").item(0).getTextContent();
-            String wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
-            String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
-            String location = itemNode.getElementsByTagName("location").item(0).getTextContent();
-            String chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
-            new Thread(() -> {
-                buildItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance);
-            }).start();
+    public static void buildAllItemCards() throws Exception {
+        File[] files = executableDirectory.listFiles();
+        for (File file : files) {
+            if (file.isFile() && file.getName().contains("_items") && file.getName().contains(".xml")) {
+                Document document = builder.parse(file);
+                NodeList nodes = document.getDocumentElement().getElementsByTagName("item");
+                totalNodes += nodes.getLength();
+                for (int i = 0; i < nodes.getLength(); i++) {
+                    Element itemNode = (Element) nodes.item(i);
+                        String name = itemNode.getElementsByTagName("name").item(0).getTextContent();
+                        String type = itemNode.getElementsByTagName("type").item(0).getTextContent();
+                        String game = itemNode.getElementsByTagName("game").item(0).getTextContent();
+                        String rarity = itemNode.getElementsByTagName("rarity").item(0).getTextContent();
+                        String source = itemNode.getElementsByTagName("source").item(0).getTextContent();
+                        String text = itemNode.getElementsByTagName("text").item(0).getTextContent();
+                        String wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
+                        String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
+                        String location = itemNode.getElementsByTagName("location").item(0).getTextContent();
+                        String chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
+                        String obtainedText = itemNode.getElementsByTagName("obtained").item(0).getTextContent();
+                        NodeList saveNodes = saveNode.getElementsByTagName("item");
+                        for (int j = 0; j < saveNodes.getLength(); j++) {
+                            Element node = (Element) saveNodes.item(j);
+                            String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
+                            String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
+                            String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();
+                            String gameNode = node.getElementsByTagName("game").item(0).getTextContent();
+                            if (name.equals(nameNode) && type.equals(typeNode) && rarity.equals(rarityNode) && 
+                            gameNode.equals(game)) {
+                                obtainedText = "true";
+                                break;
+                            }
+                        }
+                        Boolean obtained = Boolean.parseBoolean(obtainedText);
+                    new Thread(() -> {
+                        buildItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance);
+                    }).start();
+                }
+            }
         }
-        while (itemCardArray.size() != itemNodes.getLength()) {
+        while (itemCardArray.size() != totalNodes) {
         }
         Collections.sort(itemCardArray, new Comparator<Pane>() {
             public int compare(Pane p1, Pane p2) {
@@ -1119,53 +1139,83 @@ public class App extends Application {
         HBox.setMargin(obtainedPane, new Insets(5, 0, 0, 12));
         //Defining what happens when you click the obtained/not obtained pane
         obtainedPane.setOnMouseClicked(event -> {
-            Element node = (Element) itemNodes.item(getCardNumber(name, game, type, rarity));
-            Node obtainedNode = node.getElementsByTagName("obtained").item(0);
-            if (obtainedNode.getTextContent().equals("true")) {
-                obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
-                obtainedNode.setTextContent("false");
-                itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%false#%" + rarity + "#%" + source + "#%" + points);
-                if (game.equals("")) {
-                    countObtainedBL--;
-                    huntObtainedBL -= Integer.parseInt(points);
-                } else if (game.equals("2")) {
-                    countObtainedBL2--;
-                    huntObtainedBL2 -= Integer.parseInt(points);
-                } else if (game.equals("TPS")) {
-                    countObtainedBLTPS--;
-                    huntObtainedBLTPS -= Integer.parseInt(points);
-                } else if (game.equals("3")) {
-                    countObtainedBL3--;
-                    huntObtainedBL3 -= Integer.parseInt(points);
-                } else if (game.equals("4")) {
-                    countObtainedBL4--;
-                    huntObtainedBL4 -= Integer.parseInt(points);
-                }
-            } else {
-                obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
-                obtainedNode.setTextContent("true");
-                itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%true#%" + rarity + "#%" +  source + "#%" + points);
-                if (game.equals("")) {
-                    countObtainedBL++;
-                    huntObtainedBL += Integer.parseInt(points);
-                } else if (game.equals("2")) {
-                    countObtainedBL2++;
-                    huntObtainedBL2 += Integer.parseInt(points);
-                } else if (game.equals("TPS")) {
-                    countObtainedBLTPS++;
-                    huntObtainedBLTPS += Integer.parseInt(points);
-                } else if (game.equals("3")) {
-                    countObtainedBL3++;
-                    huntObtainedBL3 += Integer.parseInt(points);
-                } else if (game.equals("4")) {
-                    countObtainedBL4++;
-                    huntObtainedBL4 += Integer.parseInt(points);
-                }
-            }
-            resetDisplayedCards(searchTextField.getText());
-            updateBannerLabels();
             new Thread(() -> {
-                writeToXml(itemDocument, itemsXML);
+                Boolean obtainedSwitch = false;
+                NodeList saveNodes = saveNode.getElementsByTagName("item");
+                for (int j = 0; j < saveNodes.getLength(); j++) {
+                    Element node = (Element) saveNodes.item(j);
+                    String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
+                    String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
+                    String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();
+                    String gameNode = node.getElementsByTagName("game").item(0).getTextContent();
+                    if (name.equals(nameNode) && type.equals(typeNode) && rarity.equals(rarityNode) && gameNode.equals(game)) {
+                        Platform.runLater(() -> {
+                            obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
+                        });
+                        obtainedSwitch = true;
+                        itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%false#%" + rarity + "#%" + source + "#%" + points);
+                            if (game.equals("")) {
+                                countObtainedBL--;
+                                huntObtainedBL -= Integer.parseInt(points);
+                            } else if (game.equals("2")) {
+                                countObtainedBL2--;
+                                huntObtainedBL2 -= Integer.parseInt(points);
+                            } else if (game.equals("TPS")) {
+                                countObtainedBLTPS--;
+                                huntObtainedBLTPS -= Integer.parseInt(points);
+                            } else if (game.equals("3")) {
+                                countObtainedBL3--;
+                                huntObtainedBL3 -= Integer.parseInt(points);
+                            } else if (game.equals("4")) {
+                                countObtainedBL4--;
+                                huntObtainedBL4 -= Integer.parseInt(points);
+                            }
+                        saveNode.removeChild(node);
+                        writeToXml(saveDocument, new File(executableDirectory, "save.xml"));
+                        break;
+                    } 
+                }
+                if (!obtainedSwitch) {
+                    Platform.runLater(() -> {
+                        obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
+                    });
+                    itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%true#%" + rarity + "#%" + source + "#%" + points);
+                        if (game.equals("")) {
+                            countObtainedBL++;
+                            huntObtainedBL += Integer.parseInt(points);
+                        } else if (game.equals("2")) {
+                            countObtainedBL2++;
+                            huntObtainedBL2 += Integer.parseInt(points);
+                        } else if (game.equals("TPS")) {
+                            countObtainedBLTPS++;
+                            huntObtainedBLTPS += Integer.parseInt(points);
+                        } else if (game.equals("3")) {
+                            countObtainedBL3++;
+                            huntObtainedBL3 += Integer.parseInt(points);
+                        } else if (game.equals("4")) {
+                            countObtainedBL4++;
+                            huntObtainedBL4 += Integer.parseInt(points);
+                        }
+                    Element newItemElement = saveDocument.createElement("item");
+                    Element newNameElement = saveDocument.createElement("name");
+                    newNameElement.appendChild(saveDocument.createTextNode(name));
+                    Element newTypeElement = saveDocument.createElement("type");
+                    newTypeElement.appendChild(saveDocument.createTextNode(type));
+                    Element newRarityElement = saveDocument.createElement("rarity");
+                    newRarityElement.appendChild(saveDocument.createTextNode(rarity));
+                    Element newGameElement = saveDocument.createElement("game");
+                    newGameElement.appendChild(saveDocument.createTextNode(game));
+                    newItemElement.appendChild(newNameElement);
+                    newItemElement.appendChild(newTypeElement);
+                    newItemElement.appendChild(newRarityElement);
+                    newItemElement.appendChild(newGameElement);
+                    saveDocument.getDocumentElement().appendChild(newItemElement);
+                    writeToXml(saveDocument, new File(executableDirectory, "save.xml"));
+                }
+                Platform.runLater(() -> {
+                    resetDisplayedCards(searchTextField.getText());
+                    updateBannerLabels();
+                });
             }).start();
         });
         HBox.setMargin(huntPointsLabel, new Insets(7, 0, 0, 23));
