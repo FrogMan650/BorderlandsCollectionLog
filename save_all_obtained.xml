@@ -1,0 +1,5979 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<items>
+	<item>
+		<name>12 Pounder</name>
+		<type>launcher</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>1340 Shield</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>3DD1.E</name>
+		<type>oz kit</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>3RROR Cmdl3t</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>88 Fragnum</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>9-Volt</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>AAA</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>ASMD</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Absolute Zero</name>
+		<type>laser</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Acid Burn</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Ack Ack</name>
+		<type>oz kit</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Actualizer</name>
+		<type>smg</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Adrenaline Initiative</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Aequitas</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Agonizer 1500</name>
+		<type>launcher</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Ahab</name>
+		<type>launcher</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Ajax's Spear</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Alchemist</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>All-in</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Amazing Grace</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Amber Management</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Amigo Sincero</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Anaconda</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Anarchy</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Antagonist</name>
+		<type>shield</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Antifection</name>
+		<type>grenade mod</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Antifreeze</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Aries</name>
+		<type>pistol</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Asclepius</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Ashen Beast</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Asteroid Belt</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Athena's Wisdom</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Atlas Replay</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>AutoAimè</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Avalanche</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Avenger</name>
+		<type>ar</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Avenger</name>
+		<type>smg</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Baby Boomer</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Baby Maker</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Baby Maker</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Back Ham</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Backburner</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bad Touch</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Badaboom</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Badaboom</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Baha's Bigger Blaster</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Band of Sitorak</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bane</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Bangarang</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Barrage</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bastard</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Beacon</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bear Trooper</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bearcat</name>
+		<type>ar</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Bearcat</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bekah</name>
+		<type>ar</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Bekah</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Berrigan</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Beskar</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bessie</name>
+		<type>sniper</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Big Boom Blaster</name>
+		<type>shield</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Big Boom Blaster</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bigg Thumppr</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Binary Operator</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bird of Prey</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bitch</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Bitch</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Bitch</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Black Flame</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Black Hole</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Black Hole</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Black Hole</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Black Snake</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Blade Fury</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Blast Master</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Blaster</name>
+		<type>eridian</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Blind Bandit</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Blind Sage</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Blockade</name>
+		<type>shield</type>
+		<rarity>seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Blockhead</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Blood of Terramorphous</name>
+		<type>relic</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Blood of the Seraphs</name>
+		<type>relic</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Blood-Starved Beast</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bloodletter</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bloom</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Blowfly</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Boganella</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Bone Shredder</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bone Shredder</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Bone Shredder</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Bonus Package</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Bonus Package</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Boogeyman</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Boom Puppy</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Boom Stick</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Boomacorn</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Boomer</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Boss Nova</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Bouncing Bazza</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Bouncing Bonny</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Bounty Hunter</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Boxxy Gunn</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Brad Luck</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Brainstormer</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Brashi's Dedication</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Breaker</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Breath of Terramorphous</name>
+		<type>grenade mod</type>
+		<rarity>unique_etech</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Breath of the Dying</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Breath of the Seraphs</name>
+		<type>relic</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Breeder</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Brightside</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Bubble Blaster</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Buffalo</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Bulldog</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Bullpup</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Bunny</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Burning Summit</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Butcher</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Butcher</name>
+		<type>shotgun</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Buttplug</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>CHOPPER</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Cannon</name>
+		<type>eridian</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Carnage</name>
+		<type>shotgun</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Carrier</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cat o' Nine Tails</name>
+		<type>laser</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Cathartic Oz Kit</name>
+		<type>oz kit</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Celestial Baroness</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Celestial Doppelganger</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Celestial Enforcer</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Celestial Fragtrap</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Celestial Gladiator</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Celestial Lawbringer</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Chain Lightning</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Chandelier</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cheap Tips</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cheat Code</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Cheddar Shredder</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Chimera</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Chiquito Amigo</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Chocolate Thunder</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Chomper</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Chronicler of Elpis (Baroness)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Chronicler of Elpis (Doppelganger)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Chronicler of Elpis (Enforcer)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Chronicler of Elpis (Fragtrap)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Chronicler of Elpis (Gladiator)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Chronicler of Elpis (Lawbringer)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Chulainn</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Chupa's Organ</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Chère-amie</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Clairvoyance</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cloud Kill</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cobra</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Cobra</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Cocky Bastard</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cold Shoulder</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cold Warrior</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Commander Planetoid</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Commerce</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Company Man</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Company Man</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Complex Root</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Conductor</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Conference Call</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Conference Call</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Contained Blast</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Contraband Sky Rocket</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Contraband Sky Rocket</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Convergence</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Core Buster</name>
+		<type>grenade mod</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cosmic Crater</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cosmic Stalker</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cracked Sash</name>
+		<type>shield</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Cracked Sash</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Crader's EM-P5</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Craps</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Creamer</name>
+		<type>launcher</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Creamer</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Creeping Corruption</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Creeping Death</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Crit</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Crit</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Critical Mass</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Critical Mass</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Critical Thug</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Crossfire</name>
+		<type>grenade mod</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Crossroad</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Crux</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Cry Baby</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Cryophobia</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Cutie killer</name>
+		<type>smg</type>
+		<rarity>glitch</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Cutsman</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Cyber Eagle</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Cyclops</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>D.N.A.</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>DE4DEYE</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Dahlminator</name>
+		<type>pistol</type>
+		<rarity>unique_etech</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Dakota</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Damned Cowboy</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Damned</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Dark Army</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Data Scrubber</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Dead Chamber</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Deadly Bloom</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Deadly Bloom</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Death's Blessings</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Deathless</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Deathrattle</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Defender</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Defiler</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Deliverance</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Deluxe Badass Combustor</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Deputy's Badge</name>
+		<type>relic</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Destroyer</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Destructo Spinner</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Devastator</name>
+		<type>pistol</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Devastator</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Devils Foursum</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Devoted</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Diamond Butt Bomb</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Digby's Smooth Tube</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Doc Hina's Miracle Bomb</name>
+		<type>grenade mod</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Dog</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Double Downer</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Dowsing Rod</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Draco</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Dragon</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>E-GUN</name>
+		<type>laser</type>
+		<rarity>unique_purple</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>E-Gone</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>ECHO-2</name>
+		<type>grenade mod</type>
+		<rarity>unique_white</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>EMP</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Earworm</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Easy Mode</name>
+		<type>shield</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Echo</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Electric Banjo</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Elementalist</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Elephant Gun</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Ember's Blaze</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Ember's Purge</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Embrace the Pain</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Emperor</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Epicenter</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Equalizer</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Eridian Fabricator</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Eridian Vanquisher (Baroness)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Eridian Vanquisher (Doppelganger)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Eridian Vanquisher (Enforcer)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Eridian Vanquisher (Fragtrap)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Eridian Vanquisher (Gladiator)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Eridian Vanquisher (Lawbringer)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Eternal Flame</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Evil Smasher</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Evolution</name>
+		<type>shield</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Excalibastard</name>
+		<type>laser</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Executor</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Exterminator</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Extreme Hangin' Chadd</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Fabled Tortoise</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Fabled Tortoise</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Face-puncher</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Faisor</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Fast Talker</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Fastball</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Fastball</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Fatale</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Faulty Star</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Fearmonger</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Fibber</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Fingerbiter</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Fire Bee</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Fire Bee</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Fire Storm</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Fireball</name>
+		<type>eridian</type>
+		<rarity>unique</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Fireball</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Firebomb</name>
+		<type>eridian</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Firecracker</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Firefly</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Firehawk</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Firestarta</name>
+		<type>laser</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Firestorm</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Firestorm</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Firewall</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Fish Slap</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Flakker</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Flakker</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Flakker</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Flama Diddle</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Flame of the Firehawk</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Flare</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Flaregun</name>
+		<type>eridian</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Flayer</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Flipper</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Florentine</name>
+		<type>smg</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Four Seasons</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Free Radical</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Freedom Oz Kit</name>
+		<type>oz kit</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Freeman</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Freezeasy</name>
+		<type>laser</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Fremington's Edge</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Fremington's Edge</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Frequency</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Fridgia</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Friend-Bot</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Friendly Fire</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Front Loader</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Frostfire</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Frozen Devil</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Frozen Heart</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Fungus Among Us</name>
+		<type>grenade mod</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Fusillade</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Fuster Cluck</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Gargoyle</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Gas Mask</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Gasher</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Gatling Gun</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Gemini</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Gettleburger</name>
+		<type>launcher</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Ghast Call</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Girth Blaster Elite</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Glob Gun</name>
+		<type>eridian</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Globber</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Globetrottr</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Godfinger</name>
+		<type>sniper</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Gold Rush</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Golden Rule</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Golden Touch</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Good Juju</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Good Touch</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Grave</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Grease Trap</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Greed</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Green Monster</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Grog Nozzle</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Guardian 4N631</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Guardian</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Gub</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Guilty Spark</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Gunerang</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Gunerang</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Gwen's Head</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Gwen's Other Head</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>HOT Spring</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hail</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Hail</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hail</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Hammer Buster II</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Hammer Buster</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Hammer</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Hand of Glory</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Handsome Jackhammer</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hard Carry</name>
+		<type>relic</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Hard Reboot</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Hawk Eye</name>
+		<type>sniper</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Haymaker</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>He4rtfull Spl0dger</name>
+		<type>laser</type>
+		<rarity>glitch</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Headsplosion</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Heart Breaker</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Heart Breaker</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Heart Breaker</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Heat Exchanger</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hector's Paradise</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>HellFire</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>HellFire</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Hellfire</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Hellfire</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hellshock</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hellwalker</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hex</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hide of Terramorphous</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Hive Mind</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Hive</name>
+		<type>launcher</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Hive</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Holy Grail</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hoplite</name>
+		<type>shield</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Hornet</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Hornet</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Hornet</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hot Drop</name>
+		<type>launcher</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hot Mama</name>
+		<type>sniper</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Hotfoot Teddy</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hunter-Seeker</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hustler</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hydra</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Hydra</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Hydrafrost</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hyper-Hydrator</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Hyperfocus XZ41</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>ION CANNON</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>ION LASER</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>IVF</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Ice Scream</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Icebreaker</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Iceburger</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Impaler</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Impaler</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Infection Cleaner</name>
+		<type>smg</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Infection</name>
+		<type>pistol</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Infernal Wish</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Infiltrator</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Infinity</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Infinity</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Insider</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Interfacer</name>
+		<type>shotgun</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Invader</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Invader</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Invader</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Invader</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Invigoration Oz Kit</name>
+		<type>oz kit</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Ionic Disruptor</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Ironclad</name>
+		<type>shield</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>It's Piss</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Jack-o'-Cannon</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Jackal</name>
+		<type>shotgun</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Jericho</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Jolly Roger</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Judge</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Juliet's Dazzle</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Just Kaus</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Kala</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Kaleidoscope</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Kaneda's Laser</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Kaos</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Kaoson</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Kensei</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Kenulox</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>KerBlaster</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>KerBoom</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Kickcharger</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Kill-o'-the-Wisp</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>King's Call</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Kiss of Death</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Kiss of Death</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Kitten</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Knoxx's Gold</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Krakatoa</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Krom's Sidearm</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Kyb's Worth</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Kyros' Power</name>
+		<type>sniper</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>LOV3M4CH1N3</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>La Varlope</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Lady Finger</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Lady Fist</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Landscaper</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Lascaux</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Laser Disker</name>
+		<type>laser</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Laser-Sploder</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Launch Pad</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Law</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Lead Sprinkler</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Lead Storm</name>
+		<type>ar</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Leech</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Leech</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Legendary Anarchist</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Berserker</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Binder</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Cat</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Catalyst</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Engineer</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Gunzerker</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Hoarder</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Hunter</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Killer</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Mechromancer</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Ninja</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Nurse</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Pointman</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Psycho</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Ranger</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Reaper</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Roboteer</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Sickle</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Siren</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Sniper</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Soldier</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Titan</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Legendary Torch</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Leviathan</name>
+		<type>launcher</type>
+		<rarity>unique</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Light Show</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Lightning Bolt</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Lightning</name>
+		<type>eridian</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Lightspeed</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Likable Rascal</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Limit Break</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Linc</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Linoge</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Little Evie</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Little Yeeti</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Loaded Dice</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Logan's Gun</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Logan's Gun</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Long Musket</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Longbow</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Longest Yard</name>
+		<type>laser</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Longnail</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Loop of 4N631</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Lovable Rogue</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Love Drill</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Love Drill</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Love Thumper</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Lucian's Call</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Luck Cannon</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Lucky 7</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Lucrative Opportunity</name>
+		<type>relic</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Lunacy</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Lyuda</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Lyuda</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>M0RQ</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>M2828 Thumpson</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>MINAC's Atonement</name>
+		<type>laser</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>MSRC Auto-Dispensary</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Madcap</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Madhous!</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Madjack</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Maggie</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Maggie</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Maggie</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Magic Missile</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Magic Missile</name>
+		<type>grenade mod</type>
+		<rarity>unique_purple</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Magma</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Magnificent</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Major Kong</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Major Tom</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Malak's Bane</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mana Well</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Manly Man Shield</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Marek's Mouth</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Masterwork Crossbow</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Meat Grinder</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Mechanic</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mega Cannon</name>
+		<type>eridian</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Meganade</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Melt Facer</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mendel's Multivitamin</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mesmer</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Messy Breakup</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Meteor Shower</name>
+		<type>grenade mod</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Midnight Star</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Might of the Seraphs</name>
+		<type>relic</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Min Min Lighter</name>
+		<type>laser</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Mind Sweeper</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mind-Killer</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mining Laser</name>
+		<type>laser</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Minor Kong</name>
+		<type>launcher</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Miscreant</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mongol</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Mongol</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Mongol</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mongol</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Monocle</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Moonface</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Moonfire</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Moonlight Saga</name>
+		<type>oz kit</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Moonscaper</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Morningstar</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Mother Too</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mouthwash</name>
+		<type>relic</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Moxxi's Bouncing Pair</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Moxxi's Embrace</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Moxxi's Endowment</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Moxxi's Endowment</name>
+		<type>relic</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Mr Caffeine</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mug Shot</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Multi-tap</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Muse</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mutant</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mysterious Amulet</name>
+		<type>artifact</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Mysterious Amulet</name>
+		<type>relic</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Nagata</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Nailer</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Narp</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Nasty Surprise</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Nasty Surprise</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Naught</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Needle Gun</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Nemesis</name>
+		<type>pistol</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Nemesis</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Neogenator</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Nidhogg</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Night Flyer</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Night Hawkin</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Nimble Jack</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Nimbus</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Nirvana</name>
+		<type>smg</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>NoPewPew</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Nog Potion #9</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Norfleet</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Nothingness</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Nova Berner</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Nukem</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Nukem</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Nukem</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Null Pointer</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>O-Negative</name>
+		<type>grenade mod</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>O.P.Q. System</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Occultist</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Octo</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Octo</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Ogre</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Ogre</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Ogre</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Ol' Painful</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Ol' Rosie</name>
+		<type>laser</type>
+		<rarity>unique_purple</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Old God</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Oldridian</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Omega</name>
+		<type>shield</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Omen</name>
+		<type>shotgun</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Omni-Cannon</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Omniloader</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>One Pump Chump</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Orc</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Order</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Orion</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Orphan Maker</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Otto Idol</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Otto Idol</name>
+		<type>relic</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Overcompensator</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Oxidizer</name>
+		<type>oz kit</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>P.A.T. Mk. II</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>P.A.T. Mk. III</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pa's Rifle</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pain is Power</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pandemic</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Pandemic</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Party Line</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Party Popper</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Patriot</name>
+		<type>sniper</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Patton</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Peacemonger</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Peak Opener</name>
+		<type>ar</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Peashooter</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Penetrator</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Peregrine</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pestilence</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Phasezerker</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Phebert</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Phoenix Tears</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pimpernel</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Pitchfork</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Pitchfork</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Plaguebearer</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Plasma Coil</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Plumage</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Plunkett</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Plus Ultra</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pocket Rocket</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Polyaimourous</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Polybius</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Porcelain Pipe Bomb</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Porta-Pooper 5000</name>
+		<type>launcher</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pot O' Gold</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Predatory Lending</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pricker</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Prismatic Bulwark</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Projectile Recursion</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Proletarian Revolution</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Prompt Critical</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Proprietary License</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Protector</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Psycho Stabber</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pull Out Method</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pun-chee</name>
+		<type>shield</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Pyroburst</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Pyrophobia</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Quadomizer</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Quasar</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Quasar</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Quasar</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Queen's Call</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Quickdraw</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>R.Y.N.A.H.</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>R4kk P4k</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Raging Bear</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Rakk Commander</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Rapid Release</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Rapier</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Raven</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Razorback</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Re-Charge Berner</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Re-Charger</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Re-Router</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Re-Volter</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Reaper</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Reaver's Edge</name>
+		<type>sniper</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Rebel Yell</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Rebel</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Rebound</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Rectifier</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Red Card Re-Charger</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Red Card</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Red Fang</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Red Queen</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Red Suit</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Redemption</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Redeye Rocket Pod</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Redistributor</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Redistributor</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Redline</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Reflux</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Reogenator</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Rerouter</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Res</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Retainer</name>
+		<type>shield</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Retcher</name>
+		<type>shotgun</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Reunion</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Revengenader</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Revolution</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Rex</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Rhino</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Rico</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Rider</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Rifle</name>
+		<type>eridian</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Ringer</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Ripper</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Road Warrior</name>
+		<type>artifact</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Roaster</name>
+		<type>launcher</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Robin's Call</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Robo-Melter</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Rocket Boots</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Rocketeer</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Roisen's Thorns</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>RokSalt</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Roll Reversal</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Rolling Spatter Gun</name>
+		<type>eridian</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Rolling Thunder</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Rolling Thunder</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Rose</name>
+		<type>shield</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Rough Rider</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Rowan's Call</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Rubi</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Ruby's Wrath</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>S3RV-80S-EXECUTE</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>SF Force</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>SWORDSPLOSION!!!</name>
+		<type>shotgun</type>
+		<rarity>unique_etech</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Sacrificial Lamb</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Safegaurd</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Sand Hawk</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Sand Hawk</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Sapper</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Satisfaction</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Savior</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Sawbar</name>
+		<type>ar</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Sawbar</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Sawpenny</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Scorpio</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Scorpio</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Scourge</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Scoville</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Scream of Terror</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Seein' Dead</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Seeker</name>
+		<type>ar</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Seeryul Killur</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Sellout</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Septimator Prime</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Septimator</name>
+		<type>sniper</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Seraphim</name>
+		<type>ar</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Serpens</name>
+		<type>ar</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Seventh Sense</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Shadow of the Seraphs</name>
+		<type>relic</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Sheriff's Badge</name>
+		<type>relic</type>
+		<rarity>unique_purple</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Shield of Ages</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Shlooter</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Shocker</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Shockerator</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Shooterang</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Shooting Star</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Short Stick</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Shotgun 1340</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Shredifier</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Shredifier</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Shredifier</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Shrieking Devil</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Sickle</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Sidewinder</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Silent Night</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>SkekSil</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Skullmasher</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Skullmasher</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Skullmasher</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Skullmasher</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Slagga</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Slammer</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Slayer Of Terramorphous (Assassin)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Slayer Of Terramorphous (Commando)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Slayer Of Terramorphous (Gunzerker)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Slayer Of Terramorphous (Mechromancer)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Slayer Of Terramorphous (Psycho)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Slayer Of Terramorphous (Siren)</name>
+		<type>class mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Sledge's Shotgun</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Sledge's Shotgun</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Sledge's Shotgun</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Sledge's Shotty</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Sleeping Giant</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Sloth</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Slow Hand</name>
+		<type>shotgun</type>
+		<rarity>unique_etech</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Slow Hand</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Smart-Gun</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Smasher</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Smog</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Snowball</name>
+		<type>grenade mod</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Snowshoe</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Soleki Protocol</name>
+		<type>sniper</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Soulrender</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Spade</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Spiritual Driver</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Splat Gun</name>
+		<type>eridian</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Splatter Gun</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Splinter</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Sponge</name>
+		<type>shield</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Spy</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>St4ckbot</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Stalker</name>
+		<type>pistol</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Stalker</name>
+		<type>pistol</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Stalker</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Stampeding Spatter Gun</name>
+		<type>eridian</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Star Helix</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Starkiller</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Static Charge</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Stauros' Burn</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Stinger</name>
+		<type>pistol</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Stinger</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Stinkpot</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Stomper</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Stone</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Stonethrower</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Stop-Gap</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Storm Front</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Storm Front</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Storm Front</name>
+		<type>grenade mod</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Storm</name>
+		<type>sniper</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Storm</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Striker</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Striker</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Striker</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Sucker Punch</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Sunshine</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Super Soldier</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Superball</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Supernova</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Superstreamer</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Support Relay</name>
+		<type>oz kit</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Surge</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Surkov</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Systems Purge</name>
+		<type>oz kit</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>T.K's Wave</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>T.K's Wave</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>T4s-R</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>THE TWO TIME</name>
+		<type>sniper</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>TNTina</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Tankman's Shield</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Tannis' Laser of Enlightenment</name>
+		<type>laser</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Tattler</name>
+		<type>smg</type>
+		<rarity>Seraph</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Teapot</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Techspert</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Teeth of Terramorphous</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Ten Gallon</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Thanatos</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>The Afterburner</name>
+		<type>relic</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>The Beast</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Bee</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>The Big Succ</name>
+		<type>ar</type>
+		<rarity>unique_green</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Blanc</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Blister</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>The Boo</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Boring Gun</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Butcher</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Chalice</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Chopper</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>The Clipper</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>The Companion</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Cradle</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>The Cradle</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>The Cure</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Dictator</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Dove</name>
+		<type>pistol</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>The Duc</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Electric Chair</name>
+		<type>grenade mod</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>The Emperor's Condiment</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Flood</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Garcia</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Horizon</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Hunt(ed)</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Hunt(er)</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Hunt(ress)</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Ice Queen</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Killing Word</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Leech</name>
+		<type>pistol</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Lob</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Machine</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>The Meat Grinder</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>The Monarch</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Pearl of Ineffable Knowledge</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Roaster</name>
+		<type>launcher</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>The Rough Rider</name>
+		<type>shield</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>The Sentinel</name>
+		<type>ar</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>The Sham</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>The Sham</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>The Shoddy</name>
+		<type>shotgun</type>
+		<rarity>unique_white</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Shooting Star</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>The Spy</name>
+		<type>smg</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>The Tidal Wave</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The Transformer</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>The Transformer</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>The ZX-1</name>
+		<type>laser</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Thingy</name>
+		<type>launcher</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Thumper</name>
+		<type>shotgun</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Thunder Storm</name>
+		<type>eridian</type>
+		<rarity>unique_green</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Thunderball Fists</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Thunderball Fists</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Thunderfire</name>
+		<type>laser</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Tidal Wave</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Tiggs' Boom</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Tina's Hippity Hopper</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Tinderbox</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Tizzy</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Toboggan</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Toby's Bright Spadroon</name>
+		<type>laser</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Too Scoops</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Toothpick</name>
+		<type>ar</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Torch</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Torguemada</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Torrent</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Torrent</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Tr4iner</name>
+		<type>class mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Traitor's Death</name>
+		<type>ar</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Tran-fusion</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Trespasser</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Trevonator</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Trickshot</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Triquetra</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Troll</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Troubleshooter</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Try-Bolt</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Tsunami</name>
+		<type>smg</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Tsunami</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Tunguska</name>
+		<type>launcher</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Tunguska</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Twister</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Typhoon</name>
+		<type>smg</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Ultraball</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Undertaker</name>
+		<type>launcher</type>
+		<rarity>Pearlescent</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Unforgiven</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Unforgiven</name>
+		<type>pistol</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Unforgiven</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Unicornsplosion</name>
+		<type>shotgun</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Unkempt Harold</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Unkempt Harold</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Unleash the Dragon</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Unpaler</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Unseen Threat</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Vandergraffen</name>
+		<type>laser</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Vanquisher</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Vault Hero</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Vault Hunter's Relic</name>
+		<type>relic</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Vendetta</name>
+		<type>artifact</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Vengeance</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Veritas</name>
+		<type>pistol</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Version 0.m</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Veruc</name>
+		<type>ar</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Vibra-Pulse</name>
+		<type>laser</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Vibra-Pulse</name>
+		<type>smg</type>
+		<rarity>unique</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Victory Rush</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Violator</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Violence</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Viral Marketer</name>
+		<type>shotgun</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Void Rift</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Volcano</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Volcano</name>
+		<type>sniper</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Volt Thrower</name>
+		<type>launcher</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Vosk's Deathgrip</name>
+		<type>shotgun</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Wagon Wheel</name>
+		<type>pistol</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Wallop</name>
+		<type>ar</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Wanderlust</name>
+		<type>pistol</type>
+		<rarity>pearl</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Ward</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Warlord</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Wattson</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Web Slinger</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Wedding Invitation</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Wee Wee's Super Booster</name>
+		<type>shield</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Westergun</name>
+		<type>smg</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Wet Week</name>
+		<type>sniper</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Whiskey Tango Foxtrot</name>
+		<type>shield</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Whisky Tango Foxtrot</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Whisky Tango Foxtrot</name>
+		<type>shield</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Whispering Ice</name>
+		<type>grenade mod</type>
+		<rarity>unique_purple</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>White Elephant</name>
+		<type>artifact</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Whitting's Elephant Gun</name>
+		<type>sniper</type>
+		<rarity>unique_purple</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Widowmaker</name>
+		<type>grenade mod</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Wildcat</name>
+		<type>smg</type>
+		<rarity>Legendary</rarity>
+		<game/>
+	</item>
+	<item>
+		<name>Winter is Over</name>
+		<type>relic</type>
+		<rarity>unique</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Wombat</name>
+		<type>shotgun</type>
+		<rarity>unique</rarity>
+		<game>TPS</game>
+	</item>
+	<item>
+		<name>Woodblocker</name>
+		<type>sniper</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>World Burn</name>
+		<type>launcher</type>
+		<rarity>Effervescent</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Yellow Jacket</name>
+		<type>smg</type>
+		<rarity>unique_etech</rarity>
+		<game>2</game>
+	</item>
+	<item>
+		<name>Yellowcake</name>
+		<type>launcher</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Zheitsev's Eruption</name>
+		<type>ar</type>
+		<rarity>legendary</rarity>
+		<game>3</game>
+	</item>
+	<item>
+		<name>Zim</name>
+		<type>pistol</type>
+		<rarity>Legendary</rarity>
+		<game>TPS</game>
+	</item>
+</items>
