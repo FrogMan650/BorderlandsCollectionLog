@@ -133,7 +133,7 @@
 	</filter>
 	<setting>
 		<name>hunt mode</name>
-		<enabled>true</enabled>
+		<enabled>false</enabled>
 	</setting>
 	<setting>
 		<name>bl collection</name>

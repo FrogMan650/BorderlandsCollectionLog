@@ -92,6 +92,9 @@
       "pattern":"\\Qcom/frogman650/settings.png\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/settings_hover.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/shield.png\\E"
     }, 
     {

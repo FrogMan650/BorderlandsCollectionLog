@@ -13,6 +13,9 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -424,8 +427,9 @@ public class App extends Application {
         Label modeSelectionLabel = new Label("MODE");
         modeSelectionLabel.setId("filterLabel");
         modeSelectionLabel.setStyle("-fx-cursor: none;");
-        Tooltip modeSelectionToolTip = new Tooltip("Turning on Hunt Mode will only show item\n" +
-        "sources that abide by The Hunt rules.\nMore information on rules and regulations for\n The Hunt can be found on borderlandshunt.com.");
+        Tooltip modeSelectionToolTip = new Tooltip("Turning on Hunt Mode will only show items\n" +
+        "worth Hunt points and their sources will\nbetter reflect The Hunt rules." +
+        "\nMore information on rules and regulations for\n The Hunt can be found on borderlandshunt.com.");
         modeSelectionToolTip.setId("toolTip");
         modeSelectionLabel.setOnMouseMoved(event -> {
             modeSelectionToolTip.show(modeSelectionLabel, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -484,7 +488,7 @@ public class App extends Application {
         settingsToggleButtonArray.add(toggleButtonHuntBL4);
         settingsVBox.getChildren().addAll(theHuntLabel, toggleButtonHuntBL, toggleButtonHuntBL2,
         toggleButtonHuntBLTPS, toggleButtonHuntBL3, toggleButtonHuntBL4);
-        for (int i = 0; i < settingsToggleButtonArray.size(); i++) {
+        for (int i = 1; i < settingsToggleButtonArray.size(); i++) {
             int toggleButton = i;
             settingsToggleButtonArray.get(toggleButton).setOnAction(event -> {
                 Element settingElement = (Element) settingsNodes.item(toggleButton);
@@ -499,6 +503,22 @@ public class App extends Application {
                 }).start();
             });
         }
+        settingsToggleButtonArray.get(0).setOnAction(event -> {
+            Element settingElement = (Element) settingsNodes.item(0);
+            if (settingsToggleButtonArray.get(0).isSelected()) {
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
+            } else {
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
+            }
+            try {
+                fullReset();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
+        });
 
         //set Toggle buttons to on or off based on settings.xml
         for (int i = 0; i < toggleButtonArray.size(); i++) {
@@ -512,7 +532,7 @@ public class App extends Application {
             settingsToggleButtonArray.get(i).setSelected(elementText);
         }
 
-        //Banner start
+        //Banner Start================================================================================================
         //Wiki image with link
         ImageView wikiLinkImageView = new ImageView(wikiImage);
         wikiLinkImageView.setFitHeight(48);
@@ -691,6 +711,7 @@ public class App extends Application {
         HBox.setMargin(huntViewPane, new Insets(0, 5, 0, 0));
         HBox.setMargin(huntItemsCollectedVBox, new Insets(0, 10, 0, 0));
         bannerHBox.setId("bannerBox");
+        //Banner End===============================================================================================
 
         AnchorPane root = new AnchorPane();
         root.setId("anchorPane");
@@ -768,7 +789,11 @@ public class App extends Application {
         });
 
         testingButton.setOnAction(event -> {
-            updateBannerLabels();
+            try {
+                fullReset();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         testingButton2.setOnAction(event -> {
@@ -804,6 +829,13 @@ public class App extends Application {
 
     public static void writeToXml(Document document, File file) {
         try {
+            document.normalize();
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            NodeList nodeList = (NodeList) xPath.evaluate("//text()[normalize-space()='']", document, XPathConstants.NODESET);
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                node.getParentNode().removeChild(node);
+            }
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             transformerFactory.setAttribute("indent-number", 2);
             Transformer transformer = transformerFactory.newTransformer();
@@ -818,29 +850,29 @@ public class App extends Application {
 
     public static void updateBannerLabels() {
         int totalItemsObtained = 0;
-        totalItemsObtained = settingsToggleButtonArray.get(0).isSelected() ? totalItemsObtained+countObtainedBL : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(1).isSelected() ? totalItemsObtained+countObtainedBL2 : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(2).isSelected() ? totalItemsObtained+countObtainedBLTPS : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(3).isSelected() ? totalItemsObtained+countObtainedBL3 : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(4).isSelected() ? totalItemsObtained+countObtainedBL4 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(1).isSelected() ? totalItemsObtained+countObtainedBL : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(2).isSelected() ? totalItemsObtained+countObtainedBL2 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(3).isSelected() ? totalItemsObtained+countObtainedBLTPS : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(4).isSelected() ? totalItemsObtained+countObtainedBL3 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(5).isSelected() ? totalItemsObtained+countObtainedBL4 : totalItemsObtained;
         int totalItemsAvailable = 0;
-        totalItemsAvailable = settingsToggleButtonArray.get(0).isSelected() ? totalItemsAvailable+countBL : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(1).isSelected() ? totalItemsAvailable+countBL2 : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(2).isSelected() ? totalItemsAvailable+countBLTPS : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(3).isSelected() ? totalItemsAvailable+countBL3 : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(4).isSelected() ? totalItemsAvailable+countBL4 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(1).isSelected() ? totalItemsAvailable+countBL : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(2).isSelected() ? totalItemsAvailable+countBL2 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(3).isSelected() ? totalItemsAvailable+countBLTPS : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(4).isSelected() ? totalItemsAvailable+countBL3 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(5).isSelected() ? totalItemsAvailable+countBL4 : totalItemsAvailable;
         int totalHuntPointsObtained = 0;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(5).isSelected() ? totalHuntPointsObtained+huntObtainedBL : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(6).isSelected() ? totalHuntPointsObtained+huntObtainedBL2 : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsObtained+huntObtainedBLTPS : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsObtained+huntObtainedBL3 : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsObtained+huntObtainedBL4 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(6).isSelected() ? totalHuntPointsObtained+huntObtainedBL : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsObtained+huntObtainedBL2 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsObtained+huntObtainedBLTPS : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsObtained+huntObtainedBL3 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsObtained+huntObtainedBL4 : totalHuntPointsObtained;
         int totalHuntPointsAvailable = 0;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(5).isSelected() ? totalHuntPointsAvailable+huntBL : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(6).isSelected() ? totalHuntPointsAvailable+huntBL2 : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsAvailable+huntBLTPS : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsAvailable+huntBL3 : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsAvailable+huntBL4 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(6).isSelected() ? totalHuntPointsAvailable+huntBL : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsAvailable+huntBL2 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsAvailable+huntBLTPS : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsAvailable+huntBL3 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsAvailable+huntBL4 : totalHuntPointsAvailable;
         itemsCollectedLabel.setText(""+totalItemsObtained);
         itemsTotalLabel.setText(""+totalItemsAvailable);
         huntItemsCollectedLabel.setText(""+totalHuntPointsObtained);
@@ -854,7 +886,6 @@ public class App extends Application {
     }
 
     public static void displayCardsInViewport() {
-        // clearAllItemCards();
         double flowPaneHeight = itemFlowPane.getHeight();
         Double scrollPaneVValue = itemScrollPane.getVvalue();
         double scrollPaneViewPortHeight = itemScrollPane.getViewportBounds().getHeight();
@@ -881,6 +912,17 @@ public class App extends Application {
         }  
     }
 
+    public static void fullReset() throws Exception {
+        // clearAllItemCards();
+        // System.out.println("clearAllItemCards");
+        // clearFilteredItemCards();
+        // System.out.println("clearFilteredItemCards");
+        itemCardArray.clear();
+        buildAllItemCards();
+        resetDisplayedCards(searchTextField.getText());
+        updateBannerLabels();
+    }
+
     public static void clearAllItemCards() {
         itemFlowPane.getChildren().clear();
     }
@@ -893,6 +935,30 @@ public class App extends Application {
         filterAllItemCards(searchTerm);
         displayCardsInViewport();
         setAllCardsVisible();
+    }
+
+    public static void resetCounters() {
+        totalNodes = 0;
+        countBL= 0;
+        countObtainedBL= 0;
+        countBL2= 0;
+        countObtainedBL2= 0;
+        countBLTPS= 0;
+        countObtainedBLTPS= 0;
+        countBL3= 0;
+        countObtainedBL3= 0;
+        countBL4= 0;
+        countObtainedBL4= 0;
+        huntBL= 0;
+        huntObtainedBL= 0;
+        huntBL2= 0;
+        huntObtainedBL2= 0;
+        huntBLTPS= 0;
+        huntObtainedBLTPS= 0;
+        huntBL3= 0;
+        huntObtainedBL3= 0;
+        huntBL4= 0;
+        huntObtainedBL4= 0;
     }
 
     public static void filterAllItemCards(String searchTerm) {
@@ -976,7 +1042,7 @@ public class App extends Application {
                 continue;
             } else if (source.contains("any suitable loot source") && !toggleButtonArray.get(30).isSelected()) {
                 continue;
-            } else if (points.equals("0") && !toggleButtonArray.get(32).isSelected()) {
+            } else if (points.equals("0") && (!toggleButtonArray.get(32).isSelected() || settingsToggleButtonArray.get(0).isSelected())) {
                 continue;
             }
             itemCardFilteredArray.add(itemCardArray.get(i));
@@ -984,7 +1050,8 @@ public class App extends Application {
     }
 
     public static void buildAllItemCards() throws Exception {
-        File[] files = executableDirectory.listFiles();
+        resetCounters();
+        File[] files = new File(executableDirectory, "items").listFiles();
         for (File file : files) {
             if (file.isFile() && file.getName().contains("_items") && file.getName().contains(".xml")) {
                 Document document = builder.parse(file);
@@ -996,12 +1063,21 @@ public class App extends Application {
                         String type = itemNode.getElementsByTagName("type").item(0).getTextContent();
                         String game = itemNode.getElementsByTagName("game").item(0).getTextContent();
                         String rarity = itemNode.getElementsByTagName("rarity").item(0).getTextContent();
-                        String source = itemNode.getElementsByTagName("source").item(0).getTextContent();
+                        String source;
+                        String location;
+                        String chance;
+                        if (settingsToggleButtonArray.get(0).isSelected()) {
+                            source = itemNode.getElementsByTagName("source_hunt").item(0).getTextContent();
+                            location = itemNode.getElementsByTagName("location_hunt").item(0).getTextContent();
+                            chance = itemNode.getElementsByTagName("chance_hunt").item(0).getTextContent();
+                        } else {
+                            source = itemNode.getElementsByTagName("source").item(0).getTextContent();
+                            location = itemNode.getElementsByTagName("location").item(0).getTextContent();
+                            chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
+                        }
                         String text = itemNode.getElementsByTagName("text").item(0).getTextContent();
                         String wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
                         String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
-                        String location = itemNode.getElementsByTagName("location").item(0).getTextContent();
-                        String chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
                         String obtainedText = itemNode.getElementsByTagName("obtained").item(0).getTextContent();
                         NodeList saveNodes = saveNode.getElementsByTagName("item");
                         for (int j = 0; j < saveNodes.getLength(); j++) {
@@ -1024,6 +1100,7 @@ public class App extends Application {
             }
         }
         while (itemCardArray.size() != totalNodes) {
+            System.out.println(itemCardArray.size() + " vs " + totalNodes);
         }
         Collections.sort(itemCardArray, new Comparator<Pane>() {
             public int compare(Pane p1, Pane p2) {
