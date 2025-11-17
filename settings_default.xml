@@ -175,4 +175,8 @@
 		<name>bl4 hunt</name>
 		<enabled>true</enabled>
 	</setting>
+  <setting>
+    <name>hide unobtainable</name>
+    <enabled>true</enabled>
+  </setting>
 </settings>

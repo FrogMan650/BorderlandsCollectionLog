@@ -442,7 +442,6 @@ public class App extends Application {
         settingsVBox.getChildren().addAll(modeSelectionLabel, modeToggleButton);
         Label itemCollectionLabel = new Label("COLLECTION");
         itemCollectionLabel.setId("filterLabel");
-        itemCollectionLabel.setStyle("-fx-cursor: none;");
         Tooltip itemCollectionToolTip = new Tooltip("These settings control which games items\nwill " + 
         "contribute to the items collected\non the banner at the top.");
         itemCollectionToolTip.setId("toolTip");
@@ -466,7 +465,6 @@ public class App extends Application {
         toggleButtonCollectionBLTPS, toggleButtonCollectionBL3, toggleButtonCollectionBL4);
         Label theHuntLabel = new Label("THE HUNT");
         theHuntLabel.setId("filterLabel");
-        theHuntLabel.setStyle("-fx-cursor: none;");
         Tooltip huntCollectionToolTip = new Tooltip("These settings control which games items\nwill " +
         "contribute to the hunt point\ntotal on the banner at the top.");
         huntCollectionToolTip.setId("toolTip");
@@ -488,7 +486,37 @@ public class App extends Application {
         settingsToggleButtonArray.add(toggleButtonHuntBL4);
         settingsVBox.getChildren().addAll(theHuntLabel, toggleButtonHuntBL, toggleButtonHuntBL2,
         toggleButtonHuntBLTPS, toggleButtonHuntBL3, toggleButtonHuntBL4);
-        for (int i = 1; i < settingsToggleButtonArray.size(); i++) {
+        Label miscSettingLabel = new Label("MISCELLANEOUS");
+        miscSettingLabel.setId("filterLabel");
+        miscSettingLabel.setStyle("-fx-cursor: none;");
+        ToggleButton toggleButtonHideUnobtainable = new ToggleButton("Hide Unobtainable");//11
+        settingsToggleButtonArray.add(toggleButtonHideUnobtainable);
+        Tooltip unobtainableButtonTooltip = new Tooltip("This setting will hide items that are only\nobtainable through promotional DLC, limited time\npromotions, or are just in general not obtainable\nby any normal or legitimate means.\n Example: Contraband Sky Rocket from BL2");
+        unobtainableButtonTooltip.setId("toolTip");
+        toggleButtonHideUnobtainable.setOnMouseMoved(event -> {
+            unobtainableButtonTooltip.show(toggleButtonHideUnobtainable, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        toggleButtonHideUnobtainable.setOnMouseExited(event -> {
+            unobtainableButtonTooltip.hide();
+        });
+        toggleButtonHideUnobtainable.setOnAction(event -> {
+            Element settingElement = (Element) settingsNodes.item(11);
+            if (toggleButtonHideUnobtainable.isSelected()) {
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
+            } else {
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
+            }
+            try {
+                fullReset();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
+        });
+        settingsVBox.getChildren().addAll(miscSettingLabel, toggleButtonHideUnobtainable);
+        for (int i = 1; i < 11; i++) {
             int toggleButton = i;
             settingsToggleButtonArray.get(toggleButton).setOnAction(event -> {
                 Element settingElement = (Element) settingsNodes.item(toggleButton);
@@ -503,18 +531,47 @@ public class App extends Application {
                 }).start();
             });
         }
-        settingsToggleButtonArray.get(0).setOnAction(event -> {
+        modeToggleButton.setOnAction(event -> {
             Element settingElement = (Element) settingsNodes.item(0);
-            if (settingsToggleButtonArray.get(0).isSelected()) {
+            if (modeToggleButton.isSelected()) {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
             } else {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
             }
             try {
+                itemScrollPane.setVvalue(0);
                 fullReset();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
+        });
+        itemCollectionLabel.setOnMouseClicked(event -> {
+            Boolean allEnabled = toggleButtonCollectionBL.isSelected() && toggleButtonCollectionBL2.isSelected() && 
+            toggleButtonCollectionBL3.isSelected() && toggleButtonCollectionBL4.isSelected() && toggleButtonCollectionBLTPS.isSelected();
+            String enabledString = allEnabled ? "false" : "true";
+            for (int i = 1; i < 6; i++) {
+                Element settingElement = (Element) settingsNodes.item(i);
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
+                settingsToggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
+            }
+            updateBannerLabels();
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
+        });
+        theHuntLabel.setOnMouseClicked(event -> {
+            Boolean allEnabled = toggleButtonHuntBL.isSelected() && toggleButtonHuntBL2.isSelected() && 
+            toggleButtonHuntBL3.isSelected() && toggleButtonHuntBL4.isSelected() && toggleButtonHuntBLTPS.isSelected();
+            String enabledString = allEnabled ? "false" : "true";
+            for (int i = 6; i < 11; i++) {
+                Element settingElement = (Element) settingsNodes.item(i);
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
+                settingsToggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
+            }
+            updateBannerLabels();
             new Thread(() -> {
                 writeToXml(settingsDocument, settingsXML);
             }).start();
@@ -704,7 +761,7 @@ public class App extends Application {
         label7 = new Label("label7");
         VBox sizeVBox3 = new VBox(label6, label7);
 
-        HBox bannerHBox = new HBox(0, wikiViewPane, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox, sizeVBox, sizeVBox2, sizeVBox3, bannerHPusher, settingsViewPane);
+        HBox bannerHBox = new HBox(0, wikiViewPane, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox, bannerHPusher, settingsViewPane);
         HBox.setMargin(wikiViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(BLCLViewPane, new Insets(0, 5, 0, 0));
         HBox.setMargin(itemsCollectedVBox, new Insets(0, 10, 0, 0));
@@ -913,10 +970,6 @@ public class App extends Application {
     }
 
     public static void fullReset() throws Exception {
-        // clearAllItemCards();
-        // System.out.println("clearAllItemCards");
-        // clearFilteredItemCards();
-        // System.out.println("clearFilteredItemCards");
         itemCardArray.clear();
         buildAllItemCards();
         resetDisplayedCards(searchTextField.getText());
@@ -973,6 +1026,7 @@ public class App extends Application {
             String rarity = accessibilityText[4].toLowerCase();
             String source = accessibilityText[5].toLowerCase();
             String points = accessibilityText[6];
+            String chance = accessibilityText[accessibilityText.length-1];
             if (game.equals("") && !toggleButtonArray.get(23).isSelected()) {
                 continue;
             } else if (game.equals("2") && !toggleButtonArray.get(24).isSelected()) {
@@ -1044,6 +1098,8 @@ public class App extends Application {
                 continue;
             } else if (points.equals("0") && (!toggleButtonArray.get(32).isSelected() || settingsToggleButtonArray.get(0).isSelected())) {
                 continue;
+            } else if (chance.equals("unobtainable") && settingsToggleButtonArray.get(11).isSelected()) {
+                continue;
             }
             itemCardFilteredArray.add(itemCardArray.get(i));
         }
@@ -1078,7 +1134,7 @@ public class App extends Application {
                         String text = itemNode.getElementsByTagName("text").item(0).getTextContent();
                         String wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
                         String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
-                        String obtainedText = itemNode.getElementsByTagName("obtained").item(0).getTextContent();
+                        String obtainedText = "false";
                         NodeList saveNodes = saveNode.getElementsByTagName("item");
                         for (int j = 0; j < saveNodes.getLength(); j++) {
                             Element node = (Element) saveNodes.item(j);
@@ -1159,52 +1215,56 @@ public class App extends Application {
         Label gameLabel = new Label("Borderlands " + game);
         gameLabel.setId("gameLabel");
         //lock the shared variables so only 1 thread can access them at a time
-        lock.lock();
-        try {
-            if (game.equals("")) {
-                gameLabel.setText("Borderlands");
-                countBL++;
-                huntBL += Integer.parseInt(points);
-            } else if (game.equals("2")) {
-                countBL2++;
-                huntBL2 += Integer.parseInt(points);
-            } else if (game.equals("TPS")) {
-                countBLTPS++;
-                huntBLTPS += Integer.parseInt(points);
-            } else if (game.equals("3")) {
-                countBL3++;
-                huntBL3 += Integer.parseInt(points);
-            } else if (game.equals("4")) {
-                countBL4++;
-                huntBL4 += Integer.parseInt(points);
+        if (!(chance.equals("unobtainable") && settingsToggleButtonArray.get(11).isSelected())) {
+            lock.lock();
+            try {
+                if (game.equals("")) {
+                    gameLabel.setText("Borderlands");
+                    countBL++;
+                    huntBL += Integer.parseInt(points);
+                } else if (game.equals("2")) {
+                    countBL2++;
+                    huntBL2 += Integer.parseInt(points);
+                } else if (game.equals("TPS")) {
+                    countBLTPS++;
+                    huntBLTPS += Integer.parseInt(points);
+                } else if (game.equals("3")) {
+                    countBL3++;
+                    huntBL3 += Integer.parseInt(points);
+                } else if (game.equals("4")) {
+                    countBL4++;
+                    huntBL4 += Integer.parseInt(points);
+                }
+            } finally {
+                lock.unlock();
             }
-        } finally {
-            lock.unlock();
         }
         Pane obtainedPane = new Pane();
         if (obtained) {
             obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
             //lock the shared variables so only 1 thread can access them at a time
-            lock.lock();
-            try {
-                if (game.equals("")) {
-                    countObtainedBL++;
-                    huntObtainedBL += Integer.parseInt(points);
-                } else if (game.equals("2")) {
-                    countObtainedBL2++;
-                    huntObtainedBL2 += Integer.parseInt(points);
-                } else if (game.equals("TPS")) {
-                    countObtainedBLTPS++;
-                    huntObtainedBLTPS += Integer.parseInt(points);
-                } else if (game.equals("3")) {
-                    countObtainedBL3++;
-                    huntObtainedBL3 += Integer.parseInt(points);
-                } else if (game.equals("4")) {
-                    countObtainedBL4++;
-                    huntObtainedBL4 += Integer.parseInt(points);
+            if (!(chance.equals("unobtainable") && settingsToggleButtonArray.get(11).isSelected())) {
+                lock.lock();
+                try {
+                    if (game.equals("")) {
+                        countObtainedBL++;
+                        huntObtainedBL += Integer.parseInt(points);
+                    } else if (game.equals("2")) {
+                        countObtainedBL2++;
+                        huntObtainedBL2 += Integer.parseInt(points);
+                    } else if (game.equals("TPS")) {
+                        countObtainedBLTPS++;
+                        huntObtainedBLTPS += Integer.parseInt(points);
+                    } else if (game.equals("3")) {
+                        countObtainedBL3++;
+                        huntObtainedBL3 += Integer.parseInt(points);
+                    } else if (game.equals("4")) {
+                        countObtainedBL4++;
+                        huntObtainedBL4 += Integer.parseInt(points);
+                    }
+                } finally {
+                    lock.unlock();
                 }
-            } finally {
-                lock.unlock();
             }
         } else {
             obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
@@ -1230,7 +1290,7 @@ public class App extends Application {
                             obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
                         });
                         obtainedSwitch = true;
-                        itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%false#%" + rarity + "#%" + source + "#%" + points);
+                        itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%false#%" + rarity + "#%" + source + "#%" + points + "#%" + chance);
                             if (game.equals("")) {
                                 countObtainedBL--;
                                 huntObtainedBL -= Integer.parseInt(points);
@@ -1256,7 +1316,7 @@ public class App extends Application {
                     Platform.runLater(() -> {
                         obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
                     });
-                    itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%true#%" + rarity + "#%" + source + "#%" + points);
+                    itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%true#%" + rarity + "#%" + source + "#%" + points + "#%" + chance);
                         if (game.equals("")) {
                             countObtainedBL++;
                             huntObtainedBL += Integer.parseInt(points);
@@ -1434,7 +1494,7 @@ public class App extends Application {
         itemPane.setCache(true);
         itemPane.setCacheHint(CacheHint.SPEED);
         itemPane.setVisible(true);
-        itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%" + obtained + "#%" + rarity + "#%" + source + "#%" + points);
+        itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%" + obtained + "#%" + rarity + "#%" + source + "#%" + points + "#%" + chance);
         //Lock the Array as multithreading can cause cards to be lost if multiple threads try to add a card at the same time
         lock.lock();
         try {
