@@ -207,7 +207,7 @@ public class App extends Application {
         //Filters
         searchTextField = new TextField();
         searchTextField.setId("searchTextField");
-        searchTextField.setPromptText("Search Item Name");
+        searchTextField.setPromptText("Item / Source");
         VBox.setMargin(searchTextField, new Insets(0, 0, 0, 1));
         VBox filterVBox = new VBox();
         filterVBox.setSpacing(1);
@@ -231,7 +231,7 @@ public class App extends Application {
         Button testingButton = new Button("Testing");
         Button testingButton2 = new Button("Testing 2");
 
-        filterVBox.getChildren().addAll(testingButton, testingButton2, filterLabel, allNoneHBox, searchTextField);
+        filterVBox.getChildren().addAll(filterLabel, allNoneHBox, searchTextField);
         Label weaponLabel = new Label("WEAPONS");
         weaponLabel.setId("filterLabel");
         ToggleButton pistolToggleButton = new ToggleButton("Pistols");//0
@@ -985,7 +985,7 @@ public class App extends Application {
     }
 
     public static void resetDisplayedCards(String searchTerm) {
-        filterAllItemCards(searchTerm);
+        filterAllItemCards(searchTerm.toLowerCase());
         displayCardsInViewport();
         setAllCardsVisible();
     }
@@ -1090,7 +1090,7 @@ public class App extends Application {
                 continue;
             } else if ((type.equals("heavy ordnance") || type.equals("heavy weapon (ordnance)")) && !toggleButtonArray.get(16).isSelected()) {
                 continue;
-            } else if (!name.contains(searchTerm)) {
+            } else if (!name.contains(searchTerm) && !source.contains(searchTerm)) {
                 continue;
             } else if (!source.contains("any suitable loot source") && !toggleButtonArray.get(31).isSelected()) {
                 continue;
@@ -1156,7 +1156,7 @@ public class App extends Application {
             }
         }
         while (itemCardArray.size() != totalNodes) {
-            System.out.println(itemCardArray.size() + " vs " + totalNodes);
+            System.out.println(itemCardArray.size() + " of " + totalNodes);
         }
         Collections.sort(itemCardArray, new Comparator<Pane>() {
             public int compare(Pane p1, Pane p2) {
