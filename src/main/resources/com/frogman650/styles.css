@@ -61,11 +61,6 @@
     -fx-alignment: CENTER;
 }
 
-#sourcesLabel, #sourcesListLabel {
-    /* -fx-border-color: red;
-    -fx-border-width: 1; */
-}
-
 #sourcesListLabel {
     -fx-wrap-text: true;
     -fx-max-width: 300;
@@ -140,13 +135,18 @@
 
 #itemTextVBox {
     -fx-max-width: 310;
-    /* -fx-border-color: green;
-    -fx-border-width: 1; */
 }
 
 #itemWikiLinkPane {
     -fx-cursor: hand;
     -fx-max-width: 60;
+    -fx-max-height: 30;
+}
+
+#lootlemonLinkPane {
+    -fx-cursor: hand;
+    -fx-max-width: 17;
+    -fx-max-height: 30;
 }
 
 #itemBottomHBox {
@@ -155,7 +155,7 @@
     -fx-alignment: CENTER;
 }
 
-.toggle-button, #none, #all {
+.toggle-button, #none, #all, #resetButton {
     -fx-background-color: transparent;
     -fx-font-weight: bold;
     -fx-font-size: 20;
@@ -185,13 +185,13 @@
     -fx-stroke-width: 1px;
 }
 
-.toggle-button .text, #all .text, #none .text {
+.toggle-button .text, #all .text, #none .text, #resetButton .text {
     -fx-fill: white;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
 }
 
-.toggle-button {
+.toggle-button, #resetButton {
     -fx-background-image: url("filter_background_off.png");
 }
 
@@ -199,7 +199,7 @@
     -fx-background-image: url("filter_background_on.png");
 }
 
-.toggle-button:hover {
+.toggle-button:hover, #resetButton:hover {
     -fx-background-image: url("filter_background_off_hover.png");
 }
 

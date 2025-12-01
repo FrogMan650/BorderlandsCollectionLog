@@ -71,6 +71,12 @@
       "pattern":"\\Qcom/frogman650/launcher.png\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/lootlemon_cropped.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/lootlemon_mini.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/not_obtained.png\\E"
     }, 
     {

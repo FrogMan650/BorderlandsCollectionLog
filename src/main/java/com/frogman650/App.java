@@ -64,6 +64,8 @@ import javafx.stage.Stage;
 public class App extends Application {
     public static Image icon;
     public static Image wikiImage;
+    public static Image miniLootlemonImage;
+    public static Image lootlemonImage;
     public static Image obtainedImage;
     public static Image notObtainedImage;
     public static Image pistolImage;
@@ -157,6 +159,8 @@ public class App extends Application {
         Font willowBody = Font.loadFont(getClass().getResourceAsStream("WillowBody-Regular.ttf"), 10);
         icon = new Image(getClass().getResourceAsStream("BLCL_logo_mini.png"));
         wikiImage = new Image(getClass().getResourceAsStream("Wiki_logo_mini.png"));
+        miniLootlemonImage = new Image(getClass().getResourceAsStream("lootlemon_mini.png"));
+        lootlemonImage = new Image(getClass().getResourceAsStream("lootlemon_cropped.png"));
         obtainedImage = new Image(getClass().getResourceAsStream("obtained.png"));
         notObtainedImage = new Image(getClass().getResourceAsStream("not_obtained.png"));
         pistolImage = new Image(getClass().getResourceAsStream("pistol.png"));
@@ -491,7 +495,9 @@ public class App extends Application {
         miscSettingLabel.setStyle("-fx-cursor: none;");
         ToggleButton toggleButtonHideUnobtainable = new ToggleButton("Hide Unobtainable");//11
         settingsToggleButtonArray.add(toggleButtonHideUnobtainable);
-        Tooltip unobtainableButtonTooltip = new Tooltip("This setting will hide items that are only\nobtainable through promotional DLC, limited time\npromotions, or are just in general not obtainable\nby any normal or legitimate means.\n Example: Contraband Sky Rocket from BL2");
+        Tooltip unobtainableButtonTooltip = new Tooltip("This setting will hide items that are only\nobtainable " +
+        "through promotional DLC, limited time\npromotions, or are just in general not obtainable\nby any normal or " +
+        "legitimate means.\n Example: Contraband Sky Rocket from BL2");
         unobtainableButtonTooltip.setId("toolTip");
         toggleButtonHideUnobtainable.setOnMouseMoved(event -> {
             unobtainableButtonTooltip.show(toggleButtonHideUnobtainable, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -515,7 +521,36 @@ public class App extends Application {
                 writeToXml(settingsDocument, settingsXML);
             }).start();
         });
-        settingsVBox.getChildren().addAll(miscSettingLabel, toggleButtonHideUnobtainable);
+        Button resetSaveButton = new Button("Save Reset");
+        resetSaveButton.setId("resetButton");
+        Tooltip resetButtonTooltip = new Tooltip("Use this button to reset your progress.\nTHIS IS NOT REVERSIBLE");
+        resetButtonTooltip.setId("toolTip");
+        resetSaveButton.setOnMouseMoved(event -> {
+            resetButtonTooltip.show(resetSaveButton, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        resetSaveButton.setOnMouseExited(event -> {
+            resetButtonTooltip.hide();
+        });
+        resetSaveButton.setOnAction(event -> {
+            if (resetSaveButton.getText().equals("Save Reset")) {
+                resetSaveButton.setText("REALLY?");
+            } else if (resetSaveButton.getText().equals("REALLY?")) {
+                resetSaveButton.setText("REALLLLY???!??");
+            } else if (resetSaveButton.getText().equals("REALLLLY???!??")) {
+                resetSaveButton.setText("Save Reset");
+                NodeList childNodes = saveNode.getChildNodes();
+                for (int i = childNodes.getLength()-1; i >= 0; i--) {
+                    saveNode.removeChild(childNodes.item(i));
+                }
+                writeToXml(saveDocument, new File(executableDirectory, "save.xml"));
+                try {
+                    fullReset();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        settingsVBox.getChildren().addAll(miscSettingLabel, toggleButtonHideUnobtainable, resetSaveButton);
         for (int i = 1; i < 11; i++) {
             int toggleButton = i;
             settingsToggleButtonArray.get(toggleButton).setOnAction(event -> {
@@ -606,6 +641,23 @@ public class App extends Application {
         });
         wikiViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://borderlands.fandom.com/wiki/Borderlands_Wiki");
+        });
+        //Lootlemon image with link
+        ImageView lootlemonImageView = new ImageView(lootlemonImage);
+        lootlemonImageView.setFitHeight(48);
+        lootlemonImageView.setFitWidth(26);
+        Pane lootlemonViewPane = new Pane(lootlemonImageView);
+        lootlemonViewPane.setStyle("-fx-cursor: hand;");
+        Tooltip lootlemonViewPaneToolTip = new Tooltip("https://www.lootlemon.com/");
+        lootlemonViewPaneToolTip.setId("toolTip");
+        lootlemonViewPane.setOnMouseMoved(event -> {
+            lootlemonViewPaneToolTip.show(lootlemonViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        lootlemonViewPane.setOnMouseExited(event -> {
+            lootlemonViewPaneToolTip.hide();
+        });
+        lootlemonViewPane.setOnMouseClicked(event -> {
+            hostService.showDocument("https://www.lootlemon.com/");
         });
         //BLCL item collection
         ImageView BLCLImageView = new ImageView(icon);
@@ -761,8 +813,9 @@ public class App extends Application {
         label7 = new Label("label7");
         VBox sizeVBox3 = new VBox(label6, label7);
 
-        HBox bannerHBox = new HBox(0, wikiViewPane, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox, bannerHPusher, settingsViewPane);
+        HBox bannerHBox = new HBox(0, wikiViewPane, lootlemonViewPane, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox, bannerHPusher, settingsViewPane);
         HBox.setMargin(wikiViewPane, new Insets(0, 10, 0, 0));
+        HBox.setMargin(lootlemonViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(BLCLViewPane, new Insets(0, 5, 0, 0));
         HBox.setMargin(itemsCollectedVBox, new Insets(0, 10, 0, 0));
         HBox.setMargin(huntViewPane, new Insets(0, 5, 0, 0));
@@ -1133,6 +1186,7 @@ public class App extends Application {
                         }
                         String text = itemNode.getElementsByTagName("text").item(0).getTextContent();
                         String wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
+                        String lootlemon = itemNode.getElementsByTagName("lootlemon").item(0).getTextContent();
                         String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
                         String obtainedText = "false";
                         NodeList saveNodes = saveNode.getElementsByTagName("item");
@@ -1150,13 +1204,13 @@ public class App extends Application {
                         }
                         Boolean obtained = Boolean.parseBoolean(obtainedText);
                     new Thread(() -> {
-                        buildItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance);
+                        buildItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance, lootlemon);
                     }).start();
                 }
             }
         }
         while (itemCardArray.size() != totalNodes) {
-            System.out.println(itemCardArray.size() + " of " + totalNodes);
+            System.out.println(itemCardArray.size() + " of " + totalNodes + "; " + itemCardArray.get(itemCardArray.size()-1).getAccessibleText().split("#%")[0]);
         }
         Collections.sort(itemCardArray, new Comparator<Pane>() {
             public int compare(Pane p1, Pane p2) {
@@ -1166,7 +1220,7 @@ public class App extends Application {
     }
 
     public static void buildItemCard(String name, String type, String game, Boolean obtained, String rarity, 
-    String source, String text, String wiki, String points, String location, String chance) {
+    String source, String text, String wiki, String points, String location, String chance, String lootlemon) {
         Pane itemPane = new Pane();
         StackPane itemImageStackPane = new StackPane();
         itemImageStackPane.setId("itemImageStackPane");
@@ -1449,7 +1503,11 @@ public class App extends Application {
             if (!location.isEmpty()) {
                 if (!locationTextSplit[i].isEmpty()) {
                     Tooltip tempSourceTextToolTip = new Tooltip();
-                    tempSourceTextToolTip.setText(locationTextSplit[i] + "\n" + chanceTextSplit[i]);
+                    try {
+                        tempSourceTextToolTip.setText(locationTextSplit[i] + "\n" + chanceTextSplit[i]);
+                    } catch (Exception e) {
+                        tempSourceTextToolTip.setText(locationTextSplit[i]);
+                    }
                     tempSourceTextToolTip.setId("toolTip");
                     tempSourceTextLabel.setOnMouseMoved(event -> {
                         tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -1462,7 +1520,6 @@ public class App extends Application {
         }
         //Item wiki button
         ImageView itemWikiLinkImageView = new ImageView(wikiImage);
-        itemWikiLinkImageView.setId("itemWikiLinkImageView");
         itemWikiLinkImageView.setFitHeight(30);
         itemWikiLinkImageView.setFitWidth(60);
         Pane itemWikiLinkPane = new Pane(itemWikiLinkImageView);
@@ -1478,9 +1535,27 @@ public class App extends Application {
         itemWikiLinkPane.setOnMouseClicked(event -> {
             hostService.showDocument(wiki);
         });
+        //Lootlemon button
+        ImageView lootlemonLinkImageView = new ImageView(miniLootlemonImage);
+        lootlemonLinkImageView.setFitHeight(30);
+        lootlemonLinkImageView.setFitWidth(17);
+        Pane lootlemonLinkPane = new Pane(lootlemonLinkImageView);
+        lootlemonLinkPane.setId("lootlemonLinkPane");
+        Tooltip lootlemonLinkPaneToolTip = new Tooltip(lootlemon);
+        lootlemonLinkPaneToolTip.setId("toolTip");
+        lootlemonLinkPane.setOnMouseMoved(event -> {
+            lootlemonLinkPaneToolTip.show(lootlemonLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        lootlemonLinkPane.setOnMouseExited(event -> {
+            lootlemonLinkPaneToolTip.hide();
+        });
+        lootlemonLinkPane.setOnMouseClicked(event -> {
+            hostService.showDocument(lootlemon);
+        });
 
         StackPane.setMargin(itemWikiLinkPane, new Insets(130, 200, 0, -50));
-        itemImageStackPane.getChildren().add(itemWikiLinkPane);
+        StackPane.setMargin(lootlemonLinkPane, new Insets(130, 165, 0, 0));
+        itemImageStackPane.getChildren().addAll(itemWikiLinkPane, lootlemonLinkPane);
 
         ScrollPane itemTextScrollPane = new ScrollPane(itemTextVBox);
         itemTextScrollPane.setId("itemTextScrollPane");

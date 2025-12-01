@@ -16,6 +16,6 @@
         {
             "command": "gluonfx:build",
             "debug": false
-        },
+        }
     ]
 }
