@@ -1,14 +1,15 @@
 # Borderlands Collection Log
-A desktop app for collecting unique items in borderlands games.<br>
-Items can be filtered by type of item, rarity, game, and whether you've obtained it or not.<br><br>
-__11-8-25 Pre-Release__<br>
-* All Unique/Legendary/Seraph/etc. items added from Borderlands 1, 2, TPS, and 3.<br>
-* Borderlands 4 items will be added when there's better concrete information available for them.<br>
-* Filtering and display is fully functional with custom built code to load and unload cards as you scroll to massively save on performance.<br>
-* Hunt score has also been added to any item that has one from past hunts.<br>
-* There currently is nothing built to keep track or display hunt score or total items collected, but will be added soon.<br>
-* The obtained/unobtained button also works and will actively filter items as you mark them collected or not collected with the appropriate filters selected.<br>
-* Tooltips to be added for each source to show location and chance.<br>
-  * This functionality is present on just a few items in this build such as Ajax's Spear or Avenger; both from Borderlands 1.
+A desktop app for collecting unique items in all Borderlands games.<br>
+Items can be filtered by various criteria such as type of item, rarity, game, and whether you've obtained it or not.<br><br>
+__12-1-25 1.0 Release__<br>
+* All known items from Borderlands 1, 2, TPS, 3, and 4 are included.
+* Custom images have been made for every item type based primarily on the item icons from Borderlands 2.
+* Tooltips have been added to item source to show where the source is located in the game and the drop chance from that course, if known.
+* Every item now includes a direct link to the items page on the Borderlands wiki and Lootlemon.
+* A settings menu has been added for various different settings.
+   * Settings to change which games items contribute to the item counts on the banner at the top.
+   * Hunt Mode: This causes only items worth hunt points to be shown and the sources on the item cards better reflect The Hunt rules.
+   * Hide Unobtainables: This setting will filter out items that were only available during limited time events or are only from DLC.
+   * Save Reset: This will reset all items to an unobtained state.
 
-![gif of borderlands collection log](https://imgur.com/63NaD22.gif)
+![Gif of Borderlands Collection Log](https://github.com/user-attachments/assets/1f793efb-3b08-4b8f-80e0-5e9208123504)

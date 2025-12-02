@@ -21,10 +21,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Paths;
 
@@ -107,17 +105,6 @@ public class App extends Application {
     public static File saveXML;
     public static HostServices hostService;
     public static Lock lock = new ReentrantLock();
-
-    private final long[] frameTimes = new long[100];
-    private int frameTimeIndex = 0;
-    private boolean arrayFilled = false;
-
-    public static Label label2;
-    public static Label label3;
-    public static Label label4;
-    public static Label label5;
-    public static Label label6;
-    public static Label label7;
 
     public static int huntBL= 0;
     public static int huntObtainedBL= 0;
@@ -230,10 +217,6 @@ public class App extends Application {
         HBox allNoneHBox = new HBox(2);
         allNoneHBox.setAlignment(Pos.CENTER);
         allNoneHBox.getChildren().addAll(allButton, noneButton);
-
-        // TEST BUTTONS============================================================================================
-        Button testingButton = new Button("Testing");
-        Button testingButton2 = new Button("Testing 2");
 
         filterVBox.getChildren().addAll(filterLabel, allNoneHBox, searchTextField);
         Label weaponLabel = new Label("WEAPONS");
@@ -780,39 +763,6 @@ public class App extends Application {
             }
         });
 
-        //FPS label
-        label2 = new Label("0");
-        AnimationTimer frameRateMeter = new AnimationTimer() {
-
-            @Override
-            public void handle(long now) {
-                long oldFrameTime = frameTimes[frameTimeIndex];
-                frameTimes[frameTimeIndex] = now;
-                frameTimeIndex = (frameTimeIndex + 1) % frameTimes.length;
-                if (frameTimeIndex == 0) {
-                    arrayFilled = true;
-                }
-                if (arrayFilled) {
-                    long elapsedNanos = now - oldFrameTime;
-                    long elapsedNanosPerFrame = elapsedNanos / frameTimes.length;
-                    double frameRate = Math.floor(1_000_000_000.0 / elapsedNanosPerFrame);
-                    label2.setText("FPS: " + frameRate);
-                }
-            }
-            
-        };
-        frameRateMeter.start();
-
-        //testing labels
-        label3 = new Label(executableDirectory.toString());
-        VBox sizeVBox = new VBox(label2, label3);
-        label4 = new Label("label4");
-        label5 = new Label("label5");
-        VBox sizeVBox2 = new VBox(label4, label5);
-        label6 = new Label("label6");
-        label7 = new Label("label7");
-        VBox sizeVBox3 = new VBox(label6, label7);
-
         HBox bannerHBox = new HBox(0, wikiViewPane, lootlemonViewPane, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox, bannerHPusher, settingsViewPane);
         HBox.setMargin(wikiViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(lootlemonViewPane, new Insets(0, 10, 0, 0));
@@ -861,6 +811,7 @@ public class App extends Application {
         resetDisplayedCards(searchTextField.getText());
         updateBannerLabels();
 
+        //Adjust card spacing and cards in viewport based on the scenes width
         scene.widthProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 itemScrollPane.setVvalue(0);
@@ -877,6 +828,7 @@ public class App extends Application {
             }
         });
 
+        //Adjust card spacing and cards in viewport based on the scenes height
         scene.heightProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 clearAllItemCards();
@@ -897,20 +849,9 @@ public class App extends Application {
                 displayCardsInViewport();
             }
         });
-
-        testingButton.setOnAction(event -> {
-            try {
-                fullReset();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        testingButton2.setOnAction(event -> {
-            
-        });
     }
 
+    //Set all filter toggle buttons to selected
     public static void allToggleButtonsOn(ArrayList<ToggleButton> toggleButtonArray) {
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             toggleButtonArray.get(i).setSelected(true);
@@ -924,6 +865,7 @@ public class App extends Application {
         }).start();
     }
 
+    //Set all filter toggle buttons to not selected
     public static void allToggleButtonsOff(ArrayList<ToggleButton> toggleButtonArray) {
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             toggleButtonArray.get(i).setSelected(false);
@@ -937,6 +879,7 @@ public class App extends Application {
         }).start();
     }
 
+    //Write the provided document to the provided file
     public static void writeToXml(Document document, File file) {
         try {
             document.normalize();
@@ -958,6 +901,7 @@ public class App extends Application {
         }
     }
 
+    //Update the banner item counters taking into account the settings
     public static void updateBannerLabels() {
         int totalItemsObtained = 0;
         totalItemsObtained = settingsToggleButtonArray.get(1).isSelected() ? totalItemsObtained+countObtainedBL : totalItemsObtained;
@@ -989,12 +933,15 @@ public class App extends Application {
         huntItemsTotalLabel.setText(""+totalHuntPointsAvailable);
     }
 
+    //Set all cards in the FlowPane to be visible
+    //Primarily just for initially loading cards into the FlowPane
     public static void setAllCardsVisible() {
         for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
             itemFlowPane.getChildren().get(i).setVisible(true);
         }
     }
 
+    //Set cards in the viewport or just outside the viewport visible
     public static void displayCardsInViewport() {
         double flowPaneHeight = itemFlowPane.getHeight();
         Double scrollPaneVValue = itemScrollPane.getVvalue();
@@ -1022,6 +969,7 @@ public class App extends Application {
         }  
     }
 
+    //Rebuild all item cards and reset the item counters on the banner
     public static void fullReset() throws Exception {
         itemCardArray.clear();
         buildAllItemCards();
@@ -1029,20 +977,24 @@ public class App extends Application {
         updateBannerLabels();
     }
 
+    //Clear all item cards from the FlowPane
     public static void clearAllItemCards() {
         itemFlowPane.getChildren().clear();
     }
 
+    //Clear the filtered item card array
     public static void clearFilteredItemCards() {
         itemCardFilteredArray.clear();
     }
 
+    //Re-filter item cards and display them
     public static void resetDisplayedCards(String searchTerm) {
         filterAllItemCards(searchTerm.toLowerCase());
         displayCardsInViewport();
         setAllCardsVisible();
     }
 
+    //Reset all of the item counters
     public static void resetCounters() {
         totalNodes = 0;
         countBL= 0;
@@ -1067,6 +1019,7 @@ public class App extends Application {
         huntObtainedBL4= 0;
     }
 
+    //Filter all item cards into an array
     public static void filterAllItemCards(String searchTerm) {
         clearAllItemCards();
         clearFilteredItemCards();
@@ -1158,6 +1111,7 @@ public class App extends Application {
         }
     }
 
+    //Build all item cards into and array
     public static void buildAllItemCards() throws Exception {
         resetCounters();
         File[] files = new File(executableDirectory, "items").listFiles();
@@ -1219,6 +1173,7 @@ public class App extends Application {
         });
     }
 
+    //Build an item card
     public static void buildItemCard(String name, String type, String game, Boolean obtained, String rarity, 
     String source, String text, String wiki, String points, String location, String chance, String lootlemon) {
         Pane itemPane = new Pane();
