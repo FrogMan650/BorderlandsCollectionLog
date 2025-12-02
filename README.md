@@ -1,5 +1,5 @@
 # Borderlands Collection Log
-A desktop app for collecting unique items in all Borderlands games.<br>
+A Windows app for collecting unique items in all Borderlands games.<br>
 Items can be filtered by various criteria such as type of item, rarity, game, and whether you've obtained it or not.<br><br>
 __12-1-25 1.0 Release__<br>
 * All known items from Borderlands 1, 2, TPS, 3, and 4 are included.
