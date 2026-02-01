@@ -135,6 +135,10 @@
 		<name>hunt mode</name>
 		<enabled>false</enabled>
 	</setting>
+  <setting>
+    <name>phosphene mode</name>
+    <enabled>false</enabled>
+  </setting>
 	<setting>
 		<name>bl collection</name>
 		<enabled>true</enabled>

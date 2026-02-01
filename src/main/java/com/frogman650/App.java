@@ -60,6 +60,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class App extends Application {
+    //Item spreadsheet: https://docs.google.com/spreadsheets/d/1W7sitzbmaNyniM4CwMG44fDkvS6bWYgrKa3ZrBdT-Nk/edit?usp=sharing
     public static Image icon;
     public static Image wikiImage;
     public static Image miniLootlemonImage;
@@ -414,19 +415,30 @@ public class App extends Application {
         Label modeSelectionLabel = new Label("MODE");
         modeSelectionLabel.setId("filterLabel");
         modeSelectionLabel.setStyle("-fx-cursor: none;");
-        Tooltip modeSelectionToolTip = new Tooltip("Turning on Hunt Mode will only show items\n" +
+        ToggleButton huntModeToggleButton = new ToggleButton("Hunt Mode");//0
+        settingsToggleButtonArray.add(huntModeToggleButton);
+        Tooltip huntModeToolTip = new Tooltip("Hunt Mode will only show items\n" +
         "worth Hunt points and their sources will\nbetter reflect The Hunt rules." +
         "\nMore information on rules and regulations for\n The Hunt can be found on borderlandshunt.com.");
-        modeSelectionToolTip.setId("toolTip");
-        modeSelectionLabel.setOnMouseMoved(event -> {
-            modeSelectionToolTip.show(modeSelectionLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+        huntModeToolTip.setId("toolTip");
+        huntModeToggleButton.setOnMouseMoved(event -> {
+            huntModeToolTip.show(huntModeToggleButton, event.getScreenX() + 10, event.getScreenY() + 20);
         });
-        modeSelectionLabel.setOnMouseExited(event -> {
-            modeSelectionToolTip.hide();
+        huntModeToggleButton.setOnMouseExited(event -> {
+            huntModeToolTip.hide();
         });
-        ToggleButton modeToggleButton = new ToggleButton("Hunt Mode");//0
-        settingsToggleButtonArray.add(modeToggleButton);
-        settingsVBox.getChildren().addAll(modeSelectionLabel, modeToggleButton);
+        ToggleButton phospheneModeToggleButton = new ToggleButton("Phosphene Mode");//1
+        settingsToggleButtonArray.add(phospheneModeToggleButton);
+        Tooltip phospheneModeToolTip = new Tooltip("Phosphene Mode will only show items\n" +
+        "with a phosphene skin variant.");
+        phospheneModeToolTip.setId("toolTip");
+        phospheneModeToggleButton.setOnMouseMoved(event -> {
+            phospheneModeToolTip.show(phospheneModeToggleButton, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        phospheneModeToggleButton.setOnMouseExited(event -> {
+            phospheneModeToolTip.hide();
+        });
+        settingsVBox.getChildren().addAll(modeSelectionLabel, huntModeToggleButton, phospheneModeToggleButton);
         Label itemCollectionLabel = new Label("COLLECTION");
         itemCollectionLabel.setId("filterLabel");
         Tooltip itemCollectionToolTip = new Tooltip("These settings control which games items\nwill " + 
@@ -438,15 +450,15 @@ public class App extends Application {
         itemCollectionLabel.setOnMouseExited(event -> {
             itemCollectionToolTip.hide();
         });
-        ToggleButton toggleButtonCollectionBL = new ToggleButton("Borderlands");//1
+        ToggleButton toggleButtonCollectionBL = new ToggleButton("Borderlands");//2
         settingsToggleButtonArray.add(toggleButtonCollectionBL);
-        ToggleButton toggleButtonCollectionBL2 = new ToggleButton("Borderlands 2");//2
+        ToggleButton toggleButtonCollectionBL2 = new ToggleButton("Borderlands 2");//3
         settingsToggleButtonArray.add(toggleButtonCollectionBL2);
-        ToggleButton toggleButtonCollectionBLTPS = new ToggleButton("Borderlands TPS");//3
+        ToggleButton toggleButtonCollectionBLTPS = new ToggleButton("Borderlands TPS");//4
         settingsToggleButtonArray.add(toggleButtonCollectionBLTPS);
-        ToggleButton toggleButtonCollectionBL3 = new ToggleButton("Borderlands 3");//4
+        ToggleButton toggleButtonCollectionBL3 = new ToggleButton("Borderlands 3");//5
         settingsToggleButtonArray.add(toggleButtonCollectionBL3);
-        ToggleButton toggleButtonCollectionBL4 = new ToggleButton("Borderlands 4");//5
+        ToggleButton toggleButtonCollectionBL4 = new ToggleButton("Borderlands 4");//6
         settingsToggleButtonArray.add(toggleButtonCollectionBL4);
         settingsVBox.getChildren().addAll(itemCollectionLabel, toggleButtonCollectionBL, toggleButtonCollectionBL2,
         toggleButtonCollectionBLTPS, toggleButtonCollectionBL3, toggleButtonCollectionBL4);
@@ -461,22 +473,22 @@ public class App extends Application {
         theHuntLabel.setOnMouseExited(event -> {
             huntCollectionToolTip.hide();
         });
-        ToggleButton toggleButtonHuntBL = new ToggleButton("Borderlands");//6
+        ToggleButton toggleButtonHuntBL = new ToggleButton("Borderlands");//7
         settingsToggleButtonArray.add(toggleButtonHuntBL);
-        ToggleButton toggleButtonHuntBL2 = new ToggleButton("Borderlands 2");//7
+        ToggleButton toggleButtonHuntBL2 = new ToggleButton("Borderlands 2");//8
         settingsToggleButtonArray.add(toggleButtonHuntBL2);
-        ToggleButton toggleButtonHuntBLTPS = new ToggleButton("Borderlands TPS");//8
+        ToggleButton toggleButtonHuntBLTPS = new ToggleButton("Borderlands TPS");//9
         settingsToggleButtonArray.add(toggleButtonHuntBLTPS);
-        ToggleButton toggleButtonHuntBL3 = new ToggleButton("Borderlands 3");//9
+        ToggleButton toggleButtonHuntBL3 = new ToggleButton("Borderlands 3");//10
         settingsToggleButtonArray.add(toggleButtonHuntBL3);
-        ToggleButton toggleButtonHuntBL4 = new ToggleButton("Borderlands 4");//10
+        ToggleButton toggleButtonHuntBL4 = new ToggleButton("Borderlands 4");//11
         settingsToggleButtonArray.add(toggleButtonHuntBL4);
         settingsVBox.getChildren().addAll(theHuntLabel, toggleButtonHuntBL, toggleButtonHuntBL2,
         toggleButtonHuntBLTPS, toggleButtonHuntBL3, toggleButtonHuntBL4);
         Label miscSettingLabel = new Label("MISCELLANEOUS");
         miscSettingLabel.setId("filterLabel");
         miscSettingLabel.setStyle("-fx-cursor: none;");
-        ToggleButton toggleButtonHideUnobtainable = new ToggleButton("Hide Unobtainable");//11
+        ToggleButton toggleButtonHideUnobtainable = new ToggleButton("Hide Unobtainable");//12
         settingsToggleButtonArray.add(toggleButtonHideUnobtainable);
         Tooltip unobtainableButtonTooltip = new Tooltip("This setting will hide items that are only\nobtainable " +
         "through promotional DLC, limited time\npromotions, or are just in general not obtainable\nby any normal or " +
@@ -549,9 +561,26 @@ public class App extends Application {
                 }).start();
             });
         }
-        modeToggleButton.setOnAction(event -> {
+        huntModeToggleButton.setOnAction(event -> {
             Element settingElement = (Element) settingsNodes.item(0);
-            if (modeToggleButton.isSelected()) {
+            if (huntModeToggleButton.isSelected()) {
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
+            } else {
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
+            }
+            try {
+                itemScrollPane.setVvalue(0);
+                fullReset();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
+        });
+        phospheneModeToggleButton.setOnAction(event -> {
+            Element settingElement = (Element) settingsNodes.item(1);
+            if (phospheneModeToggleButton.isSelected()) {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
             } else {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
@@ -570,7 +599,7 @@ public class App extends Application {
             Boolean allEnabled = toggleButtonCollectionBL.isSelected() && toggleButtonCollectionBL2.isSelected() && 
             toggleButtonCollectionBL3.isSelected() && toggleButtonCollectionBL4.isSelected() && toggleButtonCollectionBLTPS.isSelected();
             String enabledString = allEnabled ? "false" : "true";
-            for (int i = 1; i < 6; i++) {
+            for (int i = 2; i < 7; i++) {
                 Element settingElement = (Element) settingsNodes.item(i);
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 settingsToggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
@@ -584,7 +613,7 @@ public class App extends Application {
             Boolean allEnabled = toggleButtonHuntBL.isSelected() && toggleButtonHuntBL2.isSelected() && 
             toggleButtonHuntBL3.isSelected() && toggleButtonHuntBL4.isSelected() && toggleButtonHuntBLTPS.isSelected();
             String enabledString = allEnabled ? "false" : "true";
-            for (int i = 6; i < 11; i++) {
+            for (int i = 7; i < 12; i++) {
                 Element settingElement = (Element) settingsNodes.item(i);
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent(enabledString);
                 settingsToggleButtonArray.get(i).setSelected(Boolean.parseBoolean(enabledString));
@@ -701,7 +730,7 @@ public class App extends Application {
             huntViewPaneToolTip.hide();
         });
         huntViewPane.setOnMouseClicked(event -> {
-            hostService.showDocument("https://borderlandshunt.com");
+            hostService.showDocument("https://mentalmars.com/the-hunt/");
         });
         huntItemsCollectedLabel = new Label();
         huntItemsCollectedLabel.setId("collectionLabel");
@@ -732,6 +761,8 @@ public class App extends Application {
 
         Region bannerHPusher = new Region();
         HBox.setHgrow(bannerHPusher, Priority.ALWAYS);
+        Region bannerHPusher2 = new Region();
+        HBox.setHgrow(bannerHPusher2, Priority.ALWAYS);
 
         //Settings
         ImageView settingsImageView = new ImageView(settingsImage);
@@ -763,7 +794,7 @@ public class App extends Application {
             }
         });
 
-        HBox bannerHBox = new HBox(0, wikiViewPane, lootlemonViewPane, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox, bannerHPusher, settingsViewPane);
+        HBox bannerHBox = new HBox(0, wikiViewPane, lootlemonViewPane, bannerHPusher2, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox, bannerHPusher, settingsViewPane);
         HBox.setMargin(wikiViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(lootlemonViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(BLCLViewPane, new Insets(0, 5, 0, 0));
@@ -904,29 +935,29 @@ public class App extends Application {
     //Update the banner item counters taking into account the settings
     public static void updateBannerLabels() {
         int totalItemsObtained = 0;
-        totalItemsObtained = settingsToggleButtonArray.get(1).isSelected() ? totalItemsObtained+countObtainedBL : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(2).isSelected() ? totalItemsObtained+countObtainedBL2 : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(3).isSelected() ? totalItemsObtained+countObtainedBLTPS : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(4).isSelected() ? totalItemsObtained+countObtainedBL3 : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(5).isSelected() ? totalItemsObtained+countObtainedBL4 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(2).isSelected() ? totalItemsObtained+countObtainedBL : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(3).isSelected() ? totalItemsObtained+countObtainedBL2 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(4).isSelected() ? totalItemsObtained+countObtainedBLTPS : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(5).isSelected() ? totalItemsObtained+countObtainedBL3 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(6).isSelected() ? totalItemsObtained+countObtainedBL4 : totalItemsObtained;
         int totalItemsAvailable = 0;
-        totalItemsAvailable = settingsToggleButtonArray.get(1).isSelected() ? totalItemsAvailable+countBL : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(2).isSelected() ? totalItemsAvailable+countBL2 : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(3).isSelected() ? totalItemsAvailable+countBLTPS : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(4).isSelected() ? totalItemsAvailable+countBL3 : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(5).isSelected() ? totalItemsAvailable+countBL4 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(2).isSelected() ? totalItemsAvailable+countBL : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(3).isSelected() ? totalItemsAvailable+countBL2 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(4).isSelected() ? totalItemsAvailable+countBLTPS : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(5).isSelected() ? totalItemsAvailable+countBL3 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(6).isSelected() ? totalItemsAvailable+countBL4 : totalItemsAvailable;
         int totalHuntPointsObtained = 0;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(6).isSelected() ? totalHuntPointsObtained+huntObtainedBL : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsObtained+huntObtainedBL2 : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsObtained+huntObtainedBLTPS : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsObtained+huntObtainedBL3 : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsObtained+huntObtainedBL4 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsObtained+huntObtainedBL : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsObtained+huntObtainedBL2 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsObtained+huntObtainedBLTPS : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsObtained+huntObtainedBL3 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(11).isSelected() ? totalHuntPointsObtained+huntObtainedBL4 : totalHuntPointsObtained;
         int totalHuntPointsAvailable = 0;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(6).isSelected() ? totalHuntPointsAvailable+huntBL : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsAvailable+huntBL2 : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsAvailable+huntBLTPS : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsAvailable+huntBL3 : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsAvailable+huntBL4 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsAvailable+huntBL : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsAvailable+huntBL2 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsAvailable+huntBLTPS : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsAvailable+huntBL3 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(11).isSelected() ? totalHuntPointsAvailable+huntBL4 : totalHuntPointsAvailable;
         itemsCollectedLabel.setText(""+totalItemsObtained);
         itemsTotalLabel.setText(""+totalItemsAvailable);
         huntItemsCollectedLabel.setText(""+totalHuntPointsObtained);
@@ -1032,7 +1063,7 @@ public class App extends Application {
             String rarity = accessibilityText[4].toLowerCase();
             String source = accessibilityText[5].toLowerCase();
             String points = accessibilityText[6];
-            String chance = accessibilityText[accessibilityText.length-1];
+            String chance = accessibilityText[accessibilityText.length-1].toLowerCase();
             if (game.equals("") && !toggleButtonArray.get(23).isSelected()) {
                 continue;
             } else if (game.equals("2") && !toggleButtonArray.get(24).isSelected()) {
@@ -1104,7 +1135,9 @@ public class App extends Application {
                 continue;
             } else if (points.equals("0") && (!toggleButtonArray.get(32).isSelected() || settingsToggleButtonArray.get(0).isSelected())) {
                 continue;
-            } else if (chance.equals("unobtainable") && settingsToggleButtonArray.get(11).isSelected()) {
+            } else if (chance.equals("unobtainable") && settingsToggleButtonArray.get(12).isSelected()) {
+                continue;
+            } else if (!chance.contains("phosphene") && settingsToggleButtonArray.get(1).isSelected()) {
                 continue;
             }
             itemCardFilteredArray.add(itemCardArray.get(i));
@@ -1224,55 +1257,61 @@ public class App extends Application {
         Label gameLabel = new Label("Borderlands " + game);
         gameLabel.setId("gameLabel");
         //lock the shared variables so only 1 thread can access them at a time
-        if (!(chance.equals("unobtainable") && settingsToggleButtonArray.get(11).isSelected())) {
-            lock.lock();
-            try {
-                if (game.equals("")) {
-                    gameLabel.setText("Borderlands");
-                    countBL++;
-                    huntBL += Integer.parseInt(points);
-                } else if (game.equals("2")) {
-                    countBL2++;
-                    huntBL2 += Integer.parseInt(points);
-                } else if (game.equals("TPS")) {
-                    countBLTPS++;
-                    huntBLTPS += Integer.parseInt(points);
-                } else if (game.equals("3")) {
-                    countBL3++;
-                    huntBL3 += Integer.parseInt(points);
-                } else if (game.equals("4")) {
-                    countBL4++;
-                    huntBL4 += Integer.parseInt(points);
+        if (!(chance.equals("unobtainable") && settingsToggleButtonArray.get(12).isSelected())) {
+            if (!chance.toLowerCase().contains("phosphene") && settingsToggleButtonArray.get(1).isSelected()) {
+            } else {
+                lock.lock();
+                try {
+                    if (game.equals("")) {
+                        gameLabel.setText("Borderlands");
+                        countBL++;
+                        huntBL += Integer.parseInt(points);
+                    } else if (game.equals("2")) {
+                        countBL2++;
+                        huntBL2 += Integer.parseInt(points);
+                    } else if (game.equals("TPS")) {
+                        countBLTPS++;
+                        huntBLTPS += Integer.parseInt(points);
+                    } else if (game.equals("3")) {
+                        countBL3++;
+                        huntBL3 += Integer.parseInt(points);
+                    } else if (game.equals("4")) {
+                        countBL4++;
+                        huntBL4 += Integer.parseInt(points);
+                    }
+                } finally {
+                    lock.unlock();
                 }
-            } finally {
-                lock.unlock();
             }
         }
         Pane obtainedPane = new Pane();
         if (obtained) {
             obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
             //lock the shared variables so only 1 thread can access them at a time
-            if (!(chance.equals("unobtainable") && settingsToggleButtonArray.get(11).isSelected())) {
-                lock.lock();
-                try {
-                    if (game.equals("")) {
-                        countObtainedBL++;
-                        huntObtainedBL += Integer.parseInt(points);
-                    } else if (game.equals("2")) {
-                        countObtainedBL2++;
-                        huntObtainedBL2 += Integer.parseInt(points);
-                    } else if (game.equals("TPS")) {
-                        countObtainedBLTPS++;
-                        huntObtainedBLTPS += Integer.parseInt(points);
-                    } else if (game.equals("3")) {
-                        countObtainedBL3++;
-                        huntObtainedBL3 += Integer.parseInt(points);
-                    } else if (game.equals("4")) {
-                        countObtainedBL4++;
-                        huntObtainedBL4 += Integer.parseInt(points);
+            if (!(chance.toLowerCase().equals("unobtainable") && settingsToggleButtonArray.get(12).isSelected())) {
+                if (!chance.toLowerCase().contains("phosphene") && settingsToggleButtonArray.get(1).isSelected()) {
+                } else {
+                    lock.lock();
+                    try {
+                        if (game.equals("")) {
+                            countObtainedBL++;
+                            huntObtainedBL += Integer.parseInt(points);
+                        } else if (game.equals("2")) {
+                            countObtainedBL2++;
+                            huntObtainedBL2 += Integer.parseInt(points);
+                        } else if (game.equals("TPS")) {
+                            countObtainedBLTPS++;
+                            huntObtainedBLTPS += Integer.parseInt(points);
+                        } else if (game.equals("3")) {
+                            countObtainedBL3++;
+                            huntObtainedBL3 += Integer.parseInt(points);
+                        } else if (game.equals("4")) {
+                            countObtainedBL4++;
+                            huntObtainedBL4 += Integer.parseInt(points);
+                        }
+                    } finally {
+                        lock.unlock();
                     }
-                } finally {
-                    lock.unlock();
                 }
             }
         } else {
@@ -1300,22 +1339,22 @@ public class App extends Application {
                         });
                         obtainedSwitch = true;
                         itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%false#%" + rarity + "#%" + source + "#%" + points + "#%" + chance);
-                            if (game.equals("")) {
-                                countObtainedBL--;
-                                huntObtainedBL -= Integer.parseInt(points);
-                            } else if (game.equals("2")) {
-                                countObtainedBL2--;
-                                huntObtainedBL2 -= Integer.parseInt(points);
-                            } else if (game.equals("TPS")) {
-                                countObtainedBLTPS--;
-                                huntObtainedBLTPS -= Integer.parseInt(points);
-                            } else if (game.equals("3")) {
-                                countObtainedBL3--;
-                                huntObtainedBL3 -= Integer.parseInt(points);
-                            } else if (game.equals("4")) {
-                                countObtainedBL4--;
-                                huntObtainedBL4 -= Integer.parseInt(points);
-                            }
+                        if (game.equals("")) {
+                            countObtainedBL--;
+                            huntObtainedBL -= Integer.parseInt(points);
+                        } else if (game.equals("2")) {
+                            countObtainedBL2--;
+                            huntObtainedBL2 -= Integer.parseInt(points);
+                        } else if (game.equals("TPS")) {
+                            countObtainedBLTPS--;
+                            huntObtainedBLTPS -= Integer.parseInt(points);
+                        } else if (game.equals("3")) {
+                            countObtainedBL3--;
+                            huntObtainedBL3 -= Integer.parseInt(points);
+                        } else if (game.equals("4")) {
+                            countObtainedBL4--;
+                            huntObtainedBL4 -= Integer.parseInt(points);
+                        }
                         saveNode.removeChild(node);
                         writeToXml(saveDocument, new File(executableDirectory, "save.xml"));
                         break;
@@ -1459,7 +1498,12 @@ public class App extends Application {
                 if (!locationTextSplit[i].isEmpty()) {
                     Tooltip tempSourceTextToolTip = new Tooltip();
                     try {
-                        tempSourceTextToolTip.setText(locationTextSplit[i] + "\n" + chanceTextSplit[i]);
+                        String[] chanceTextSplitSplit = chanceTextSplit[i].split("#@");
+                        String sourceString = locationTextSplit[i];
+                        for (String string : chanceTextSplitSplit) {
+                            sourceString = sourceString + "\n" + string;
+                        }
+                        tempSourceTextToolTip.setText(sourceString);
                     } catch (Exception e) {
                         tempSourceTextToolTip.setText(locationTextSplit[i]);
                     }
