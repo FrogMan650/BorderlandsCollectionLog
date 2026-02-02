@@ -183,4 +183,7 @@
     <name>hide unobtainable</name>
     <enabled>true</enabled>
   </setting>
+  <profile>
+    <name></name>
+  </profile>
 </settings>
