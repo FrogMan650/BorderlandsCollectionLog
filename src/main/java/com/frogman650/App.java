@@ -433,6 +433,7 @@ public class App extends Application {
         profileSelectionLabel.setId("filterLabel");
         profileSelectionLabel.setStyle("-fx-cursor: none;");
         profileDisplayButton = new Button(loadedProfile);
+        profileDisplayButton.setMnemonicParsing(false);
         profileDisplayButton.setId("searchTextField");
         profileCombobox = new ComboBox<>();
         profileCombobox.setId("searchTextField");
@@ -446,6 +447,7 @@ public class App extends Application {
                 File saveToLoad = new File(executableDirectory.getPath() + "/saves", newProfile + ".xml");
                 if (saveToLoad.exists()) {
                     updateProfileInfo(newProfile);
+                    profileCombobox.setValue("");
                 }
             } catch (Exception e) {
                 System.out.println(e.toString());
@@ -460,6 +462,7 @@ public class App extends Application {
                 if (!newSave.exists()) {
                     Files.write(newSave.toPath(), "<items></items>".getBytes());
                     updateProfileInfo(newProfile);
+                    profileCombobox.setValue("");
                 }
             } catch (Exception e) {
                 System.out.println(e.toString());
@@ -475,6 +478,7 @@ public class App extends Application {
                 if (!newSave.exists()) {
                     Files.move(oldSave.toPath(), newSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     updateProfileInfo(newProfile);
+                    profileCombobox.setValue("");
                 }
             } catch (Exception e) {
                 System.out.println(e.toString());
@@ -483,12 +487,50 @@ public class App extends Application {
         Button resetProfileButton = new Button("Reset Profile");
         resetProfileButton.setId("redButton");
         resetProfileButton.setOnAction(event -> {
-            
+            try {
+                if (resetProfileButton.getText().equals("Reset Profile")) {
+                    resetProfileButton.setText("REALLY?");
+                } else if (resetProfileButton.getText().equals("REALLY?")) {
+                    resetProfileButton.setText("REALLLLY???!??");
+                } else if (resetProfileButton.getText().equals("REALLLLY???!??")) {
+                    resetProfileButton.setText("Reset Profile");
+                    NodeList childNodes = saveNode.getChildNodes();
+                    for (int i = childNodes.getLength()-1; i >= 0; i--) {
+                        saveNode.removeChild(childNodes.item(i));
+                    }
+                    writeToXml(saveDocument, new File(executableDirectory + "/saves/", profileCombobox.getValue() + ".xml"));
+                    profileCombobox.setValue("");
+                    fullReset();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
         Button deleteProfileButton = new Button("Delete Profile");
         deleteProfileButton.setId("redButton");
         deleteProfileButton.setOnAction(event -> {
-            
+            try {
+                if (deleteProfileButton.getText().equals("Delete Profile")) {
+                    deleteProfileButton.setText("REALLY?");
+                } else if (deleteProfileButton.getText().equals("REALLY?")) {
+                    deleteProfileButton.setText("REALLLLY???!??");
+                } else if (deleteProfileButton.getText().equals("REALLLLY???!??")) {
+                    deleteProfileButton.setText("Delete Profile");
+                    File selectedProfile = new File(executableDirectory.getPath() + "/saves", profileCombobox.getValue() + ".xml");
+                    File currentProfile = new File(executableDirectory.getPath() + "/saves", loadedProfile + ".xml");
+                    if (selectedProfile.exists()) {
+                        Files.delete(selectedProfile.toPath()); 
+                        getSaveFiles();
+                        if (selectedProfile.toPath().equals(currentProfile.toPath())) {
+                            updateProfileInfo(saveFiles.get(0));
+                        }
+                        profileCombobox.setValue("");
+                        fullReset();  
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
         settingsVBox.getChildren().addAll(profileSelectionLabel, profileDisplayButton, profileCombobox, 
             loadProfileButton,createNewProfileButton, renameProfileButton, resetProfileButton, deleteProfileButton);
