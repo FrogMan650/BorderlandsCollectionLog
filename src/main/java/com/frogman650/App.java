@@ -23,10 +23,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javafx.application.Application;
 import javafx.application.HostServices;
@@ -106,6 +110,7 @@ public class App extends Application {
     public static File itemsXML;
     public static File settingsXML;
     public static File saveXML;
+    public static File logFile;
     public static HostServices hostService;
     public static Lock lock = new ReentrantLock();
     public static ArrayList<String> saveFiles = new ArrayList<>();
@@ -185,6 +190,7 @@ public class App extends Application {
         URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
         executableDirectory = Paths.get(uri).getParent().toFile();
         settingsXML = new File(executableDirectory, "settings.xml");
+        logFile = new File(executableDirectory, "logs.txt");
 
         factory = DocumentBuilderFactory.newInstance();
         builder = factory.newDocumentBuilder();
@@ -435,23 +441,40 @@ public class App extends Application {
         profileDisplayButton = new Button(loadedProfile);
         profileDisplayButton.setMnemonicParsing(false);
         profileDisplayButton.setId("searchTextField");
+        Tooltip profileDisplayToolTip = new Tooltip(loadedProfile);
+        profileDisplayToolTip.setId("toolTip");
+        profileDisplayButton.setOnMouseMoved(event -> {
+            profileDisplayToolTip.show(profileDisplayButton, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        profileDisplayButton.setOnMouseExited(event -> {
+            profileDisplayToolTip.hide();
+        });
         profileCombobox = new ComboBox<>();
-        profileCombobox.setId("searchTextField");
         profileCombobox.setEditable(true);
+        profileCombobox.setPromptText("Profile Name");
         updateComboBox();
         Button loadProfileButton = new Button("Load Profile");
         loadProfileButton.setId("greenButton");
         loadProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File saveToLoad = new File(executableDirectory.getPath() + "/saves", newProfile + ".xml");
-                if (saveToLoad.exists()) {
+                File profileToLoad = new File(executableDirectory.getPath() + "/saves", newProfile + ".xml");
+                if (profileToLoad.exists()) {
                     updateProfileInfo(newProfile);
                     profileCombobox.setValue("");
+                    profileDisplayToolTip.setText(newProfile);
                 }
             } catch (Exception e) {
-                System.out.println(e.toString());
+                writeToLogFile("Error loading profile", e.toString());
             }
+        });
+        Tooltip loadProfileToolTip = new Tooltip("Load selected profile");
+        loadProfileToolTip.setId("toolTip");
+        loadProfileButton.setOnMouseMoved(event -> {
+            loadProfileToolTip.show(loadProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        loadProfileButton.setOnMouseExited(event -> {
+            loadProfileToolTip.hide();
         });
         Button createNewProfileButton = new Button("Create Profile");
         createNewProfileButton.setId("greenButton");
@@ -463,10 +486,20 @@ public class App extends Application {
                     Files.write(newSave.toPath(), "<items></items>".getBytes());
                     updateProfileInfo(newProfile);
                     profileCombobox.setValue("");
+                    profileDisplayToolTip.setText(newProfile);
                 }
             } catch (Exception e) {
-                System.out.println(e.toString());
+                
+            writeToLogFile("Error creating profile", e.toString());
             }
+        });
+        Tooltip createProfileToolTip = new Tooltip("Create selected profile");
+        createProfileToolTip.setId("toolTip");
+        createNewProfileButton.setOnMouseMoved(event -> {
+            createProfileToolTip.show(createNewProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        createNewProfileButton.setOnMouseExited(event -> {
+            createProfileToolTip.hide();
         });
         Button renameProfileButton = new Button("Rename Profile");
         renameProfileButton.setId("greenButton");
@@ -479,58 +512,99 @@ public class App extends Application {
                     Files.move(oldSave.toPath(), newSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     updateProfileInfo(newProfile);
                     profileCombobox.setValue("");
+                    profileDisplayToolTip.setText(newProfile);
                 }
             } catch (Exception e) {
-                System.out.println(e.toString());
+                
+            writeToLogFile("Error renaming profile", e.toString());
             }
+        });
+        Tooltip renameProfileToolTip = new Tooltip("Rename loaded profile");
+        renameProfileToolTip.setId("toolTip");
+        renameProfileButton.setOnMouseMoved(event -> {
+            renameProfileToolTip.show(renameProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        renameProfileButton.setOnMouseExited(event -> {
+            renameProfileToolTip.hide();
         });
         Button resetProfileButton = new Button("Reset Profile");
         resetProfileButton.setId("redButton");
         resetProfileButton.setOnAction(event -> {
             try {
+                String newProfile = profileCombobox.getValue();
+                File selectedProfile = new File(executableDirectory.getPath() + "/saves", newProfile + ".xml");
+                File currentProfile = new File(executableDirectory.getPath() + "/saves", loadedProfile + ".xml");
                 if (resetProfileButton.getText().equals("Reset Profile")) {
                     resetProfileButton.setText("REALLY?");
                 } else if (resetProfileButton.getText().equals("REALLY?")) {
                     resetProfileButton.setText("REALLLLY???!??");
                 } else if (resetProfileButton.getText().equals("REALLLLY???!??")) {
                     resetProfileButton.setText("Reset Profile");
-                    NodeList childNodes = saveNode.getChildNodes();
-                    for (int i = childNodes.getLength()-1; i >= 0; i--) {
-                        saveNode.removeChild(childNodes.item(i));
+                    if (selectedProfile.exists()) {
+                        Document selectedSaveDocument = builder.parse(selectedProfile);
+                        Element selectedSaveNode = selectedSaveDocument.getDocumentElement();
+                        NodeList childNodes = selectedSaveNode.getChildNodes();
+                        for (int i = childNodes.getLength()-1; i >= 0; i--) {
+                            selectedSaveNode.removeChild(childNodes.item(i));
+                        }
+                        writeToXml(selectedSaveDocument, selectedProfile);
+                        profileCombobox.setValue("");
+                        updateProfileInfo(newProfile);
+                        fullReset();
                     }
-                    writeToXml(saveDocument, new File(executableDirectory + "/saves/", profileCombobox.getValue() + ".xml"));
-                    profileCombobox.setValue("");
-                    fullReset();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                writeToLogFile("Error resetting profile", e.toString());
             }
+        });
+        Tooltip resetProfileToolTip = new Tooltip("Reset selected profile");
+        resetProfileToolTip.setId("toolTip");
+        resetProfileButton.setOnMouseMoved(event -> {
+            resetProfileToolTip.show(resetProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        resetProfileButton.setOnMouseExited(event -> {
+            resetProfileToolTip.hide();
         });
         Button deleteProfileButton = new Button("Delete Profile");
         deleteProfileButton.setId("redButton");
         deleteProfileButton.setOnAction(event -> {
             try {
+                String newProfile = profileCombobox.getValue();
+                File selectedProfile = new File(executableDirectory.getPath() + "/saves", newProfile + ".xml");
+                File currentProfile = new File(executableDirectory.getPath() + "/saves", loadedProfile + ".xml");
                 if (deleteProfileButton.getText().equals("Delete Profile")) {
                     deleteProfileButton.setText("REALLY?");
                 } else if (deleteProfileButton.getText().equals("REALLY?")) {
                     deleteProfileButton.setText("REALLLLY???!??");
                 } else if (deleteProfileButton.getText().equals("REALLLLY???!??")) {
                     deleteProfileButton.setText("Delete Profile");
-                    File selectedProfile = new File(executableDirectory.getPath() + "/saves", profileCombobox.getValue() + ".xml");
-                    File currentProfile = new File(executableDirectory.getPath() + "/saves", loadedProfile + ".xml");
                     if (selectedProfile.exists()) {
-                        Files.delete(selectedProfile.toPath()); 
-                        getSaveFiles();
+                        Files.delete(selectedProfile.toPath());
+                        for (int i = 0; i < saveFiles.size(); i++) {
+                            if (saveFiles.get(i).equals(newProfile)) {
+                                saveFiles.remove(i);
+                            }
+                        }
+                        updateComboBox();
                         if (selectedProfile.toPath().equals(currentProfile.toPath())) {
                             updateProfileInfo(saveFiles.get(0));
+                            profileDisplayToolTip.setText(newProfile);
                         }
                         profileCombobox.setValue("");
                         fullReset();  
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                writeToLogFile("Error deleting profile", e.toString());
             }
+        });
+        Tooltip deleteProfileToolTip = new Tooltip("Delete selected profile");
+        deleteProfileToolTip.setId("toolTip");
+        deleteProfileButton.setOnMouseMoved(event -> {
+            deleteProfileToolTip.show(deleteProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        deleteProfileButton.setOnMouseExited(event -> {
+            deleteProfileToolTip.hide();
         });
         settingsVBox.getChildren().addAll(profileSelectionLabel, profileDisplayButton, profileCombobox, 
             loadProfileButton,createNewProfileButton, renameProfileButton, resetProfileButton, deleteProfileButton);
@@ -630,45 +704,12 @@ public class App extends Application {
             } else {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
             }
-            try {
-                fullReset();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            fullReset();
             new Thread(() -> {
                 writeToXml(settingsDocument, settingsXML);
             }).start();
         });
-        Button resetSaveButton = new Button("Save Reset");
-        resetSaveButton.setId("redButton");
-        Tooltip resetButtonTooltip = new Tooltip("Use this button to reset your progress.\nTHIS IS NOT REVERSIBLE");
-        resetButtonTooltip.setId("toolTip");
-        resetSaveButton.setOnMouseMoved(event -> {
-            resetButtonTooltip.show(resetSaveButton, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        resetSaveButton.setOnMouseExited(event -> {
-            resetButtonTooltip.hide();
-        });
-        resetSaveButton.setOnAction(event -> {
-            if (resetSaveButton.getText().equals("Save Reset")) {
-                resetSaveButton.setText("REALLY?");
-            } else if (resetSaveButton.getText().equals("REALLY?")) {
-                resetSaveButton.setText("REALLLLY???!??");
-            } else if (resetSaveButton.getText().equals("REALLLLY???!??")) {
-                resetSaveButton.setText("Save Reset");
-                NodeList childNodes = saveNode.getChildNodes();
-                for (int i = childNodes.getLength()-1; i >= 0; i--) {
-                    saveNode.removeChild(childNodes.item(i));
-                }
-                writeToXml(saveDocument, new File(executableDirectory, "save.xml"));
-                try {
-                    fullReset();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        settingsVBox.getChildren().addAll(miscSettingLabel, toggleButtonHideUnobtainable, resetSaveButton);
+        settingsVBox.getChildren().addAll(miscSettingLabel, toggleButtonHideUnobtainable);
         for (int i = 1; i < 11; i++) {
             int toggleButton = i;
             settingsToggleButtonArray.get(toggleButton).setOnAction(event -> {
@@ -691,12 +732,8 @@ public class App extends Application {
             } else {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
             }
-            try {
-                itemScrollPane.setVvalue(0);
-                fullReset();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            itemScrollPane.setVvalue(0);
+            fullReset();
             new Thread(() -> {
                 writeToXml(settingsDocument, settingsXML);
             }).start();
@@ -708,12 +745,8 @@ public class App extends Application {
             } else {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
             }
-            try {
-                itemScrollPane.setVvalue(0);
-                fullReset();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            itemScrollPane.setVvalue(0);
+            fullReset();
             new Thread(() -> {
                 writeToXml(settingsDocument, settingsXML);
             }).start();
@@ -1051,7 +1084,7 @@ public class App extends Application {
             StreamResult docResult = new StreamResult(file);
             transformer.transform(docSource, docResult);
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+            writeToLogFile("Error writing to an XML document", e.toString());
         }
     }
 
@@ -1124,11 +1157,15 @@ public class App extends Application {
     }
 
     //Rebuild all item cards and reset the item counters on the banner
-    public static void fullReset() throws Exception {
-        itemCardArray.clear();
-        buildAllItemCards();
-        resetDisplayedCards(searchTextField.getText());
-        updateBannerLabels();
+    public static void fullReset() {
+        try {
+            itemCardArray.clear();
+            buildAllItemCards();
+            resetDisplayedCards(searchTextField.getText());
+            updateBannerLabels();
+        } catch (Exception e) {
+            writeToLogFile("Error doing full reset", e.toString());
+        }
     }
 
     //Clear all item cards from the FlowPane
@@ -1285,8 +1322,42 @@ public class App extends Application {
                 saveFiles.add(file.getName().split("\\.")[0]);
             }
         } catch (Exception e) {
-            System.out.println(e.toString());
+            writeToLogFile("Error getting profiles", e.toString());
         }
+    }
+
+    //Write a new line to the log file
+    public static void writeToLogFile(String line) {
+        try {
+            String lineCombo = getDate() + " " + getTime() + ": " + line;
+            Files.writeString(logFile.toPath(), lineCombo + System.lineSeparator(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            System.out.println("Error writing to log file | " + e.toString());
+        }
+    }
+
+    //Write 2 lines to the log file
+    public static void writeToLogFile(String line, String line2) {
+        try {
+            String lineCombo = getDate() + " " + getTime() + ": " + line + " | " + line2;
+            Files.writeString(logFile.toPath(), lineCombo + System.lineSeparator(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            System.out.println("Error writing to log file | " + e.toString());
+        }
+    }
+
+    //Return the current date in day-month-year format
+    public static String getDate() {
+        String dateNow = String.valueOf(LocalDate.now());
+        String[] dateSplit = dateNow.split("-");
+        return dateSplit[1] + "-" + dateSplit[2] + "-" + dateSplit[0].split("0")[1];
+    }
+
+    //Return the current time in hour.minute.second format
+    public static String getTime() {
+        String timeNow = String.valueOf(LocalTime.now());
+        String[] timeSplit = timeNow.split(":");
+        return timeSplit[0] + "." + timeSplit[1] + "." + Math.round(Double.parseDouble(timeSplit[2]));
     }
 
     //Update choices in the combobox dropdown
@@ -1304,14 +1375,14 @@ public class App extends Application {
             loadedProfile = newProfile;
             profileSettingElement.getElementsByTagName("name").item(0).setTextContent(loadedProfile);
             writeToXml(settingsDocument, settingsXML);
-            updateComboBox();
             profileDisplayButton.setText(loadedProfile);
             saveXML = new File(executableDirectory + "/saves", loadedProfile +".xml");
             saveDocument = builder.parse(saveXML);
             saveNode = saveDocument.getDocumentElement();
+            updateComboBox();
             fullReset();
         } catch (Exception e) {
-            System.out.println(e.toString());
+            writeToLogFile("Error updating profile info", e.toString());
         }
     }
 
@@ -1367,8 +1438,10 @@ public class App extends Application {
                 }
             }
         }
+        int loops = 0;
         while (itemCardArray.size() != totalNodes) {
-            System.out.println(itemCardArray.size() + " of " + totalNodes + "; " + itemCardArray.get(itemCardArray.size()-1).getAccessibleText().split("#%")[0]);
+            loops ++;
+            System.out.println(loops);
         }
         Collections.sort(itemCardArray, new Comparator<Pane>() {
             public int compare(Pane p1, Pane p2) {

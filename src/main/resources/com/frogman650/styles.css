@@ -185,6 +185,53 @@
     -fx-stroke-width: 1px;
 }
 
+.combo-box {
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-pref-height: 50;
+    -fx-pref-width: 198;
+    -fx-background-repeat: no-repeat;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-padding: 5 10 5 0;
+    -fx-background-image: url("filter_background_search.png");
+}
+
+.combo-box .text, .combo-box .list-cell, .combo-box .text-input {
+    -fx-text-fill: white;
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+}
+
+.combo-box .text-input, .combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 10;
+}
+
+.combo-box .arrow-button {
+    -fx-cursor: hand;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: linear-gradient(to bottom, #71c5d6, #4671a9);;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: #41547c;
+    -fx-padding: 0 0 0 10;
+}
+
+/* .combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 10;
+} */
+
+/* .combo-box .arrow {
+    -fx-padding: 0 0 0 10;
+
+} */
+
 .toggle-button .text, #all .text, #none .text, #redButton .text, #greenButton .text {
     -fx-fill: white;
     -fx-stroke: black;
