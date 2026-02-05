@@ -489,8 +489,7 @@ public class App extends Application {
                     profileDisplayToolTip.setText(newProfile);
                 }
             } catch (Exception e) {
-                
-            writeToLogFile("Error creating profile", e.toString());
+                writeToLogFile("Error creating profile", e.toString());
             }
         });
         Tooltip createProfileToolTip = new Tooltip("Create selected profile");
@@ -515,8 +514,7 @@ public class App extends Application {
                     profileDisplayToolTip.setText(newProfile);
                 }
             } catch (Exception e) {
-                
-            writeToLogFile("Error renaming profile", e.toString());
+                writeToLogFile("Error renaming profile", e.toString());
             }
         });
         Tooltip renameProfileToolTip = new Tooltip("Rename loaded profile");
