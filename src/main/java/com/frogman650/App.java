@@ -103,8 +103,8 @@ public class App extends Application {
     public static Element saveNode;
     public static NodeList filterNodes;
     public static NodeList settingsNodes;
-    public static ArrayList<Pane> itemCardArray = new ArrayList<>();
-    public static ArrayList<Pane> itemCardFilteredArray = new ArrayList<>();
+    public static ArrayList<ItemCard> itemCardArray = new ArrayList<>();
+    public static ArrayList<ItemCard> itemCardFilteredArray = new ArrayList<>();
     public static ArrayList<ToggleButton> toggleButtonArray = new ArrayList<>();
     public static ArrayList<ToggleButton> settingsToggleButtonArray = new ArrayList<>();
     public static File itemsXML;
@@ -119,29 +119,31 @@ public class App extends Application {
     public static Element profileSettingElement;
     public static Button profileDisplayButton;
 
-    public static int huntBL= 0;
-    public static int huntObtainedBL= 0;
-    public static int huntBL2= 0;
-    public static int huntObtainedBL2= 0;
-    public static int huntBLTPS= 0;
-    public static int huntObtainedBLTPS= 0;
-    public static int huntBL3= 0;
-    public static int huntObtainedBL3= 0;
-    public static int huntBL4= 0;
-    public static int huntObtainedBL4= 0;
+    public static int[] huntList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    // public static int huntBL= 0;
+    // public static int huntObtainedBL= 0;
+    // public static int huntBL2= 0;
+    // public static int huntObtainedBL2= 0;
+    // public static int huntBLTPS= 0;
+    // public static int huntObtainedBLTPS= 0;
+    // public static int huntBL3= 0;
+    // public static int huntObtainedBL3= 0;
+    // public static int huntBL4= 0;
+    // public static int huntObtainedBL4= 0;
     public static Label huntItemsCollectedLabel;
     public static Label huntItemsTotalLabel;
 
-    public static int countBL= 0;
-    public static int countObtainedBL= 0;
-    public static int countBL2= 0;
-    public static int countObtainedBL2= 0;
-    public static int countBLTPS= 0;
-    public static int countObtainedBLTPS= 0;
-    public static int countBL3= 0;
-    public static int countObtainedBL3= 0;
-    public static int countBL4= 0;
-    public static int countObtainedBL4= 0;
+    public static int[] countList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    // public static int countBL= 0;
+    // public static int countObtainedBL= 0;
+    // public static int countBL2= 0;
+    // public static int countObtainedBL2= 0;
+    // public static int countBLTPS= 0;
+    // public static int countObtainedBLTPS= 0;
+    // public static int countBL3= 0;
+    // public static int countObtainedBL3= 0;
+    // public static int countBL4= 0;
+    // public static int countObtainedBL4= 0;
     public static Label itemsCollectedLabel;
     public static Label itemsTotalLabel;
 
@@ -1089,29 +1091,29 @@ public class App extends Application {
     //Update the banner item counters taking into account the settings
     public static void updateBannerLabels() {
         int totalItemsObtained = 0;
-        totalItemsObtained = settingsToggleButtonArray.get(2).isSelected() ? totalItemsObtained+countObtainedBL : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(3).isSelected() ? totalItemsObtained+countObtainedBL2 : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(4).isSelected() ? totalItemsObtained+countObtainedBLTPS : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(5).isSelected() ? totalItemsObtained+countObtainedBL3 : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(6).isSelected() ? totalItemsObtained+countObtainedBL4 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(2).isSelected() ? totalItemsObtained+countList[0] : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(3).isSelected() ? totalItemsObtained+countList[1] : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(4).isSelected() ? totalItemsObtained+countList[2] : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(5).isSelected() ? totalItemsObtained+countList[3] : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(6).isSelected() ? totalItemsObtained+countList[4] : totalItemsObtained;
         int totalItemsAvailable = 0;
-        totalItemsAvailable = settingsToggleButtonArray.get(2).isSelected() ? totalItemsAvailable+countBL : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(3).isSelected() ? totalItemsAvailable+countBL2 : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(4).isSelected() ? totalItemsAvailable+countBLTPS : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(5).isSelected() ? totalItemsAvailable+countBL3 : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(6).isSelected() ? totalItemsAvailable+countBL4 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(2).isSelected() ? totalItemsAvailable+countList[5] : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(3).isSelected() ? totalItemsAvailable+countList[6] : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(4).isSelected() ? totalItemsAvailable+countList[7] : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(5).isSelected() ? totalItemsAvailable+countList[8] : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(6).isSelected() ? totalItemsAvailable+countList[9] : totalItemsAvailable;
         int totalHuntPointsObtained = 0;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsObtained+huntObtainedBL : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsObtained+huntObtainedBL2 : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsObtained+huntObtainedBLTPS : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsObtained+huntObtainedBL3 : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(11).isSelected() ? totalHuntPointsObtained+huntObtainedBL4 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsObtained+huntList[0] : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsObtained+huntList[1] : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsObtained+huntList[2] : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsObtained+huntList[3] : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(11).isSelected() ? totalHuntPointsObtained+huntList[4] : totalHuntPointsObtained;
         int totalHuntPointsAvailable = 0;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsAvailable+huntBL : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsAvailable+huntBL2 : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsAvailable+huntBLTPS : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsAvailable+huntBL3 : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(11).isSelected() ? totalHuntPointsAvailable+huntBL4 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsAvailable+huntList[5] : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsAvailable+huntList[6] : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsAvailable+huntList[7] : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsAvailable+huntList[8] : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(11).isSelected() ? totalHuntPointsAvailable+huntList[9] : totalHuntPointsAvailable;
         itemsCollectedLabel.setText(""+totalItemsObtained);
         itemsTotalLabel.setText(""+totalItemsAvailable);
         huntItemsCollectedLabel.setText(""+totalHuntPointsObtained);
@@ -1139,7 +1141,7 @@ public class App extends Application {
         cardToLoad = cardToLoad > itemCardFilteredArray.size() ? itemCardFilteredArray.size() : cardToLoad;
         if (itemFlowPane.getChildren().size() < cardToLoad && itemFlowPane.getChildren().size() != itemCardFilteredArray.size()) {
             for (int i = itemFlowPane.getChildren().size(); i < cardToLoad; i++) {
-                itemFlowPane.getChildren().add(itemCardFilteredArray.get(i));
+                itemFlowPane.getChildren().add(itemCardFilteredArray.get(i).getItemCard());
             }
         }
         int lowBounds = (int) Math.round(flowPaneLocation-(scrollPaneViewPortHeight+(scrollPaneViewPortHeight*scrollPaneVValue)));
@@ -1186,26 +1188,10 @@ public class App extends Application {
     //Reset all of the item counters
     public static void resetCounters() {
         totalNodes = 0;
-        countBL= 0;
-        countObtainedBL= 0;
-        countBL2= 0;
-        countObtainedBL2= 0;
-        countBLTPS= 0;
-        countObtainedBLTPS= 0;
-        countBL3= 0;
-        countObtainedBL3= 0;
-        countBL4= 0;
-        countObtainedBL4= 0;
-        huntBL= 0;
-        huntObtainedBL= 0;
-        huntBL2= 0;
-        huntObtainedBL2= 0;
-        huntBLTPS= 0;
-        huntObtainedBLTPS= 0;
-        huntBL3= 0;
-        huntObtainedBL3= 0;
-        huntBL4= 0;
-        huntObtainedBL4= 0;
+        for (int i = 0; i < 10; i++) {
+            huntList[i] = 0;
+            countList[i] = 0;
+        }
     }
 
     //Filter all item cards into an array
@@ -1213,15 +1199,14 @@ public class App extends Application {
         clearAllItemCards();
         clearFilteredItemCards();
         for (int i = 0; i < itemCardArray.size(); i++) {
-            String[] accessibilityText = itemCardArray.get(i).getAccessibleText().split("#%");
-            String name = accessibilityText[0].toLowerCase();
-            String type = accessibilityText[1].toLowerCase();
-            String game = accessibilityText[2];
-            String obtained = accessibilityText[3].toLowerCase();
-            String rarity = accessibilityText[4].toLowerCase();
-            String source = accessibilityText[5].toLowerCase();
-            String points = accessibilityText[6];
-            String chance = accessibilityText[accessibilityText.length-1].toLowerCase();
+            String name = itemCardArray.get(i).getName().toLowerCase();
+            String type = itemCardArray.get(i).getType().toLowerCase();
+            String game = itemCardArray.get(i).getGame();
+            Boolean obtained = itemCardArray.get(i).getObtained();
+            String rarity = itemCardArray.get(i).getRarity().toLowerCase();
+            String source = itemCardArray.get(i).getSource().toLowerCase();
+            String points = itemCardArray.get(i).getPoints();
+            String chance = itemCardArray.get(i).getChance().toLowerCase();
             if (game.equals("") && !toggleButtonArray.get(23).isSelected()) {
                 continue;
             } else if (game.equals("2") && !toggleButtonArray.get(24).isSelected()) {
@@ -1232,9 +1217,9 @@ public class App extends Application {
                 continue;
             } else if (game.equals("4") && !toggleButtonArray.get(27).isSelected()) {
                 continue;
-            } else if (obtained.equals("true") && !toggleButtonArray.get(28).isSelected()) {
+            } else if (obtained && !toggleButtonArray.get(28).isSelected()) {
                 continue;
-            } else if (obtained.equals("false") && !toggleButtonArray.get(29).isSelected()) {
+            } else if (!obtained && !toggleButtonArray.get(29).isSelected()) {
                 continue;
             } else if ((rarity.contains("unique")) && !toggleButtonArray.get(17).isSelected()) {
                 continue;
@@ -1270,8 +1255,7 @@ public class App extends Application {
                 continue;
             } else if ((type.equals("grenade mod")) && !toggleButtonArray.get(9).isSelected()) {
                 continue;
-            } else if ((type.equals("relic") || type.equals("artifact")) && 
-            !toggleButtonArray.get(10).isSelected()) {
+            } else if ((type.equals("relic") || type.equals("artifact")) && !toggleButtonArray.get(10).isSelected()) {
                 continue;
             } else if ((type.equals("shield")) && !toggleButtonArray.get(11).isSelected()) {
                 continue;
@@ -1298,8 +1282,19 @@ public class App extends Application {
             } else if (!chance.contains("phosphene") && settingsToggleButtonArray.get(1).isSelected()) {
                 continue;
             }
+            totalNodes ++;
             itemCardFilteredArray.add(itemCardArray.get(i));
         }
+        // int loops = 0;
+        // while (itemCardArray.size() != totalNodes) {
+        //     loops ++;
+        //     System.out.println(loops);
+        // }
+        // Collections.sort(itemCardArray, new Comparator<ItemCard>() {
+        //     public int compare(ItemCard p1, ItemCard p2) {
+        //         return p1.getName().compareTo(p2.getName());
+        //     }
+        // });
     }
 
     //Update save file array
@@ -1392,431 +1387,46 @@ public class App extends Application {
             if (file.isFile()) {
                 Document document = builder.parse(file);
                 NodeList nodes = document.getDocumentElement().getElementsByTagName("item");
-                totalNodes += nodes.getLength();
                 for (int i = 0; i < nodes.getLength(); i++) {
                     Element itemNode = (Element) nodes.item(i);
-                        String name = itemNode.getElementsByTagName("name").item(0).getTextContent();
-                        String type = itemNode.getElementsByTagName("type").item(0).getTextContent();
-                        String game = itemNode.getElementsByTagName("game").item(0).getTextContent();
-                        String rarity = itemNode.getElementsByTagName("rarity").item(0).getTextContent();
-                        String source;
-                        String location;
-                        String chance;
-                        if (settingsToggleButtonArray.get(0).isSelected()) {
-                            source = itemNode.getElementsByTagName("source_hunt").item(0).getTextContent();
-                            location = itemNode.getElementsByTagName("location_hunt").item(0).getTextContent();
-                            chance = itemNode.getElementsByTagName("chance_hunt").item(0).getTextContent();
-                        } else {
-                            source = itemNode.getElementsByTagName("source").item(0).getTextContent();
-                            location = itemNode.getElementsByTagName("location").item(0).getTextContent();
-                            chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
-                        }
-                        String text = itemNode.getElementsByTagName("text").item(0).getTextContent();
-                        String wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
-                        String lootlemon = itemNode.getElementsByTagName("lootlemon").item(0).getTextContent();
-                        String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
-                        String obtainedText = "false";
-                        NodeList saveNodes = saveNode.getElementsByTagName("item");
-                        for (int j = 0; j < saveNodes.getLength(); j++) {
-                            Element node = (Element) saveNodes.item(j);
-                            String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
-                            String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
-                            String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();
-                            String gameNode = node.getElementsByTagName("game").item(0).getTextContent();
-                            if (name.equals(nameNode) && type.equals(typeNode) && rarity.equals(rarityNode) && 
-                            gameNode.equals(game)) {
-                                obtainedText = "true";
-                                break;
-                            }
-                        }
-                        Boolean obtained = Boolean.parseBoolean(obtainedText);
-                    new Thread(() -> {
-                        buildItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance, lootlemon);
-                    }).start();
-                }
-            }
-        }
-        int loops = 0;
-        while (itemCardArray.size() != totalNodes) {
-            loops ++;
-            System.out.println(loops);
-        }
-        Collections.sort(itemCardArray, new Comparator<Pane>() {
-            public int compare(Pane p1, Pane p2) {
-                return p1.getAccessibleText().compareTo(p2.getAccessibleText());
-            }
-        });
-    }
-
-    //Build an item card
-    public static void buildItemCard(String name, String type, String game, Boolean obtained, String rarity, 
-    String source, String text, String wiki, String points, String location, String chance, String lootlemon) {
-        Pane itemPane = new Pane();
-        StackPane itemImageStackPane = new StackPane();
-        itemImageStackPane.setId("itemImageStackPane");
-        ImageView itemImageView = new ImageView();
-        itemImageView.setCache(true);
-        itemImageView.setCacheHint(CacheHint.SPEED);
-        //Setting the item type image
-        if (type.toLowerCase().equals("pistol")) {
-            itemImageView.setImage(pistolImage);
-        } else if (type.equals("ar") || type.toLowerCase().equals("assault rifle")) {
-            itemImageView.setImage(arImage);
-        } else if (type.toLowerCase().equals("class mod")) {
-            itemImageView.setImage(classModImage);
-        } else if (type.toLowerCase().equals("grenade mod")) {
-            itemImageView.setImage(grenadeImage);
-        } else if (type.toLowerCase().equals("grenade ordnance") || type.toLowerCase().equals("grenade (ordnance)")) {
-            itemImageView.setImage(grenadeOrdnanceImage);
-        } else if (type.toLowerCase().equals("heavy ordnance") || type.toLowerCase().equals("heavy weapon (ordnance)")) {
-            itemImageView.setImage(heavyOrdnanceImage);
-        } else if (type.toLowerCase().equals("laser")) {
-            itemImageView.setImage(laserImage);
-        } else if (type.toLowerCase().equals("launcher") || type.toLowerCase().equals("rocket launcher")) {
-            itemImageView.setImage(launcherImage);
-        } else if (type.toLowerCase().equals("oz kit")) {
-            itemImageView.setImage(ozKitImage);
-        } else if (type.toLowerCase().equals("shield")) {
-            itemImageView.setImage(shieldImage);
-        } else if (type.toLowerCase().equals("shotgun")) {
-            itemImageView.setImage(shotgunImage);
-        } else if (type.equals("smg") || type.toLowerCase().equals("submachine gun")) {
-            itemImageView.setImage(smgImage);
-        } else if (type.toLowerCase().equals("sniper") || type.toLowerCase().equals("sniper rifle")) {
-            itemImageView.setImage(sniperImage);
-        } else if (type.toLowerCase().equals("relic") || type.toLowerCase().equals("artifact")) {
-            itemImageView.setImage(relicImage);
-        } else if (type.toLowerCase().equals("eridian")) {
-            itemImageView.setImage(eridianImage);
-        } else if (type.toLowerCase().equals("repkit")) {
-            itemImageView.setImage(repkitImage);
-        } else if (type.toLowerCase().equals("enhancement")) {
-            itemImageView.setImage(enhancementImage);
-        }
-        Pane itemBackgroundColor = new Pane();
-        itemBackgroundColor.setId("itemBackgroundColor");
-        itemImageStackPane.getChildren().addAll(itemBackgroundColor, itemImageView);
-        Label gameLabel = new Label("Borderlands " + game);
-        gameLabel.setId("gameLabel");
-        //lock the shared variables so only 1 thread can access them at a time
-        if (!(chance.equals("unobtainable") && settingsToggleButtonArray.get(12).isSelected())) {
-            if (!chance.toLowerCase().contains("phosphene") && settingsToggleButtonArray.get(1).isSelected()) {
-            } else {
-                lock.lock();
-                try {
-                    if (game.equals("")) {
-                        gameLabel.setText("Borderlands");
-                        countBL++;
-                        huntBL += Integer.parseInt(points);
-                    } else if (game.equals("2")) {
-                        countBL2++;
-                        huntBL2 += Integer.parseInt(points);
-                    } else if (game.equals("TPS")) {
-                        countBLTPS++;
-                        huntBLTPS += Integer.parseInt(points);
-                    } else if (game.equals("3")) {
-                        countBL3++;
-                        huntBL3 += Integer.parseInt(points);
-                    } else if (game.equals("4")) {
-                        countBL4++;
-                        huntBL4 += Integer.parseInt(points);
+                    String name = itemNode.getElementsByTagName("name").item(0).getTextContent();
+                    String type = itemNode.getElementsByTagName("type").item(0).getTextContent();
+                    String game = itemNode.getElementsByTagName("game").item(0).getTextContent();
+                    String rarity = itemNode.getElementsByTagName("rarity").item(0).getTextContent();
+                    String source;
+                    String location;
+                    String chance;
+                    if (settingsToggleButtonArray.get(0).isSelected()) {
+                        source = itemNode.getElementsByTagName("source_hunt").item(0).getTextContent();
+                        location = itemNode.getElementsByTagName("location_hunt").item(0).getTextContent();
+                        chance = itemNode.getElementsByTagName("chance_hunt").item(0).getTextContent();
+                    } else {
+                        source = itemNode.getElementsByTagName("source").item(0).getTextContent();
+                        location = itemNode.getElementsByTagName("location").item(0).getTextContent();
+                        chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
                     }
-                } finally {
-                    lock.unlock();
-                }
-            }
-        }
-        Pane obtainedPane = new Pane();
-        if (obtained) {
-            obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
-            //lock the shared variables so only 1 thread can access them at a time
-            if (!(chance.toLowerCase().equals("unobtainable") && settingsToggleButtonArray.get(12).isSelected())) {
-                if (!chance.toLowerCase().contains("phosphene") && settingsToggleButtonArray.get(1).isSelected()) {
-                } else {
-                    lock.lock();
-                    try {
-                        if (game.equals("")) {
-                            countObtainedBL++;
-                            huntObtainedBL += Integer.parseInt(points);
-                        } else if (game.equals("2")) {
-                            countObtainedBL2++;
-                            huntObtainedBL2 += Integer.parseInt(points);
-                        } else if (game.equals("TPS")) {
-                            countObtainedBLTPS++;
-                            huntObtainedBLTPS += Integer.parseInt(points);
-                        } else if (game.equals("3")) {
-                            countObtainedBL3++;
-                            huntObtainedBL3 += Integer.parseInt(points);
-                        } else if (game.equals("4")) {
-                            countObtainedBL4++;
-                            huntObtainedBL4 += Integer.parseInt(points);
+                    String text = itemNode.getElementsByTagName("text").item(0).getTextContent();
+                    String wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
+                    String lootlemon = itemNode.getElementsByTagName("lootlemon").item(0).getTextContent();
+                    String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
+                    String obtainedText = "false";
+                    NodeList saveNodes = saveNode.getElementsByTagName("item");
+                    for (int j = 0; j < saveNodes.getLength(); j++) {
+                        Element node = (Element) saveNodes.item(j);
+                        String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
+                        String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
+                        String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();
+                        String gameNode = node.getElementsByTagName("game").item(0).getTextContent();
+                        if (name.equals(nameNode) && type.equals(typeNode) && rarity.equals(rarityNode) && 
+                        gameNode.equals(game)) {
+                            obtainedText = "true";
+                            break;
                         }
-                    } finally {
-                        lock.unlock();
                     }
+                    Boolean obtained = Boolean.parseBoolean(obtainedText);
+                    itemCardArray.add(new ItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance, lootlemon));
                 }
             }
-        } else {
-            obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
-        }
-        obtainedPane.setId("obtainedPane");
-        Label huntPointsLabel = new Label(points);
-        huntPointsLabel.setId("huntPointsLabel");
-        HBox topHBox = new HBox(obtainedPane, gameLabel, huntPointsLabel);
-        HBox.setMargin(obtainedPane, new Insets(5, 0, 0, 12));
-        //Defining what happens when you click the obtained/not obtained pane
-        obtainedPane.setOnMouseClicked(event -> {
-            new Thread(() -> {
-                Boolean obtainedSwitch = false;
-                NodeList saveNodes = saveNode.getElementsByTagName("item");
-                for (int j = 0; j < saveNodes.getLength(); j++) {
-                    Element node = (Element) saveNodes.item(j);
-                    String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
-                    String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
-                    String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();
-                    String gameNode = node.getElementsByTagName("game").item(0).getTextContent();
-                    if (name.equals(nameNode) && type.equals(typeNode) && rarity.equals(rarityNode) && gameNode.equals(game)) {
-                        Platform.runLater(() -> {
-                            obtainedPane.setBackground(new Background(new BackgroundImage(notObtainedImage, null, null, null, null)));
-                        });
-                        obtainedSwitch = true;
-                        itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%false#%" + rarity + "#%" + source + "#%" + points + "#%" + chance);
-                        if (game.equals("")) {
-                            countObtainedBL--;
-                            huntObtainedBL -= Integer.parseInt(points);
-                        } else if (game.equals("2")) {
-                            countObtainedBL2--;
-                            huntObtainedBL2 -= Integer.parseInt(points);
-                        } else if (game.equals("TPS")) {
-                            countObtainedBLTPS--;
-                            huntObtainedBLTPS -= Integer.parseInt(points);
-                        } else if (game.equals("3")) {
-                            countObtainedBL3--;
-                            huntObtainedBL3 -= Integer.parseInt(points);
-                        } else if (game.equals("4")) {
-                            countObtainedBL4--;
-                            huntObtainedBL4 -= Integer.parseInt(points);
-                        }
-                        saveNode.removeChild(node);
-                        writeToXml(saveDocument, new File(executableDirectory + "/saves", loadedProfile + ".xml"));
-                        break;
-                    } 
-                }
-                if (!obtainedSwitch) {
-                    Platform.runLater(() -> {
-                        obtainedPane.setBackground(new Background(new BackgroundImage(obtainedImage, null, null, null, null)));
-                    });
-                    itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%true#%" + rarity + "#%" + source + "#%" + points + "#%" + chance);
-                        if (game.equals("")) {
-                            countObtainedBL++;
-                            huntObtainedBL += Integer.parseInt(points);
-                        } else if (game.equals("2")) {
-                            countObtainedBL2++;
-                            huntObtainedBL2 += Integer.parseInt(points);
-                        } else if (game.equals("TPS")) {
-                            countObtainedBLTPS++;
-                            huntObtainedBLTPS += Integer.parseInt(points);
-                        } else if (game.equals("3")) {
-                            countObtainedBL3++;
-                            huntObtainedBL3 += Integer.parseInt(points);
-                        } else if (game.equals("4")) {
-                            countObtainedBL4++;
-                            huntObtainedBL4 += Integer.parseInt(points);
-                        }
-                    Element newItemElement = saveDocument.createElement("item");
-                    Element newNameElement = saveDocument.createElement("name");
-                    newNameElement.appendChild(saveDocument.createTextNode(name));
-                    Element newTypeElement = saveDocument.createElement("type");
-                    newTypeElement.appendChild(saveDocument.createTextNode(type));
-                    Element newRarityElement = saveDocument.createElement("rarity");
-                    newRarityElement.appendChild(saveDocument.createTextNode(rarity));
-                    Element newGameElement = saveDocument.createElement("game");
-                    newGameElement.appendChild(saveDocument.createTextNode(game));
-                    newItemElement.appendChild(newNameElement);
-                    newItemElement.appendChild(newTypeElement);
-                    newItemElement.appendChild(newRarityElement);
-                    newItemElement.appendChild(newGameElement);
-                    saveDocument.getDocumentElement().appendChild(newItemElement);
-                    writeToXml(saveDocument, new File(executableDirectory + "/saves", loadedProfile + ".xml"));
-                }
-                Platform.runLater(() -> {
-                    resetDisplayedCards(searchTextField.getText());
-                    updateBannerLabels();
-                });
-            }).start();
-        });
-        HBox.setMargin(huntPointsLabel, new Insets(7, 0, 0, 23));
-        HBox.setMargin(gameLabel, new Insets(0, 0, 0, 25));
-        Label itemNameLabel = new Label(name);
-        itemNameLabel.setId("itemNameLabel");
-        //Setting the color of item image and text
-        if (rarity.toLowerCase().equals("legendary")) {
-            itemNameLabel.setTextFill(Paint.valueOf("#eb8a01"));
-            itemBackgroundColor.setStyle("-fx-background-color: #eb8a01;");
-        } else if (rarity.toLowerCase().equals("pearl") || rarity.toLowerCase().equals("pearlescent")) {
-            itemNameLabel.setTextFill(Paint.valueOf("#00ffff"));
-            itemBackgroundColor.setStyle("-fx-background-color: #00ffff;");
-        } else if (rarity.toLowerCase().equals("unique")) {
-            itemNameLabel.setTextFill(Paint.valueOf("#2760ca"));
-            itemBackgroundColor.setStyle("-fx-background-color: #2760ca;");
-        } else if (rarity.equals("unique_purple")) {
-            itemNameLabel.setTextFill(Paint.valueOf("#7731b0"));
-            itemBackgroundColor.setStyle("-fx-background-color: #7731b0;");
-        } else if (rarity.equals("unique_green")) {
-            itemNameLabel.setTextFill(Paint.valueOf("#3ac80a"));
-            itemBackgroundColor.setStyle("-fx-background-color: #3ac80a;");
-        } else if (rarity.equals("unique_etech")) {
-            itemNameLabel.setTextFill(Paint.valueOf("#e700e7"));
-            itemBackgroundColor.setStyle("-fx-background-color: #e700e7;");
-        } else if (rarity.equals("unique_white")) {
-            itemNameLabel.setTextFill(Paint.valueOf("#bdbdbdff"));
-            itemBackgroundColor.setStyle("-fx-background-color: #bdbdbdff;");
-        } else if (rarity.toLowerCase().equals("seraph") || rarity.toLowerCase().equals("glitch")) {
-            itemNameLabel.setTextFill(Paint.valueOf("#ff69b4"));
-            itemBackgroundColor.setStyle("-fx-background-color: #ff69b4;");
-        } else if (rarity.toLowerCase().equals("effervescent")) {
-            itemBackgroundColor.setBackground(new Background(new BackgroundImage(effervescentBackground, null, null, null, null)));
-            itemNameLabel.setTextFill(Paint.valueOf("linear-gradient(to right, red 0%, orange 20%, yellow 40%, rgb(0, 255, 0) 60%, rgb(101, 101, 255) 80%, rgb(212, 0, 255) 100%)"));
-        }
-        //Setting size of item name text to fit in the label
-        int labelCount = itemNameLabel.getText().length();
-        int textSize = 25;
-        if (labelCount > 25) {
-            textSize = 16;
-        } else if (labelCount > 24) {
-            textSize = 17;
-        } else if (labelCount > 22) {
-            textSize = 18;
-        } else if (labelCount > 21) {
-            textSize = 19;
-        } else if (labelCount > 20) {
-            textSize = 20;
-        } else if (labelCount > 19) {
-            textSize = 21;
-        } else if (labelCount > 18) {
-            textSize = 22;
-        } else if (labelCount > 17) {
-            textSize = 23;
-        } else if (labelCount > 16) {
-            textSize = 24;
-        }
-        itemNameLabel.setStyle("-fx-font-size: " + textSize + ";");
-
-        //Item text VBox to store flavor text and sources text
-        VBox itemTextVBox = new VBox();
-        itemTextVBox.setId("itemTextVBox");
-
-        //Flavor text start
-        String[] flavorTextSplit = text.split("_");
-        for (int i = 0; i < flavorTextSplit.length; i++) {
-            Label tempFlavorTextLabel = new Label();
-            tempFlavorTextLabel.setId("flavorTextLabel");
-            tempFlavorTextLabel.setText("\u2022 " + flavorTextSplit[i]);
-            if (name.equals("Norfleet")) {
-                tempFlavorTextLabel.setStyle("-fx-text-fill:#eb8a01;");
-            } else if (flavorTextSplit[i].contains("See red text for description")) {
-                tempFlavorTextLabel.setStyle("-fx-text-fill:#3dd20b;");
-            }
-            if (!text.isEmpty()) {
-                itemTextVBox.getChildren().add(tempFlavorTextLabel);
-            }
-        }
-
-        //Sources text start
-        Label sourcesLabel = new Label("Sources");
-        sourcesLabel.setId("sourcesLabel");
-        itemTextVBox.getChildren().addAll(sourcesLabel);
-        itemTextVBox.setFillWidth(false);
-        itemTextVBox.setPadding(new Insets(0, 0, 0, 10));
-        String[] sourceTextSplit = source.split("_");
-        String[] locationTextSplit = location.split("_");
-        String[] chanceTextSplit = chance.split("_");
-        for (int i = 0; i < sourceTextSplit.length; i++) {
-            Label tempSourceTextLabel = new Label();
-            tempSourceTextLabel.setId("sourcesListLabel");
-            tempSourceTextLabel.setText("\u2022 " + sourceTextSplit[i]);
-            itemTextVBox.getChildren().addAll(tempSourceTextLabel);
-            if (!location.isEmpty()) {
-                if (!locationTextSplit[i].isEmpty()) {
-                    Tooltip tempSourceTextToolTip = new Tooltip();
-                    try {
-                        String[] chanceTextSplitSplit = chanceTextSplit[i].split("#@");
-                        String sourceString = locationTextSplit[i];
-                        for (String string : chanceTextSplitSplit) {
-                            sourceString = sourceString + "\n" + string;
-                        }
-                        tempSourceTextToolTip.setText(sourceString);
-                    } catch (Exception e) {
-                        tempSourceTextToolTip.setText(locationTextSplit[i]);
-                    }
-                    tempSourceTextToolTip.setId("toolTip");
-                    tempSourceTextLabel.setOnMouseMoved(event -> {
-                        tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-                    });
-                    tempSourceTextLabel.setOnMouseExited(event -> {
-                        tempSourceTextToolTip.hide();
-                    });
-                }
-            }
-        }
-        //Item wiki button
-        ImageView itemWikiLinkImageView = new ImageView(wikiImage);
-        itemWikiLinkImageView.setFitHeight(30);
-        itemWikiLinkImageView.setFitWidth(60);
-        Pane itemWikiLinkPane = new Pane(itemWikiLinkImageView);
-        itemWikiLinkPane.setId("itemWikiLinkPane");
-        Tooltip itemWikiLinkPaneToolTip = new Tooltip(wiki);
-        itemWikiLinkPaneToolTip.setId("toolTip");
-        itemWikiLinkPane.setOnMouseMoved(event -> {
-            itemWikiLinkPaneToolTip.show(itemWikiLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        itemWikiLinkPane.setOnMouseExited(event -> {
-            itemWikiLinkPaneToolTip.hide();
-        });
-        itemWikiLinkPane.setOnMouseClicked(event -> {
-            hostService.showDocument(wiki);
-        });
-        //Lootlemon button
-        ImageView lootlemonLinkImageView = new ImageView(miniLootlemonImage);
-        lootlemonLinkImageView.setFitHeight(30);
-        lootlemonLinkImageView.setFitWidth(17);
-        Pane lootlemonLinkPane = new Pane(lootlemonLinkImageView);
-        lootlemonLinkPane.setId("lootlemonLinkPane");
-        Tooltip lootlemonLinkPaneToolTip = new Tooltip(lootlemon);
-        lootlemonLinkPaneToolTip.setId("toolTip");
-        lootlemonLinkPane.setOnMouseMoved(event -> {
-            lootlemonLinkPaneToolTip.show(lootlemonLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        lootlemonLinkPane.setOnMouseExited(event -> {
-            lootlemonLinkPaneToolTip.hide();
-        });
-        lootlemonLinkPane.setOnMouseClicked(event -> {
-            hostService.showDocument(lootlemon);
-        });
-
-        StackPane.setMargin(itemWikiLinkPane, new Insets(130, 200, 0, -50));
-        StackPane.setMargin(lootlemonLinkPane, new Insets(130, 165, 0, 0));
-        itemImageStackPane.getChildren().addAll(itemWikiLinkPane, lootlemonLinkPane);
-
-        ScrollPane itemTextScrollPane = new ScrollPane(itemTextVBox);
-        itemTextScrollPane.setId("itemTextScrollPane");
-        
-        VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane, itemTextScrollPane);
-        itemVBox.setId("itemVBox");
-        VBox.setMargin(itemNameLabel, new Insets(5, 0 ,0, 0));
-        VBox.setMargin(itemImageStackPane, new Insets(1, 0 ,0, 0));
-        itemPane.getChildren().add(itemVBox);
-        itemPane.setId("itemPane");
-        itemPane.setCache(true);
-        itemPane.setCacheHint(CacheHint.SPEED);
-        itemPane.setVisible(true);
-        itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%" + obtained + "#%" + rarity + "#%" + source + "#%" + points + "#%" + chance);
-        //Lock the Array as multithreading can cause cards to be lost if multiple threads try to add a card at the same time
-        lock.lock();
-        try {
-            itemCardArray.add(itemPane);
-        } finally {
-            lock.unlock();
         }
     }
 }
