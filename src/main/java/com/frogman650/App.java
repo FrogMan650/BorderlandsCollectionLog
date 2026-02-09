@@ -119,31 +119,31 @@ public class App extends Application {
     public static Element profileSettingElement;
     public static Button profileDisplayButton;
 
-    public static int[] huntList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    // public static int huntBL= 0;
-    // public static int huntObtainedBL= 0;
-    // public static int huntBL2= 0;
-    // public static int huntObtainedBL2= 0;
-    // public static int huntBLTPS= 0;
-    // public static int huntObtainedBLTPS= 0;
-    // public static int huntBL3= 0;
-    // public static int huntObtainedBL3= 0;
-    // public static int huntBL4= 0;
-    // public static int huntObtainedBL4= 0;
+    // public static int[] huntList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    public static int huntBL= 0;
+    public static int huntObtainedBL= 0;
+    public static int huntBL2= 0;
+    public static int huntObtainedBL2= 0;
+    public static int huntBLTPS= 0;
+    public static int huntObtainedBLTPS= 0;
+    public static int huntBL3= 0;
+    public static int huntObtainedBL3= 0;
+    public static int huntBL4= 0;
+    public static int huntObtainedBL4= 0;
     public static Label huntItemsCollectedLabel;
     public static Label huntItemsTotalLabel;
 
-    public static int[] countList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    // public static int countBL= 0;
-    // public static int countObtainedBL= 0;
-    // public static int countBL2= 0;
-    // public static int countObtainedBL2= 0;
-    // public static int countBLTPS= 0;
-    // public static int countObtainedBLTPS= 0;
-    // public static int countBL3= 0;
-    // public static int countObtainedBL3= 0;
-    // public static int countBL4= 0;
-    // public static int countObtainedBL4= 0;
+    // public static int[] countList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    public static int countBL= 0;
+    public static int countObtainedBL= 0;
+    public static int countBL2= 0;
+    public static int countObtainedBL2= 0;
+    public static int countBLTPS= 0;
+    public static int countObtainedBLTPS= 0;
+    public static int countBL3= 0;
+    public static int countObtainedBL3= 0;
+    public static int countBL4= 0;
+    public static int countObtainedBL4= 0;
     public static Label itemsCollectedLabel;
     public static Label itemsTotalLabel;
 
@@ -1091,29 +1091,29 @@ public class App extends Application {
     //Update the banner item counters taking into account the settings
     public static void updateBannerLabels() {
         int totalItemsObtained = 0;
-        totalItemsObtained = settingsToggleButtonArray.get(2).isSelected() ? totalItemsObtained+countList[0] : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(3).isSelected() ? totalItemsObtained+countList[1] : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(4).isSelected() ? totalItemsObtained+countList[2] : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(5).isSelected() ? totalItemsObtained+countList[3] : totalItemsObtained;
-        totalItemsObtained = settingsToggleButtonArray.get(6).isSelected() ? totalItemsObtained+countList[4] : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(2).isSelected() ? totalItemsObtained+countBL : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(3).isSelected() ? totalItemsObtained+countBL2 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(4).isSelected() ? totalItemsObtained+countBLTPS : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(5).isSelected() ? totalItemsObtained+countBL3 : totalItemsObtained;
+        totalItemsObtained = settingsToggleButtonArray.get(6).isSelected() ? totalItemsObtained+countBL4 : totalItemsObtained;
         int totalItemsAvailable = 0;
-        totalItemsAvailable = settingsToggleButtonArray.get(2).isSelected() ? totalItemsAvailable+countList[5] : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(3).isSelected() ? totalItemsAvailable+countList[6] : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(4).isSelected() ? totalItemsAvailable+countList[7] : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(5).isSelected() ? totalItemsAvailable+countList[8] : totalItemsAvailable;
-        totalItemsAvailable = settingsToggleButtonArray.get(6).isSelected() ? totalItemsAvailable+countList[9] : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(2).isSelected() ? totalItemsAvailable+countObtainedBL : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(3).isSelected() ? totalItemsAvailable+countObtainedBL2 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(4).isSelected() ? totalItemsAvailable+countObtainedBLTPS : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(5).isSelected() ? totalItemsAvailable+countObtainedBL3 : totalItemsAvailable;
+        totalItemsAvailable = settingsToggleButtonArray.get(6).isSelected() ? totalItemsAvailable+countObtainedBL4 : totalItemsAvailable;
         int totalHuntPointsObtained = 0;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsObtained+huntList[0] : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsObtained+huntList[1] : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsObtained+huntList[2] : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsObtained+huntList[3] : totalHuntPointsObtained;
-        totalHuntPointsObtained = settingsToggleButtonArray.get(11).isSelected() ? totalHuntPointsObtained+huntList[4] : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsObtained+huntBL : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsObtained+huntBL2 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsObtained+huntBLTPS : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsObtained+huntBL3 : totalHuntPointsObtained;
+        totalHuntPointsObtained = settingsToggleButtonArray.get(11).isSelected() ? totalHuntPointsObtained+huntBL4 : totalHuntPointsObtained;
         int totalHuntPointsAvailable = 0;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsAvailable+huntList[5] : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsAvailable+huntList[6] : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsAvailable+huntList[7] : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsAvailable+huntList[8] : totalHuntPointsAvailable;
-        totalHuntPointsAvailable = settingsToggleButtonArray.get(11).isSelected() ? totalHuntPointsAvailable+huntList[9] : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(7).isSelected() ? totalHuntPointsAvailable+huntObtainedBL : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(8).isSelected() ? totalHuntPointsAvailable+huntObtainedBL2 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(9).isSelected() ? totalHuntPointsAvailable+huntObtainedBLTPS : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(10).isSelected() ? totalHuntPointsAvailable+huntObtainedBL3 : totalHuntPointsAvailable;
+        totalHuntPointsAvailable = settingsToggleButtonArray.get(11).isSelected() ? totalHuntPointsAvailable+huntObtainedBL4 : totalHuntPointsAvailable;
         itemsCollectedLabel.setText(""+totalItemsObtained);
         itemsTotalLabel.setText(""+totalItemsAvailable);
         huntItemsCollectedLabel.setText(""+totalHuntPointsObtained);
@@ -1142,6 +1142,7 @@ public class App extends Application {
         if (itemFlowPane.getChildren().size() < cardToLoad && itemFlowPane.getChildren().size() != itemCardFilteredArray.size()) {
             for (int i = itemFlowPane.getChildren().size(); i < cardToLoad; i++) {
                 itemFlowPane.getChildren().add(itemCardFilteredArray.get(i).getItemCard());
+                updateBannerLabels();
             }
         }
         int lowBounds = (int) Math.round(flowPaneLocation-(scrollPaneViewPortHeight+(scrollPaneViewPortHeight*scrollPaneVValue)));
@@ -1188,10 +1189,26 @@ public class App extends Application {
     //Reset all of the item counters
     public static void resetCounters() {
         totalNodes = 0;
-        for (int i = 0; i < 10; i++) {
-            huntList[i] = 0;
-            countList[i] = 0;
-        }
+        countBL= 0;
+        countObtainedBL= 0;
+        countBL2= 0;
+        countObtainedBL2= 0;
+        countBLTPS= 0;
+        countObtainedBLTPS= 0;
+        countBL3= 0;
+        countObtainedBL3= 0;
+        countBL4= 0;
+        countObtainedBL4= 0;
+        huntBL= 0;
+        huntObtainedBL= 0;
+        huntBL2= 0;
+        huntObtainedBL2= 0;
+        huntBLTPS= 0;
+        huntObtainedBLTPS= 0;
+        huntBL3= 0;
+        huntObtainedBL3= 0;
+        huntBL4= 0;
+        huntObtainedBL4= 0;
     }
 
     //Filter all item cards into an array
@@ -1428,5 +1445,10 @@ public class App extends Application {
                 }
             }
         }
+        Collections.sort(itemCardArray, new Comparator<ItemCard>() {
+            public int compare(ItemCard p1, ItemCard p2) {
+                return p1.getName().compareTo(p2.getName());
+            }
+        });
     }
 }

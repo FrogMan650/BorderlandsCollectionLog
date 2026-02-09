@@ -63,6 +63,62 @@ public class ItemCard {
         this.location = location;
         this.chance = chance;
         this.lootlemon = lootlemon;
+        if (!(chance.equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
+            if (!chance.toLowerCase().contains("phosphene") && App.settingsToggleButtonArray.get(1).isSelected()) {
+            } else {
+                App.lock.lock();
+                try {
+                    if (game.equals("")) {
+                        // gameLabel.setText("Borderlands");
+                        App.countObtainedBL ++;
+                        App.huntObtainedBL += Integer.parseInt(points);
+                    } else if (game.equals("2")) {
+                        App.countObtainedBL2 ++;
+                        App.huntObtainedBL2 += Integer.parseInt(points);
+                    } else if (game.equals("TPS")) {
+                        App.countObtainedBLTPS ++;
+                        App.huntObtainedBLTPS += Integer.parseInt(points);
+                    } else if (game.equals("3")) {
+                        App.countObtainedBL3 ++;
+                        App.huntObtainedBL3 += Integer.parseInt(points);
+                    } else if (game.equals("4")) {
+                        App.countObtainedBL4 ++;
+                        App.huntObtainedBL4 += Integer.parseInt(points);
+                    }
+                } finally {
+                    App.lock.unlock();
+                }
+            }
+        }
+        if (obtained) {
+            if (!(chance.toLowerCase().equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
+                if (!chance.toLowerCase().contains("phosphene") && App.settingsToggleButtonArray.get(1).isSelected()) {
+                } else {
+                    //lock the shared variables so only 1 thread can access them at a time
+                    App.lock.lock();
+                    try {
+                        if (game.equals("")) {
+                            App.countBL ++;
+                            App.huntBL += Integer.parseInt(points);
+                        } else if (game.equals("2")) {
+                            App.countBL2 ++;
+                            App.huntBL2 += Integer.parseInt(points);
+                        } else if (game.equals("TPS")) {
+                            App.countBLTPS ++;
+                            App.huntBLTPS += Integer.parseInt(points);
+                        } else if (game.equals("3")) {
+                            App.countBL3 ++;
+                            App.huntBL3 += Integer.parseInt(points);
+                        } else if (game.equals("4")) {
+                            App.countBL4 ++;
+                            App.huntBL4 += Integer.parseInt(points);
+                        }
+                    } finally {
+                        App.lock.unlock();
+                    }
+                }
+            }
+        }
     }
 
     public String getName() {
@@ -209,64 +265,9 @@ public class ItemCard {
         itemImageStackPane.getChildren().addAll(itemBackgroundColor, itemImageView);
         Label gameLabel = new Label("Borderlands " + game);
         gameLabel.setId("gameLabel");
-        //lock the shared variables so only 1 thread can access them at a time
-        if (!(chance.equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
-            if (!chance.toLowerCase().contains("phosphene") && App.settingsToggleButtonArray.get(1).isSelected()) {
-            } else {
-                App.lock.lock();
-                try {
-                    if (game.equals("")) {
-                        gameLabel.setText("Borderlands");
-                        App.countList[5] ++;
-                        App.huntList[5] += Integer.parseInt(points);
-                    } else if (game.equals("2")) {
-                        App.countList[6] ++;
-                        App.huntList[6] += Integer.parseInt(points);
-                    } else if (game.equals("TPS")) {
-                        App.countList[7] ++;
-                        App.huntList[7] += Integer.parseInt(points);
-                    } else if (game.equals("3")) {
-                        App.countList[8] ++;
-                        App.huntList[8] += Integer.parseInt(points);
-                    } else if (game.equals("4")) {
-                        App.countList[9] ++;
-                        App.huntList[9] += Integer.parseInt(points);
-                    }
-                } finally {
-                    App.lock.unlock();
-                }
-            }
-        }
         Pane obtainedPane = new Pane();
         if (obtained) {
             obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
-            //lock the shared variables so only 1 thread can access them at a time
-            if (!(chance.toLowerCase().equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
-                if (!chance.toLowerCase().contains("phosphene") && App.settingsToggleButtonArray.get(1).isSelected()) {
-                } else {
-                    App.lock.lock();
-                    try {
-                        if (game.equals("")) {
-                            App.countList[0] ++;
-                            App.huntList[0] += Integer.parseInt(points);
-                        } else if (game.equals("2")) {
-                            App.countList[1] ++;
-                            App.huntList[1] += Integer.parseInt(points);
-                        } else if (game.equals("TPS")) {
-                            App.countList[2] ++;
-                            App.huntList[2] += Integer.parseInt(points);
-                        } else if (game.equals("3")) {
-                            App.countList[3] ++;
-                            App.huntList[3] += Integer.parseInt(points);
-                        } else if (game.equals("4")) {
-                            App.countList[4] ++;
-                            App.huntList[4] += Integer.parseInt(points);
-                        }
-                    } finally {
-                        App.lock.unlock();
-                    }
-                }
-            }
         } else {
             obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
         }
@@ -278,62 +279,60 @@ public class ItemCard {
         //Defining what happens when you click the obtained/not obtained pane
         obtainedPane.setOnMouseClicked(event -> {
             new Thread(() -> {
-                Boolean obtainedSwitch = false;
-                NodeList saveNodes = App.saveNode.getElementsByTagName("item");
-                for (int j = 0; j < saveNodes.getLength(); j++) {
-                    Element node = (Element) saveNodes.item(j);
-                    String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
-                    String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
-                    String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();
-                    String gameNode = node.getElementsByTagName("game").item(0).getTextContent();
-                    if (name.equals(nameNode) && type.equals(typeNode) && rarity.equals(rarityNode) && gameNode.equals(game)) {
-                        Platform.runLater(() -> {
-                            obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
-                        });
-                        obtainedSwitch = true;
-                        itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%false#%" + rarity + "#%" + source + "#%" + points + "#%" + chance);
-                        if (game.equals("")) {
-                            App.countList[0] --;
-                            App.huntList[0] -= Integer.parseInt(points);
-                        } else if (game.equals("2")) {
-                            App.countList[1] --;
-                            App.huntList[1] -= Integer.parseInt(points);
-                        } else if (game.equals("TPS")) {
-                            App.countList[2] --;
-                            App.huntList[2] -= Integer.parseInt(points);
-                        } else if (game.equals("3")) {
-                            App.countList[3] --;
-                            App.huntList[3] -= Integer.parseInt(points);
-                        } else if (game.equals("4")) {
-                            App.countList[4] --;
-                            App.huntList[4] -= Integer.parseInt(points);
+                if (obtained) {
+                    Platform.runLater(() -> {
+                        obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
+                    });
+                    NodeList saveNodes = App.saveNode.getElementsByTagName("item");
+                    for (int j = 0; j < saveNodes.getLength(); j++) {
+                        Element node = (Element) saveNodes.item(j);
+                        String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
+                        String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
+                        String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();
+                        String gameNode = node.getElementsByTagName("game").item(0).getTextContent();
+                        if (name.equals(nameNode) && type.equals(typeNode) && rarity.equals(rarityNode) && gameNode.equals(game)) {
+                            App.saveNode.removeChild(node);
+                            App.writeToXml(App.saveDocument, new File(App.executableDirectory + "/saves", App.loadedProfile + ".xml"));
+                            break;
                         }
-                        App.saveNode.removeChild(node);
-                        App.writeToXml(App.saveDocument, new File(App.executableDirectory + "/saves", App.loadedProfile + ".xml"));
-                        break;
-                    } 
-                }
-                if (!obtainedSwitch) {
+                    }
+                    if (game.equals("")) {
+                        App.countBL --;
+                        App.huntBL -= Integer.parseInt(points);
+                    } else if (game.equals("2")) {
+                        App.countBL2 --;
+                        App.huntBL2 -= Integer.parseInt(points);
+                    } else if (game.equals("TPS")) {
+                        App.countBLTPS --;
+                        App.huntBLTPS -= Integer.parseInt(points);
+                    } else if (game.equals("3")) {
+                        App.countBL3 --;
+                        App.huntBL3 -= Integer.parseInt(points);
+                    } else if (game.equals("4")) {
+                        App.countBL4 --;
+                        App.huntBL4 -= Integer.parseInt(points);
+                    }
+                    obtained = false;
+                } else {
                     Platform.runLater(() -> {
                         obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
                     });
-                    itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%true#%" + rarity + "#%" + source + "#%" + points + "#%" + chance);
-                        if (game.equals("")) {
-                            App.countList[0] ++;
-                            App.huntList[0] += Integer.parseInt(points);
-                        } else if (game.equals("2")) {
-                            App.countList[1] ++;
-                            App.huntList[1] += Integer.parseInt(points);
-                        } else if (game.equals("TPS")) {
-                            App.countList[2] ++;
-                            App.huntList[2] += Integer.parseInt(points);
-                        } else if (game.equals("3")) {
-                            App.countList[3] ++;
-                            App.huntList[3] += Integer.parseInt(points);
-                        } else if (game.equals("4")) {
-                            App.countList[4] ++;
-                            App.huntList[4] += Integer.parseInt(points);
-                        }
+                    if (game.equals("")) {
+                        App.countBL ++;
+                        App.huntBL += Integer.parseInt(points);
+                    } else if (game.equals("2")) {
+                        App.countBL2 ++;
+                        App.huntBL2 += Integer.parseInt(points);
+                    } else if (game.equals("TPS")) {
+                        App.countBLTPS ++;
+                        App.huntBLTPS += Integer.parseInt(points);
+                    } else if (game.equals("3")) {
+                        App.countBL3 ++;
+                        App.huntBL3 += Integer.parseInt(points);
+                    } else if (game.equals("4")) {
+                        App.countBL4 ++;
+                        App.huntBL4 += Integer.parseInt(points);
+                    }
                     Element newItemElement = App.saveDocument.createElement("item");
                     Element newNameElement = App.saveDocument.createElement("name");
                     newNameElement.appendChild(App.saveDocument.createTextNode(name));
@@ -349,6 +348,7 @@ public class ItemCard {
                     newItemElement.appendChild(newGameElement);
                     App.saveDocument.getDocumentElement().appendChild(newItemElement);
                     App.writeToXml(App.saveDocument, new File(App.executableDirectory + "/saves", App.loadedProfile + ".xml"));
+                    obtained = true;
                 }
                 Platform.runLater(() -> {
                     App.resetDisplayedCards(App.searchTextField.getText());
@@ -521,14 +521,6 @@ public class ItemCard {
         itemPane.setCache(true);
         itemPane.setCacheHint(CacheHint.SPEED);
         itemPane.setVisible(true);
-        itemPane.setAccessibleText(name + "#%" + type + "#%" + game + "#%" + obtained + "#%" + rarity + "#%" + source + "#%" + points + "#%" + chance);
-        //Lock the Array as multithreading can cause cards to be lost if multiple threads try to add a card at the same time
-        // App.lock.lock();
-        // // try {
-        //     App.itemCardArray.add(itemPane);
-        // } finally {
-        //     App.lock.unlock();
-        // }
         return itemPane;
     }
 }
