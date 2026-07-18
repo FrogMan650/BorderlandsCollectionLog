@@ -33,6 +33,15 @@ public class ItemCard {
     private String location;
     private String chance;
     private String lootlemon;
+    private Boolean worldDrop;
+    private String dlc;
+    private String mode;
+    private String currency;
+    private String grinder;
+    private String mayhem;
+    private Boolean earl;
+    private Boolean mission;
+    private String phosphene;
 
     public ItemCard() {
         this.name = "";
@@ -47,10 +56,21 @@ public class ItemCard {
         this.location = "";
         this.chance = "";
         this.lootlemon = "";
+        this.worldDrop = false;
+        this.dlc = "";
+        this.mode = "";
+        this.currency = "";
+        this.grinder = "";
+        this.mayhem = "";
+        this.earl = false;
+        this.phosphene = "";
+        this.mission = false;
     }
 
     public ItemCard(String name, String type, String game, Boolean obtained, String rarity, 
-        String source, String text, String wiki, String points, String location, String chance, String lootlemon) {
+        String source, String text, String wiki, String points, String location, String chance, 
+        String lootlemon, Boolean worldDrop, String dlc, String mode, String currency, String grinder, 
+        String mayhem, Boolean earl, String phosphene, Boolean mission) {
         this.name = name;
         this.type = type;
         this.game = game;
@@ -63,13 +83,22 @@ public class ItemCard {
         this.location = location;
         this.chance = chance;
         this.lootlemon = lootlemon;
+        this.worldDrop = worldDrop;
+        this.dlc = dlc;
+        this.mode = mode;
+        this.currency = currency;
+        this.grinder = grinder;
+        this.mayhem = mayhem;
+        this.earl = earl;
+        this.phosphene = phosphene;
+        this.mission = mission;
         if (!(chance.equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
-            if (!chance.toLowerCase().contains("phosphene") && App.settingsToggleButtonArray.get(1).isSelected()) {
+            if (phosphene.isEmpty() && App.settingsToggleButtonArray.get(1).isSelected()) {
+            } else if (points.equals("0") && App.settingsToggleButtonArray.get(0).isSelected()) {
             } else {
                 App.lock.lock();
                 try {
                     if (game.equals("")) {
-                        // gameLabel.setText("Borderlands");
                         App.countObtainedBL ++;
                         App.huntObtainedBL += Integer.parseInt(points);
                     } else if (game.equals("2")) {
@@ -92,7 +121,8 @@ public class ItemCard {
         }
         if (obtained) {
             if (!(chance.toLowerCase().equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
-                if (!chance.toLowerCase().contains("phosphene") && App.settingsToggleButtonArray.get(1).isSelected()) {
+                if (phosphene.isEmpty() && App.settingsToggleButtonArray.get(1).isSelected()) {
+                } else if (points.equals("0") && App.settingsToggleButtonArray.get(0).isSelected()) {
                 } else {
                     //lock the shared variables so only 1 thread can access them at a time
                     App.lock.lock();
@@ -147,6 +177,18 @@ public class ItemCard {
 
     public Boolean getObtained() {
         return obtained;
+    }
+
+    public Boolean getWorldDrop() {
+        return worldDrop;
+    }
+
+    public String getPhosphene() {
+        return phosphene;
+    }
+
+    public String getDLC() {
+        return dlc;
     }
 
     public void setObtained(Boolean obtained) {
@@ -416,6 +458,8 @@ public class ItemCard {
         //Item text VBox to store flavor text and sources text
         VBox itemTextVBox = new VBox();
         itemTextVBox.setId("itemTextVBox");
+        itemTextVBox.setFillWidth(false);
+        itemTextVBox.setPadding(new Insets(0, 0, 0, 10));
 
         //Flavor text start
         String[] flavorTextSplit = text.split("_");
@@ -430,53 +474,56 @@ public class ItemCard {
             }
             if (!text.isEmpty()) {
                 itemTextVBox.getChildren().add(tempFlavorTextLabel);
+            } else {
+                tempFlavorTextLabel.setText("");
+                itemTextVBox.getChildren().add(tempFlavorTextLabel);
             }
         }
 
         //Sources text start
-        Label sourcesLabel = new Label("Sources");
-        sourcesLabel.setId("sourcesLabel");
-        itemTextVBox.getChildren().addAll(sourcesLabel);
-        itemTextVBox.setFillWidth(false);
-        itemTextVBox.setPadding(new Insets(0, 0, 0, 10));
-        String[] sourceTextSplit = source.split("_");
-        String[] locationTextSplit = location.split("_");
-        String[] chanceTextSplit = chance.split("_");
-        for (int i = 0; i < sourceTextSplit.length; i++) {
-            Label tempSourceTextLabel = new Label();
-            tempSourceTextLabel.setId("sourcesListLabel");
-            tempSourceTextLabel.setText("\u2022 " + sourceTextSplit[i]);
-            itemTextVBox.getChildren().addAll(tempSourceTextLabel);
-            if (!location.isEmpty()) {
-                if (!locationTextSplit[i].isEmpty()) {
-                    Tooltip tempSourceTextToolTip = new Tooltip();
-                    try {
-                        String[] chanceTextSplitSplit = chanceTextSplit[i].split("#@");
-                        String sourceString = locationTextSplit[i];
-                        for (String string : chanceTextSplitSplit) {
-                            sourceString = sourceString + "\n" + string;
+        if (!source.isEmpty()) {
+            Label sourcesLabel = new Label("Sources");
+            sourcesLabel.setId("sourcesLabel");
+            itemTextVBox.getChildren().addAll(sourcesLabel);
+            String[] sourceTextSplit = source.split("_");
+            String[] locationTextSplit = location.split("_");
+            String[] chanceTextSplit = chance.split("_");
+            for (int i = 0; i < sourceTextSplit.length; i++) {
+                Label tempSourceTextLabel = new Label();
+                tempSourceTextLabel.setId("sourcesListLabel");
+                tempSourceTextLabel.setText("\u2022 " + sourceTextSplit[i]);
+                itemTextVBox.getChildren().addAll(tempSourceTextLabel);
+                if (!location.isEmpty()) {
+                    if (!locationTextSplit[i].isEmpty()) {
+                        Tooltip tempSourceTextToolTip = new Tooltip();
+                        try {
+                            String[] chanceTextSplitSplit = chanceTextSplit[i].split("#@");
+                            String sourceString = locationTextSplit[i];
+                            for (String string : chanceTextSplitSplit) {
+                                sourceString = sourceString + "\n" + string;
+                            }
+                            tempSourceTextToolTip.setText(sourceString);
+                        } catch (Exception e) {
+                            tempSourceTextToolTip.setText(locationTextSplit[i]);
                         }
-                        tempSourceTextToolTip.setText(sourceString);
-                    } catch (Exception e) {
-                        tempSourceTextToolTip.setText(locationTextSplit[i]);
+                        tempSourceTextToolTip.setId("toolTip");
+                        tempSourceTextLabel.setOnMouseMoved(event -> {
+                            tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
+                        });
+                        tempSourceTextLabel.setOnMouseExited(event -> {
+                            tempSourceTextToolTip.hide();
+                        });
                     }
-                    tempSourceTextToolTip.setId("toolTip");
-                    tempSourceTextLabel.setOnMouseMoved(event -> {
-                        tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-                    });
-                    tempSourceTextLabel.setOnMouseExited(event -> {
-                        tempSourceTextToolTip.hide();
-                    });
                 }
-            }
+            } 
         }
-        //Item wiki button
-        ImageView itemWikiLinkImageView = new ImageView(App.wikiImage);
-        itemWikiLinkImageView.setFitHeight(30);
-        itemWikiLinkImageView.setFitWidth(60);
+        //Indicator tray start
+        HBox indicatorTray = new HBox();
+        //Item wiki indicator button
+        ImageView itemWikiLinkImageView = new ImageView(App.wikiMiniImage);
         Pane itemWikiLinkPane = new Pane(itemWikiLinkImageView);
-        itemWikiLinkPane.setId("itemWikiLinkPane");
-        Tooltip itemWikiLinkPaneToolTip = new Tooltip(wiki);
+        itemWikiLinkPane.setId("indicatorLink");
+        Tooltip itemWikiLinkPaneToolTip = new Tooltip("Borderlands Wiki\n" + wiki);
         itemWikiLinkPaneToolTip.setId("toolTip");
         itemWikiLinkPane.setOnMouseMoved(event -> {
             itemWikiLinkPaneToolTip.show(itemWikiLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -487,13 +534,13 @@ public class ItemCard {
         itemWikiLinkPane.setOnMouseClicked(event -> {
             App.hostService.showDocument(wiki);
         });
-        //Lootlemon button
+        indicatorTray.getChildren().add(itemWikiLinkPane);
+        //Lootlemon indicator button
         ImageView lootlemonLinkImageView = new ImageView(App.miniLootlemonImage);
-        lootlemonLinkImageView.setFitHeight(30);
         lootlemonLinkImageView.setFitWidth(17);
         Pane lootlemonLinkPane = new Pane(lootlemonLinkImageView);
-        lootlemonLinkPane.setId("lootlemonLinkPane");
-        Tooltip lootlemonLinkPaneToolTip = new Tooltip(lootlemon);
+        lootlemonLinkPane.setId("indicatorLink");
+        Tooltip lootlemonLinkPaneToolTip = new Tooltip("LootLemon\n" + lootlemon);
         lootlemonLinkPaneToolTip.setId("toolTip");
         lootlemonLinkPane.setOnMouseMoved(event -> {
             lootlemonLinkPaneToolTip.show(lootlemonLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -504,18 +551,149 @@ public class ItemCard {
         lootlemonLinkPane.setOnMouseClicked(event -> {
             App.hostService.showDocument(lootlemon);
         });
+        indicatorTray.getChildren().add(lootlemonLinkPane);
+        //World drop indicator
+        if (worldDrop) {
+            ImageView worldDropImageView = new ImageView(App.worldDropImage);
+            Tooltip worldDropToolTip = new Tooltip("World drop");
+            worldDropToolTip.setId("toolTip");
+            worldDropImageView.setOnMouseMoved(event -> {
+                worldDropToolTip.show(worldDropImageView, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            worldDropImageView.setOnMouseExited(event -> {
+                worldDropToolTip.hide();
+            }); 
+            indicatorTray.getChildren().add(worldDropImageView);
+        }
+        //DLC indicator
+        if (!dlc.isEmpty()) {
+            ImageView dlcImageView = new ImageView(App.dlcImage);
+            Pane dlcPane = new Pane(dlcImageView);
+            Tooltip dlcToolTip = new Tooltip("DLC required\n" + dlc);
+            dlcToolTip.setId("toolTip");
+            dlcPane.setOnMouseMoved(event -> {
+                dlcToolTip.show(dlcPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            dlcPane.setOnMouseExited(event -> {
+                dlcToolTip.hide();
+            });
+            indicatorTray.getChildren().add(dlcPane);
+        }
+        //Mission indicator
+        if (mission) {
+            ImageView missionImageView = new ImageView(App.missionImage);
+            Pane missionPane = new Pane(missionImageView);
+            Tooltip missionToolTip = new Tooltip("Mission reward");
+            missionToolTip.setId("toolTip");
+            missionPane.setOnMouseMoved(event -> {
+                missionToolTip.show(missionPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            missionPane.setOnMouseExited(event -> {
+                missionToolTip.hide();
+            });
+            indicatorTray.getChildren().add(missionPane);
+        }
+        //BL2 game mode indicator
+        if (!mode.isEmpty()) {
+            ImageView gameModeImageView = new ImageView(App.gameModeImage);
+            Pane gameModePane = new Pane(gameModeImageView);
+            Tooltip gameModeToolTip = new Tooltip(mode + " required");
+            gameModeToolTip.setId("toolTip");
+            gameModePane.setOnMouseMoved(event -> {
+                gameModeToolTip.show(gameModePane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            gameModePane.setOnMouseExited(event -> {
+                gameModeToolTip.hide();
+            }); 
+            indicatorTray.getChildren().add(gameModePane);
+        }
+        //BL2 currency indicator
+        if (!currency.isEmpty()) {
+            String currencyText = currency.equals("torgue") ? "Torgue tokens" : currency + " Seraph crystals";
+            ImageView currencyImageView = new ImageView();
+            if (currency.equals("torgue")) {
+                currencyImageView.setImage(App.torgueImage);
+            } else {
+                currencyImageView.setImage(App.seraphImage);
+            }
+            Pane currencyPane = new Pane(currencyImageView);
+            Tooltip currencyToolTip = new Tooltip("Can be bought with\n" + currencyText);
+            currencyToolTip.setId("toolTip");
+            currencyPane.setOnMouseMoved(event -> {
+                currencyToolTip.show(currencyPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            currencyPane.setOnMouseExited(event -> {
+                currencyToolTip.hide();
+            });
+            indicatorTray.getChildren().add(currencyPane);
+        }
+        //BLTPS grinder indicator
+        if (!grinder.isEmpty()) {
+            ImageView grinderImageView = new ImageView(App.grinderImage);
+            Pane grinderPane = new Pane(grinderImageView);
+            Tooltip grinderToolTip = new Tooltip("Obtainable from the Grinder\n" + grinder);
+            grinderToolTip.setId("toolTip");
+            grinderPane.setOnMouseMoved(event -> {
+                grinderToolTip.show(grinderPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            grinderPane.setOnMouseExited(event -> {
+                grinderToolTip.hide();
+            });  
+            indicatorTray.getChildren().add(grinderPane);
+        }
+        //BL3 mayhem indicator
+        if (!mayhem.isEmpty()) {
+            ImageView mayhemImageView = new ImageView(App.mayhemImage);
+            Pane mayhemPane = new Pane(mayhemImageView);
+            Tooltip mayhemToolTip = new Tooltip("Mayhem " + mayhem + " required");
+            mayhemToolTip.setId("toolTip");
+            mayhemPane.setOnMouseMoved(event -> {
+                mayhemToolTip.show(mayhemPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            mayhemPane.setOnMouseExited(event -> {
+                mayhemToolTip.hide();
+            }); 
+            indicatorTray.getChildren().add(mayhemPane);
+        }
+        //BL3 earl indicator
+        if (earl) {
+            ImageView earlImageView = new ImageView(App.earlImage);
+            Pane earlPane = new Pane(earlImageView);
+            Tooltip earlToolTip = new Tooltip("Reobtainable from Earl's\nVeteran Rewards Vending Machine");
+            earlToolTip.setId("toolTip");
+            earlPane.setOnMouseMoved(event -> {
+                earlToolTip.show(earlPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            earlPane.setOnMouseExited(event -> {
+                earlToolTip.hide();
+            }); 
+            indicatorTray.getChildren().add(earlPane);
+        }
+        //BL4 Phosphene indicator
+        if (!phosphene.isEmpty()) {
+            ImageView phospheneImageView = new ImageView(App.phospheneImage);
+            Tooltip phospheneToolTip = new Tooltip("Phosphene\n" + phosphene);
+            phospheneToolTip.setId("toolTip");
+            phospheneImageView.setOnMouseMoved(event -> {
+                phospheneToolTip.show(phospheneImageView, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            phospheneImageView.setOnMouseExited(event -> {
+                phospheneToolTip.hide();
+            }); 
+            indicatorTray.getChildren().add(phospheneImageView);
+        }
 
-        StackPane.setMargin(itemWikiLinkPane, new Insets(130, 200, 0, -50));
-        StackPane.setMargin(lootlemonLinkPane, new Insets(130, 165, 0, 0));
-        itemImageStackPane.getChildren().addAll(itemWikiLinkPane, lootlemonLinkPane);
+        indicatorTray.setSpacing(5);
+        itemImageStackPane.getChildren().addAll(indicatorTray);
 
         ScrollPane itemTextScrollPane = new ScrollPane(itemTextVBox);
         itemTextScrollPane.setId("itemTextScrollPane");
         
-        VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane, itemTextScrollPane);
+        VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane, itemTextScrollPane, indicatorTray);
         itemVBox.setId("itemVBox");
         VBox.setMargin(itemNameLabel, new Insets(5, 0 ,0, 0));
         VBox.setMargin(itemImageStackPane, new Insets(1, 0 ,0, 0));
+        VBox.setMargin(indicatorTray, new Insets(0, 0 ,0, 10));
         itemPane.getChildren().add(itemVBox);
         itemPane.setId("itemPane");
         itemPane.setCache(true);

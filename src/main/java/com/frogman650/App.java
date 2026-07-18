@@ -69,6 +69,7 @@ public class App extends Application {
     //Item spreadsheet: https://docs.google.com/spreadsheets/d/1W7sitzbmaNyniM4CwMG44fDkvS6bWYgrKa3ZrBdT-Nk/edit?usp=sharing
     public static Image icon;
     public static Image wikiImage;
+    public static Image wikiMiniImage;
     public static Image miniLootlemonImage;
     public static Image lootlemonImage;
     public static Image obtainedImage;
@@ -95,6 +96,16 @@ public class App extends Application {
     public static Image theHuntImage;
     public static Image settingsImage;
     public static Image settingsHoverImage;
+    public static Image phospheneImage;
+    public static Image worldDropImage;
+    public static Image mayhemImage;
+    public static Image dlcImage;
+    public static Image grinderImage;
+    public static Image seraphImage;
+    public static Image torgueImage;
+    public static Image earlImage;
+    public static Image gameModeImage;
+    public static Image missionImage;
     public static FlowPane itemFlowPane;
     public static ScrollPane itemScrollPane;
     public static TextField searchTextField;
@@ -160,7 +171,8 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Font willowBody = Font.loadFont(getClass().getResourceAsStream("WillowBody-Regular.ttf"), 10);
         icon = new Image(getClass().getResourceAsStream("BLCL_logo_mini.png"));
-        wikiImage = new Image(getClass().getResourceAsStream("Wiki_logo_mini.png"));
+        wikiImage = new Image(getClass().getResourceAsStream("Wiki_logo.png"));
+        wikiMiniImage = new Image(getClass().getResourceAsStream("Wiki_logo_mini.png"));
         miniLootlemonImage = new Image(getClass().getResourceAsStream("lootlemon_mini.png"));
         lootlemonImage = new Image(getClass().getResourceAsStream("lootlemon_cropped.png"));
         obtainedImage = new Image(getClass().getResourceAsStream("obtained.png"));
@@ -187,6 +199,16 @@ public class App extends Application {
         theHuntImage = new Image(getClass().getResourceAsStream("Hunt_logo_mini.png"));
         settingsImage = new Image(getClass().getResourceAsStream("settings.png"));
         settingsHoverImage = new Image(getClass().getResourceAsStream("settings_hover.png"));
+        phospheneImage = new Image(getClass().getResourceAsStream("phosphene_indicator.png"));
+        worldDropImage = new Image(getClass().getResourceAsStream("world_drop.png"));
+        mayhemImage = new Image(getClass().getResourceAsStream("mayhem_indicator.png"));
+        grinderImage = new Image(getClass().getResourceAsStream("grinder_indicator.png"));
+        earlImage = new Image(getClass().getResourceAsStream("earl_indicator.png"));
+        seraphImage = new Image(getClass().getResourceAsStream("seraph_indicator.png"));
+        torgueImage = new Image(getClass().getResourceAsStream("torgue_indicator.png"));
+        gameModeImage = new Image(getClass().getResourceAsStream("game_mode_indicator.png"));
+        missionImage = new Image(getClass().getResourceAsStream("mission_indicator.png"));
+        dlcImage = new Image(getClass().getResourceAsStream("dlc_indicator.png"));
         hostService = getHostServices();
 
         URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
@@ -323,11 +345,13 @@ public class App extends Application {
         toggleButtonArray.add(obtainedToggleButton);
         ToggleButton notObtainedToggleButton = new ToggleButton("Not Obtained");//29
         toggleButtonArray.add(notObtainedToggleButton);
-        ToggleButton worldDropToggleButton = new ToggleButton("World Drop");//30
+        ToggleButton DLCToggleButton = new ToggleButton("DLC");//30
+        toggleButtonArray.add(DLCToggleButton);
+        ToggleButton worldDropToggleButton = new ToggleButton("World Drop");//31
         toggleButtonArray.add(worldDropToggleButton);
-        ToggleButton nonWorldDropToggleButton = new ToggleButton("Non World Drop");//31
+        ToggleButton nonWorldDropToggleButton = new ToggleButton("Non World Drop");//32
         toggleButtonArray.add(nonWorldDropToggleButton);
-        ToggleButton nonHuntToggleButton = new ToggleButton("Non Hunt");//32
+        ToggleButton nonHuntToggleButton = new ToggleButton("Non Hunt");//33
         toggleButtonArray.add(nonHuntToggleButton);
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             int toggleButton = i;
@@ -345,7 +369,7 @@ public class App extends Application {
                 }).start();
             });
         }
-        filterVBox.getChildren().addAll(miscLabel, obtainedToggleButton, notObtainedToggleButton, 
+        filterVBox.getChildren().addAll(miscLabel, obtainedToggleButton, notObtainedToggleButton, DLCToggleButton, 
         worldDropToggleButton, nonWorldDropToggleButton, nonHuntToggleButton);
         filterVBox.setId("filterVBox");
         ScrollPane filterScrollPane = new ScrollPane(filterVBox);
@@ -614,8 +638,8 @@ public class App extends Application {
         modeSelectionLabel.setStyle("-fx-cursor: none;");
         ToggleButton huntModeToggleButton = new ToggleButton("Hunt Mode");//0
         settingsToggleButtonArray.add(huntModeToggleButton);
-        Tooltip huntModeToolTip = new Tooltip("Hunt Mode will only show items\n" +
-        "worth Hunt points and their sources will\nbetter reflect The Hunt rules." +
+        Tooltip huntModeToolTip = new Tooltip("Hunt Mode will only show\nitems " +
+        "worth Hunt points." +
         "\nMore information on rules and regulations for\n The Hunt can be found on borderlandshunt.com.");
         huntModeToolTip.setId("toolTip");
         huntModeToggleButton.setOnMouseMoved(event -> {
@@ -710,7 +734,7 @@ public class App extends Application {
             }).start();
         });
         settingsVBox.getChildren().addAll(miscSettingLabel, toggleButtonHideUnobtainable);
-        for (int i = 1; i < 11; i++) {
+        for (int i = 1; i < 12; i++) {
             int toggleButton = i;
             settingsToggleButtonArray.get(toggleButton).setOnAction(event -> {
                 Element settingElement = (Element) settingsNodes.item(toggleButton);
@@ -796,10 +820,9 @@ public class App extends Application {
         //Wiki image with link
         ImageView wikiLinkImageView = new ImageView(wikiImage);
         wikiLinkImageView.setFitHeight(48);
-        wikiLinkImageView.setFitWidth(87);
         Pane wikiViewPane = new Pane(wikiLinkImageView);
         wikiViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip wikiViewPaneToolTip = new Tooltip("https://borderlands.fandom.com/wiki/Borderlands_Wiki");
+        Tooltip wikiViewPaneToolTip = new Tooltip("Borderlands Wiki\nhttps://borderlands.fandom.com/wiki/Borderlands_Wiki");
         wikiViewPaneToolTip.setId("toolTip");
         wikiViewPane.setOnMouseMoved(event -> {
             wikiViewPaneToolTip.show(wikiViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -816,7 +839,7 @@ public class App extends Application {
         lootlemonImageView.setFitWidth(26);
         Pane lootlemonViewPane = new Pane(lootlemonImageView);
         lootlemonViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip lootlemonViewPaneToolTip = new Tooltip("https://www.lootlemon.com/");
+        Tooltip lootlemonViewPaneToolTip = new Tooltip("LootLemon\nhttps://www.lootlemon.com/");
         lootlemonViewPaneToolTip.setId("toolTip");
         lootlemonViewPane.setOnMouseMoved(event -> {
             lootlemonViewPaneToolTip.show(lootlemonViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -1224,6 +1247,9 @@ public class App extends Application {
             String source = itemCardArray.get(i).getSource().toLowerCase();
             String points = itemCardArray.get(i).getPoints();
             String chance = itemCardArray.get(i).getChance().toLowerCase();
+            Boolean phosphene = !itemCardArray.get(i).getPhosphene().toLowerCase().isEmpty();
+            Boolean worldDrop = itemCardArray.get(i).getWorldDrop();
+            String dlc = itemCardArray.get(i).getDLC();
             if (game.equals("") && !toggleButtonArray.get(23).isSelected()) {
                 continue;
             } else if (game.equals("2") && !toggleButtonArray.get(24).isSelected()) {
@@ -1288,15 +1314,17 @@ public class App extends Application {
                 continue;
             } else if (!name.contains(searchTerm) && !source.contains(searchTerm)) {
                 continue;
-            } else if (!source.contains("any suitable loot source") && !toggleButtonArray.get(31).isSelected()) {
+            } else if (!worldDrop && !toggleButtonArray.get(32).isSelected()) {
                 continue;
-            } else if (source.contains("any suitable loot source") && !toggleButtonArray.get(30).isSelected()) {
+            } else if (worldDrop && !toggleButtonArray.get(31).isSelected()) {
                 continue;
             } else if (points.equals("0") && (!toggleButtonArray.get(32).isSelected() || settingsToggleButtonArray.get(0).isSelected())) {
                 continue;
             } else if (chance.equals("unobtainable") && settingsToggleButtonArray.get(12).isSelected()) {
                 continue;
-            } else if (!chance.contains("phosphene") && settingsToggleButtonArray.get(1).isSelected()) {
+            } else if (!phosphene && settingsToggleButtonArray.get(1).isSelected()) {
+                continue;
+            } else if (!dlc.isEmpty() && !toggleButtonArray.get(30).isSelected()) {
                 continue;
             }
             totalNodes ++;
@@ -1410,22 +1438,15 @@ public class App extends Application {
                     String type = itemNode.getElementsByTagName("type").item(0).getTextContent();
                     String game = itemNode.getElementsByTagName("game").item(0).getTextContent();
                     String rarity = itemNode.getElementsByTagName("rarity").item(0).getTextContent();
-                    String source;
-                    String location;
-                    String chance;
-                    if (settingsToggleButtonArray.get(0).isSelected()) {
-                        source = itemNode.getElementsByTagName("source_hunt").item(0).getTextContent();
-                        location = itemNode.getElementsByTagName("location_hunt").item(0).getTextContent();
-                        chance = itemNode.getElementsByTagName("chance_hunt").item(0).getTextContent();
-                    } else {
-                        source = itemNode.getElementsByTagName("source").item(0).getTextContent();
-                        location = itemNode.getElementsByTagName("location").item(0).getTextContent();
-                        chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
-                    }
+                    String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
                     String text = itemNode.getElementsByTagName("text").item(0).getTextContent();
                     String wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
                     String lootlemon = itemNode.getElementsByTagName("lootlemon").item(0).getTextContent();
-                    String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
+                    String source = itemNode.getElementsByTagName("source").item(0).getTextContent();
+                    String location = itemNode.getElementsByTagName("location").item(0).getTextContent();
+                    String chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
+                    String worldDropText = itemNode.getElementsByTagName("worldDrop").item(0).getTextContent();
+                    String dlc = itemNode.getElementsByTagName("dlc").item(0).getTextContent();
                     String obtainedText = "false";
                     NodeList saveNodes = saveNode.getElementsByTagName("item");
                     for (int j = 0; j < saveNodes.getLength(); j++) {
@@ -1440,8 +1461,40 @@ public class App extends Application {
                             break;
                         }
                     }
+                    String mode = "";
+                    try {
+                        mode = itemNode.getElementsByTagName("mode").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String currency = "";
+                    try {
+                        currency = itemNode.getElementsByTagName("currency").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String grinder = "";
+                    try {
+                        grinder = itemNode.getElementsByTagName("grinder").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String mayhem = "";
+                    try {
+                        mayhem = itemNode.getElementsByTagName("mayhem").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String earlText = "";
+                    try {
+                        earlText = itemNode.getElementsByTagName("earl").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String phosphene = "";
+                    try {
+                        phosphene = itemNode.getElementsByTagName("phosphene").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    Boolean mission = false;
+                    try {
+                        String missionText = itemNode.getElementsByTagName("mission").item(0).getTextContent();
+                        mission = Boolean.parseBoolean(missionText);
+                    } catch (Exception e) { }
                     Boolean obtained = Boolean.parseBoolean(obtainedText);
-                    itemCardArray.add(new ItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance, lootlemon));
+                    Boolean worldDrop = Boolean.parseBoolean(worldDropText);
+                    Boolean earl = Boolean.parseBoolean(earlText);
+                    itemCardArray.add(new ItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance, lootlemon, 
+                        worldDrop, dlc, mode, currency, grinder, mayhem, earl, phosphene, mission));
                 }
             }
         }

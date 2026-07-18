@@ -117,10 +117,13 @@
     -fx-alignment: TOP_CENTER;
 }
 
+#indicatorTray {
+}
+
 #itemTextScrollPane {
     -fx-max-width: 320;
     -fx-hbar-policy: NEVER;
-    -fx-pref-height: 230;
+    -fx-pref-height: 182;
 }
 
 .scroll-bar:vertical, .scroll-bar:vertical .increment-button, .scroll-bar:vertical .decrement-button , .scroll-bar:vertical .increment-arrow , .scroll-bar:vertical .decrement-arrow {
@@ -138,16 +141,12 @@
     -fx-max-width: 310;
 }
 
-#itemWikiLinkPane {
+#indicatorLink {
     -fx-cursor: hand;
-    -fx-max-width: 60;
-    -fx-max-height: 30;
 }
 
-#lootlemonLinkPane {
-    -fx-cursor: hand;
-    -fx-max-width: 17;
-    -fx-max-height: 30;
+#indicator {
+    
 }
 
 #itemBottomHBox {

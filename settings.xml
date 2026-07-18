@@ -124,6 +124,10 @@
 		<enabled>true</enabled>
 	</filter>
 	<filter>
+		<name>dlc</name>
+		<enabled>true</enabled>
+	</filter>
+	<filter>
 		<name>non world drop</name>
 		<enabled>true</enabled>
 	</filter>
