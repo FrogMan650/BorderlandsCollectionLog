@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
@@ -106,12 +107,13 @@ public class App extends Application {
     public static Image earlImage;
     public static Image gameModeImage;
     public static Image missionImage;
+
     public static FlowPane itemFlowPane;
     public static ScrollPane itemScrollPane;
     public static TextField searchTextField;
     public static Document settingsDocument;
-    public static Document saveDocument;
-    public static Element saveNode;
+    public static Document profileDocument;
+    public static Element profileNode;
     public static NodeList filterNodes;
     public static NodeList settingsNodes;
     public static ArrayList<ItemCard> itemCardArray = new ArrayList<>();
@@ -120,17 +122,16 @@ public class App extends Application {
     public static ArrayList<ToggleButton> settingsToggleButtonArray = new ArrayList<>();
     public static File itemsXML;
     public static File settingsXML;
-    public static File saveXML;
+    public static File profileXML;
     public static File logFile;
     public static HostServices hostService;
     public static Lock lock = new ReentrantLock();
-    public static ArrayList<String> saveFiles = new ArrayList<>();
+    public static ArrayList<String> profiles = new ArrayList<>();
     public static String loadedProfile;
     public static ComboBox<String> profileCombobox;
     public static Element profileSettingElement;
     public static Button profileDisplayButton;
 
-    // public static int[] huntList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public static int huntBL= 0;
     public static int huntObtainedBL= 0;
     public static int huntBL2= 0;
@@ -144,7 +145,6 @@ public class App extends Application {
     public static Label huntItemsCollectedLabel;
     public static Label huntItemsTotalLabel;
 
-    // public static int[] countList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public static int countBL= 0;
     public static int countObtainedBL= 0;
     public static int countBL2= 0;
@@ -161,6 +161,7 @@ public class App extends Application {
     public static DocumentBuilderFactory factory;
     public static DocumentBuilder builder;
     public static File executableDirectory;
+    public static File appDataDirectory;
     public static int totalNodes = 0;
 
     public static void main(String[] args) throws Exception {
@@ -210,30 +211,79 @@ public class App extends Application {
         missionImage = new Image(getClass().getResourceAsStream("mission_indicator.png"));
         dlcImage = new Image(getClass().getResourceAsStream("dlc_indicator.png"));
         hostService = getHostServices();
-
-        URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
-        executableDirectory = Paths.get(uri).getParent().toFile();
-        settingsXML = new File(executableDirectory, "settings.xml");
-        logFile = new File(executableDirectory, "logs.txt");
-
+        
         factory = DocumentBuilderFactory.newInstance();
         builder = factory.newDocumentBuilder();
+
+        //Directories and files start
+        //Get/create the users AppData/Local/BorderlandsCollectionLog directory
+        String appDataString = System.getenv("LOCALAPPDATA") + "/BorderlandsCollectionLog";
+        Path appDataPath = Paths.get(appDataString);
+        appDataDirectory = appDataPath.toFile();
+        if (!appDataDirectory.exists()) {
+            try {
+                Files.createDirectory(appDataDirectory.toPath());
+            } catch (Exception e) {
+                System.out.println("Error creating AppData/Local/BorderlandsCollectionLog folder:\n" + e);
+            }
+        }
+        //Get executable directory
+        URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
+        executableDirectory = Paths.get(uri).getParent().toFile();
+        //Get/create settings file
+        settingsXML = new File(appDataDirectory, "settings.xml");
+        if (!settingsXML.exists()) {
+            try {
+                settingsXML.createNewFile();
+                Files.write(settingsXML.toPath(), "<settings></settings>".getBytes());
+            } catch (Exception e) {
+                System.out.println("Error creating settings.xml file:\n" + e);
+            }
+        }
         settingsDocument = builder.parse(settingsXML);
         settingsNodes = settingsDocument.getDocumentElement().getElementsByTagName("setting");
-        getSaveFiles();
-
-        NodeList profileNode = settingsDocument.getDocumentElement().getElementsByTagName("profile");
-        profileSettingElement = (Element) profileNode.item(0);
+        filterNodes = settingsDocument.getDocumentElement().getElementsByTagName("filter");
+        //Get/create log file
+        logFile = new File(appDataDirectory, "logs.txt");
+        if (!logFile.exists()) {
+            try {
+                logFile.createNewFile();
+            } catch (Exception e) {
+                System.out.println("Error creating logs.txt file:\n" + e);
+            }
+        }
+        //Get/create profile directory and files
+        File profileDirectory = new File(appDataDirectory, "profiles");
+        if (!profileDirectory.exists()) {
+            try {
+                Files.createDirectory(profileDirectory.toPath());
+            } catch (Exception e) {
+                System.out.println("Error creating AppData/Local/BorderlandsCollectionLog/profiles folder:\n" + e);
+            }
+        }
+        getProfiles();
+        NodeList profileNodes = settingsDocument.getDocumentElement().getElementsByTagName("profile");
+        profileSettingElement = (Element) profileNodes.item(0);
+        if (profileSettingElement == null) {
+                Element root = settingsDocument.getDocumentElement();
+                Element newProfileElement = settingsDocument.createElement("profile");
+                Element profileNameElement = settingsDocument.createElement("name");
+                profileNameElement.appendChild(settingsDocument.createTextNode(profiles.get(0)));
+                newProfileElement.appendChild(profileNameElement);
+                root.appendChild(newProfileElement);
+                writeToXml(settingsDocument, settingsXML);
+                profileNodes = settingsDocument.getDocumentElement().getElementsByTagName("profile");
+                profileSettingElement = (Element) profileNodes.item(0);
+            }
         loadedProfile = profileSettingElement.getElementsByTagName("name").item(0).getTextContent();
-        if (!saveFiles.contains(loadedProfile)) {
-            loadedProfile = saveFiles.get(0);
+        if (!profiles.contains(loadedProfile)) {
+            loadedProfile = profiles.get(0);
             profileSettingElement.getElementsByTagName("name").item(0).setTextContent(loadedProfile);
             writeToXml(settingsDocument, settingsXML);
         }
-        saveXML = new File(executableDirectory + "/saves", loadedProfile +".xml");
-        saveDocument = builder.parse(saveXML);
-        saveNode = saveDocument.getDocumentElement();
-        filterNodes = settingsDocument.getDocumentElement().getElementsByTagName("filter");
+        profileXML = new File(appDataDirectory + "/profiles", loadedProfile +".xml");
+        profileDocument = builder.parse(profileXML);
+        profileNode = profileDocument.getDocumentElement();
 
         //Item cards holder
         itemFlowPane = new FlowPane();
@@ -484,7 +534,7 @@ public class App extends Application {
         loadProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File profileToLoad = new File(executableDirectory.getPath() + "/saves", newProfile + ".xml");
+                File profileToLoad = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
                 if (profileToLoad.exists()) {
                     updateProfileInfo(newProfile);
                     profileCombobox.setValue("");
@@ -507,9 +557,9 @@ public class App extends Application {
         createNewProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File newSave = new File(executableDirectory.getPath() + "/saves", newProfile + ".xml");
-                if (!newSave.exists()) {
-                    Files.write(newSave.toPath(), "<items></items>".getBytes());
+                File newProfileFile = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
+                if (!newProfileFile.exists()) {
+                    Files.write(newProfileFile.toPath(), "<items></items>".getBytes());
                     updateProfileInfo(newProfile);
                     profileCombobox.setValue("");
                     profileDisplayToolTip.setText(newProfile);
@@ -531,10 +581,10 @@ public class App extends Application {
         renameProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File oldSave = new File(executableDirectory.getPath() + "/saves", loadedProfile + ".xml");
-                File newSave = new File(executableDirectory.getPath() + "/saves", newProfile + ".xml");
-                if (!newSave.exists()) {
-                    Files.move(oldSave.toPath(), newSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                File oldProfileFile = new File(appDataDirectory.getPath() + "/profiles", loadedProfile + ".xml");
+                File newProfileFile = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
+                if (!newProfileFile.exists()) {
+                    Files.move(oldProfileFile.toPath(), newProfileFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     updateProfileInfo(newProfile);
                     profileCombobox.setValue("");
                     profileDisplayToolTip.setText(newProfile);
@@ -556,8 +606,8 @@ public class App extends Application {
         resetProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File selectedProfile = new File(executableDirectory.getPath() + "/saves", newProfile + ".xml");
-                File currentProfile = new File(executableDirectory.getPath() + "/saves", loadedProfile + ".xml");
+                File selectedProfile = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File currentProfile = new File(appDataDirectory.getPath() + "/profiles", loadedProfile + ".xml");
                 if (resetProfileButton.getText().equals("Reset Profile")) {
                     resetProfileButton.setText("REALLY?");
                 } else if (resetProfileButton.getText().equals("REALLY?")) {
@@ -565,13 +615,13 @@ public class App extends Application {
                 } else if (resetProfileButton.getText().equals("REALLLLY???!??")) {
                     resetProfileButton.setText("Reset Profile");
                     if (selectedProfile.exists()) {
-                        Document selectedSaveDocument = builder.parse(selectedProfile);
-                        Element selectedSaveNode = selectedSaveDocument.getDocumentElement();
-                        NodeList childNodes = selectedSaveNode.getChildNodes();
+                        Document selectedProfileDocument = builder.parse(selectedProfile);
+                        Element selectedProfileNode = selectedProfileDocument.getDocumentElement();
+                        NodeList childNodes = selectedProfileNode.getChildNodes();
                         for (int i = childNodes.getLength()-1; i >= 0; i--) {
-                            selectedSaveNode.removeChild(childNodes.item(i));
+                            selectedProfileNode.removeChild(childNodes.item(i));
                         }
-                        writeToXml(selectedSaveDocument, selectedProfile);
+                        writeToXml(selectedProfileDocument, selectedProfile);
                         profileCombobox.setValue("");
                         updateProfileInfo(newProfile);
                         fullReset();
@@ -594,8 +644,8 @@ public class App extends Application {
         deleteProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File selectedProfile = new File(executableDirectory.getPath() + "/saves", newProfile + ".xml");
-                File currentProfile = new File(executableDirectory.getPath() + "/saves", loadedProfile + ".xml");
+                File selectedProfile = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File currentProfile = new File(appDataDirectory.getPath() + "/profiles", loadedProfile + ".xml");
                 if (deleteProfileButton.getText().equals("Delete Profile")) {
                     deleteProfileButton.setText("REALLY?");
                 } else if (deleteProfileButton.getText().equals("REALLY?")) {
@@ -604,14 +654,14 @@ public class App extends Application {
                     deleteProfileButton.setText("Delete Profile");
                     if (selectedProfile.exists()) {
                         Files.delete(selectedProfile.toPath());
-                        for (int i = 0; i < saveFiles.size(); i++) {
-                            if (saveFiles.get(i).equals(newProfile)) {
-                                saveFiles.remove(i);
+                        for (int i = 0; i < profiles.size(); i++) {
+                            if (profiles.get(i).equals(newProfile)) {
+                                profiles.remove(i);
                             }
                         }
                         updateComboBox();
                         if (selectedProfile.toPath().equals(currentProfile.toPath())) {
-                            updateProfileInfo(saveFiles.get(0));
+                            updateProfileInfo(profiles.get(0));
                             profileDisplayToolTip.setText(newProfile);
                         }
                         profileCombobox.setValue("");
@@ -807,11 +857,44 @@ public class App extends Application {
         //set Toggle buttons to on or off based on settings.xml
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             Element filterElement = (Element) filterNodes.item(i);
+            if (filterElement == null) {
+                Element root = settingsDocument.getDocumentElement();
+                Element newFilterElement = settingsDocument.createElement("filter");
+                Element filterNameElement = settingsDocument.createElement("name");
+                filterNameElement.appendChild(settingsDocument.createTextNode(toggleButtonArray.get(i).getText()));
+                Element filterEnabledElement = settingsDocument.createElement("enabled");
+                filterEnabledElement.appendChild(settingsDocument.createTextNode("true"));
+                newFilterElement.appendChild(filterNameElement);
+                newFilterElement.appendChild(filterEnabledElement);
+                root.appendChild(newFilterElement);
+                writeToXml(settingsDocument, settingsXML);
+                filterNodes = settingsDocument.getDocumentElement().getElementsByTagName("filter");
+                filterElement = (Element) filterNodes.item(i);
+            }
             Boolean elementText = Boolean.parseBoolean(filterElement.getElementsByTagName("enabled").item(0).getTextContent());
             toggleButtonArray.get(i).setSelected(elementText);
         }
         for (int i = 0; i < settingsToggleButtonArray.size(); i++) {
             Element settingElement = (Element) settingsNodes.item(i);
+            if (settingElement == null) {
+                Element root = settingsDocument.getDocumentElement();
+                Element newSettingElement = settingsDocument.createElement("setting");
+                Element settingNameElement = settingsDocument.createElement("name");
+                String nameNodeText = settingsToggleButtonArray.get(i).getText();
+                settingNameElement.appendChild(settingsDocument.createTextNode(nameNodeText));
+                Element settingEnabledElement = settingsDocument.createElement("enabled");
+                if (nameNodeText.equals("Hunt Mode") || nameNodeText.equals("Phosphene Mode")) {
+                    settingEnabledElement.appendChild(settingsDocument.createTextNode("false"));
+                } else {
+                    settingEnabledElement.appendChild(settingsDocument.createTextNode("true"));
+                }
+                newSettingElement.appendChild(settingNameElement);
+                newSettingElement.appendChild(settingEnabledElement);
+                root.appendChild(newSettingElement);
+                writeToXml(settingsDocument, settingsXML);
+                settingsNodes = settingsDocument.getDocumentElement().getElementsByTagName("setting");
+                settingElement = (Element) settingsNodes.item(i);
+            }
             Boolean elementText = Boolean.parseBoolean(settingElement.getElementsByTagName("enabled").item(0).getTextContent());
             settingsToggleButtonArray.get(i).setSelected(elementText);
         }
@@ -1342,22 +1425,25 @@ public class App extends Application {
         // });
     }
 
-    //Update save file array
-    public static void getSaveFiles() {
+    //Update profile file array
+    public static void getProfiles() {
         try {
-            saveFiles.clear();
-            File[] files = new File(executableDirectory, "saves").listFiles();
+            profiles.clear();
+            File[] files = new File(appDataDirectory, "profiles").listFiles();
             if (files.length == 0) {
-                File newSave = new File(executableDirectory.getPath() + "/saves", "new_save1.xml");
-                Files.write(newSave.toPath(), "<items></items>".getBytes());
-                NodeList profileNode = settingsDocument.getDocumentElement().getElementsByTagName("profile");
-                Element profileSettingElement = (Element) profileNode.item(0);
-                profileSettingElement.getElementsByTagName("name").item(0).setTextContent("new_save1");
+                File newProfileFile = new File(appDataDirectory.getPath() + "/profiles", "default_profile.xml");
+                Files.write(newProfileFile.toPath(), "<items></items>".getBytes());
+                Element root = settingsDocument.getDocumentElement();
+                Element profileElement = settingsDocument.createElement("profile");
+                Element profileNameElement = settingsDocument.createElement("name");
+                profileNameElement.appendChild(settingsDocument.createTextNode("default_profile"));
+                profileElement.appendChild(profileNameElement);
+                root.appendChild(profileElement);
                 writeToXml(settingsDocument, settingsXML);
-                files = new File(executableDirectory, "saves").listFiles();
+                files = new File(appDataDirectory, "profiles").listFiles();
             }
             for (File file : files) {
-                saveFiles.add(file.getName().split("\\.")[0]);
+                profiles.add(file.getName().split("\\.")[0]);
             }
         } catch (Exception e) {
             writeToLogFile("Error getting profiles", e.toString());
@@ -1401,8 +1487,8 @@ public class App extends Application {
     //Update choices in the combobox dropdown
     public static void updateComboBox() {
         profileCombobox.getItems().clear();
-        getSaveFiles();
-        for (String file : saveFiles) {
+        getProfiles();
+        for (String file : profiles) {
             profileCombobox.getItems().add(file);
         }
     }
@@ -1414,9 +1500,9 @@ public class App extends Application {
             profileSettingElement.getElementsByTagName("name").item(0).setTextContent(loadedProfile);
             writeToXml(settingsDocument, settingsXML);
             profileDisplayButton.setText(loadedProfile);
-            saveXML = new File(executableDirectory + "/saves", loadedProfile +".xml");
-            saveDocument = builder.parse(saveXML);
-            saveNode = saveDocument.getDocumentElement();
+            profileXML = new File(appDataDirectory + "/profiles", loadedProfile +".xml");
+            profileDocument = builder.parse(profileXML);
+            profileNode = profileDocument.getDocumentElement();
             updateComboBox();
             fullReset();
         } catch (Exception e) {
@@ -1448,9 +1534,9 @@ public class App extends Application {
                     String worldDropText = itemNode.getElementsByTagName("worldDrop").item(0).getTextContent();
                     String dlc = itemNode.getElementsByTagName("dlc").item(0).getTextContent();
                     String obtainedText = "false";
-                    NodeList saveNodes = saveNode.getElementsByTagName("item");
-                    for (int j = 0; j < saveNodes.getLength(); j++) {
-                        Element node = (Element) saveNodes.item(j);
+                    NodeList profileNodes = profileNode.getElementsByTagName("item");
+                    for (int j = 0; j < profileNodes.getLength(); j++) {
+                        Element node = (Element) profileNodes.item(j);
                         String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
                         String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
                         String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();

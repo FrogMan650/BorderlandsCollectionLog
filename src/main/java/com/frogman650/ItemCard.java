@@ -325,16 +325,16 @@ public class ItemCard {
                     Platform.runLater(() -> {
                         obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
                     });
-                    NodeList saveNodes = App.saveNode.getElementsByTagName("item");
-                    for (int j = 0; j < saveNodes.getLength(); j++) {
-                        Element node = (Element) saveNodes.item(j);
+                    NodeList profileNodes = App.profileNode.getElementsByTagName("item");
+                    for (int j = 0; j < profileNodes.getLength(); j++) {
+                        Element node = (Element) profileNodes.item(j);
                         String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
                         String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
                         String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();
                         String gameNode = node.getElementsByTagName("game").item(0).getTextContent();
                         if (name.equals(nameNode) && type.equals(typeNode) && rarity.equals(rarityNode) && gameNode.equals(game)) {
-                            App.saveNode.removeChild(node);
-                            App.writeToXml(App.saveDocument, new File(App.executableDirectory + "/saves", App.loadedProfile + ".xml"));
+                            App.profileNode.removeChild(node);
+                            App.writeToXml(App.profileDocument, new File(App.appDataDirectory + "/profiles", App.loadedProfile + ".xml"));
                             break;
                         }
                     }
@@ -375,21 +375,21 @@ public class ItemCard {
                         App.countBL4 ++;
                         App.huntBL4 += Integer.parseInt(points);
                     }
-                    Element newItemElement = App.saveDocument.createElement("item");
-                    Element newNameElement = App.saveDocument.createElement("name");
-                    newNameElement.appendChild(App.saveDocument.createTextNode(name));
-                    Element newTypeElement = App.saveDocument.createElement("type");
-                    newTypeElement.appendChild(App.saveDocument.createTextNode(type));
-                    Element newRarityElement = App.saveDocument.createElement("rarity");
-                    newRarityElement.appendChild(App.saveDocument.createTextNode(rarity));
-                    Element newGameElement = App.saveDocument.createElement("game");
-                    newGameElement.appendChild(App.saveDocument.createTextNode(game));
+                    Element newItemElement = App.profileDocument.createElement("item");
+                    Element newNameElement = App.profileDocument.createElement("name");
+                    newNameElement.appendChild(App.profileDocument.createTextNode(name));
+                    Element newTypeElement = App.profileDocument.createElement("type");
+                    newTypeElement.appendChild(App.profileDocument.createTextNode(type));
+                    Element newRarityElement = App.profileDocument.createElement("rarity");
+                    newRarityElement.appendChild(App.profileDocument.createTextNode(rarity));
+                    Element newGameElement = App.profileDocument.createElement("game");
+                    newGameElement.appendChild(App.profileDocument.createTextNode(game));
                     newItemElement.appendChild(newNameElement);
                     newItemElement.appendChild(newTypeElement);
                     newItemElement.appendChild(newRarityElement);
                     newItemElement.appendChild(newGameElement);
-                    App.saveDocument.getDocumentElement().appendChild(newItemElement);
-                    App.writeToXml(App.saveDocument, new File(App.executableDirectory + "/saves", App.loadedProfile + ".xml"));
+                    App.profileDocument.getDocumentElement().appendChild(newItemElement);
+                    App.writeToXml(App.profileDocument, new File(App.appDataDirectory + "/profiles", App.loadedProfile + ".xml"));
                     obtained = true;
                 }
                 Platform.runLater(() -> {
