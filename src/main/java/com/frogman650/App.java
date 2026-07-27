@@ -35,12 +35,11 @@ import java.time.LocalTime;
 
 import javafx.application.Application;
 import javafx.application.HostServices;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.CacheHint;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -53,15 +52,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -73,6 +69,7 @@ public class App extends Application {
     public static Image wikiMiniImage;
     public static Image miniLootlemonImage;
     public static Image lootlemonImage;
+    public static Image mentalMarsImage;
     public static Image obtainedImage;
     public static Image notObtainedImage;
     public static Image pistolImage;
@@ -129,6 +126,9 @@ public class App extends Application {
     public static ArrayList<String> profiles = new ArrayList<>();
     public static String loadedProfile;
     public static ComboBox<String> profileCombobox;
+    public static Tooltip profileDisplayToolTip;
+    public static ComboBox<String> bannerProfileCombobox;
+    public static Tooltip bannerProfileToolTip;
     public static Element profileSettingElement;
     public static Button profileDisplayButton;
 
@@ -170,12 +170,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        //Define global variables
         Font willowBody = Font.loadFont(getClass().getResourceAsStream("WillowBody-Regular.ttf"), 10);
         icon = new Image(getClass().getResourceAsStream("BLCL_logo_mini.png"));
         wikiImage = new Image(getClass().getResourceAsStream("Wiki_logo.png"));
         wikiMiniImage = new Image(getClass().getResourceAsStream("Wiki_logo_mini.png"));
         miniLootlemonImage = new Image(getClass().getResourceAsStream("lootlemon_mini.png"));
         lootlemonImage = new Image(getClass().getResourceAsStream("lootlemon_cropped.png"));
+        mentalMarsImage = new Image(getClass().getResourceAsStream("mentalmars_logo.png"));
         obtainedImage = new Image(getClass().getResourceAsStream("obtained.png"));
         notObtainedImage = new Image(getClass().getResourceAsStream("not_obtained.png"));
         pistolImage = new Image(getClass().getResourceAsStream("pistol.png"));
@@ -211,11 +213,12 @@ public class App extends Application {
         missionImage = new Image(getClass().getResourceAsStream("mission_indicator.png"));
         dlcImage = new Image(getClass().getResourceAsStream("dlc_indicator.png"));
         hostService = getHostServices();
-        
         factory = DocumentBuilderFactory.newInstance();
         builder = factory.newDocumentBuilder();
 
-        //Directories and files start
+        //======================================
+        //    Directory and File Setup Start
+        //======================================
         //Get/create the users AppData/Local/BorderlandsCollectionLog directory
         String appDataString = System.getenv("LOCALAPPDATA") + "/BorderlandsCollectionLog";
         Path appDataPath = Paths.get(appDataString);
@@ -284,6 +287,9 @@ public class App extends Application {
         profileXML = new File(appDataDirectory + "/profiles", loadedProfile +".xml");
         profileDocument = builder.parse(profileXML);
         profileNode = profileDocument.getDocumentElement();
+        //======================================
+        //    Directory and File Setup End
+        //======================================
 
         //Item cards holder
         itemFlowPane = new FlowPane();
@@ -293,7 +299,9 @@ public class App extends Application {
         itemScrollPane = new ScrollPane(itemFlowPane);
         itemScrollPane.setId("itemScrollPane");
 
-        //Filters
+        //======================================
+        //          Filters Start
+        //======================================
         searchTextField = new TextField();
         searchTextField.setId("searchTextField");
         searchTextField.setPromptText("Item / Source");
@@ -502,8 +510,13 @@ public class App extends Application {
                 writeToXml(settingsDocument, settingsXML);
             }).start();
         });
+        //======================================
+        //          Filters End
+        //======================================
 
-        //Settings
+        //======================================
+        //          Settings Start
+        //======================================
         VBox settingsVBox = new VBox();
         settingsVBox.setSpacing(1);
         settingsVBox.setId("filterVBox");
@@ -516,8 +529,8 @@ public class App extends Application {
         profileSelectionLabel.setStyle("-fx-cursor: none;");
         profileDisplayButton = new Button(loadedProfile);
         profileDisplayButton.setMnemonicParsing(false);
-        profileDisplayButton.setId("searchTextField");
-        Tooltip profileDisplayToolTip = new Tooltip(loadedProfile);
+        profileDisplayButton.setId("profileDisplayButton");
+        profileDisplayToolTip = new Tooltip(loadedProfile);
         profileDisplayToolTip.setId("toolTip");
         profileDisplayButton.setOnMouseMoved(event -> {
             profileDisplayToolTip.show(profileDisplayButton, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -528,7 +541,6 @@ public class App extends Application {
         profileCombobox = new ComboBox<>();
         profileCombobox.setEditable(true);
         profileCombobox.setPromptText("Profile Name");
-        updateComboBox();
         Button loadProfileButton = new Button("Load Profile");
         loadProfileButton.setId("greenButton");
         loadProfileButton.setOnAction(event -> {
@@ -537,8 +549,6 @@ public class App extends Application {
                 File profileToLoad = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
                 if (profileToLoad.exists()) {
                     updateProfileInfo(newProfile);
-                    profileCombobox.setValue("");
-                    profileDisplayToolTip.setText(newProfile);
                 }
             } catch (Exception e) {
                 writeToLogFile("Error loading profile", e.toString());
@@ -561,8 +571,6 @@ public class App extends Application {
                 if (!newProfileFile.exists()) {
                     Files.write(newProfileFile.toPath(), "<items></items>".getBytes());
                     updateProfileInfo(newProfile);
-                    profileCombobox.setValue("");
-                    profileDisplayToolTip.setText(newProfile);
                 }
             } catch (Exception e) {
                 writeToLogFile("Error creating profile", e.toString());
@@ -586,14 +594,12 @@ public class App extends Application {
                 if (!newProfileFile.exists()) {
                     Files.move(oldProfileFile.toPath(), newProfileFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     updateProfileInfo(newProfile);
-                    profileCombobox.setValue("");
-                    profileDisplayToolTip.setText(newProfile);
                 }
             } catch (Exception e) {
                 writeToLogFile("Error renaming profile", e.toString());
             }
         });
-        Tooltip renameProfileToolTip = new Tooltip("Rename loaded profile");
+        Tooltip renameProfileToolTip = new Tooltip("Rename selected profile");
         renameProfileToolTip.setId("toolTip");
         renameProfileButton.setOnMouseMoved(event -> {
             renameProfileToolTip.show(renameProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -622,9 +628,7 @@ public class App extends Application {
                             selectedProfileNode.removeChild(childNodes.item(i));
                         }
                         writeToXml(selectedProfileDocument, selectedProfile);
-                        profileCombobox.setValue("");
-                        updateProfileInfo(newProfile);
-                        fullReset();
+                        updateProfileInfo(loadedProfile);
                     }
                 }
             } catch (Exception e) {
@@ -654,18 +658,11 @@ public class App extends Application {
                     deleteProfileButton.setText("Delete Profile");
                     if (selectedProfile.exists()) {
                         Files.delete(selectedProfile.toPath());
-                        for (int i = 0; i < profiles.size(); i++) {
-                            if (profiles.get(i).equals(newProfile)) {
-                                profiles.remove(i);
-                            }
-                        }
-                        updateComboBox();
+                        getProfiles();
                         if (selectedProfile.toPath().equals(currentProfile.toPath())) {
-                            updateProfileInfo(profiles.get(0));
-                            profileDisplayToolTip.setText(newProfile);
+                            loadedProfile = profiles.get(0);
                         }
-                        profileCombobox.setValue("");
-                        fullReset();  
+                        updateProfileInfo(loadedProfile); 
                     }
                 }
             } catch (Exception e) {
@@ -898,14 +895,34 @@ public class App extends Application {
             Boolean elementText = Boolean.parseBoolean(settingElement.getElementsByTagName("enabled").item(0).getTextContent());
             settingsToggleButtonArray.get(i).setSelected(elementText);
         }
+        //======================================
+        //          Settings End
+        //======================================
 
-        //Banner Start================================================================================================
+
+        //======================================
+        //          Banner Start
+        //======================================
+        //Profile selector
+        bannerProfileCombobox = new ComboBox<>();
+        bannerProfileCombobox.setEditable(false);
+        bannerProfileCombobox.setId("bannerProfileCombobox");
+        bannerProfileToolTip = new Tooltip("Loaded profile\n" + loadedProfile);
+        bannerProfileToolTip.setId("toolTip");
+        bannerProfileCombobox.setOnMouseMoved(event -> {
+            bannerProfileToolTip.show(bannerProfileCombobox, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        bannerProfileCombobox.setOnMouseExited(event -> {
+            bannerProfileToolTip.hide();
+        });
         //Wiki image with link
         ImageView wikiLinkImageView = new ImageView(wikiImage);
         wikiLinkImageView.setFitHeight(48);
         Pane wikiViewPane = new Pane(wikiLinkImageView);
         wikiViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip wikiViewPaneToolTip = new Tooltip("Borderlands Wiki\nhttps://borderlands.fandom.com/wiki/Borderlands_Wiki");
+        Tooltip wikiViewPaneToolTip = new Tooltip("Borderlands Wiki\nGreat resource for additional information on\n" +
+            "items, drop sources, and all things Borderlands."
+        );
         wikiViewPaneToolTip.setId("toolTip");
         wikiViewPane.setOnMouseMoved(event -> {
             wikiViewPaneToolTip.show(wikiViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -922,7 +939,9 @@ public class App extends Application {
         lootlemonImageView.setFitWidth(26);
         Pane lootlemonViewPane = new Pane(lootlemonImageView);
         lootlemonViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip lootlemonViewPaneToolTip = new Tooltip("LootLemon\nhttps://www.lootlemon.com/");
+        Tooltip lootlemonViewPaneToolTip = new Tooltip("LootLemon\n#1 best resource for information on all Borderlands\n" +
+            "items, drop sources, drop rates, and skill tree builders."
+        );
         lootlemonViewPaneToolTip.setId("toolTip");
         lootlemonViewPane.setOnMouseMoved(event -> {
             lootlemonViewPaneToolTip.show(lootlemonViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
@@ -932,6 +951,25 @@ public class App extends Application {
         });
         lootlemonViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://www.lootlemon.com/");
+        });
+        //MentalMars image with link
+        ImageView mentalMarsImageView = new ImageView(mentalMarsImage);
+        mentalMarsImageView.setFitHeight(48);
+        mentalMarsImageView.setFitWidth(48);
+        Pane mentalMarsViewPane = new Pane(mentalMarsImageView);
+        mentalMarsViewPane.setStyle("-fx-cursor: hand;");
+        Tooltip mentalMarsViewPaneToolTip = new Tooltip("MentalMars\nOne of the best resources for Borderlands news,\n" +
+            "walkthroughs, Golden keys, and SHiFT codes in general."
+        );
+        mentalMarsViewPaneToolTip.setId("toolTip");
+        mentalMarsViewPane.setOnMouseMoved(event -> {
+            mentalMarsViewPaneToolTip.show(mentalMarsViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        mentalMarsViewPane.setOnMouseExited(event -> {
+            mentalMarsViewPaneToolTip.hide();
+        });
+        mentalMarsViewPane.setOnMouseClicked(event -> {
+            hostService.showDocument("https://mentalmars.com/");
         });
         //BLCL item collection
         ImageView BLCLImageView = new ImageView(icon);
@@ -1056,16 +1094,23 @@ public class App extends Application {
             }
         });
 
-        HBox bannerHBox = new HBox(0, wikiViewPane, lootlemonViewPane, bannerHPusher2, BLCLViewPane, itemsCollectedVBox, huntViewPane, huntItemsCollectedVBox, bannerHPusher, settingsViewPane);
+        HBox bannerHBox = new HBox(0, bannerProfileCombobox, bannerHPusher2, BLCLViewPane, itemsCollectedVBox, 
+            huntViewPane, huntItemsCollectedVBox, bannerHPusher, wikiViewPane, lootlemonViewPane, mentalMarsViewPane, settingsViewPane);
         HBox.setMargin(wikiViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(lootlemonViewPane, new Insets(0, 10, 0, 0));
+        HBox.setMargin(mentalMarsViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(BLCLViewPane, new Insets(0, 5, 0, 0));
         HBox.setMargin(itemsCollectedVBox, new Insets(0, 10, 0, 0));
         HBox.setMargin(huntViewPane, new Insets(0, 5, 0, 0));
         HBox.setMargin(huntItemsCollectedVBox, new Insets(0, 10, 0, 0));
         bannerHBox.setId("bannerBox");
-        //Banner End===============================================================================================
+        //======================================
+        //          Banner End
+        //======================================
 
+        //======================================
+        //          Final Setup Start
+        //======================================
         AnchorPane root = new AnchorPane();
         root.setId("anchorPane");
         AnchorPane.setTopAnchor(bannerHBox, 0.0);
@@ -1099,10 +1144,8 @@ public class App extends Application {
             itemFlowPane.setHgap(hGapValue);
         }
 
-        //Build item cards
-        buildAllItemCards();
-        resetDisplayedCards(searchTextField.getText());
-        updateBannerLabels();
+        //Build item cards and pull in and load profile info
+        updateProfileInfo(loadedProfile);
 
         //Adjust card spacing and cards in viewport based on the scenes width
         scene.widthProperty().addListener(new ChangeListener<Number>() {
@@ -1192,6 +1235,9 @@ public class App extends Application {
         } catch (Exception e) {
             writeToLogFile("Error writing to an XML document", e.toString());
         }
+        //======================================
+        //          Final Setup End
+        //======================================
     }
 
     //Update the banner item counters taking into account the settings
@@ -1487,9 +1533,16 @@ public class App extends Application {
     //Update choices in the combobox dropdown
     public static void updateComboBox() {
         profileCombobox.getItems().clear();
+        bannerProfileCombobox.getItems().clear();
+        profileCombobox.setValue("");
         getProfiles();
         for (String file : profiles) {
             profileCombobox.getItems().add(file);
+            bannerProfileCombobox.getItems().add(file);
+            bannerProfileCombobox.setOnHiding(event -> {
+                String bannerSelectedProfile = bannerProfileCombobox.getValue();
+                updateProfileInfo(bannerSelectedProfile);
+            });
         }
     }
 
@@ -1500,10 +1553,18 @@ public class App extends Application {
             profileSettingElement.getElementsByTagName("name").item(0).setTextContent(loadedProfile);
             writeToXml(settingsDocument, settingsXML);
             profileDisplayButton.setText(loadedProfile);
+            profileDisplayToolTip.setText(loadedProfile);
+            bannerProfileToolTip.setText("Loaded profile\n" + loadedProfile);
             profileXML = new File(appDataDirectory + "/profiles", loadedProfile +".xml");
             profileDocument = builder.parse(profileXML);
             profileNode = profileDocument.getDocumentElement();
             updateComboBox();
+            ObservableList<String> profileItems = bannerProfileCombobox.getItems();
+            for (int i = 0; i < profileItems.size(); i++) {
+                if (loadedProfile.equals(profileItems.get(i))) {
+                    bannerProfileCombobox.getSelectionModel().select(i);
+                }
+            }
             fullReset();
         } catch (Exception e) {
             writeToLogFile("Error updating profile info", e.toString());

@@ -145,10 +145,6 @@
     -fx-cursor: hand;
 }
 
-#indicator {
-    
-}
-
 #itemBottomHBox {
     -fx-pref-height: 30;
     -fx-max-width: 300;
@@ -176,11 +172,30 @@
     -fx-background-insets: 0;
     -fx-background-radius: 10;
     -fx-padding: 5 6 5 10;
-    -fx-background-image: url("filter_background_search.png");
+    -fx-background-image: url("filter_background_plain.png");
     -fx-text-fill: white;
 }
 
 #searchTextField .text {
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+}
+
+#profileDisplayButton {
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-pref-height: 48;
+    -fx-pref-width: 198;
+    -fx-background-repeat: no-repeat;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-padding: 5 6 5 10;
+    -fx-background-image: url("filter_background_plain.png");
+    -fx-text-fill: white;
+}
+
+#profileDisplayButton .text {
     -fx-stroke: black;
     -fx-stroke-width: 1px;
 }
@@ -195,7 +210,7 @@
     -fx-background-insets: 0;
     -fx-background-radius: 10;
     -fx-padding: 5 10 5 0;
-    -fx-background-image: url("filter_background_search.png");
+    -fx-background-image: url("filter_background_dropdown.png");
 }
 
 .combo-box .text, .combo-box .list-cell, .combo-box .text-input {
@@ -210,7 +225,7 @@
 }
 
 .combo-box .arrow {
-    -fx-background-color: #71c5d6;
+    -fx-background-color: transparent;
 }
 
 .combo-box .arrow-button {
@@ -238,6 +253,20 @@
 .combo-box .scroll-bar:vertical .thumb {
     -fx-background-color: #2f4c72;
     -fx-opacity: 0.8;
+}
+
+#bannerProfileCombobox {
+    -fx-background-image: url("filter_background_dropdown_flipped.png");
+    -fx-padding: 0 10 0 0;
+    -fx-cursor: hand;
+}
+
+#bannerProfileCombobox .arrow {
+    -fx-background-color: transparent;
+}
+
+#bannerProfileCombobox .list-cell {
+    -fx-padding: 0 -20 0 10;
 }
 
 .toggle-button .text, #all .text, #none .text, #redButton .text, #greenButton .text {
