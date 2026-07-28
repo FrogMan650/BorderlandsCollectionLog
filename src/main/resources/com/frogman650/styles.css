@@ -117,9 +117,6 @@
     -fx-alignment: TOP_CENTER;
 }
 
-#indicatorTray {
-}
-
 #itemTextScrollPane {
     -fx-max-width: 320;
     -fx-hbar-policy: NEVER;
@@ -261,10 +258,6 @@
     -fx-cursor: hand;
 }
 
-#bannerProfileCombobox .arrow {
-    -fx-background-color: transparent;
-}
-
 #bannerProfileCombobox .list-cell {
     -fx-padding: 0 -20 0 10;
 }
@@ -375,4 +368,26 @@
 #toolTip .text {
     -fx-stroke: none;
     -fx-fill: white;
+}
+
+#itemPickerFlowPane, #itemPickerVBox {
+    -fx-alignment: CENTER;
+}
+
+#rerollItemPickerButton {
+    -fx-background-color: transparent;
+    -fx-pref-width: 98;
+    -fx-pref-height: 50;
+    -fx-background-image: url("filter_background_on_mini.png");
+    -fx-cursor: hand;
+}
+
+#rerollItemPickerButton:hover {
+    -fx-background-image: url("filter_background_on_mini_hover.png");
+}
+#rerollItemPickerButton .text {
+    -fx-fill: white;
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+    -fx-font-size: 20;
 }

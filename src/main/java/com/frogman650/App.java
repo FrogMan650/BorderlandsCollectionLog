@@ -104,6 +104,7 @@ public class App extends Application {
     public static Image earlImage;
     public static Image gameModeImage;
     public static Image missionImage;
+    public static Image itemPickerImage;
 
     public static FlowPane itemFlowPane;
     public static ScrollPane itemScrollPane;
@@ -212,6 +213,7 @@ public class App extends Application {
         gameModeImage = new Image(getClass().getResourceAsStream("game_mode_indicator.png"));
         missionImage = new Image(getClass().getResourceAsStream("mission_indicator.png"));
         dlcImage = new Image(getClass().getResourceAsStream("dlc_indicator.png"));
+        itemPickerImage = new Image(getClass().getResourceAsStream("item_picker.png"));
         hostService = getHostServices();
         factory = DocumentBuilderFactory.newInstance();
         builder = factory.newDocumentBuilder();
@@ -971,6 +973,51 @@ public class App extends Application {
         mentalMarsViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://mentalmars.com/");
         });
+        //Item picker
+        VBox itemPickerVBox = new VBox();
+        itemPickerVBox.setId("itemPickerVBox");
+        itemPickerVBox.setSpacing(10);
+        HBox itemPickerHBox = new HBox();
+        Button rerollItemPickerButton = new Button("Reroll");
+        rerollItemPickerButton.setId("rerollItemPickerButton");
+        itemPickerVBox.getChildren().addAll(rerollItemPickerButton, itemPickerHBox);
+        FlowPane itemPickerFlowPane = new FlowPane(itemPickerVBox);
+        itemPickerFlowPane.setId("itemPickerFlowPane");
+        ImageView itemPickerImageView = new ImageView(itemPickerImage);
+        Pane itemPickerViewPane = new Pane(itemPickerImageView);
+        itemPickerViewPane.setStyle("-fx-cursor: hand;");
+        Tooltip itemPickerViewPaneToolTip = new Tooltip("Not sure which item to go for next?\nLet the item picker decide!");
+        itemPickerViewPaneToolTip.setId("toolTip");
+        itemPickerViewPane.setOnMouseMoved(event -> {
+            itemPickerViewPaneToolTip.show(itemPickerViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        itemPickerViewPane.setOnMouseExited(event -> {
+            itemPickerViewPaneToolTip.hide();
+        });
+        itemPickerViewPane.setOnMouseClicked(event -> {
+            if (itemCardFilteredArray.size() > 0) {
+                itemPickerHBox.getChildren().clear();
+                if (itemFlowPane.isVisible()) {
+                    itemFlowPane.setVisible(false);
+                    itemPickerFlowPane.setVisible(true);
+                    itemScrollPane.setContent(itemPickerFlowPane);
+                } else {
+                    itemPickerFlowPane.setVisible(false);
+                    itemFlowPane.setVisible(true);
+                    itemScrollPane.setContent(itemFlowPane);
+                }
+            }
+        });
+        rerollItemPickerButton.setOnAction(event -> {
+            if (itemCardFilteredArray.size() > 0) {
+                itemPickerHBox.getChildren().clear();
+                int cardToShow = 0;
+                if (itemCardFilteredArray.size() != 1) {
+                    cardToShow = (int) (itemCardFilteredArray.size()*Math.random());
+                }
+                itemPickerHBox.getChildren().add(itemCardFilteredArray.get(cardToShow).getItemCard());
+            }
+        });
         //BLCL item collection
         ImageView BLCLImageView = new ImageView(icon);
         BLCLImageView.setFitHeight(48);
@@ -1094,8 +1141,9 @@ public class App extends Application {
             }
         });
 
-        HBox bannerHBox = new HBox(0, bannerProfileCombobox, bannerHPusher2, BLCLViewPane, itemsCollectedVBox, 
+        HBox bannerHBox = new HBox(0, bannerProfileCombobox, itemPickerViewPane, bannerHPusher2, BLCLViewPane, itemsCollectedVBox, 
             huntViewPane, huntItemsCollectedVBox, bannerHPusher, wikiViewPane, lootlemonViewPane, mentalMarsViewPane, settingsViewPane);
+        HBox.setMargin(itemPickerViewPane, new Insets(0, 0, 0, 10));
         HBox.setMargin(wikiViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(lootlemonViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(mentalMarsViewPane, new Insets(0, 10, 0, 0));
@@ -1137,6 +1185,8 @@ public class App extends Application {
         stage.show();
         //itemFlowPane spacing
         itemFlowPane.setPrefWidth(scene.getWidth()-206);
+        itemPickerFlowPane.setPrefWidth(scene.getWidth()-206);
+        itemPickerFlowPane.setPrefHeight(scene.getHeight()-50);
         int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
         int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
         if (cardsThatFit > 1) {
@@ -1152,6 +1202,7 @@ public class App extends Application {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 itemScrollPane.setVvalue(0);
                 itemFlowPane.setPrefWidth(scene.getWidth()-206);
+                itemPickerFlowPane.setPrefWidth(scene.getWidth()-206);
                 int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
                 int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
                 if (cardsThatFit > 1) {
@@ -1167,6 +1218,7 @@ public class App extends Application {
         //Adjust card spacing and cards in viewport based on the scenes height
         scene.heightProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                itemPickerFlowPane.setPrefHeight(scene.getHeight()-50);
                 clearAllItemCards();
                 displayCardsInViewport();
                 setAllCardsVisible();
