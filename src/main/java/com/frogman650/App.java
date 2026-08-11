@@ -105,6 +105,8 @@ public class App extends Application {
     public static Image gameModeImage;
     public static Image missionImage;
     public static Image itemPickerImage;
+    public static Image cardImage;
+    public static Image modImage;
 
     public static FlowPane itemFlowPane;
     public static ScrollPane itemScrollPane;
@@ -132,6 +134,7 @@ public class App extends Application {
     public static Tooltip bannerProfileToolTip;
     public static Element profileSettingElement;
     public static Button profileDisplayButton;
+    public static HBox itemPickerHBox;
 
     public static int huntBL= 0;
     public static int huntObtainedBL= 0;
@@ -213,6 +216,8 @@ public class App extends Application {
         gameModeImage = new Image(getClass().getResourceAsStream("game_mode_indicator.png"));
         missionImage = new Image(getClass().getResourceAsStream("mission_indicator.png"));
         dlcImage = new Image(getClass().getResourceAsStream("dlc_indicator.png"));
+        cardImage = new Image(getClass().getResourceAsStream("vault_card_indicator.png"));
+        modImage = new Image(getClass().getResourceAsStream("mod_indicator.png"));
         itemPickerImage = new Image(getClass().getResourceAsStream("item_picker.png"));
         hostService = getHostServices();
         factory = DocumentBuilderFactory.newInstance();
@@ -409,9 +414,9 @@ public class App extends Application {
         toggleButtonArray.add(DLCToggleButton);
         ToggleButton worldDropToggleButton = new ToggleButton("World Drop");//31
         toggleButtonArray.add(worldDropToggleButton);
-        ToggleButton nonWorldDropToggleButton = new ToggleButton("Non World Drop");//32
+        ToggleButton nonWorldDropToggleButton = new ToggleButton("Mission Reward");//32
         toggleButtonArray.add(nonWorldDropToggleButton);
-        ToggleButton nonHuntToggleButton = new ToggleButton("Non Hunt");//33
+        ToggleButton nonHuntToggleButton = new ToggleButton("Vault Card");//33
         toggleButtonArray.add(nonHuntToggleButton);
         for (int i = 0; i < toggleButtonArray.size(); i++) {
             int toggleButton = i;
@@ -977,7 +982,7 @@ public class App extends Application {
         VBox itemPickerVBox = new VBox();
         itemPickerVBox.setId("itemPickerVBox");
         itemPickerVBox.setSpacing(10);
-        HBox itemPickerHBox = new HBox();
+        itemPickerHBox = new HBox();
         Button rerollItemPickerButton = new Button("Reroll");
         rerollItemPickerButton.setId("rerollItemPickerButton");
         itemPickerVBox.getChildren().addAll(rerollItemPickerButton, itemPickerHBox);
@@ -1364,6 +1369,7 @@ public class App extends Application {
     //Rebuild all item cards and reset the item counters on the banner
     public static void fullReset() {
         try {
+            itemPickerHBox.getChildren().clear();
             itemCardArray.clear();
             buildAllItemCards();
             resetDisplayedCards(searchTextField.getText());
@@ -1430,7 +1436,9 @@ public class App extends Application {
             String chance = itemCardArray.get(i).getChance().toLowerCase();
             Boolean phosphene = !itemCardArray.get(i).getPhosphene().toLowerCase().isEmpty();
             Boolean worldDrop = itemCardArray.get(i).getWorldDrop();
+            String missionReward = itemCardArray.get(i).getMission();
             String dlc = itemCardArray.get(i).getDLC();
+            String vaultCard = itemCardArray.get(i).getVaultCard();
             if (game.equals("") && !toggleButtonArray.get(23).isSelected()) {
                 continue;
             } else if (game.equals("2") && !toggleButtonArray.get(24).isSelected()) {
@@ -1495,11 +1503,11 @@ public class App extends Application {
                 continue;
             } else if (!name.contains(searchTerm) && !source.contains(searchTerm)) {
                 continue;
-            } else if (!worldDrop && !toggleButtonArray.get(32).isSelected()) {
+            } else if (!missionReward.isEmpty() && source.isEmpty() && !toggleButtonArray.get(32).isSelected()) {
                 continue;
-            } else if (worldDrop && !toggleButtonArray.get(31).isSelected()) {
+            } else if (worldDrop && source.isEmpty() && !toggleButtonArray.get(31).isSelected()) {
                 continue;
-            } else if (points.equals("0") && (!toggleButtonArray.get(32).isSelected() || settingsToggleButtonArray.get(0).isSelected())) {
+            } else if (!vaultCard.isEmpty() && !toggleButtonArray.get(33).isSelected()) {
                 continue;
             } else if (chance.equals("unobtainable") && settingsToggleButtonArray.get(12).isSelected()) {
                 continue;
@@ -1633,33 +1641,63 @@ public class App extends Application {
                 NodeList nodes = document.getDocumentElement().getElementsByTagName("item");
                 for (int i = 0; i < nodes.getLength(); i++) {
                     Element itemNode = (Element) nodes.item(i);
+                    //Get item information that is required like ID, name, etc.
+                    String id = itemNode.getElementsByTagName("id").item(0).getTextContent();
                     String name = itemNode.getElementsByTagName("name").item(0).getTextContent();
                     String type = itemNode.getElementsByTagName("type").item(0).getTextContent();
                     String game = itemNode.getElementsByTagName("game").item(0).getTextContent();
                     String rarity = itemNode.getElementsByTagName("rarity").item(0).getTextContent();
-                    String points = itemNode.getElementsByTagName("points").item(0).getTextContent();
-                    String text = itemNode.getElementsByTagName("text").item(0).getTextContent();
-                    String wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
-                    String lootlemon = itemNode.getElementsByTagName("lootlemon").item(0).getTextContent();
-                    String source = itemNode.getElementsByTagName("source").item(0).getTextContent();
-                    String location = itemNode.getElementsByTagName("location").item(0).getTextContent();
-                    String chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
-                    String worldDropText = itemNode.getElementsByTagName("worldDrop").item(0).getTextContent();
-                    String dlc = itemNode.getElementsByTagName("dlc").item(0).getTextContent();
                     String obtainedText = "false";
                     NodeList profileNodes = profileNode.getElementsByTagName("item");
                     for (int j = 0; j < profileNodes.getLength(); j++) {
                         Element node = (Element) profileNodes.item(j);
-                        String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
-                        String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
-                        String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();
-                        String gameNode = node.getElementsByTagName("game").item(0).getTextContent();
-                        if (name.equals(nameNode) && type.equals(typeNode) && rarity.equals(rarityNode) && 
-                        gameNode.equals(game)) {
+                        String iDNode = node.getElementsByTagName("id").item(0).getTextContent();
+                        if (id.equals(iDNode)) {
                             obtainedText = "true";
                             break;
                         }
                     }
+                    //Get item information that is optional
+                    String mod = "";
+                    try {
+                        mod = itemNode.getElementsByTagName("mod").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String chance = "";
+                    try {
+                        chance = itemNode.getElementsByTagName("chance").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String location = "";
+                    try {
+                        location = itemNode.getElementsByTagName("location").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String source = "";
+                    try {
+                        source = itemNode.getElementsByTagName("source").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String text = "";
+                    try {
+                        text = itemNode.getElementsByTagName("text").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String points = "0";
+                    try {
+                        points = itemNode.getElementsByTagName("points").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String dlc = "";
+                    try {
+                        dlc = itemNode.getElementsByTagName("dlc").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String worldDropText = "";
+                    try {
+                        worldDropText = itemNode.getElementsByTagName("worldDrop").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String wiki = "";
+                    try {
+                        wiki = itemNode.getElementsByTagName("wiki").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String lootlemon = "";
+                    try {
+                        lootlemon = itemNode.getElementsByTagName("lootlemon").item(0).getTextContent();
+                    } catch (Exception e) { }
                     String mode = "";
                     try {
                         mode = itemNode.getElementsByTagName("mode").item(0).getTextContent();
@@ -1684,19 +1722,23 @@ public class App extends Application {
                     try {
                         phosphene = itemNode.getElementsByTagName("phosphene").item(0).getTextContent();
                     } catch (Exception e) { }
-                    Boolean mission = false;
+                    String card = "";
                     try {
-                        String missionText = itemNode.getElementsByTagName("mission").item(0).getTextContent();
-                        mission = Boolean.parseBoolean(missionText);
+                        card = itemNode.getElementsByTagName("card").item(0).getTextContent();
+                    } catch (Exception e) { }
+                    String mission = "";
+                    try {
+                        mission = itemNode.getElementsByTagName("mission").item(0).getTextContent();
                     } catch (Exception e) { }
                     Boolean obtained = Boolean.parseBoolean(obtainedText);
                     Boolean worldDrop = Boolean.parseBoolean(worldDropText);
                     Boolean earl = Boolean.parseBoolean(earlText);
                     itemCardArray.add(new ItemCard(name, type, game, obtained, rarity, source, text, wiki, points, location, chance, lootlemon, 
-                        worldDrop, dlc, mode, currency, grinder, mayhem, earl, phosphene, mission));
+                        worldDrop, dlc, mode, currency, grinder, mayhem, earl, phosphene, mission, card, id, mod));
                 }
             }
         }
+        //Sort the array by item name alphabetically
         Collections.sort(itemCardArray, new Comparator<ItemCard>() {
             public int compare(ItemCard p1, ItemCard p2) {
                 return p1.getName().compareTo(p2.getName());

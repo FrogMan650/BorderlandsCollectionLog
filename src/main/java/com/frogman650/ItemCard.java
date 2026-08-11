@@ -40,8 +40,11 @@ public class ItemCard {
     private String grinder;
     private String mayhem;
     private Boolean earl;
-    private Boolean mission;
+    private String mission;
     private String phosphene;
+    private String id;
+    private String card;
+    private String mod;
 
     public ItemCard() {
         this.name = "";
@@ -64,13 +67,16 @@ public class ItemCard {
         this.mayhem = "";
         this.earl = false;
         this.phosphene = "";
-        this.mission = false;
+        this.id = "";
+        this.card = "";
+        this.mission = "";
+        this.mod = "";
     }
 
     public ItemCard(String name, String type, String game, Boolean obtained, String rarity, 
         String source, String text, String wiki, String points, String location, String chance, 
         String lootlemon, Boolean worldDrop, String dlc, String mode, String currency, String grinder, 
-        String mayhem, Boolean earl, String phosphene, Boolean mission) {
+        String mayhem, Boolean earl, String phosphene, String mission, String card, String id, String mod) {
         this.name = name;
         this.type = type;
         this.game = game;
@@ -92,6 +98,9 @@ public class ItemCard {
         this.earl = earl;
         this.phosphene = phosphene;
         this.mission = mission;
+        this.id = id;
+        this.card = card;
+        this.mod = mod;
         if (!(chance.equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
             if (phosphene.isEmpty() && App.settingsToggleButtonArray.get(1).isSelected()) {
             } else if (points.equals("0") && App.settingsToggleButtonArray.get(0).isSelected()) {
@@ -183,12 +192,20 @@ public class ItemCard {
         return worldDrop;
     }
 
+    public String getMission() {
+        return mission;
+    }
+
     public String getPhosphene() {
         return phosphene;
     }
 
     public String getDLC() {
         return dlc;
+    }
+
+    public String getID() {
+        return id;
     }
 
     public void setObtained(Boolean obtained) {
@@ -237,6 +254,10 @@ public class ItemCard {
 
     public String getLocation() {
         return location;
+    }
+
+    public String getVaultCard() {
+        return card;
     }
 
     public void setLocation(String location) {
@@ -328,11 +349,8 @@ public class ItemCard {
                     NodeList profileNodes = App.profileNode.getElementsByTagName("item");
                     for (int j = 0; j < profileNodes.getLength(); j++) {
                         Element node = (Element) profileNodes.item(j);
-                        String nameNode = node.getElementsByTagName("name").item(0).getTextContent();
-                        String typeNode = node.getElementsByTagName("type").item(0).getTextContent();
-                        String rarityNode = node.getElementsByTagName("rarity").item(0).getTextContent();
-                        String gameNode = node.getElementsByTagName("game").item(0).getTextContent();
-                        if (name.equals(nameNode) && type.equals(typeNode) && rarity.equals(rarityNode) && gameNode.equals(game)) {
+                        String iDNode = node.getElementsByTagName("id").item(0).getTextContent();
+                        if (id.equals(iDNode)) {
                             App.profileNode.removeChild(node);
                             App.writeToXml(App.profileDocument, new File(App.appDataDirectory + "/profiles", App.loadedProfile + ".xml"));
                             break;
@@ -376,18 +394,9 @@ public class ItemCard {
                         App.huntBL4 += Integer.parseInt(points);
                     }
                     Element newItemElement = App.profileDocument.createElement("item");
-                    Element newNameElement = App.profileDocument.createElement("name");
-                    newNameElement.appendChild(App.profileDocument.createTextNode(name));
-                    Element newTypeElement = App.profileDocument.createElement("type");
-                    newTypeElement.appendChild(App.profileDocument.createTextNode(type));
-                    Element newRarityElement = App.profileDocument.createElement("rarity");
-                    newRarityElement.appendChild(App.profileDocument.createTextNode(rarity));
-                    Element newGameElement = App.profileDocument.createElement("game");
-                    newGameElement.appendChild(App.profileDocument.createTextNode(game));
-                    newItemElement.appendChild(newNameElement);
-                    newItemElement.appendChild(newTypeElement);
-                    newItemElement.appendChild(newRarityElement);
-                    newItemElement.appendChild(newGameElement);
+                    Element newIDElement = App.profileDocument.createElement("id");
+                    newIDElement.appendChild(App.profileDocument.createTextNode(id));
+                    newItemElement.appendChild(newIDElement);
                     App.profileDocument.getDocumentElement().appendChild(newItemElement);
                     App.writeToXml(App.profileDocument, new File(App.appDataDirectory + "/profiles", App.loadedProfile + ".xml"));
                     obtained = true;
@@ -520,38 +529,42 @@ public class ItemCard {
         //Indicator tray start
         HBox indicatorTray = new HBox();
         //Item wiki indicator button
-        ImageView itemWikiLinkImageView = new ImageView(App.wikiMiniImage);
-        Pane itemWikiLinkPane = new Pane(itemWikiLinkImageView);
-        itemWikiLinkPane.setId("indicatorLink");
-        Tooltip itemWikiLinkPaneToolTip = new Tooltip("Borderlands Wiki\n" + wiki);
-        itemWikiLinkPaneToolTip.setId("toolTip");
-        itemWikiLinkPane.setOnMouseMoved(event -> {
-            itemWikiLinkPaneToolTip.show(itemWikiLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        itemWikiLinkPane.setOnMouseExited(event -> {
-            itemWikiLinkPaneToolTip.hide();
-        });
-        itemWikiLinkPane.setOnMouseClicked(event -> {
-            App.hostService.showDocument(wiki);
-        });
-        indicatorTray.getChildren().add(itemWikiLinkPane);
+        if (!wiki.isEmpty()) {
+            ImageView itemWikiLinkImageView = new ImageView(App.wikiMiniImage);
+            Pane itemWikiLinkPane = new Pane(itemWikiLinkImageView);
+            itemWikiLinkPane.setId("indicatorLink");
+            Tooltip itemWikiLinkPaneToolTip = new Tooltip("Borderlands Wiki\n" + wiki);
+            itemWikiLinkPaneToolTip.setId("toolTip");
+            itemWikiLinkPane.setOnMouseMoved(event -> {
+                itemWikiLinkPaneToolTip.show(itemWikiLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            itemWikiLinkPane.setOnMouseExited(event -> {
+                itemWikiLinkPaneToolTip.hide();
+            });
+            itemWikiLinkPane.setOnMouseClicked(event -> {
+                App.hostService.showDocument(wiki);
+            });
+            indicatorTray.getChildren().add(itemWikiLinkPane);
+        }
         //Lootlemon indicator button
-        ImageView lootlemonLinkImageView = new ImageView(App.miniLootlemonImage);
-        lootlemonLinkImageView.setFitWidth(17);
-        Pane lootlemonLinkPane = new Pane(lootlemonLinkImageView);
-        lootlemonLinkPane.setId("indicatorLink");
-        Tooltip lootlemonLinkPaneToolTip = new Tooltip("LootLemon\n" + lootlemon);
-        lootlemonLinkPaneToolTip.setId("toolTip");
-        lootlemonLinkPane.setOnMouseMoved(event -> {
-            lootlemonLinkPaneToolTip.show(lootlemonLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        lootlemonLinkPane.setOnMouseExited(event -> {
-            lootlemonLinkPaneToolTip.hide();
-        });
-        lootlemonLinkPane.setOnMouseClicked(event -> {
-            App.hostService.showDocument(lootlemon);
-        });
-        indicatorTray.getChildren().add(lootlemonLinkPane);
+        if (!lootlemon.isEmpty()) {
+            ImageView lootlemonLinkImageView = new ImageView(App.miniLootlemonImage);
+            lootlemonLinkImageView.setFitWidth(17);
+            Pane lootlemonLinkPane = new Pane(lootlemonLinkImageView);
+            lootlemonLinkPane.setId("indicatorLink");
+            Tooltip lootlemonLinkPaneToolTip = new Tooltip("LootLemon\n" + lootlemon);
+            lootlemonLinkPaneToolTip.setId("toolTip");
+            lootlemonLinkPane.setOnMouseMoved(event -> {
+                lootlemonLinkPaneToolTip.show(lootlemonLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            lootlemonLinkPane.setOnMouseExited(event -> {
+                lootlemonLinkPaneToolTip.hide();
+            });
+            lootlemonLinkPane.setOnMouseClicked(event -> {
+                App.hostService.showDocument(lootlemon);
+            });
+            indicatorTray.getChildren().add(lootlemonLinkPane);
+        }
         //World drop indicator
         if (worldDrop) {
             ImageView worldDropImageView = new ImageView(App.worldDropImage);
@@ -579,19 +592,62 @@ public class ItemCard {
             });
             indicatorTray.getChildren().add(dlcPane);
         }
+        //Mod indicator
+        if (!mod.isEmpty()) {
+            ImageView modLinkImageView = new ImageView(App.modImage);
+            Pane modLinkPane = new Pane(modLinkImageView);
+            modLinkPane.setId("indicatorLink");
+            String modStrings[] = mod.split("#@")[0].split("_");
+            //If the mod text includes a #@ followed by a link at the end
+            //make the indicator clickable and open the link on click
+            String modLink;
+            if (mod.contains("#@")) {
+                modLink = mod.split("#@")[1];
+            } else {
+                modLink = "";
+            }
+            String modContent = "";
+            for (String string : modStrings) {
+                modContent = modContent + string + "\n";
+            }
+            Tooltip modLinkPaneToolTip = new Tooltip("Item added by a mod\n" + modContent);
+            modLinkPaneToolTip.setId("toolTip");
+            modLinkPane.setOnMouseMoved(event -> {
+                modLinkPaneToolTip.show(modLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            modLinkPane.setOnMouseExited(event -> {
+                modLinkPaneToolTip.hide();
+            });
+            if (!modLink.isEmpty()) {
+                modLinkPane.setOnMouseClicked(event -> {
+                    App.hostService.showDocument(modLink);
+                });
+            } else {
+                modLinkPane.setStyle("-fx-cursor: none;");
+            }
+            indicatorTray.getChildren().add(modLinkPane);
+        }
         //Mission indicator
-        if (mission) {
-            ImageView missionImageView = new ImageView(App.missionImage);
-            Pane missionPane = new Pane(missionImageView);
-            Tooltip missionToolTip = new Tooltip("Mission reward");
-            missionToolTip.setId("toolTip");
-            missionPane.setOnMouseMoved(event -> {
-                missionToolTip.show(missionPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            missionPane.setOnMouseExited(event -> {
-                missionToolTip.hide();
-            });
-            indicatorTray.getChildren().add(missionPane);
+        if (!mission.isEmpty()) {
+            String[] missionSplit = mission.split("#@");
+            for (String string : missionSplit) {
+                String[] stringSplit = string.split("_");
+                String missionText = "";
+                for (String string2 : stringSplit) {
+                    missionText = missionText + string2 + "\n";
+                }
+                ImageView missionImageView = new ImageView(App.missionImage);
+                Pane missionPane = new Pane(missionImageView);
+                Tooltip missionToolTip = new Tooltip(missionText);
+                missionToolTip.setId("toolTip");
+                missionPane.setOnMouseMoved(event -> {
+                    missionToolTip.show(missionPane, event.getScreenX() + 10, event.getScreenY() + 20);
+                });
+                missionPane.setOnMouseExited(event -> {
+                    missionToolTip.hide();
+                });
+                indicatorTray.getChildren().add(missionPane);
+            }
         }
         //BL2 game mode indicator
         if (!mode.isEmpty()) {
@@ -668,6 +724,26 @@ public class ItemCard {
                 earlToolTip.hide();
             }); 
             indicatorTray.getChildren().add(earlPane);
+        }
+        //BL3/4 vault card indicator
+        if (!card.isEmpty()) {
+            ImageView cardImageView = new ImageView(App.cardImage);
+            Pane cardPane = new Pane(cardImageView);
+            String keysTickets = "";
+            if (game.equals("3")) {
+                keysTickets = "5 keys";
+            } else {
+                keysTickets = "10 tickets";
+            }
+            Tooltip cardToolTip = new Tooltip("Vault card reward\n" + card + "\n" + keysTickets);
+            cardToolTip.setId("toolTip");
+            cardPane.setOnMouseMoved(event -> {
+                cardToolTip.show(cardPane, event.getScreenX() + 10, event.getScreenY() + 20);
+            });
+            cardPane.setOnMouseExited(event -> {
+                cardToolTip.hide();
+            }); 
+            indicatorTray.getChildren().add(cardPane);
         }
         //BL4 Phosphene indicator
         if (!phosphene.isEmpty()) {
