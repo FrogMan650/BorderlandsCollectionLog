@@ -370,7 +370,7 @@
     -fx-fill: white;
 }
 
-#itemPickerFlowPane, #itemPickerVBox {
+#itemPickerFlowPane, #itemPickerVBox, #indicatorTrayVBox {
     -fx-alignment: CENTER;
 }
 
@@ -391,3 +391,9 @@
     -fx-stroke-width: 1px;
     -fx-font-size: 20;
 }
+
+/* #indicatorTray {
+    -fx-border-color: red;
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+} */

@@ -16,6 +16,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -528,6 +529,7 @@ public class ItemCard {
         }
         //Indicator tray start
         HBox indicatorTray = new HBox();
+        indicatorTray.setId("indicatorTray");
         //Item wiki indicator button
         if (!wiki.isEmpty()) {
             ImageView itemWikiLinkImageView = new ImageView(App.wikiMiniImage);
@@ -760,16 +762,19 @@ public class ItemCard {
         }
 
         indicatorTray.setSpacing(5);
-        itemImageStackPane.getChildren().addAll(indicatorTray);
+
+        VBox indicatorTrayVBox = new VBox(indicatorTray);
+        indicatorTrayVBox.setFillWidth(false);
+        indicatorTrayVBox.setId("indicatorTrayVBox");
 
         ScrollPane itemTextScrollPane = new ScrollPane(itemTextVBox);
         itemTextScrollPane.setId("itemTextScrollPane");
         
-        VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane, itemTextScrollPane, indicatorTray);
+        VBox itemVBox = new VBox(topHBox, itemNameLabel, itemImageStackPane, itemTextScrollPane, indicatorTrayVBox);
         itemVBox.setId("itemVBox");
         VBox.setMargin(itemNameLabel, new Insets(5, 0 ,0, 0));
         VBox.setMargin(itemImageStackPane, new Insets(1, 0 ,0, 0));
-        VBox.setMargin(indicatorTray, new Insets(0, 0 ,0, 10));
+        // VBox.setMargin(indicatorTray, new Insets(0, 9 ,0, 10));
         itemPane.getChildren().add(itemVBox);
         itemPane.setId("itemPane");
         itemPane.setCache(true);
