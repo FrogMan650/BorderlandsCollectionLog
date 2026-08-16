@@ -50,14 +50,22 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -165,7 +173,7 @@ public class App extends Application {
     public static DocumentBuilderFactory factory;
     public static DocumentBuilder builder;
     public static File executableDirectory;
-    public static File appDataDirectory;
+    public static File localShareDirectory;
     public static int totalNodes = 0;
 
     public static void main(String[] args) throws Exception {
@@ -227,21 +235,22 @@ public class App extends Application {
         //    Directory and File Setup Start
         //======================================
         //Get/create the users AppData/Local/BorderlandsCollectionLog directory
-        String appDataString = System.getenv("LOCALAPPDATA") + "/BorderlandsCollectionLog";
-        Path appDataPath = Paths.get(appDataString);
-        appDataDirectory = appDataPath.toFile();
-        if (!appDataDirectory.exists()) {
+        // String userHomeString = System.getenv("LOCALAPPDATA") + "/BorderlandsCollectionLog";
+        String userHomeString = System.getProperty("user.home");
+        Path localSharePath = Paths.get(userHomeString, ".local", "share", "BorderlandsCollectionLog");
+        localShareDirectory = localSharePath.toFile();
+        if (!localShareDirectory.exists()) {
             try {
-                Files.createDirectory(appDataDirectory.toPath());
+                Files.createDirectory(localShareDirectory.toPath());
             } catch (Exception e) {
-                System.out.println("Error creating AppData/Local/BorderlandsCollectionLog folder:\n" + e);
+                System.out.println("Error creating /home/User/.local/share/BorderlandsCollectionLog folder:\n" + e);
             }
         }
         //Get executable directory
         URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
         executableDirectory = Paths.get(uri).getParent().toFile();
         //Get/create settings file
-        settingsXML = new File(appDataDirectory, "settings.xml");
+        settingsXML = new File(localShareDirectory, "settings.xml");
         if (!settingsXML.exists()) {
             try {
                 settingsXML.createNewFile();
@@ -254,7 +263,7 @@ public class App extends Application {
         settingsNodes = settingsDocument.getDocumentElement().getElementsByTagName("setting");
         filterNodes = settingsDocument.getDocumentElement().getElementsByTagName("filter");
         //Get/create log file
-        logFile = new File(appDataDirectory, "logs.txt");
+        logFile = new File(localShareDirectory, "logs.txt");
         if (!logFile.exists()) {
             try {
                 logFile.createNewFile();
@@ -263,7 +272,7 @@ public class App extends Application {
             }
         }
         //Get/create profile directory and files
-        File profileDirectory = new File(appDataDirectory, "profiles");
+        File profileDirectory = new File(localShareDirectory, "profiles");
         if (!profileDirectory.exists()) {
             try {
                 Files.createDirectory(profileDirectory.toPath());
@@ -291,7 +300,7 @@ public class App extends Application {
             profileSettingElement.getElementsByTagName("name").item(0).setTextContent(loadedProfile);
             writeToXml(settingsDocument, settingsXML);
         }
-        profileXML = new File(appDataDirectory + "/profiles", loadedProfile +".xml");
+        profileXML = new File(localShareDirectory + "/profiles", loadedProfile +".xml");
         profileDocument = builder.parse(profileXML);
         profileNode = profileDocument.getDocumentElement();
         //======================================
@@ -553,7 +562,7 @@ public class App extends Application {
         loadProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File profileToLoad = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File profileToLoad = new File(localShareDirectory.getPath() + "/profiles", newProfile + ".xml");
                 if (profileToLoad.exists()) {
                     updateProfileInfo(newProfile);
                 }
@@ -574,7 +583,7 @@ public class App extends Application {
         createNewProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File newProfileFile = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File newProfileFile = new File(localShareDirectory.getPath() + "/profiles", newProfile + ".xml");
                 if (!newProfileFile.exists()) {
                     Files.write(newProfileFile.toPath(), "<items></items>".getBytes());
                     updateProfileInfo(newProfile);
@@ -596,8 +605,8 @@ public class App extends Application {
         renameProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File oldProfileFile = new File(appDataDirectory.getPath() + "/profiles", loadedProfile + ".xml");
-                File newProfileFile = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File oldProfileFile = new File(localShareDirectory.getPath() + "/profiles", loadedProfile + ".xml");
+                File newProfileFile = new File(localShareDirectory.getPath() + "/profiles", newProfile + ".xml");
                 if (!newProfileFile.exists()) {
                     Files.move(oldProfileFile.toPath(), newProfileFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     updateProfileInfo(newProfile);
@@ -619,8 +628,8 @@ public class App extends Application {
         resetProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File selectedProfile = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
-                File currentProfile = new File(appDataDirectory.getPath() + "/profiles", loadedProfile + ".xml");
+                File selectedProfile = new File(localShareDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File currentProfile = new File(localShareDirectory.getPath() + "/profiles", loadedProfile + ".xml");
                 if (resetProfileButton.getText().equals("Reset Profile")) {
                     resetProfileButton.setText("REALLY?");
                 } else if (resetProfileButton.getText().equals("REALLY?")) {
@@ -655,8 +664,8 @@ public class App extends Application {
         deleteProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File selectedProfile = new File(appDataDirectory.getPath() + "/profiles", newProfile + ".xml");
-                File currentProfile = new File(appDataDirectory.getPath() + "/profiles", loadedProfile + ".xml");
+                File selectedProfile = new File(localShareDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File currentProfile = new File(localShareDirectory.getPath() + "/profiles", loadedProfile + ".xml");
                 if (deleteProfileButton.getText().equals("Delete Profile")) {
                     deleteProfileButton.setText("REALLY?");
                 } else if (deleteProfileButton.getText().equals("REALLY?")) {
@@ -1148,6 +1157,7 @@ public class App extends Application {
 
         HBox bannerHBox = new HBox(0, bannerProfileCombobox, itemPickerViewPane, bannerHPusher2, BLCLViewPane, itemsCollectedVBox, 
             huntViewPane, huntItemsCollectedVBox, bannerHPusher, wikiViewPane, lootlemonViewPane, mentalMarsViewPane, settingsViewPane);
+        bannerHBox.setId("bannerBox");
         HBox.setMargin(itemPickerViewPane, new Insets(0, 0, 0, 10));
         HBox.setMargin(wikiViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(lootlemonViewPane, new Insets(0, 10, 0, 0));
@@ -1156,7 +1166,6 @@ public class App extends Application {
         HBox.setMargin(itemsCollectedVBox, new Insets(0, 10, 0, 0));
         HBox.setMargin(huntViewPane, new Insets(0, 5, 0, 0));
         HBox.setMargin(huntItemsCollectedVBox, new Insets(0, 10, 0, 0));
-        bannerHBox.setId("bannerBox");
         //======================================
         //          Banner End
         //======================================
@@ -1166,6 +1175,107 @@ public class App extends Application {
         //======================================
         AnchorPane root = new AnchorPane();
         root.setId("anchorPane");
+        //Create the radial gradiant for the main background
+        // 1. Define a low-res rendering grid (Fixed: Never changes during resize)
+        int bufferSize = 200; 
+        double centerX = bufferSize / 2;
+        double centerY = bufferSize / 2;
+        double maxRadius = Math.sqrt(centerX * centerX + centerY * centerY); // Corner distance
+
+        // 2. Define your colors
+        Color centerColor = Color.web("#5879b7");
+        Color edgeColor = Color.web("#49506e");
+
+        WritableImage radialImage = new WritableImage(bufferSize, bufferSize);
+        PixelWriter writer = radialImage.getPixelWriter();
+
+        // 3. Calculate the Circle Distance Map
+        for (int x = 0; x < bufferSize; x++) {
+            for (int y = 0; y < bufferSize; y++) {
+                // Find distance from current pixel to center point
+                double dx = x - centerX;
+                double dy = y - centerY;
+                double distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Normalize the progress value (Clamped between 0.0 and 1.0)
+                double progress = Math.min(1.0, distance / maxRadius);
+                
+                // Linear Interpolation (lerp) math
+                double r = centerColor.getRed() + progress * (edgeColor.getRed() - centerColor.getRed());
+                double g = centerColor.getGreen() + progress * (edgeColor.getGreen() - centerColor.getGreen());
+                double b = centerColor.getBlue() + progress * (edgeColor.getBlue() - centerColor.getBlue());
+                
+                writer.setColor(x, y, new Color(r, g, b, 1.0));
+            }
+        }
+
+        // 4. Wrap the buffer in an ImageView and configure stretching
+        ImageView backgroundView = new ImageView(radialImage);
+        backgroundView.setPreserveRatio(false);
+        backgroundView.fitWidthProperty().bind(root.widthProperty());   // Binds image width to AnchorPane width
+        backgroundView.fitHeightProperty().bind(root.heightProperty());
+
+        // CRITICAL: Tells the GPU to smoothly blend the stretched low-res pixels
+        backgroundView.setSmooth(true); 
+        backgroundView.setId("backgroundView");
+
+        // Dynamic Layout Binding: Stretches the image automatically via AnchorPane anchors
+        AnchorPane.setTopAnchor(backgroundView, 0.0);
+        AnchorPane.setBottomAnchor(backgroundView, 0.0);
+        AnchorPane.setLeftAnchor(backgroundView, 0.0);
+        AnchorPane.setRightAnchor(backgroundView, 0.0);
+
+        // 5. Push the background image layer to the absolute bottom of the Pane
+        root.getChildren().add(0, backgroundView);
+
+        //Create banner gradient
+        // 1. Define the fixed height of your banner and the low-res horizontal buffer width
+        double bannerHeight = 50.0; // Set this to whatever your fixed height requirement is
+        int bufferWidth = 1;      // 200 points is more than enough for a smooth blend
+        int bufferHeight = 50;       // CRITICAL: Only 1 pixel tall to optimize CPU usage
+
+        // 2. Define your colors
+        Color topColor = Color.web("#71c5d6");  // Start color (Purple)
+        Color bottomColor = Color.web("#4671a9"); // End color (Pink)
+
+        WritableImage bannerImage = new WritableImage(bufferWidth, bufferHeight);
+        PixelWriter pixelWriter = bannerImage.getPixelWriter();
+
+        // 3. Calculate the vertical gradient exactly ONCE at initialization
+        for (int y = 0; y < bufferHeight; y++) {
+            // Map the vertical coordinate to a fraction (0.0 to 1.0)
+            double progress = (double) y / (bufferHeight - 1);
+            
+            // Linear Interpolation (lerp) math down the color channels
+            double r = topColor.getRed() + progress * (bottomColor.getRed() - topColor.getRed());
+            double g = topColor.getGreen() + progress * (bottomColor.getGreen() - topColor.getGreen());
+            double b = topColor.getBlue() + progress * (bottomColor.getBlue() - topColor.getBlue());
+            
+            // Write the pixel to the single row (y = 0)
+            pixelWriter.setColor(0, y, new Color(r, g, b, 1.0));
+        }
+
+        // 4. Wrap the buffer in an ImageView and configure stretching
+        ImageView bannerView = new ImageView(bannerImage);
+
+        bannerView.setPreserveRatio(false); // Allows independent width and height scaling
+        bannerView.setSmooth(true);         // Forces the GPU to smoothly blur the 200 pixels across the screen
+
+        // 5. Explicitly set the fixed height and bind the width dynamically to the app window
+        bannerView.setFitHeight(bannerHeight);
+        bannerView.fitWidthProperty().bind(root.widthProperty());
+
+        // 6. Place it firmly at the very top of your AnchorPane layout
+        AnchorPane.setTopAnchor(bannerView, 0.0);
+        AnchorPane.setLeftAnchor(bannerView, 0.0);
+        AnchorPane.setRightAnchor(bannerView, 0.0);
+
+        // 7. Add the banner view layer to your layout pane
+        root.getChildren().add(bannerView);
+
+
+
+
         AnchorPane.setTopAnchor(bannerHBox, 0.0);
         AnchorPane.setRightAnchor(bannerHBox, 0.0);
         AnchorPane.setLeftAnchor(bannerHBox, 0.0);
@@ -1535,9 +1645,9 @@ public class App extends Application {
     public static void getProfiles() {
         try {
             profiles.clear();
-            File[] files = new File(appDataDirectory, "profiles").listFiles();
+            File[] files = new File(localShareDirectory, "profiles").listFiles();
             if (files.length == 0) {
-                File newProfileFile = new File(appDataDirectory.getPath() + "/profiles", "default_profile.xml");
+                File newProfileFile = new File(localShareDirectory.getPath() + "/profiles", "default_profile.xml");
                 Files.write(newProfileFile.toPath(), "<items></items>".getBytes());
                 Element root = settingsDocument.getDocumentElement();
                 Element profileElement = settingsDocument.createElement("profile");
@@ -1546,7 +1656,7 @@ public class App extends Application {
                 profileElement.appendChild(profileNameElement);
                 root.appendChild(profileElement);
                 writeToXml(settingsDocument, settingsXML);
-                files = new File(appDataDirectory, "profiles").listFiles();
+                files = new File(localShareDirectory, "profiles").listFiles();
             }
             for (File file : files) {
                 profiles.add(file.getName().split("\\.")[0]);
@@ -1615,7 +1725,7 @@ public class App extends Application {
             profileDisplayButton.setText(loadedProfile);
             profileDisplayToolTip.setText(loadedProfile);
             bannerProfileToolTip.setText("Loaded profile\n" + loadedProfile);
-            profileXML = new File(appDataDirectory + "/profiles", loadedProfile +".xml");
+            profileXML = new File(localShareDirectory + "/profiles", loadedProfile +".xml");
             profileDocument = builder.parse(profileXML);
             profileNode = profileDocument.getDocumentElement();
             updateComboBox();
