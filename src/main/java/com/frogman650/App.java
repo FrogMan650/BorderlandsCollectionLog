@@ -1625,6 +1625,8 @@ public class App extends Application {
                 continue;
             } else if (!dlc.isEmpty() && !toggleButtonArray.get(30).isSelected()) {
                 continue;
+            } else if (points.equals("0") && settingsToggleButtonArray.get(0).isSelected()) {
+                continue;
             }
             totalNodes ++;
             itemCardFilteredArray.add(itemCardArray.get(i));
