@@ -229,7 +229,7 @@ public class App extends Application {
         //    Directory and File Setup Start
         //======================================
         //Get/create the users BorderlandsCollectionLog directory
-        //Windows: /AppData/Local/BorderlandsCollectionLog
+        //Windows: /Users/User/AppData/Local/BorderlandsCollectionLog
         //Linux: /home/User/.local/share/BorderlandsCollectionLog
         String userDataString = "";
         Path userDataPath = null;
@@ -283,7 +283,7 @@ public class App extends Application {
             try {
                 Files.createDirectory(profileDirectory.toPath());
             } catch (Exception e) {
-                System.out.println("Error creating AppData/Local/BorderlandsCollectionLog/profiles folder:\n" + e);
+                System.out.println("Error creating profiles folder:\n" + e);
             }
         }
         getProfiles();

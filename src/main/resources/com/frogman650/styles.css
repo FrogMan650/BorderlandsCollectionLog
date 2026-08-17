@@ -2,10 +2,6 @@
     -fx-font-family:"WillowBody";
 }
 
-/* #anchorPane {
-    -fx-background-color: radial-gradient(center 50% 50%, radius 95%, #5879b7, #282c3d);
-} */
-
 #filterLabel {
     -fx-font-size: 20;
     -fx-background: transparent;
