@@ -7,10 +7,7 @@
   ]
 },
 {
-  "name":"com.sun.glass.ui.Screen"
-},
-{
-  "name":"com.sun.javafx.font.directwrite.DWFactory",
+  "name":"com.sun.javafx.font.freetype.FTFactory",
   "methods":[{"name":"getFactory","parameterTypes":[] }]
 },
 {
@@ -209,19 +206,15 @@
   "fields":[{"name":"theUnsafe"}]
 },
 {
-  "name":"sun.security.provider.DRBG",
-  "methods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
-},
-{
   "name":"sun.security.provider.MD5",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
-  "name":"sun.security.provider.SHA",
+  "name":"sun.security.provider.NativePRNG",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
-  "name":"sun.security.provider.SHA2$SHA256",
+  "name":"sun.security.provider.SHA",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 }
 ]

@@ -12,13 +12,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 
 public class ItemCard {
@@ -353,7 +356,7 @@ public class ItemCard {
                         String iDNode = node.getElementsByTagName("id").item(0).getTextContent();
                         if (id.equals(iDNode)) {
                             App.profileNode.removeChild(node);
-                            App.writeToXml(App.profileDocument, new File(App.appDataDirectory + "/profiles", App.loadedProfile + ".xml"));
+                            App.writeToXml(App.profileDocument, new File(App.userDataDirectory + "/profiles", App.loadedProfile + ".xml"));
                             break;
                         }
                     }
@@ -399,7 +402,7 @@ public class ItemCard {
                     newIDElement.appendChild(App.profileDocument.createTextNode(id));
                     newItemElement.appendChild(newIDElement);
                     App.profileDocument.getDocumentElement().appendChild(newItemElement);
-                    App.writeToXml(App.profileDocument, new File(App.appDataDirectory + "/profiles", App.loadedProfile + ".xml"));
+                    App.writeToXml(App.profileDocument, new File(App.userDataDirectory + "/profiles", App.loadedProfile + ".xml"));
                     obtained = true;
                 }
                 Platform.runLater(() -> {
@@ -412,6 +415,29 @@ public class ItemCard {
         HBox.setMargin(gameLabel, new Insets(0, 0, 0, 25));
         Label itemNameLabel = new Label(name);
         itemNameLabel.setId("itemNameLabel");
+        //Setting size of item name text to fit in the label
+        int labelCount = itemNameLabel.getText().length();
+        int textSize = 25;
+        if (labelCount > 25) {
+            textSize = 16;
+        } else if (labelCount > 24) {
+            textSize = 17;
+        } else if (labelCount > 22) {
+            textSize = 18;
+        } else if (labelCount > 21) {
+            textSize = 19;
+        } else if (labelCount > 20) {
+            textSize = 20;
+        } else if (labelCount > 19) {
+            textSize = 21;
+        } else if (labelCount > 18) {
+            textSize = 22;
+        } else if (labelCount > 17) {
+            textSize = 23;
+        } else if (labelCount > 16) {
+            textSize = 24;
+        }
+        itemNameLabel.setStyle("-fx-font-size: " + textSize + ";");
         //Setting the color of item image and text
         if (rarity.toLowerCase().equals("legendary")) {
             itemNameLabel.setTextFill(Paint.valueOf("#eb8a01"));
@@ -439,31 +465,39 @@ public class ItemCard {
             itemBackgroundColor.setStyle("-fx-background-color: #ff69b4;");
         } else if (rarity.toLowerCase().equals("effervescent")) {
             itemBackgroundColor.setBackground(new Background(new BackgroundImage(App.effervescentBackground, null, null, null, null)));
-            itemNameLabel.setTextFill(Paint.valueOf("linear-gradient(to right, red 0%, orange 20%, yellow 40%, rgb(0, 255, 0) 60%, rgb(101, 101, 255) 80%, rgb(212, 0, 255) 100%)"));
+            //GraalVM doesn't seem to parse gradients properly on compilation on linux so
+            //we need to create a literal gradient image to set as the text
+            // 1. Estimate the size boundaries of your text string
+            int textWidth = labelCount*15;
+            int textHeight = 10;
+
+            // 2. Build the GraalVM-safe raw gradient map
+            WritableImage textGradientImage = new WritableImage(textWidth, textHeight);
+            PixelWriter writer = textGradientImage.getPixelWriter();
+
+            // 3. Generate the rainbow pixel-by-pixel using Hue (0 to 360)
+            for (int x = 0; x < textWidth; x++) {
+                // Map the horizontal coordinate to a fraction (0.0 to 1.0)
+                double progress = (double) x / (textWidth - 1);
+                
+                // Convert progress to a 360-degree color wheel cycle
+                double hue = progress * 360.0; 
+                
+                // Create the color: Full saturation (1.0) and full brightness (1.0)
+                Color rainbowColor = Color.hsb(hue, 1.0, 1.0);
+                
+                // Paint a solid vertical line of this color down the column
+                for (int y = 0; y < textHeight; y++) {
+                    writer.setColor(x, y, rainbowColor);
+                }
+            }
+
+            // 4. Wrap the image inside an ImagePattern and set it as the Text's fill
+            ImagePattern pattern = new ImagePattern(
+                textGradientImage, 0, 0, textWidth, textHeight, false // 'false' targets pixel coordinate mode
+            );
+            itemNameLabel.setTextFill(pattern);
         }
-        //Setting size of item name text to fit in the label
-        int labelCount = itemNameLabel.getText().length();
-        int textSize = 25;
-        if (labelCount > 25) {
-            textSize = 16;
-        } else if (labelCount > 24) {
-            textSize = 17;
-        } else if (labelCount > 22) {
-            textSize = 18;
-        } else if (labelCount > 21) {
-            textSize = 19;
-        } else if (labelCount > 20) {
-            textSize = 20;
-        } else if (labelCount > 19) {
-            textSize = 21;
-        } else if (labelCount > 18) {
-            textSize = 22;
-        } else if (labelCount > 17) {
-            textSize = 23;
-        } else if (labelCount > 16) {
-            textSize = 24;
-        }
-        itemNameLabel.setStyle("-fx-font-size: " + textSize + ";");
 
         //Item text VBox to store flavor text and sources text
         VBox itemTextVBox = new VBox();

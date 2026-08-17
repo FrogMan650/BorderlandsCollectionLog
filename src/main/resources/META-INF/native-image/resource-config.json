@@ -8,6 +8,9 @@
       "pattern":"\\Qcom/frogman650/Hunt_logo_mini.png\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/Wiki_logo.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/Wiki_logo_mini.png\\E"
     }, 
     {
@@ -20,6 +23,12 @@
       "pattern":"\\Qcom/frogman650/class_mod.png\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/dlc_indicator.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/earl_indicator.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/effervescent_rev2.gif\\E"
     }, 
     {
@@ -29,31 +38,7 @@
       "pattern":"\\Qcom/frogman650/eridian.png\\E"
     }, 
     {
-      "pattern":"\\Qcom/frogman650/filter_background_off.png\\E"
-    }, 
-    {
-      "pattern":"\\Qcom/frogman650/filter_background_off_hover.png\\E"
-    }, 
-    {
-      "pattern":"\\Qcom/frogman650/filter_background_off_mini.png\\E"
-    }, 
-    {
-      "pattern":"\\Qcom/frogman650/filter_background_off_mini_hover.png\\E"
-    }, 
-    {
-      "pattern":"\\Qcom/frogman650/filter_background_on.png\\E"
-    }, 
-    {
-      "pattern":"\\Qcom/frogman650/filter_background_on_hover.png\\E"
-    }, 
-    {
-      "pattern":"\\Qcom/frogman650/filter_background_on_mini.png\\E"
-    }, 
-    {
-      "pattern":"\\Qcom/frogman650/filter_background_on_mini_hover.png\\E"
-    }, 
-    {
-      "pattern":"\\Qcom/frogman650/filter_background_search.png\\E"
+      "pattern":"\\Qcom/frogman650/game_mode_indicator.png\\E"
     }, 
     {
       "pattern":"\\Qcom/frogman650/grenade.png\\E"
@@ -62,7 +47,13 @@
       "pattern":"\\Qcom/frogman650/grenade_ordnance.png\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/grinder_indicator.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/heavy_ordnance.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/item_picker.png\\E"
     }, 
     {
       "pattern":"\\Qcom/frogman650/laser.png\\E"
@@ -77,6 +68,18 @@
       "pattern":"\\Qcom/frogman650/lootlemon_mini.png\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/mayhem_indicator.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/mentalmars_logo.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/mission_indicator.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/mod_indicator.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/not_obtained.png\\E"
     }, 
     {
@@ -86,6 +89,9 @@
       "pattern":"\\Qcom/frogman650/oz_kit.png\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/phosphene_indicator.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/pistol.png\\E"
     }, 
     {
@@ -93,6 +99,9 @@
     }, 
     {
       "pattern":"\\Qcom/frogman650/repkit.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/seraph_indicator.png\\E"
     }, 
     {
       "pattern":"\\Qcom/frogman650/settings.png\\E"
@@ -116,7 +125,16 @@
       "pattern":"\\Qcom/frogman650/styles.css\\E"
     }, 
     {
+      "pattern":"\\Qcom/frogman650/torgue_indicator.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/vault_card_indicator.png\\E"
+    }, 
+    {
       "pattern":"\\Qcom/frogman650/weapon_card.png\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/frogman650/world_drop.png\\E"
     }
   ]},
   "bundles":[
@@ -131,14 +149,6 @@
       "name":"com.sun.org.apache.xml.internal.serializer.XMLEntities",
       "locales":[
         "", 
-        "und"
-      ]
-    }, 
-    {
-      "name":"com/sun/glass/ui/win/themes",
-      "locales":[
-        "", 
-        "en", 
         "und"
       ]
     }, 
