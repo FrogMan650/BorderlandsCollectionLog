@@ -18,14 +18,11 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 public class ItemCard {
     private String name;
@@ -359,7 +356,7 @@ public class ItemCard {
                         String iDNode = node.getElementsByTagName("id").item(0).getTextContent();
                         if (id.equals(iDNode)) {
                             App.profileNode.removeChild(node);
-                            App.writeToXml(App.profileDocument, new File(App.localShareDirectory + "/profiles", App.loadedProfile + ".xml"));
+                            App.writeToXml(App.profileDocument, new File(App.userDataDirectory + "/profiles", App.loadedProfile + ".xml"));
                             break;
                         }
                     }
@@ -405,7 +402,7 @@ public class ItemCard {
                     newIDElement.appendChild(App.profileDocument.createTextNode(id));
                     newItemElement.appendChild(newIDElement);
                     App.profileDocument.getDocumentElement().appendChild(newItemElement);
-                    App.writeToXml(App.profileDocument, new File(App.localShareDirectory + "/profiles", App.loadedProfile + ".xml"));
+                    App.writeToXml(App.profileDocument, new File(App.userDataDirectory + "/profiles", App.loadedProfile + ".xml"));
                     obtained = true;
                 }
                 Platform.runLater(() -> {

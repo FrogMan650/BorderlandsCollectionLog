@@ -53,9 +53,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -63,9 +60,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -173,7 +167,7 @@ public class App extends Application {
     public static DocumentBuilderFactory factory;
     public static DocumentBuilder builder;
     public static File executableDirectory;
-    public static File localShareDirectory;
+    public static File userDataDirectory;
     public static int totalNodes = 0;
 
     public static void main(String[] args) throws Exception {
@@ -234,23 +228,35 @@ public class App extends Application {
         //======================================
         //    Directory and File Setup Start
         //======================================
-        //Get/create the users AppData/Local/BorderlandsCollectionLog directory
-        // String userHomeString = System.getenv("LOCALAPPDATA") + "/BorderlandsCollectionLog";
-        String userHomeString = System.getProperty("user.home");
-        Path localSharePath = Paths.get(userHomeString, ".local", "share", "BorderlandsCollectionLog");
-        localShareDirectory = localSharePath.toFile();
-        if (!localShareDirectory.exists()) {
+        //Get/create the users BorderlandsCollectionLog directory
+        //Windows: /AppData/Local/BorderlandsCollectionLog
+        //Linux: /home/User/.local/share/BorderlandsCollectionLog
+        String userDataString = "";
+        Path userDataPath = null;
+        try {
+            userDataString = System.getenv("LOCALAPPDATA");
+            if (userDataString == null) {
+                userDataString = System.getProperty("user.home");
+                userDataPath = Paths.get(userDataString, ".local", "share", "BorderlandsCollectionLog");
+            } else {
+                userDataPath = Paths.get(userDataString, "BorderlandsCollectionLog");
+            }
+        } catch (Exception e) {
+                System.out.println("Couldn't find Windows or Linux User data directory\n" + e);
+        }
+        userDataDirectory = userDataPath.toFile();
+        if (!userDataDirectory.exists()) {
             try {
-                Files.createDirectory(localShareDirectory.toPath());
+                Files.createDirectory(userDataDirectory.toPath());
             } catch (Exception e) {
-                System.out.println("Error creating /home/User/.local/share/BorderlandsCollectionLog folder:\n" + e);
+                System.out.println("Error creating user data BorderlandsCollectionLog directory\n" + e);
             }
         }
         //Get executable directory
         URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
         executableDirectory = Paths.get(uri).getParent().toFile();
         //Get/create settings file
-        settingsXML = new File(localShareDirectory, "settings.xml");
+        settingsXML = new File(userDataDirectory, "settings.xml");
         if (!settingsXML.exists()) {
             try {
                 settingsXML.createNewFile();
@@ -263,7 +269,7 @@ public class App extends Application {
         settingsNodes = settingsDocument.getDocumentElement().getElementsByTagName("setting");
         filterNodes = settingsDocument.getDocumentElement().getElementsByTagName("filter");
         //Get/create log file
-        logFile = new File(localShareDirectory, "logs.txt");
+        logFile = new File(userDataDirectory, "logs.txt");
         if (!logFile.exists()) {
             try {
                 logFile.createNewFile();
@@ -272,7 +278,7 @@ public class App extends Application {
             }
         }
         //Get/create profile directory and files
-        File profileDirectory = new File(localShareDirectory, "profiles");
+        File profileDirectory = new File(userDataDirectory, "profiles");
         if (!profileDirectory.exists()) {
             try {
                 Files.createDirectory(profileDirectory.toPath());
@@ -300,7 +306,7 @@ public class App extends Application {
             profileSettingElement.getElementsByTagName("name").item(0).setTextContent(loadedProfile);
             writeToXml(settingsDocument, settingsXML);
         }
-        profileXML = new File(localShareDirectory + "/profiles", loadedProfile +".xml");
+        profileXML = new File(userDataDirectory + "/profiles", loadedProfile +".xml");
         profileDocument = builder.parse(profileXML);
         profileNode = profileDocument.getDocumentElement();
         //======================================
@@ -562,7 +568,7 @@ public class App extends Application {
         loadProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File profileToLoad = new File(localShareDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File profileToLoad = new File(userDataDirectory.getPath() + "/profiles", newProfile + ".xml");
                 if (profileToLoad.exists()) {
                     updateProfileInfo(newProfile);
                 }
@@ -583,7 +589,7 @@ public class App extends Application {
         createNewProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File newProfileFile = new File(localShareDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File newProfileFile = new File(userDataDirectory.getPath() + "/profiles", newProfile + ".xml");
                 if (!newProfileFile.exists()) {
                     Files.write(newProfileFile.toPath(), "<items></items>".getBytes());
                     updateProfileInfo(newProfile);
@@ -605,8 +611,8 @@ public class App extends Application {
         renameProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File oldProfileFile = new File(localShareDirectory.getPath() + "/profiles", loadedProfile + ".xml");
-                File newProfileFile = new File(localShareDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File oldProfileFile = new File(userDataDirectory.getPath() + "/profiles", loadedProfile + ".xml");
+                File newProfileFile = new File(userDataDirectory.getPath() + "/profiles", newProfile + ".xml");
                 if (!newProfileFile.exists()) {
                     Files.move(oldProfileFile.toPath(), newProfileFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     updateProfileInfo(newProfile);
@@ -628,8 +634,8 @@ public class App extends Application {
         resetProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File selectedProfile = new File(localShareDirectory.getPath() + "/profiles", newProfile + ".xml");
-                File currentProfile = new File(localShareDirectory.getPath() + "/profiles", loadedProfile + ".xml");
+                File selectedProfile = new File(userDataDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File currentProfile = new File(userDataDirectory.getPath() + "/profiles", loadedProfile + ".xml");
                 if (resetProfileButton.getText().equals("Reset Profile")) {
                     resetProfileButton.setText("REALLY?");
                 } else if (resetProfileButton.getText().equals("REALLY?")) {
@@ -664,8 +670,8 @@ public class App extends Application {
         deleteProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
-                File selectedProfile = new File(localShareDirectory.getPath() + "/profiles", newProfile + ".xml");
-                File currentProfile = new File(localShareDirectory.getPath() + "/profiles", loadedProfile + ".xml");
+                File selectedProfile = new File(userDataDirectory.getPath() + "/profiles", newProfile + ".xml");
+                File currentProfile = new File(userDataDirectory.getPath() + "/profiles", loadedProfile + ".xml");
                 if (deleteProfileButton.getText().equals("Delete Profile")) {
                     deleteProfileButton.setText("REALLY?");
                 } else if (deleteProfileButton.getText().equals("REALLY?")) {
@@ -1647,9 +1653,9 @@ public class App extends Application {
     public static void getProfiles() {
         try {
             profiles.clear();
-            File[] files = new File(localShareDirectory, "profiles").listFiles();
+            File[] files = new File(userDataDirectory, "profiles").listFiles();
             if (files.length == 0) {
-                File newProfileFile = new File(localShareDirectory.getPath() + "/profiles", "default_profile.xml");
+                File newProfileFile = new File(userDataDirectory.getPath() + "/profiles", "default_profile.xml");
                 Files.write(newProfileFile.toPath(), "<items></items>".getBytes());
                 Element root = settingsDocument.getDocumentElement();
                 Element profileElement = settingsDocument.createElement("profile");
@@ -1658,7 +1664,7 @@ public class App extends Application {
                 profileElement.appendChild(profileNameElement);
                 root.appendChild(profileElement);
                 writeToXml(settingsDocument, settingsXML);
-                files = new File(localShareDirectory, "profiles").listFiles();
+                files = new File(userDataDirectory, "profiles").listFiles();
             }
             for (File file : files) {
                 profiles.add(file.getName().split("\\.")[0]);
@@ -1727,7 +1733,7 @@ public class App extends Application {
             profileDisplayButton.setText(loadedProfile);
             profileDisplayToolTip.setText(loadedProfile);
             bannerProfileToolTip.setText("Loaded profile\n" + loadedProfile);
-            profileXML = new File(localShareDirectory + "/profiles", loadedProfile +".xml");
+            profileXML = new File(userDataDirectory + "/profiles", loadedProfile +".xml");
             profileDocument = builder.parse(profileXML);
             profileNode = profileDocument.getDocumentElement();
             updateComboBox();
