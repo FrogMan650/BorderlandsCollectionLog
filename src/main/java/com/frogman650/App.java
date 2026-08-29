@@ -131,9 +131,7 @@ public class App extends Application {
     public static ArrayList<String> profiles = new ArrayList<>();
     public static String loadedProfile;
     public static ComboBox<String> profileCombobox;
-    public static Tooltip profileDisplayToolTip;
     public static ComboBox<String> bannerProfileCombobox;
-    public static Tooltip bannerProfileToolTip;
     public static Element profileSettingElement;
     public static Button profileDisplayButton;
     public static HBox itemPickerHBox;
@@ -552,14 +550,7 @@ public class App extends Application {
         profileDisplayButton = new Button(loadedProfile);
         profileDisplayButton.setMnemonicParsing(false);
         profileDisplayButton.setId("profileDisplayButton");
-        profileDisplayToolTip = new Tooltip(loadedProfile);
-        profileDisplayToolTip.setId("toolTip");
-        profileDisplayButton.setOnMouseMoved(event -> {
-            profileDisplayToolTip.show(profileDisplayButton, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        profileDisplayButton.setOnMouseExited(event -> {
-            profileDisplayToolTip.hide();
-        });
+        addToolTip(profileDisplayButton, loadedProfile);
         profileCombobox = new ComboBox<>();
         profileCombobox.setEditable(true);
         profileCombobox.setPromptText("Profile Name");
@@ -576,14 +567,7 @@ public class App extends Application {
                 writeToLogFile("Error loading profile", e.toString());
             }
         });
-        Tooltip loadProfileToolTip = new Tooltip("Load selected profile");
-        loadProfileToolTip.setId("toolTip");
-        loadProfileButton.setOnMouseMoved(event -> {
-            loadProfileToolTip.show(loadProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        loadProfileButton.setOnMouseExited(event -> {
-            loadProfileToolTip.hide();
-        });
+        addToolTip(loadProfileButton, "Load selected profile");
         Button createNewProfileButton = new Button("Create Profile");
         createNewProfileButton.setId("greenButton");
         createNewProfileButton.setOnAction(event -> {
@@ -598,14 +582,7 @@ public class App extends Application {
                 writeToLogFile("Error creating profile", e.toString());
             }
         });
-        Tooltip createProfileToolTip = new Tooltip("Create selected profile");
-        createProfileToolTip.setId("toolTip");
-        createNewProfileButton.setOnMouseMoved(event -> {
-            createProfileToolTip.show(createNewProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        createNewProfileButton.setOnMouseExited(event -> {
-            createProfileToolTip.hide();
-        });
+        addToolTip(createNewProfileButton, "Create selected profile");
         Button renameProfileButton = new Button("Rename Profile");
         renameProfileButton.setId("greenButton");
         renameProfileButton.setOnAction(event -> {
@@ -621,21 +598,13 @@ public class App extends Application {
                 writeToLogFile("Error renaming profile", e.toString());
             }
         });
-        Tooltip renameProfileToolTip = new Tooltip("Rename selected profile");
-        renameProfileToolTip.setId("toolTip");
-        renameProfileButton.setOnMouseMoved(event -> {
-            renameProfileToolTip.show(renameProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        renameProfileButton.setOnMouseExited(event -> {
-            renameProfileToolTip.hide();
-        });
+        addToolTip(renameProfileButton, "Rename selected profile");
         Button resetProfileButton = new Button("Reset Profile");
         resetProfileButton.setId("redButton");
         resetProfileButton.setOnAction(event -> {
             try {
                 String newProfile = profileCombobox.getValue();
                 File selectedProfile = new File(userDataDirectory.getPath() + "/profiles", newProfile + ".xml");
-                File currentProfile = new File(userDataDirectory.getPath() + "/profiles", loadedProfile + ".xml");
                 if (resetProfileButton.getText().equals("Reset Profile")) {
                     resetProfileButton.setText("REALLY?");
                 } else if (resetProfileButton.getText().equals("REALLY?")) {
@@ -657,14 +626,7 @@ public class App extends Application {
                 writeToLogFile("Error resetting profile", e.toString());
             }
         });
-        Tooltip resetProfileToolTip = new Tooltip("Reset selected profile");
-        resetProfileToolTip.setId("toolTip");
-        resetProfileButton.setOnMouseMoved(event -> {
-            resetProfileToolTip.show(resetProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        resetProfileButton.setOnMouseExited(event -> {
-            resetProfileToolTip.hide();
-        });
+        addToolTip(resetProfileButton, "Reset selected profile");
         Button deleteProfileButton = new Button("Delete Profile");
         deleteProfileButton.setId("redButton");
         deleteProfileButton.setOnAction(event -> {
@@ -691,14 +653,7 @@ public class App extends Application {
                 writeToLogFile("Error deleting profile", e.toString());
             }
         });
-        Tooltip deleteProfileToolTip = new Tooltip("Delete selected profile");
-        deleteProfileToolTip.setId("toolTip");
-        deleteProfileButton.setOnMouseMoved(event -> {
-            deleteProfileToolTip.show(deleteProfileButton, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        deleteProfileButton.setOnMouseExited(event -> {
-            deleteProfileToolTip.hide();
-        });
+        addToolTip(deleteProfileButton, "Delete selected profile");
         settingsVBox.getChildren().addAll(profileSelectionLabel, profileDisplayButton, profileCombobox, 
             loadProfileButton,createNewProfileButton, renameProfileButton, resetProfileButton, deleteProfileButton);
 
@@ -707,39 +662,17 @@ public class App extends Application {
         modeSelectionLabel.setStyle("-fx-cursor: none;");
         ToggleButton huntModeToggleButton = new ToggleButton("Hunt Mode");//0
         settingsToggleButtonArray.add(huntModeToggleButton);
-        Tooltip huntModeToolTip = new Tooltip("Hunt Mode will only show\nitems " +
-        "worth Hunt points." +
+        addToolTip(huntModeToggleButton, "Hunt Mode will only show\nitems worth Hunt points." +
         "\nMore information on rules and regulations for\n The Hunt can be found on borderlandshunt.com.");
-        huntModeToolTip.setId("toolTip");
-        huntModeToggleButton.setOnMouseMoved(event -> {
-            huntModeToolTip.show(huntModeToggleButton, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        huntModeToggleButton.setOnMouseExited(event -> {
-            huntModeToolTip.hide();
-        });
         ToggleButton phospheneModeToggleButton = new ToggleButton("Phosphene Mode");//1
         settingsToggleButtonArray.add(phospheneModeToggleButton);
-        Tooltip phospheneModeToolTip = new Tooltip("Phosphene Mode will only show items\n" +
+        addToolTip(phospheneModeToggleButton, "Phosphene Mode will only show items\n" +
         "with a phosphene skin variant.");
-        phospheneModeToolTip.setId("toolTip");
-        phospheneModeToggleButton.setOnMouseMoved(event -> {
-            phospheneModeToolTip.show(phospheneModeToggleButton, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        phospheneModeToggleButton.setOnMouseExited(event -> {
-            phospheneModeToolTip.hide();
-        });
         settingsVBox.getChildren().addAll(modeSelectionLabel, huntModeToggleButton, phospheneModeToggleButton);
         Label itemCollectionLabel = new Label("COLLECTION");
         itemCollectionLabel.setId("filterLabel");
-        Tooltip itemCollectionToolTip = new Tooltip("These settings control which games items\nwill " + 
+        addToolTip(itemCollectionLabel, "These settings control which games items\nwill " + 
         "contribute to the items collected\non the banner at the top.");
-        itemCollectionToolTip.setId("toolTip");
-        itemCollectionLabel.setOnMouseMoved(event -> {
-            itemCollectionToolTip.show(itemCollectionLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        itemCollectionLabel.setOnMouseExited(event -> {
-            itemCollectionToolTip.hide();
-        });
         ToggleButton toggleButtonCollectionBL = new ToggleButton("Borderlands");//2
         settingsToggleButtonArray.add(toggleButtonCollectionBL);
         ToggleButton toggleButtonCollectionBL2 = new ToggleButton("Borderlands 2");//3
@@ -754,15 +687,8 @@ public class App extends Application {
         toggleButtonCollectionBLTPS, toggleButtonCollectionBL3, toggleButtonCollectionBL4);
         Label theHuntLabel = new Label("THE HUNT");
         theHuntLabel.setId("filterLabel");
-        Tooltip huntCollectionToolTip = new Tooltip("These settings control which games items\nwill " +
+        addToolTip(theHuntLabel, "These settings control which games items\nwill " +
         "contribute to the hunt point\ntotal on the banner at the top.");
-        huntCollectionToolTip.setId("toolTip");
-        theHuntLabel.setOnMouseMoved(event -> {
-            huntCollectionToolTip.show(theHuntLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        theHuntLabel.setOnMouseExited(event -> {
-            huntCollectionToolTip.hide();
-        });
         ToggleButton toggleButtonHuntBL = new ToggleButton("Borderlands");//7
         settingsToggleButtonArray.add(toggleButtonHuntBL);
         ToggleButton toggleButtonHuntBL2 = new ToggleButton("Borderlands 2");//8
@@ -780,16 +706,9 @@ public class App extends Application {
         miscSettingLabel.setStyle("-fx-cursor: none;");
         ToggleButton toggleButtonHideUnobtainable = new ToggleButton("Hide Unobtainable");//12
         settingsToggleButtonArray.add(toggleButtonHideUnobtainable);
-        Tooltip unobtainableButtonTooltip = new Tooltip("This setting will hide items that are only\nobtainable " +
+        addToolTip(toggleButtonHideUnobtainable, "This setting will hide items that are only\nobtainable " +
         "through promotional DLC, limited time\npromotions, or are just in general not obtainable\nby any normal or " +
         "legitimate means.\n Example: Contraband Sky Rocket from BL2");
-        unobtainableButtonTooltip.setId("toolTip");
-        toggleButtonHideUnobtainable.setOnMouseMoved(event -> {
-            unobtainableButtonTooltip.show(toggleButtonHideUnobtainable, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        toggleButtonHideUnobtainable.setOnMouseExited(event -> {
-            unobtainableButtonTooltip.hide();
-        });
         toggleButtonHideUnobtainable.setOnAction(event -> {
             Element settingElement = (Element) settingsNodes.item(11);
             if (toggleButtonHideUnobtainable.isSelected()) {
@@ -929,29 +848,14 @@ public class App extends Application {
         bannerProfileCombobox = new ComboBox<>();
         bannerProfileCombobox.setEditable(false);
         bannerProfileCombobox.setId("bannerProfileCombobox");
-        bannerProfileToolTip = new Tooltip("Loaded profile\n" + loadedProfile);
-        bannerProfileToolTip.setId("toolTip");
-        bannerProfileCombobox.setOnMouseMoved(event -> {
-            bannerProfileToolTip.show(bannerProfileCombobox, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        bannerProfileCombobox.setOnMouseExited(event -> {
-            bannerProfileToolTip.hide();
-        });
+        addToolTip(bannerProfileCombobox, "Loaded profile\n" + loadedProfile);
         //Wiki image with link
         ImageView wikiLinkImageView = new ImageView(wikiImage);
         wikiLinkImageView.setFitHeight(48);
         Pane wikiViewPane = new Pane(wikiLinkImageView);
         wikiViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip wikiViewPaneToolTip = new Tooltip("Borderlands Wiki\nGreat resource for additional information on\n" +
-            "items, drop sources, and all things Borderlands."
-        );
-        wikiViewPaneToolTip.setId("toolTip");
-        wikiViewPane.setOnMouseMoved(event -> {
-            wikiViewPaneToolTip.show(wikiViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        wikiViewPane.setOnMouseExited(event -> {
-            wikiViewPaneToolTip.hide();
-        });
+        addToolTip(wikiViewPane, "Borderlands Wiki\nGreat resource for additional information on\n" +
+            "items, drop sources, and all things Borderlands.");
         wikiViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://borderlands.fandom.com/wiki/Borderlands_Wiki");
         });
@@ -961,16 +865,8 @@ public class App extends Application {
         lootlemonImageView.setFitWidth(26);
         Pane lootlemonViewPane = new Pane(lootlemonImageView);
         lootlemonViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip lootlemonViewPaneToolTip = new Tooltip("LootLemon\n#1 best resource for information on all Borderlands\n" +
-            "items, drop sources, drop rates, and skill tree builders."
-        );
-        lootlemonViewPaneToolTip.setId("toolTip");
-        lootlemonViewPane.setOnMouseMoved(event -> {
-            lootlemonViewPaneToolTip.show(lootlemonViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        lootlemonViewPane.setOnMouseExited(event -> {
-            lootlemonViewPaneToolTip.hide();
-        });
+        addToolTip(lootlemonViewPane, "LootLemon\n#1 best resource for information on all Borderlands\n" +
+            "items, drop sources, drop rates, and skill tree builders.");
         lootlemonViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://www.lootlemon.com/");
         });
@@ -980,16 +876,8 @@ public class App extends Application {
         mentalMarsImageView.setFitWidth(48);
         Pane mentalMarsViewPane = new Pane(mentalMarsImageView);
         mentalMarsViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip mentalMarsViewPaneToolTip = new Tooltip("MentalMars\nOne of the best resources for Borderlands news,\n" +
-            "walkthroughs, Golden keys, and SHiFT codes in general."
-        );
-        mentalMarsViewPaneToolTip.setId("toolTip");
-        mentalMarsViewPane.setOnMouseMoved(event -> {
-            mentalMarsViewPaneToolTip.show(mentalMarsViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        mentalMarsViewPane.setOnMouseExited(event -> {
-            mentalMarsViewPaneToolTip.hide();
-        });
+        addToolTip(mentalMarsViewPane, "MentalMars\nOne of the best resources for Borderlands news,\n" +
+            "walkthroughs, Golden keys, and SHiFT codes in general.");
         mentalMarsViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://mentalmars.com/");
         });
@@ -1006,14 +894,7 @@ public class App extends Application {
         ImageView itemPickerImageView = new ImageView(itemPickerImage);
         Pane itemPickerViewPane = new Pane(itemPickerImageView);
         itemPickerViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip itemPickerViewPaneToolTip = new Tooltip("Not sure which item to go for next?\nLet the item picker decide!");
-        itemPickerViewPaneToolTip.setId("toolTip");
-        itemPickerViewPane.setOnMouseMoved(event -> {
-            itemPickerViewPaneToolTip.show(itemPickerViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        itemPickerViewPane.setOnMouseExited(event -> {
-            itemPickerViewPaneToolTip.hide();
-        });
+        addToolTip(itemPickerViewPane, "Not sure which item to go for next?\nLet the item picker decide!");
         itemPickerViewPane.setOnMouseClicked(event -> {
             if (itemCardFilteredArray.size() > 0) {
                 itemPickerHBox.getChildren().clear();
@@ -1044,40 +925,19 @@ public class App extends Application {
         BLCLImageView.setFitWidth(48);
         Pane BLCLViewPane = new Pane(BLCLImageView);
         BLCLViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip BLCLViewPaneToolTip = new Tooltip("https://github.com/FrogMan650/BorderlandsCollectionLog");
-        BLCLViewPaneToolTip.setId("toolTip");
-        BLCLViewPane.setOnMouseMoved(event -> {
-            BLCLViewPaneToolTip.show(BLCLViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        BLCLViewPane.setOnMouseExited(event -> {
-            BLCLViewPaneToolTip.hide();
-        });
+        addToolTip(BLCLViewPane, "https://github.com/FrogMan650/BorderlandsCollectionLog");
         BLCLViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://github.com/FrogMan650/BorderlandsCollectionLog");
         });
         itemsCollectedLabel = new Label();
         itemsCollectedLabel.setId("collectionLabel");
-        Tooltip itemsCollectedToolTip = new Tooltip("Items obtained");
-        itemsCollectedToolTip.setId("toolTip");
-        itemsCollectedLabel.setOnMouseMoved(event -> {
-            itemsCollectedToolTip.show(itemsCollectedLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        itemsCollectedLabel.setOnMouseExited(event -> {
-            itemsCollectedToolTip.hide();
-        });
+        addToolTip(itemsCollectedLabel, "Items obtained");
         Line itemsCollectedLine = new Line();
         itemsCollectedLine.setId("collectionLine");
         itemsCollectedLine.setStartX(0);
         itemsCollectedLine.setEndX(35);
         itemsTotalLabel = new Label();
-        Tooltip itemsTotalToolTip = new Tooltip("Total items");
-        itemsTotalToolTip.setId("toolTip");
-        itemsTotalLabel.setOnMouseMoved(event -> {
-            itemsTotalToolTip.show(itemsTotalLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        itemsTotalLabel.setOnMouseExited(event -> {
-            itemsTotalToolTip.hide();
-        });
+        addToolTip(itemsTotalLabel, "Total items");
         itemsTotalLabel.setId("collectionLabel");
         VBox itemsCollectedVBox = new VBox(itemsCollectedLabel, itemsCollectedLine, itemsTotalLabel);
         itemsCollectedVBox.setId("collectionVBox");
@@ -1087,42 +947,21 @@ public class App extends Application {
         huntImageView.setFitWidth(87);
         Pane huntViewPane = new Pane(huntImageView);
         huntViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip huntViewPaneToolTip = new Tooltip("The Hunt is a Borderlands community\n" +
+        addToolTip(huntViewPane, "The Hunt is a Borderlands community\n" +
         "scavenger hunt to raise money for\nSt. Jude Children's Research Hospital.\nClick here for more info");
-        huntViewPaneToolTip.setId("toolTip");
-        huntViewPane.setOnMouseMoved(event -> {
-            huntViewPaneToolTip.show(huntViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        huntViewPane.setOnMouseExited(event -> {
-            huntViewPaneToolTip.hide();
-        });
         huntViewPane.setOnMouseClicked(event -> {
             hostService.showDocument("https://mentalmars.com/the-hunt/");
         });
         huntItemsCollectedLabel = new Label();
         huntItemsCollectedLabel.setId("collectionLabel");
-        Tooltip huntItemsCollectedToolTip = new Tooltip("Hunt points obtained");
-        huntItemsCollectedToolTip.setId("toolTip");
-        huntItemsCollectedLabel.setOnMouseMoved(event -> {
-            huntItemsCollectedToolTip.show(huntItemsCollectedLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        huntItemsCollectedLabel.setOnMouseExited(event -> {
-            huntItemsCollectedToolTip.hide();
-        });
+        addToolTip(huntItemsCollectedLabel, "Hunt points obtained");
         Line huntItemsCollectedLine = new Line();
         huntItemsCollectedLine.setId("collectionLine");
         huntItemsCollectedLine.setStartX(0);
         huntItemsCollectedLine.setEndX(35);
         huntItemsTotalLabel = new Label();
         huntItemsTotalLabel.setId("collectionLabel");
-        Tooltip huntItemsTotalToolTip = new Tooltip("Total hunt points");
-        huntItemsTotalToolTip.setId("toolTip");
-        huntItemsTotalLabel.setOnMouseMoved(event -> {
-            huntItemsTotalToolTip.show(huntItemsTotalLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        huntItemsTotalLabel.setOnMouseExited(event -> {
-            huntItemsTotalToolTip.hide();
-        });
+        addToolTip(huntItemsTotalLabel, "Total hunt points");
         VBox huntItemsCollectedVBox = new VBox(huntItemsCollectedLabel, huntItemsCollectedLine, huntItemsTotalLabel);
         huntItemsCollectedVBox.setId("collectionVBox");
 
@@ -1132,22 +971,9 @@ public class App extends Application {
         HBox.setHgrow(bannerHPusher2, Priority.ALWAYS);
 
         //Settings
-        ImageView settingsImageView = new ImageView(settingsImage);
-        settingsImageView.setId("settingsImageView");
-        settingsImageView.setFitHeight(48);
-        settingsImageView.setFitWidth(48);
-        Pane settingsViewPane = new Pane(settingsImageView);
-        settingsViewPane.setStyle("-fx-cursor: hand;");
-        Tooltip settingsViewPaneToolTip = new Tooltip("Settings");
-        settingsViewPaneToolTip.setId("toolTip");
-        settingsViewPane.setOnMouseMoved(event -> {
-            settingsViewPaneToolTip.show(settingsViewPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            settingsImageView.setImage(settingsHoverImage);
-        });
-        settingsViewPane.setOnMouseExited(event -> {
-            settingsViewPaneToolTip.hide();
-            settingsImageView.setImage(settingsImage);
-        });
+        Pane settingsViewPane = new Pane();
+        settingsViewPane.setId("settingsViewPane");
+        addToolTip(settingsViewPane, "Settings");
         settingsViewPane.setOnMouseClicked(event -> {
             if (filterVBox.isVisible()) {
                 filterVBox.setVisible(false);
@@ -1637,16 +1463,6 @@ public class App extends Application {
             totalNodes ++;
             itemCardFilteredArray.add(itemCardArray.get(i));
         }
-        // int loops = 0;
-        // while (itemCardArray.size() != totalNodes) {
-        //     loops ++;
-        //     System.out.println(loops);
-        // }
-        // Collections.sort(itemCardArray, new Comparator<ItemCard>() {
-        //     public int compare(ItemCard p1, ItemCard p2) {
-        //         return p1.getName().compareTo(p2.getName());
-        //     }
-        // });
     }
 
     //Update profile file array
@@ -1731,8 +1547,8 @@ public class App extends Application {
             profileSettingElement.getElementsByTagName("name").item(0).setTextContent(loadedProfile);
             writeToXml(settingsDocument, settingsXML);
             profileDisplayButton.setText(loadedProfile);
-            profileDisplayToolTip.setText(loadedProfile);
-            bannerProfileToolTip.setText("Loaded profile\n" + loadedProfile);
+            updateToolTip(profileDisplayButton, loadedProfile);
+            updateToolTip(bannerProfileCombobox, "Loaded profile\n" + loadedProfile);
             profileXML = new File(userDataDirectory + "/profiles", loadedProfile +".xml");
             profileDocument = builder.parse(profileXML);
             profileNode = profileDocument.getDocumentElement();
@@ -1746,6 +1562,25 @@ public class App extends Application {
             fullReset();
         } catch (Exception e) {
             writeToLogFile("Error updating profile info", e.toString());
+        }
+    }
+
+    public static void addToolTip(Region pane, String text) {
+        Tooltip newToolTip = new Tooltip(text);
+        newToolTip.setId("toolTip");
+        pane.setOnMouseMoved(event -> {
+            newToolTip.show(pane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        pane.setOnMouseExited(event -> {
+            newToolTip.hide();
+        });
+        pane.getProperties().put("TOOLTIP_KEY", newToolTip);
+    }
+
+    public static void updateToolTip(Region pane, String newText) {
+        Tooltip tooltip = (Tooltip) pane.getProperties().get("TOOLTIP_KEY");
+        if (tooltip != null) {
+            tooltip.setText(newText);
         }
     }
 

@@ -10,7 +10,6 @@ import javafx.geometry.Insets;
 import javafx.scene.CacheHint;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
@@ -105,45 +104,43 @@ public class ItemCard {
         this.id = id;
         this.card = card;
         this.mod = mod;
-        if (!(chance.equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
-            if (phosphene.isEmpty() && App.settingsToggleButtonArray.get(1).isSelected()) {
-            } else if (points.equals("0") && App.settingsToggleButtonArray.get(0).isSelected()) {
-            } else {
-                App.lock.lock();
-                try {
-                    if (game.equals("")) {
-                        App.countObtainedBL ++;
-                        App.huntObtainedBL += Integer.parseInt(points);
-                    } else if (game.equals("2")) {
-                        App.countObtainedBL2 ++;
-                        App.huntObtainedBL2 += Integer.parseInt(points);
-                    } else if (game.equals("TPS")) {
-                        App.countObtainedBLTPS ++;
-                        App.huntObtainedBLTPS += Integer.parseInt(points);
-                    } else if (game.equals("3")) {
-                        App.countObtainedBL3 ++;
-                        App.huntObtainedBL3 += Integer.parseInt(points);
-                    } else if (game.equals("4")) {
-                        App.countObtainedBL4 ++;
-                        App.huntObtainedBL4 += Integer.parseInt(points);
-                    }
-                } finally {
-                    App.lock.unlock();
+        if ((chance.equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
+        } else if (phosphene.isEmpty() && App.settingsToggleButtonArray.get(1).isSelected()) {
+        } else if (points.equals("0") && App.settingsToggleButtonArray.get(0).isSelected()) {
+        } else {
+            App.lock.lock();
+            try {
+                if (game.equals("")) {
+                    App.countObtainedBL ++;
+                    App.huntObtainedBL += Integer.parseInt(points);
+                } else if (game.equals("2")) {
+                    App.countObtainedBL2 ++;
+                    App.huntObtainedBL2 += Integer.parseInt(points);
+                } else if (game.equals("TPS")) {
+                    App.countObtainedBLTPS ++;
+                    App.huntObtainedBLTPS += Integer.parseInt(points);
+                } else if (game.equals("3")) {
+                    App.countObtainedBL3 ++;
+                    App.huntObtainedBL3 += Integer.parseInt(points);
+                } else if (game.equals("4")) {
+                    App.countObtainedBL4 ++;
+                    App.huntObtainedBL4 += Integer.parseInt(points);
                 }
+            } finally {
+                App.lock.unlock();
             }
         }
         if (obtained) {
-            if (!(chance.toLowerCase().equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
-                if (phosphene.isEmpty() && App.settingsToggleButtonArray.get(1).isSelected()) {
-                } else if (points.equals("0") && App.settingsToggleButtonArray.get(0).isSelected()) {
-                } else {
-                    //lock the shared variables so only 1 thread can access them at a time
-                    App.lock.lock();
-                    try {
-                        itemCounts(1);
-                    } finally {
-                        App.lock.unlock();
-                    }
+            if ((chance.toLowerCase().equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
+            } else if (phosphene.isEmpty() && App.settingsToggleButtonArray.get(1).isSelected()) {
+            } else if (points.equals("0") && App.settingsToggleButtonArray.get(0).isSelected()) {
+            } else {
+                //lock the shared variables so only 1 thread can access them at a time
+                App.lock.lock();
+                try {
+                    itemCounts(1);
+                } finally {
+                    App.lock.unlock();
                 }
             }
         }
@@ -339,14 +336,7 @@ public class ItemCard {
         Label gameLabel = new Label("Borderlands " + game);
         gameLabel.setId("gameLabel");
         Pane obtainedPane = new Pane();
-        Tooltip obtainedPaneToolTip = new Tooltip();
-        obtainedPaneToolTip.setId("toolTip");
-        obtainedPane.setOnMouseMoved(event -> {
-            obtainedPaneToolTip.show(obtainedPane, event.getScreenX() + 10, event.getScreenY() + 20);
-        });
-        obtainedPane.setOnMouseExited(event -> {
-            obtainedPaneToolTip.hide();
-        });
+        App.addToolTip(obtainedPane, "");
         if (obtained) {
             String dateObtained = "";
             NodeList profileNodes = App.profileNode.getElementsByTagName("item");
@@ -357,10 +347,12 @@ public class ItemCard {
                     dateObtained = node.getElementsByTagName("date").item(0).getTextContent();
                 }
             }
-            obtainedPaneToolTip.setText("Collected\n" + dateObtained);
+            App.updateToolTip(obtainedPane, "Collected\n" + dateObtained);
+            // obtainedPaneToolTip.setText("Collected\n" + dateObtained);
             obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
         } else {
-            obtainedPaneToolTip.setText("Not Collected");
+            App.updateToolTip(obtainedPane, "Not Collected");
+            // obtainedPaneToolTip.setText("Not Collected");
             obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
         }
         obtainedPane.setId("obtainedPane");
@@ -383,9 +375,9 @@ public class ItemCard {
                         }
                     }
                     if (!App.itemFlowPane.isVisible()) {
-                        System.out.println("setting button");
                         Platform.runLater(() -> {
-                            obtainedPaneToolTip.setText("Not Collected");
+                            App.updateToolTip(obtainedPane, "Not Collected");
+                            // obtainedPaneToolTip.setText("Not Collected");
                             obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
                         });
                     }
@@ -404,9 +396,9 @@ public class ItemCard {
                     App.profileDocument.getDocumentElement().appendChild(newItemElement);
                     App.writeToXml(App.profileDocument, new File(App.userDataDirectory + "/profiles", App.loadedProfile + ".xml"));
                     if (!App.itemFlowPane.isVisible()) {
-                        System.out.println("setting button");
                         Platform.runLater(() -> {
-                            obtainedPaneToolTip.setText("Collected\n" + dateString);
+                            App.updateToolTip(obtainedPane, "Collected\n" + dateString);
+                            // obtainedPaneToolTip.setText("Collected\n" + dateString);
                             obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
                         });
                     }
@@ -546,24 +538,17 @@ public class ItemCard {
                 itemTextVBox.getChildren().addAll(tempSourceTextLabel);
                 if (!location.isEmpty()) {
                     if (!locationTextSplit[i].isEmpty()) {
-                        Tooltip tempSourceTextToolTip = new Tooltip();
+                        App.addToolTip(tempSourceTextLabel, "");
                         try {
                             String[] chanceTextSplitSplit = chanceTextSplit[i].split("#@");
                             String sourceString = locationTextSplit[i];
                             for (String string : chanceTextSplitSplit) {
                                 sourceString = sourceString + "\n" + string;
                             }
-                            tempSourceTextToolTip.setText(sourceString);
+                            App.updateToolTip(tempSourceTextLabel, sourceString);
                         } catch (Exception e) {
-                            tempSourceTextToolTip.setText(locationTextSplit[i]);
+                            App.updateToolTip(tempSourceTextLabel, locationTextSplit[i]);
                         }
-                        tempSourceTextToolTip.setId("toolTip");
-                        tempSourceTextLabel.setOnMouseMoved(event -> {
-                            tempSourceTextToolTip.show(tempSourceTextLabel, event.getScreenX() + 10, event.getScreenY() + 20);
-                        });
-                        tempSourceTextLabel.setOnMouseExited(event -> {
-                            tempSourceTextToolTip.hide();
-                        });
                     }
                 }
             } 
@@ -576,14 +561,7 @@ public class ItemCard {
             ImageView itemWikiLinkImageView = new ImageView(App.wikiMiniImage);
             Pane itemWikiLinkPane = new Pane(itemWikiLinkImageView);
             itemWikiLinkPane.setId("indicatorLink");
-            Tooltip itemWikiLinkPaneToolTip = new Tooltip("Borderlands Wiki\n" + wiki);
-            itemWikiLinkPaneToolTip.setId("toolTip");
-            itemWikiLinkPane.setOnMouseMoved(event -> {
-                itemWikiLinkPaneToolTip.show(itemWikiLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            itemWikiLinkPane.setOnMouseExited(event -> {
-                itemWikiLinkPaneToolTip.hide();
-            });
+            App.addToolTip(itemWikiLinkPane, "Borderlands Wiki\n" + wiki);
             itemWikiLinkPane.setOnMouseClicked(event -> {
                 App.hostService.showDocument(wiki);
             });
@@ -595,14 +573,7 @@ public class ItemCard {
             lootlemonLinkImageView.setFitWidth(17);
             Pane lootlemonLinkPane = new Pane(lootlemonLinkImageView);
             lootlemonLinkPane.setId("indicatorLink");
-            Tooltip lootlemonLinkPaneToolTip = new Tooltip("LootLemon\n" + lootlemon);
-            lootlemonLinkPaneToolTip.setId("toolTip");
-            lootlemonLinkPane.setOnMouseMoved(event -> {
-                lootlemonLinkPaneToolTip.show(lootlemonLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            lootlemonLinkPane.setOnMouseExited(event -> {
-                lootlemonLinkPaneToolTip.hide();
-            });
+            App.addToolTip(lootlemonLinkPane, "LootLemon\n" + lootlemon);
             lootlemonLinkPane.setOnMouseClicked(event -> {
                 App.hostService.showDocument(lootlemon);
             });
@@ -611,28 +582,15 @@ public class ItemCard {
         //World drop indicator
         if (worldDrop) {
             ImageView worldDropImageView = new ImageView(App.worldDropImage);
-            Tooltip worldDropToolTip = new Tooltip("World drop");
-            worldDropToolTip.setId("toolTip");
-            worldDropImageView.setOnMouseMoved(event -> {
-                worldDropToolTip.show(worldDropImageView, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            worldDropImageView.setOnMouseExited(event -> {
-                worldDropToolTip.hide();
-            }); 
-            indicatorTray.getChildren().add(worldDropImageView);
+            Pane worldDropPane = new Pane(worldDropImageView);
+            App.addToolTip(worldDropPane, "World drop");
+            indicatorTray.getChildren().add(worldDropPane);
         }
         //DLC indicator
         if (!dlc.isEmpty()) {
             ImageView dlcImageView = new ImageView(App.dlcImage);
             Pane dlcPane = new Pane(dlcImageView);
-            Tooltip dlcToolTip = new Tooltip("DLC required\n" + dlc);
-            dlcToolTip.setId("toolTip");
-            dlcPane.setOnMouseMoved(event -> {
-                dlcToolTip.show(dlcPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            dlcPane.setOnMouseExited(event -> {
-                dlcToolTip.hide();
-            });
+            App.addToolTip(dlcPane, "DLC required\n" + dlc);
             indicatorTray.getChildren().add(dlcPane);
         }
         //Mod indicator
@@ -653,14 +611,7 @@ public class ItemCard {
             for (String string : modStrings) {
                 modContent = modContent + string + "\n";
             }
-            Tooltip modLinkPaneToolTip = new Tooltip("Item added by a mod\n" + modContent);
-            modLinkPaneToolTip.setId("toolTip");
-            modLinkPane.setOnMouseMoved(event -> {
-                modLinkPaneToolTip.show(modLinkPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            modLinkPane.setOnMouseExited(event -> {
-                modLinkPaneToolTip.hide();
-            });
+            App.addToolTip(modLinkPane, "Item added by a mod\n" + modContent);
             if (!modLink.isEmpty()) {
                 modLinkPane.setOnMouseClicked(event -> {
                     App.hostService.showDocument(modLink);
@@ -681,14 +632,7 @@ public class ItemCard {
                 }
                 ImageView missionImageView = new ImageView(App.missionImage);
                 Pane missionPane = new Pane(missionImageView);
-                Tooltip missionToolTip = new Tooltip(missionText);
-                missionToolTip.setId("toolTip");
-                missionPane.setOnMouseMoved(event -> {
-                    missionToolTip.show(missionPane, event.getScreenX() + 10, event.getScreenY() + 20);
-                });
-                missionPane.setOnMouseExited(event -> {
-                    missionToolTip.hide();
-                });
+                App.addToolTip(missionPane, missionText);
                 indicatorTray.getChildren().add(missionPane);
             }
         }
@@ -696,14 +640,7 @@ public class ItemCard {
         if (!mode.isEmpty()) {
             ImageView gameModeImageView = new ImageView(App.gameModeImage);
             Pane gameModePane = new Pane(gameModeImageView);
-            Tooltip gameModeToolTip = new Tooltip(mode + " required");
-            gameModeToolTip.setId("toolTip");
-            gameModePane.setOnMouseMoved(event -> {
-                gameModeToolTip.show(gameModePane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            gameModePane.setOnMouseExited(event -> {
-                gameModeToolTip.hide();
-            }); 
+            App.addToolTip(gameModePane, mode + " required");
             indicatorTray.getChildren().add(gameModePane);
         }
         //BL2 currency indicator
@@ -716,56 +653,28 @@ public class ItemCard {
                 currencyImageView.setImage(App.seraphImage);
             }
             Pane currencyPane = new Pane(currencyImageView);
-            Tooltip currencyToolTip = new Tooltip("Can be bought with\n" + currencyText);
-            currencyToolTip.setId("toolTip");
-            currencyPane.setOnMouseMoved(event -> {
-                currencyToolTip.show(currencyPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            currencyPane.setOnMouseExited(event -> {
-                currencyToolTip.hide();
-            });
+            App.addToolTip(currencyPane, "Can be bought with\n" + currencyText);
             indicatorTray.getChildren().add(currencyPane);
         }
         //BLTPS grinder indicator
         if (!grinder.isEmpty()) {
             ImageView grinderImageView = new ImageView(App.grinderImage);
             Pane grinderPane = new Pane(grinderImageView);
-            Tooltip grinderToolTip = new Tooltip("Obtainable from the Grinder\n" + grinder);
-            grinderToolTip.setId("toolTip");
-            grinderPane.setOnMouseMoved(event -> {
-                grinderToolTip.show(grinderPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            grinderPane.setOnMouseExited(event -> {
-                grinderToolTip.hide();
-            });  
+            App.addToolTip(grinderPane, "Obtainable from the Grinder\n" + grinder); 
             indicatorTray.getChildren().add(grinderPane);
         }
         //BL3 mayhem indicator
         if (!mayhem.isEmpty()) {
             ImageView mayhemImageView = new ImageView(App.mayhemImage);
             Pane mayhemPane = new Pane(mayhemImageView);
-            Tooltip mayhemToolTip = new Tooltip("Mayhem " + mayhem + " required");
-            mayhemToolTip.setId("toolTip");
-            mayhemPane.setOnMouseMoved(event -> {
-                mayhemToolTip.show(mayhemPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            mayhemPane.setOnMouseExited(event -> {
-                mayhemToolTip.hide();
-            }); 
+            App.addToolTip(mayhemPane, "Mayhem " + mayhem + " required"); 
             indicatorTray.getChildren().add(mayhemPane);
         }
         //BL3 earl indicator
         if (earl) {
             ImageView earlImageView = new ImageView(App.earlImage);
             Pane earlPane = new Pane(earlImageView);
-            Tooltip earlToolTip = new Tooltip("Reobtainable from Earl's\nVeteran Rewards Vending Machine");
-            earlToolTip.setId("toolTip");
-            earlPane.setOnMouseMoved(event -> {
-                earlToolTip.show(earlPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            earlPane.setOnMouseExited(event -> {
-                earlToolTip.hide();
-            }); 
+            App.addToolTip(earlPane, "Reobtainable from Earl's\nVeteran Rewards Vending Machine");
             indicatorTray.getChildren().add(earlPane);
         }
         //BL3/4 vault card indicator
@@ -778,28 +687,15 @@ public class ItemCard {
             } else {
                 keysTickets = "10 tickets";
             }
-            Tooltip cardToolTip = new Tooltip("Vault card reward\n" + card + "\n" + keysTickets);
-            cardToolTip.setId("toolTip");
-            cardPane.setOnMouseMoved(event -> {
-                cardToolTip.show(cardPane, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            cardPane.setOnMouseExited(event -> {
-                cardToolTip.hide();
-            }); 
+            App.addToolTip(cardPane, "Vault card reward\n" + card + "\n" + keysTickets);
             indicatorTray.getChildren().add(cardPane);
         }
         //BL4 Phosphene indicator
         if (!phosphene.isEmpty()) {
             ImageView phospheneImageView = new ImageView(App.phospheneImage);
-            Tooltip phospheneToolTip = new Tooltip("Phosphene\n" + phosphene);
-            phospheneToolTip.setId("toolTip");
-            phospheneImageView.setOnMouseMoved(event -> {
-                phospheneToolTip.show(phospheneImageView, event.getScreenX() + 10, event.getScreenY() + 20);
-            });
-            phospheneImageView.setOnMouseExited(event -> {
-                phospheneToolTip.hide();
-            }); 
-            indicatorTray.getChildren().add(phospheneImageView);
+            Pane phosphenePane = new Pane(phospheneImageView);
+            App.addToolTip(phosphenePane, "Phosphene\n" + phosphene);
+            indicatorTray.getChildren().add(phosphenePane);
         }
 
         indicatorTray.setSpacing(5);
