@@ -33,6 +33,7 @@ import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.beans.value.ChangeListener;
@@ -135,6 +136,7 @@ public class App extends Application {
     public static Element profileSettingElement;
     public static Button profileDisplayButton;
     public static HBox itemPickerHBox;
+    public static VBox statsVBox;
 
     public static int huntBL= 0;
     public static int huntObtainedBL= 0;
@@ -710,7 +712,7 @@ public class App extends Application {
         "through promotional DLC, limited time\npromotions, or are just in general not obtainable\nby any normal or " +
         "legitimate means.\n Example: Contraband Sky Rocket from BL2");
         toggleButtonHideUnobtainable.setOnAction(event -> {
-            Element settingElement = (Element) settingsNodes.item(11);
+            Element settingElement = (Element) settingsNodes.item(12);
             if (toggleButtonHideUnobtainable.isSelected()) {
                 settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
             } else {
@@ -721,7 +723,24 @@ public class App extends Application {
                 writeToXml(settingsDocument, settingsXML);
             }).start();
         });
-        settingsVBox.getChildren().addAll(miscSettingLabel, toggleButtonHideUnobtainable);
+        ToggleButton toggleButtonAppStats = new ToggleButton("App Stats");//13
+        settingsToggleButtonArray.add(toggleButtonAppStats);
+        addToolTip(toggleButtonAppStats, "Show FPS and RAM usage");
+        toggleButtonAppStats.setOnAction(event -> {
+            Element settingElement = (Element) settingsNodes.item(13);
+            if (toggleButtonAppStats.isSelected()) {
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent("true");
+                statsVBox.setVisible(true);
+            } else {
+                settingElement.getElementsByTagName("enabled").item(0).setTextContent("false");
+                statsVBox.setVisible(false);
+            }
+            fullReset();
+            new Thread(() -> {
+                writeToXml(settingsDocument, settingsXML);
+            }).start();
+        });
+        settingsVBox.getChildren().addAll(miscSettingLabel, toggleButtonHideUnobtainable, toggleButtonAppStats);
         for (int i = 1; i < 12; i++) {
             int toggleButton = i;
             settingsToggleButtonArray.get(toggleButton).setOnAction(event -> {
@@ -821,7 +840,7 @@ public class App extends Application {
                 String nameNodeText = settingsToggleButtonArray.get(i).getText();
                 settingNameElement.appendChild(settingsDocument.createTextNode(nameNodeText));
                 Element settingEnabledElement = settingsDocument.createElement("enabled");
-                if (nameNodeText.equals("Hunt Mode") || nameNodeText.equals("Phosphene Mode")) {
+                if (nameNodeText.equals("Hunt Mode") || nameNodeText.equals("Phosphene Mode") || nameNodeText.equals("App stats")) {
                     settingEnabledElement.appendChild(settingsDocument.createTextNode("false"));
                 } else {
                     settingEnabledElement.appendChild(settingsDocument.createTextNode("true"));
@@ -987,9 +1006,75 @@ public class App extends Application {
             }
         });
 
-        HBox bannerHBox = new HBox(0, bannerProfileCombobox, itemPickerViewPane, bannerHPusher2, BLCLViewPane, itemsCollectedVBox, 
+        //Application stats
+        Label fpsLabel = new Label("FPS: Calculating...");
+        fpsLabel.setId("statsLabel");
+        Label memoryLabel = new Label("RAM: Calculating...");
+        memoryLabel.setId("statsLabel");
+        AnimationTimer fpsTimer = new AnimationTimer() {
+            // FPS Tracking variables (Class scope)
+            final long[] frameTimes = new long[100];
+            int frameTimeIndex = 0;
+            boolean arrayFilled = false;
+
+            // Memory Tracking variables (Class scope)
+            long lastMemoryUpdate = 0;
+            final Runtime runtime = Runtime.getRuntime();
+
+            @Override
+            public void handle(long now) {
+                long oldFrameTime = frameTimes[frameTimeIndex];
+                frameTimes[frameTimeIndex] = now;
+                frameTimeIndex = (frameTimeIndex + 1) % frameTimes.length;
+
+                if (frameTimeIndex == 0) {
+                    arrayFilled = true;
+                }
+
+                if (arrayFilled) {
+                    // Get elapsed nanoseconds between oldest and newest frame in buffer
+                    long elapsedNanos = now - oldFrameTime;
+                    long elapsedNanosPerFrame = elapsedNanos / frameTimes.length;
+                    
+                    // Convert nanoseconds per frame to frames per second
+                    double fps = 1_000_000_000.0 / elapsedNanosPerFrame;
+                    
+                    fpsLabel.setText(String.format("FPS: %.1f", fps));
+                }
+
+                // --- 2. CALCULATE RAM (Updated once every 1 second) ---
+                // 'now' is in nanoseconds. 1 second = 1,000,000,000 nanoseconds.
+                if (now - lastMemoryUpdate >= 1_000_000_000L) {
+                    // Total memory currently allocated to the JVM by the OS
+                    long totalMemory = runtime.totalMemory();
+                    // Memory currently free within that allocated pool
+                    long freeMemory = runtime.freeMemory();
+                    // Actual memory actively being used by your program
+                    long usedMemory = totalMemory - freeMemory;
+
+                    // Convert bytes to Megabytes (MB)
+                    double usedMegabytes = usedMemory / (1024.0 * 1024.0);
+                    double totalMegabytes = totalMemory / (1024.0 * 1024.0);
+
+                    memoryLabel.setText(String.format("RAM: %.1f MB / %.0f MB", usedMegabytes, totalMegabytes));
+                    
+                    lastMemoryUpdate = now;
+                }
+            }
+        };
+        fpsTimer.start();
+        statsVBox = new VBox(fpsLabel, memoryLabel);
+        statsVBox.setId("statsVBox");
+        if (settingsToggleButtonArray.get(13).isSelected()) {
+            statsVBox.setVisible(true);
+        } else {
+            statsVBox.setVisible(false);
+        }
+
+        HBox bannerHBox = new HBox(0, bannerProfileCombobox, itemPickerViewPane, statsVBox, bannerHPusher2, BLCLViewPane, itemsCollectedVBox, 
             huntViewPane, huntItemsCollectedVBox, bannerHPusher, wikiViewPane, lootlemonViewPane, mentalMarsViewPane, settingsViewPane);
         bannerHBox.setId("bannerBox");
+        HBox.setMargin(statsVBox, new Insets(0, 0, 0, 10));
         HBox.setMargin(itemPickerViewPane, new Insets(0, 0, 0, 10));
         HBox.setMargin(wikiViewPane, new Insets(0, 10, 0, 0));
         HBox.setMargin(lootlemonViewPane, new Insets(0, 10, 0, 0));
@@ -1126,6 +1211,8 @@ public class App extends Application {
         Scene scene = new Scene(root, 1280, 720);
         scene.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
         //Set stage and scene
+        stage.setMinHeight(620);
+        stage.setMinWidth(880);
         stage.setTitle("Borderlands Collection Log");
         stage.getIcons().add(icon);
         stage.setScene(scene);
@@ -1184,6 +1271,9 @@ public class App extends Application {
                 displayCardsInViewport();
             }
         });
+        //======================================
+        //          Final Setup End
+        //======================================
     }
 
     //Set all filter toggle buttons to selected
@@ -1234,9 +1324,6 @@ public class App extends Application {
         } catch (Exception e) {
             writeToLogFile("Error writing to an XML document", e.toString());
         }
-        //======================================
-        //          Final Setup End
-        //======================================
     }
 
     //Update the banner item counters taking into account the settings
@@ -1336,6 +1423,10 @@ public class App extends Application {
         filterAllItemCards(searchTerm.toLowerCase());
         displayCardsInViewport();
         setAllCardsVisible();
+        //Manual garbage collector
+        //Should replace this eventually by reworking the
+        //card load/unload system
+        System.gc();
     }
 
     //Reset all of the item counters

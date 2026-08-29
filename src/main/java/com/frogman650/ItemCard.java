@@ -348,11 +348,9 @@ public class ItemCard {
                 }
             }
             App.updateToolTip(obtainedPane, "Collected\n" + dateObtained);
-            // obtainedPaneToolTip.setText("Collected\n" + dateObtained);
             obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
         } else {
             App.updateToolTip(obtainedPane, "Not Collected");
-            // obtainedPaneToolTip.setText("Not Collected");
             obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
         }
         obtainedPane.setId("obtainedPane");
@@ -377,7 +375,6 @@ public class ItemCard {
                     if (!App.itemFlowPane.isVisible()) {
                         Platform.runLater(() -> {
                             App.updateToolTip(obtainedPane, "Not Collected");
-                            // obtainedPaneToolTip.setText("Not Collected");
                             obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
                         });
                     }
@@ -398,7 +395,6 @@ public class ItemCard {
                     if (!App.itemFlowPane.isVisible()) {
                         Platform.runLater(() -> {
                             App.updateToolTip(obtainedPane, "Collected\n" + dateString);
-                            // obtainedPaneToolTip.setText("Collected\n" + dateString);
                             obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
                         });
                     }
