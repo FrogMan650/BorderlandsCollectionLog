@@ -140,22 +140,7 @@ public class ItemCard {
                     //lock the shared variables so only 1 thread can access them at a time
                     App.lock.lock();
                     try {
-                        if (game.equals("")) {
-                            App.countBL ++;
-                            App.huntBL += Integer.parseInt(points);
-                        } else if (game.equals("2")) {
-                            App.countBL2 ++;
-                            App.huntBL2 += Integer.parseInt(points);
-                        } else if (game.equals("TPS")) {
-                            App.countBLTPS ++;
-                            App.huntBLTPS += Integer.parseInt(points);
-                        } else if (game.equals("3")) {
-                            App.countBL3 ++;
-                            App.huntBL3 += Integer.parseInt(points);
-                        } else if (game.equals("4")) {
-                            App.countBL4 ++;
-                            App.huntBL4 += Integer.parseInt(points);
-                        }
+                        itemCounts(1);
                     } finally {
                         App.lock.unlock();
                     }
@@ -284,6 +269,27 @@ public class ItemCard {
         this.lootlemon = lootlemon;
     }
 
+    //Method to update the item collection number when cards are built
+    //Give it a 1 or -1
+    public void itemCounts(int count) {
+        if (game.equals("")) {
+            App.countBL += count;
+            App.huntBL += Integer.parseInt(points)*count;
+        } else if (game.equals("2")) {
+            App.countBL2 += count;
+            App.huntBL2 += Integer.parseInt(points)*count;
+        } else if (game.equals("TPS")) {
+            App.countBLTPS += count;
+            App.huntBLTPS += Integer.parseInt(points)*count;
+        } else if (game.equals("3")) {
+            App.countBL3 += count;
+            App.huntBL3 += Integer.parseInt(points)*count;
+        } else if (game.equals("4")) {
+            App.countBL4 += count;
+            App.huntBL4 += Integer.parseInt(points)*count;
+        }
+    }
+
     public Pane getItemCard() {
         Pane itemPane = new Pane();
         StackPane itemImageStackPane = new StackPane();
@@ -333,9 +339,28 @@ public class ItemCard {
         Label gameLabel = new Label("Borderlands " + game);
         gameLabel.setId("gameLabel");
         Pane obtainedPane = new Pane();
+        Tooltip obtainedPaneToolTip = new Tooltip();
+        obtainedPaneToolTip.setId("toolTip");
+        obtainedPane.setOnMouseMoved(event -> {
+            obtainedPaneToolTip.show(obtainedPane, event.getScreenX() + 10, event.getScreenY() + 20);
+        });
+        obtainedPane.setOnMouseExited(event -> {
+            obtainedPaneToolTip.hide();
+        });
         if (obtained) {
+            String dateObtained = "";
+            NodeList profileNodes = App.profileNode.getElementsByTagName("item");
+            for (int j = 0; j < profileNodes.getLength(); j++) {
+                Element node = (Element) profileNodes.item(j);
+                String iDNode = node.getElementsByTagName("id").item(0).getTextContent();
+                if (id.equals(iDNode)) {
+                    dateObtained = node.getElementsByTagName("date").item(0).getTextContent();
+                }
+            }
+            obtainedPaneToolTip.setText("Collected\n" + dateObtained);
             obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
         } else {
+            obtainedPaneToolTip.setText("Not Collected");
             obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
         }
         obtainedPane.setId("obtainedPane");
@@ -347,9 +372,6 @@ public class ItemCard {
         obtainedPane.setOnMouseClicked(event -> {
             new Thread(() -> {
                 if (obtained) {
-                    Platform.runLater(() -> {
-                        obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
-                    });
                     NodeList profileNodes = App.profileNode.getElementsByTagName("item");
                     for (int j = 0; j < profileNodes.getLength(); j++) {
                         Element node = (Element) profileNodes.item(j);
@@ -360,49 +382,34 @@ public class ItemCard {
                             break;
                         }
                     }
-                    if (game.equals("")) {
-                        App.countBL --;
-                        App.huntBL -= Integer.parseInt(points);
-                    } else if (game.equals("2")) {
-                        App.countBL2 --;
-                        App.huntBL2 -= Integer.parseInt(points);
-                    } else if (game.equals("TPS")) {
-                        App.countBLTPS --;
-                        App.huntBLTPS -= Integer.parseInt(points);
-                    } else if (game.equals("3")) {
-                        App.countBL3 --;
-                        App.huntBL3 -= Integer.parseInt(points);
-                    } else if (game.equals("4")) {
-                        App.countBL4 --;
-                        App.huntBL4 -= Integer.parseInt(points);
+                    if (!App.itemFlowPane.isVisible()) {
+                        System.out.println("setting button");
+                        Platform.runLater(() -> {
+                            obtainedPaneToolTip.setText("Not Collected");
+                            obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
+                        });
                     }
+                    itemCounts(-1);
                     obtained = false;
                 } else {
-                    Platform.runLater(() -> {
-                        obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
-                    });
-                    if (game.equals("")) {
-                        App.countBL ++;
-                        App.huntBL += Integer.parseInt(points);
-                    } else if (game.equals("2")) {
-                        App.countBL2 ++;
-                        App.huntBL2 += Integer.parseInt(points);
-                    } else if (game.equals("TPS")) {
-                        App.countBLTPS ++;
-                        App.huntBLTPS += Integer.parseInt(points);
-                    } else if (game.equals("3")) {
-                        App.countBL3 ++;
-                        App.huntBL3 += Integer.parseInt(points);
-                    } else if (game.equals("4")) {
-                        App.countBL4 ++;
-                        App.huntBL4 += Integer.parseInt(points);
-                    }
+                    itemCounts(1);
                     Element newItemElement = App.profileDocument.createElement("item");
                     Element newIDElement = App.profileDocument.createElement("id");
                     newIDElement.appendChild(App.profileDocument.createTextNode(id));
                     newItemElement.appendChild(newIDElement);
+                    Element newDateElement = App.profileDocument.createElement("date");
+                    String dateString = App.getDate() + " " + App.getTime();
+                    newDateElement.appendChild(App.profileDocument.createTextNode(dateString));
+                    newItemElement.appendChild(newDateElement);
                     App.profileDocument.getDocumentElement().appendChild(newItemElement);
                     App.writeToXml(App.profileDocument, new File(App.userDataDirectory + "/profiles", App.loadedProfile + ".xml"));
+                    if (!App.itemFlowPane.isVisible()) {
+                        System.out.println("setting button");
+                        Platform.runLater(() -> {
+                            obtainedPaneToolTip.setText("Collected\n" + dateString);
+                            obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
+                        });
+                    }
                     obtained = true;
                 }
                 Platform.runLater(() -> {

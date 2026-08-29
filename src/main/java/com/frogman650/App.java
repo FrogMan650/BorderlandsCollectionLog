@@ -1698,14 +1698,14 @@ public class App extends Application {
     public static String getDate() {
         String dateNow = String.valueOf(LocalDate.now());
         String[] dateSplit = dateNow.split("-");
-        return dateSplit[1] + "-" + dateSplit[2] + "-" + dateSplit[0].split("0")[1];
+        return dateSplit[1] + "-" + dateSplit[2] + "-20" + dateSplit[0].split("0")[1];
     }
 
     //Return the current time in hour.minute.second format
     public static String getTime() {
         String timeNow = String.valueOf(LocalTime.now());
         String[] timeSplit = timeNow.split(":");
-        return timeSplit[0] + "." + timeSplit[1] + "." + Math.round(Double.parseDouble(timeSplit[2]));
+        return timeSplit[0] + ":" + timeSplit[1] + ":" + Math.round(Double.parseDouble(timeSplit[2]));
     }
 
     //Update choices in the combobox dropdown
