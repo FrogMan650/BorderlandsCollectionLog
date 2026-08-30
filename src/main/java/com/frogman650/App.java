@@ -866,7 +866,7 @@ public class App extends Application {
                 String nameNodeText = settingsToggleButtonArray.get(i).getText();
                 settingNameElement.appendChild(settingsDocument.createTextNode(nameNodeText));
                 Element settingEnabledElement = settingsDocument.createElement("enabled");
-                if (nameNodeText.equals("Hunt Mode") || nameNodeText.equals("Phosphene Mode") || nameNodeText.equals("App stats")) {
+                if (nameNodeText.equals("Hunt Mode") || nameNodeText.equals("Phosphene Mode") || nameNodeText.equals("App Stats")) {
                     settingEnabledElement.appendChild(settingsDocument.createTextNode("false"));
                 } else {
                     settingEnabledElement.appendChild(settingsDocument.createTextNode("true"));
@@ -1088,9 +1088,7 @@ public class App extends Application {
                 }
             }
         };
-        // fpsTimer.start();
-        fpsLabel.setText(executableDirectory.toString());
-        memoryLabel.setText(itemsDirectory.toString());
+        fpsTimer.start();
         statsVBox = new VBox(fpsLabel, memoryLabel);
         statsVBox.setId("statsVBox");
         if (settingsToggleButtonArray.get(13).isSelected()) {
@@ -1240,7 +1238,7 @@ public class App extends Application {
         scene.getStylesheets().add(this.getClass().getResource("styles.css").toExternalForm());
         //Set stage and scene
         stage.setMinHeight(620);
-        stage.setMinWidth(880);
+        stage.setMinWidth(900);
         stage.setTitle("Borderlands Collection Log");
         stage.getIcons().add(icon);
         stage.setScene(scene);
