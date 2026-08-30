@@ -168,7 +168,12 @@ public class App extends Application {
     public static DocumentBuilder builder;
     public static File executableDirectory;
     public static File userDataDirectory;
+    public static File itemsDirectory;
     public static int totalNodes = 0;
+
+    public static Boolean linux = false;
+    public static Boolean windows = false;
+    public static Boolean mac = false;
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -228,21 +233,32 @@ public class App extends Application {
         //======================================
         //    Directory and File Setup Start
         //======================================
+        //Determine which operating system is being used
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            windows = true;
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("aix")) {
+            linux = true;
+        } else if (os.contains("mac")) {
+            mac = true;
+        }
         //Get/create the users BorderlandsCollectionLog directory
         //Windows: /Users/User/AppData/Local/BorderlandsCollectionLog
         //Linux: /home/User/.local/share/BorderlandsCollectionLog
         String userDataString = "";
         Path userDataPath = null;
         try {
-            userDataString = System.getenv("LOCALAPPDATA");
-            if (userDataString == null) {
+            if (windows) {
+                userDataString = System.getenv("LOCALAPPDATA");
+                userDataPath = Paths.get(userDataString, "BorderlandsCollectionLog");
+            } else if (linux) {
                 userDataString = System.getProperty("user.home");
                 userDataPath = Paths.get(userDataString, ".local", "share", "BorderlandsCollectionLog");
-            } else {
-                userDataPath = Paths.get(userDataString, "BorderlandsCollectionLog");
+            } else if (mac) {
+                System.out.println("Maybe some day...");
             }
         } catch (Exception e) {
-                System.out.println("Couldn't find Windows or Linux User data directory\n" + e);
+            System.out.println("Couldn't find User data directory\n" + e);
         }
         userDataDirectory = userDataPath.toFile();
         if (!userDataDirectory.exists()) {
@@ -255,6 +271,16 @@ public class App extends Application {
         //Get executable directory
         URI uri = getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
         executableDirectory = Paths.get(uri).getParent().toFile();
+        //Get items directory
+        if (windows) {
+            itemsDirectory = new File(executableDirectory, "items");
+        } else if (linux) {
+            if (executableDirectory.toString().toLowerCase().contains("tmp")) {
+                itemsDirectory = new File(executableDirectory.getParent(), "lib/items");
+            } else {
+                itemsDirectory = new File(executableDirectory, "items");
+            }
+        }
         //Get/create settings file
         settingsXML = new File(userDataDirectory, "settings.xml");
         if (!settingsXML.exists()) {
@@ -1062,7 +1088,9 @@ public class App extends Application {
                 }
             }
         };
-        fpsTimer.start();
+        // fpsTimer.start();
+        fpsLabel.setText(executableDirectory.toString());
+        memoryLabel.setText(itemsDirectory.toString());
         statsVBox = new VBox(fpsLabel, memoryLabel);
         statsVBox.setId("statsVBox");
         if (settingsToggleButtonArray.get(13).isSelected()) {
@@ -1678,7 +1706,7 @@ public class App extends Application {
     //Build all item cards into an array
     public static void buildAllItemCards() throws Exception {
         resetCounters();
-        File[] files = new File(executableDirectory, "items").listFiles();
+        File[] files = itemsDirectory.listFiles();
         for (File file : files) {
             if (file.isFile()) {
                 Document document = builder.parse(file);
