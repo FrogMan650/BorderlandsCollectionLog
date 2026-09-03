@@ -1248,9 +1248,9 @@ public class App extends Application {
         itemPickerFlowPane.setPrefWidth(scene.getWidth()-206);
         itemPickerFlowPane.setPrefHeight(scene.getHeight()-50);
         int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
-        int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
-        if (cardsThatFit > 1) {
-            int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
+        int cardsThatFitW = (int) Math.floor(itemFlowPaneWidth/336);
+        if (cardsThatFitW > 1) {
+            int hGapValue = (itemFlowPaneWidth-(336*cardsThatFitW))/(cardsThatFitW-1);
             itemFlowPane.setHgap(hGapValue);
         }
 
@@ -1264,13 +1264,12 @@ public class App extends Application {
                 itemFlowPane.setPrefWidth(scene.getWidth()-206);
                 itemPickerFlowPane.setPrefWidth(scene.getWidth()-206);
                 int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
-                int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
-                if (cardsThatFit > 1) {
-                    int hGapValue = (itemFlowPaneWidth-(336*cardsThatFit))/(cardsThatFit-1);
+                int cardsThatFitW = (int) Math.floor(itemFlowPaneWidth/336);
+                if (cardsThatFitW > 1) {
+                    int hGapValue = (itemFlowPaneWidth-(336*cardsThatFitW))/(cardsThatFitW-1);
                     itemFlowPane.setHgap(hGapValue);
                     clearAllItemCards();
                     displayCardsInViewport();
-                    setAllCardsVisible();
                 }
             }
         });
@@ -1279,9 +1278,10 @@ public class App extends Application {
         scene.heightProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 itemPickerFlowPane.setPrefHeight(scene.getHeight()-50);
+                itemScrollPane.setPrefHeight(scene.getHeight()-50);
+                itemScrollPane.setVvalue(0);
                 clearAllItemCards();
                 displayCardsInViewport();
-                setAllCardsVisible();
             }
         });
 
@@ -1384,41 +1384,52 @@ public class App extends Application {
         huntItemsTotalLabel.setText(""+totalHuntPointsAvailable);
     }
 
-    //Set all cards in the FlowPane to be visible
-    //Primarily just for initially loading cards into the FlowPane
-    public static void setAllCardsVisible() {
-        for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
-            itemFlowPane.getChildren().get(i).setVisible(true);
-        }
-    }
-
     //Set cards in the viewport or just outside the viewport visible
     public static void displayCardsInViewport() {
         double flowPaneHeight = itemFlowPane.getHeight();
         Double scrollPaneVValue = itemScrollPane.getVvalue();
-        double scrollPaneViewPortHeight = itemScrollPane.getViewportBounds().getHeight();
+        double scrollPaneViewPortHeight = itemScrollPane.getPrefHeight() == -1.0 ? 720.0-50.0 : itemScrollPane.getPrefHeight();
         double flowPaneLocation = Math.round(flowPaneHeight*scrollPaneVValue);
         int itemFlowPaneWidth = (int) itemFlowPane.getPrefWidth();
-        int cardsThatFit = (int) Math.floor(itemFlowPaneWidth/336);
-        int cardOnScreen = (int) Math.round(flowPaneLocation/(475/cardsThatFit));
-        int cardToLoad = cardOnScreen+(cardsThatFit*5);
+        int cardsThatFitW = (int) Math.floor(itemFlowPaneWidth/336);
+        int cardsThatFitH = (int) Math.ceil(scrollPaneViewPortHeight/475);
+        int cardOnScreen = (int) Math.round(flowPaneLocation/(475/cardsThatFitW));
+        int cardToLoad = cardOnScreen+(cardsThatFitW*cardsThatFitH);
         cardToLoad = cardToLoad > itemCardFilteredArray.size() ? itemCardFilteredArray.size() : cardToLoad;
+        Double lowBounds = flowPaneLocation-(scrollPaneViewPortHeight*(1+scrollPaneVValue));
+        Double highBounds = flowPaneLocation+(scrollPaneViewPortHeight*(1-scrollPaneVValue));
         if (itemFlowPane.getChildren().size() < cardToLoad && itemFlowPane.getChildren().size() != itemCardFilteredArray.size()) {
             for (int i = itemFlowPane.getChildren().size(); i < cardToLoad; i++) {
-                itemFlowPane.getChildren().add(itemCardFilteredArray.get(i).getItemCard());
+                Pane tempPane = new Pane();
+                tempPane.setId("fillerPane");
+                itemFlowPane.getChildren().add(tempPane);
+                // System.out.println("new blank added at " + i);
                 updateBannerLabels();
             }
         }
-        int lowBounds = (int) Math.round(flowPaneLocation-(scrollPaneViewPortHeight+(scrollPaneViewPortHeight*scrollPaneVValue)));
-        int highBounds = (int) Math.round(flowPaneLocation+(scrollPaneViewPortHeight-(scrollPaneViewPortHeight*scrollPaneVValue)));
         for (int i = 0; i < itemFlowPane.getChildren().size(); i++) {
             int number = i;
             if (itemFlowPane.getChildren().get(number).getLayoutY() >= lowBounds && highBounds >= itemFlowPane.getChildren().get(number).getLayoutY()) {
-                itemFlowPane.getChildren().get(number).setVisible(true);
+                if (itemFlowPane.getChildren().get(number).getId().equals("fillerPane")) {
+                    itemFlowPane.getChildren().set(number, itemCardFilteredArray.get(number).getItemCard());
+                    // System.out.println("Card " + number + " replaced with " + itemCardFilteredArray.get(number).getName());
+                }
             } else {
-                itemFlowPane.getChildren().get(number).setVisible(false);
+                if (itemFlowPane.getChildren().get(number).getId().equals("itemPane")) {
+                    Pane tempPane = new Pane();
+                    tempPane.setId("fillerPane");
+                    itemFlowPane.getChildren().set(number, tempPane);
+                    // System.out.println("Card " + number + " replaced with a blank");
+                }
             }
-        }  
+        }
+        if (itemFlowPane.getChildren().size() < itemCardFilteredArray.size()) {
+            for (int i = itemFlowPane.getChildren().size(); i < itemCardFilteredArray.size(); i++) {
+                Pane tempPane = new Pane();
+                tempPane.setId("fillerPane");
+                itemFlowPane.getChildren().add(tempPane);
+            }
+        }
     }
 
     //Rebuild all item cards and reset the item counters on the banner
@@ -1448,11 +1459,6 @@ public class App extends Application {
     public static void resetDisplayedCards(String searchTerm) {
         filterAllItemCards(searchTerm.toLowerCase());
         displayCardsInViewport();
-        setAllCardsVisible();
-        //Manual garbage collector
-        //Should replace this eventually by reworking the
-        //card load/unload system
-        System.gc();
     }
 
     //Reset all of the item counters
