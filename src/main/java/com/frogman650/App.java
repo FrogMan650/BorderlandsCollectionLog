@@ -1080,9 +1080,8 @@ public class App extends Application {
 
                     // Convert bytes to Megabytes (MB)
                     double usedMegabytes = usedMemory / (1024.0 * 1024.0);
-                    double totalMegabytes = totalMemory / (1024.0 * 1024.0);
 
-                    memoryLabel.setText(String.format("RAM: %.1f MB / %.0f MB", usedMegabytes, totalMegabytes));
+                    memoryLabel.setText(String.format("RAM: %.1f MB", usedMegabytes));
                     
                     lastMemoryUpdate = now;
                 }
@@ -1215,9 +1214,6 @@ public class App extends Application {
 
         // 7. Add the banner view layer to your layout pane
         root.getChildren().add(bannerView);
-
-
-
 
         AnchorPane.setTopAnchor(bannerHBox, 0.0);
         AnchorPane.setRightAnchor(bannerHBox, 0.0);
@@ -1403,7 +1399,6 @@ public class App extends Application {
                 Pane tempPane = new Pane();
                 tempPane.setId("fillerPane");
                 itemFlowPane.getChildren().add(tempPane);
-                // System.out.println("new blank added at " + i);
                 updateBannerLabels();
             }
         }
@@ -1412,14 +1407,12 @@ public class App extends Application {
             if (itemFlowPane.getChildren().get(number).getLayoutY() >= lowBounds && highBounds >= itemFlowPane.getChildren().get(number).getLayoutY()) {
                 if (itemFlowPane.getChildren().get(number).getId().equals("fillerPane")) {
                     itemFlowPane.getChildren().set(number, itemCardFilteredArray.get(number).getItemCard());
-                    // System.out.println("Card " + number + " replaced with " + itemCardFilteredArray.get(number).getName());
                 }
             } else {
                 if (itemFlowPane.getChildren().get(number).getId().equals("itemPane")) {
                     Pane tempPane = new Pane();
                     tempPane.setId("fillerPane");
                     itemFlowPane.getChildren().set(number, tempPane);
-                    // System.out.println("Card " + number + " replaced with a blank");
                 }
             }
         }

@@ -85,10 +85,6 @@
 #fillerPane {
     -fx-pref-height: 470;
     -fx-pref-width: 336;
-    -fx-border-color: red;
-    -fx-border-style: solid;
-    -fx-border-width: 1;
-    -fx-border-radius: 10;
 }
 
 #obtainedPane {
@@ -437,7 +433,7 @@
 
 #statsVBox {
     -fx-alignment: CENTER-LEFT;
-    -fx-min-width: 170;
+    -fx-min-width: 120;
 }
 
 #statsLabel .text {
