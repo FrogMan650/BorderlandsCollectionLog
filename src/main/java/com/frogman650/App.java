@@ -279,7 +279,7 @@ public class App extends Application {
                 itemsDirectory = new File(executableDirectory.getParent(), "lib/items");
             } else if (executableDirectory.toString().toLowerCase().contains("/app/bin")) {
                 itemsDirectory = new File(executableDirectory.getParent(), "share/BorderlandsCollectionLog/items");
-            } else if (executableDirectory.toString().toLowerCase().contains("/usr/bin")) {
+            } else if (executableDirectory.toString().toLowerCase().contains("/usr/libexec")) {
                 itemsDirectory = new File(executableDirectory.getParent(), "share/BorderlandsCollectionLog/items");
             } else {
                 itemsDirectory = new File(executableDirectory, "items");
