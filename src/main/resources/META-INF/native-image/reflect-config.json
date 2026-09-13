@@ -7,6 +7,13 @@
   ]
 },
 {
+  "name":"com.frogman650.BorderlandsCollectionLog",
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"main","parameterTypes":["java.lang.String[]"] }
+  ]
+},
+{
   "name":"com.sun.javafx.font.freetype.FTFactory",
   "methods":[{"name":"getFactory","parameterTypes":[] }]
 },

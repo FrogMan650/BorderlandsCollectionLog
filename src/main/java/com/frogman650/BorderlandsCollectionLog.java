@@ -1,8 +1,10 @@
 package com.frogman650;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -65,7 +67,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class BorderlandsCollectionLog extends Application {
     //Item spreadsheet: https://docs.google.com/spreadsheets/d/1W7sitzbmaNyniM4CwMG44fDkvS6bWYgrKa3ZrBdT-Nk/edit?usp=sharing
     public static Image icon;
     public static Image wikiImage;
@@ -275,11 +277,17 @@ public class App extends Application {
         if (windows) {
             itemsDirectory = new File(executableDirectory, "items");
         } else if (linux) {
+            //Flatpak
             if (executableDirectory.toString().toLowerCase().contains("tmp")) {
                 itemsDirectory = new File(executableDirectory.getParent(), "lib/items");
+            //AppImage
             } else if (executableDirectory.toString().toLowerCase().contains("/app/bin")) {
                 itemsDirectory = new File(executableDirectory.getParent(), "share/BorderlandsCollectionLog/items");
+            //.deb & .rpm
             } else if (executableDirectory.toString().toLowerCase().contains("/usr/libexec")) {
+                itemsDirectory = new File(executableDirectory.getParent(), "share/BorderlandsCollectionLog/items");
+            //Arch
+            } else if (executableDirectory.toString().toLowerCase().contains("/usr/bin")) {
                 itemsDirectory = new File(executableDirectory.getParent(), "share/BorderlandsCollectionLog/items");
             } else {
                 itemsDirectory = new File(executableDirectory, "items");

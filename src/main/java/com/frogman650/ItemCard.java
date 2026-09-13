@@ -104,43 +104,43 @@ public class ItemCard {
         this.id = id;
         this.card = card;
         this.mod = mod;
-        if ((chance.equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
-        } else if (phosphene.isEmpty() && App.settingsToggleButtonArray.get(1).isSelected()) {
-        } else if (points.equals("0") && App.settingsToggleButtonArray.get(0).isSelected()) {
+        if ((chance.equals("unobtainable") && BorderlandsCollectionLog.settingsToggleButtonArray.get(12).isSelected())) {
+        } else if (phosphene.isEmpty() && BorderlandsCollectionLog.settingsToggleButtonArray.get(1).isSelected()) {
+        } else if (points.equals("0") && BorderlandsCollectionLog.settingsToggleButtonArray.get(0).isSelected()) {
         } else {
-            App.lock.lock();
+            BorderlandsCollectionLog.lock.lock();
             try {
                 if (game.equals("")) {
-                    App.countObtainedBL ++;
-                    App.huntObtainedBL += Integer.parseInt(points);
+                    BorderlandsCollectionLog.countObtainedBL ++;
+                    BorderlandsCollectionLog.huntObtainedBL += Integer.parseInt(points);
                 } else if (game.equals("2")) {
-                    App.countObtainedBL2 ++;
-                    App.huntObtainedBL2 += Integer.parseInt(points);
+                    BorderlandsCollectionLog.countObtainedBL2 ++;
+                    BorderlandsCollectionLog.huntObtainedBL2 += Integer.parseInt(points);
                 } else if (game.equals("TPS")) {
-                    App.countObtainedBLTPS ++;
-                    App.huntObtainedBLTPS += Integer.parseInt(points);
+                    BorderlandsCollectionLog.countObtainedBLTPS ++;
+                    BorderlandsCollectionLog.huntObtainedBLTPS += Integer.parseInt(points);
                 } else if (game.equals("3")) {
-                    App.countObtainedBL3 ++;
-                    App.huntObtainedBL3 += Integer.parseInt(points);
+                    BorderlandsCollectionLog.countObtainedBL3 ++;
+                    BorderlandsCollectionLog.huntObtainedBL3 += Integer.parseInt(points);
                 } else if (game.equals("4")) {
-                    App.countObtainedBL4 ++;
-                    App.huntObtainedBL4 += Integer.parseInt(points);
+                    BorderlandsCollectionLog.countObtainedBL4 ++;
+                    BorderlandsCollectionLog.huntObtainedBL4 += Integer.parseInt(points);
                 }
             } finally {
-                App.lock.unlock();
+                BorderlandsCollectionLog.lock.unlock();
             }
         }
         if (obtained) {
-            if ((chance.toLowerCase().equals("unobtainable") && App.settingsToggleButtonArray.get(12).isSelected())) {
-            } else if (phosphene.isEmpty() && App.settingsToggleButtonArray.get(1).isSelected()) {
-            } else if (points.equals("0") && App.settingsToggleButtonArray.get(0).isSelected()) {
+            if ((chance.toLowerCase().equals("unobtainable") && BorderlandsCollectionLog.settingsToggleButtonArray.get(12).isSelected())) {
+            } else if (phosphene.isEmpty() && BorderlandsCollectionLog.settingsToggleButtonArray.get(1).isSelected()) {
+            } else if (points.equals("0") && BorderlandsCollectionLog.settingsToggleButtonArray.get(0).isSelected()) {
             } else {
                 //lock the shared variables so only 1 thread can access them at a time
-                App.lock.lock();
+                BorderlandsCollectionLog.lock.lock();
                 try {
                     itemCounts(1);
                 } finally {
-                    App.lock.unlock();
+                    BorderlandsCollectionLog.lock.unlock();
                 }
             }
         }
@@ -270,20 +270,20 @@ public class ItemCard {
     //Give it a 1 or -1
     public void itemCounts(int count) {
         if (game.equals("")) {
-            App.countBL += count;
-            App.huntBL += Integer.parseInt(points)*count;
+            BorderlandsCollectionLog.countBL += count;
+            BorderlandsCollectionLog.huntBL += Integer.parseInt(points)*count;
         } else if (game.equals("2")) {
-            App.countBL2 += count;
-            App.huntBL2 += Integer.parseInt(points)*count;
+            BorderlandsCollectionLog.countBL2 += count;
+            BorderlandsCollectionLog.huntBL2 += Integer.parseInt(points)*count;
         } else if (game.equals("TPS")) {
-            App.countBLTPS += count;
-            App.huntBLTPS += Integer.parseInt(points)*count;
+            BorderlandsCollectionLog.countBLTPS += count;
+            BorderlandsCollectionLog.huntBLTPS += Integer.parseInt(points)*count;
         } else if (game.equals("3")) {
-            App.countBL3 += count;
-            App.huntBL3 += Integer.parseInt(points)*count;
+            BorderlandsCollectionLog.countBL3 += count;
+            BorderlandsCollectionLog.huntBL3 += Integer.parseInt(points)*count;
         } else if (game.equals("4")) {
-            App.countBL4 += count;
-            App.huntBL4 += Integer.parseInt(points)*count;
+            BorderlandsCollectionLog.countBL4 += count;
+            BorderlandsCollectionLog.huntBL4 += Integer.parseInt(points)*count;
         }
     }
 
@@ -296,39 +296,39 @@ public class ItemCard {
         itemImageView.setCacheHint(CacheHint.SPEED);
         //Setting the item type image
         if (type.toLowerCase().equals("pistol")) {
-            itemImageView.setImage(App.pistolImage);
+            itemImageView.setImage(BorderlandsCollectionLog.pistolImage);
         } else if (type.equals("ar") || type.toLowerCase().equals("assault rifle")) {
-            itemImageView.setImage(App.arImage);
+            itemImageView.setImage(BorderlandsCollectionLog.arImage);
         } else if (type.toLowerCase().equals("class mod")) {
-            itemImageView.setImage(App.classModImage);
+            itemImageView.setImage(BorderlandsCollectionLog.classModImage);
         } else if (type.toLowerCase().equals("grenade mod")) {
-            itemImageView.setImage(App.grenadeImage);
+            itemImageView.setImage(BorderlandsCollectionLog.grenadeImage);
         } else if (type.toLowerCase().equals("grenade ordnance") || type.toLowerCase().equals("grenade (ordnance)")) {
-            itemImageView.setImage(App.grenadeOrdnanceImage);
+            itemImageView.setImage(BorderlandsCollectionLog.grenadeOrdnanceImage);
         } else if (type.toLowerCase().equals("heavy ordnance") || type.toLowerCase().equals("heavy weapon (ordnance)")) {
-            itemImageView.setImage(App.heavyOrdnanceImage);
+            itemImageView.setImage(BorderlandsCollectionLog.heavyOrdnanceImage);
         } else if (type.toLowerCase().equals("laser")) {
-            itemImageView.setImage(App.laserImage);
+            itemImageView.setImage(BorderlandsCollectionLog.laserImage);
         } else if (type.toLowerCase().equals("launcher") || type.toLowerCase().equals("rocket launcher")) {
-            itemImageView.setImage(App.launcherImage);
+            itemImageView.setImage(BorderlandsCollectionLog.launcherImage);
         } else if (type.toLowerCase().equals("oz kit")) {
-            itemImageView.setImage(App.ozKitImage);
+            itemImageView.setImage(BorderlandsCollectionLog.ozKitImage);
         } else if (type.toLowerCase().equals("shield")) {
-            itemImageView.setImage(App.shieldImage);
+            itemImageView.setImage(BorderlandsCollectionLog.shieldImage);
         } else if (type.toLowerCase().equals("shotgun")) {
-            itemImageView.setImage(App.shotgunImage);
+            itemImageView.setImage(BorderlandsCollectionLog.shotgunImage);
         } else if (type.equals("smg") || type.toLowerCase().equals("submachine gun")) {
-            itemImageView.setImage(App.smgImage);
+            itemImageView.setImage(BorderlandsCollectionLog.smgImage);
         } else if (type.toLowerCase().equals("sniper") || type.toLowerCase().equals("sniper rifle")) {
-            itemImageView.setImage(App.sniperImage);
+            itemImageView.setImage(BorderlandsCollectionLog.sniperImage);
         } else if (type.toLowerCase().equals("relic") || type.toLowerCase().equals("artifact")) {
-            itemImageView.setImage(App.relicImage);
+            itemImageView.setImage(BorderlandsCollectionLog.relicImage);
         } else if (type.toLowerCase().equals("eridian")) {
-            itemImageView.setImage(App.eridianImage);
+            itemImageView.setImage(BorderlandsCollectionLog.eridianImage);
         } else if (type.toLowerCase().equals("repkit")) {
-            itemImageView.setImage(App.repkitImage);
+            itemImageView.setImage(BorderlandsCollectionLog.repkitImage);
         } else if (type.toLowerCase().equals("enhancement")) {
-            itemImageView.setImage(App.enhancementImage);
+            itemImageView.setImage(BorderlandsCollectionLog.enhancementImage);
         }
         Pane itemBackgroundColor = new Pane();
         itemBackgroundColor.setId("itemBackgroundColor");
@@ -336,10 +336,10 @@ public class ItemCard {
         Label gameLabel = new Label("Borderlands " + game);
         gameLabel.setId("gameLabel");
         Pane obtainedPane = new Pane();
-        App.addToolTip(obtainedPane, "");
+        BorderlandsCollectionLog.addToolTip(obtainedPane, "");
         if (obtained) {
             String dateObtained = "";
-            NodeList profileNodes = App.profileNode.getElementsByTagName("item");
+            NodeList profileNodes = BorderlandsCollectionLog.profileNode.getElementsByTagName("item");
             for (int j = 0; j < profileNodes.getLength(); j++) {
                 Element node = (Element) profileNodes.item(j);
                 String iDNode = node.getElementsByTagName("id").item(0).getTextContent();
@@ -347,11 +347,11 @@ public class ItemCard {
                     dateObtained = node.getElementsByTagName("date").item(0).getTextContent();
                 }
             }
-            App.updateToolTip(obtainedPane, "Collected\n" + dateObtained);
-            obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
+            BorderlandsCollectionLog.updateToolTip(obtainedPane, "Collected\n" + dateObtained);
+            obtainedPane.setBackground(new Background(new BackgroundImage(BorderlandsCollectionLog.obtainedImage, null, null, null, null)));
         } else {
-            App.updateToolTip(obtainedPane, "Not Collected");
-            obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
+            BorderlandsCollectionLog.updateToolTip(obtainedPane, "Not Collected");
+            obtainedPane.setBackground(new Background(new BackgroundImage(BorderlandsCollectionLog.notObtainedImage, null, null, null, null)));
         }
         obtainedPane.setId("obtainedPane");
         Label huntPointsLabel = new Label(points);
@@ -362,47 +362,47 @@ public class ItemCard {
         obtainedPane.setOnMouseClicked(event -> {
             new Thread(() -> {
                 if (obtained) {
-                    NodeList profileNodes = App.profileNode.getElementsByTagName("item");
+                    NodeList profileNodes = BorderlandsCollectionLog.profileNode.getElementsByTagName("item");
                     for (int j = 0; j < profileNodes.getLength(); j++) {
                         Element node = (Element) profileNodes.item(j);
                         String iDNode = node.getElementsByTagName("id").item(0).getTextContent();
                         if (id.equals(iDNode)) {
-                            App.profileNode.removeChild(node);
-                            App.writeToXml(App.profileDocument, new File(App.userDataDirectory + "/profiles", App.loadedProfile + ".xml"));
+                            BorderlandsCollectionLog.profileNode.removeChild(node);
+                            BorderlandsCollectionLog.writeToXml(BorderlandsCollectionLog.profileDocument, new File(BorderlandsCollectionLog.userDataDirectory + "/profiles", BorderlandsCollectionLog.loadedProfile + ".xml"));
                             break;
                         }
                     }
-                    if (!App.itemFlowPane.isVisible()) {
+                    if (!BorderlandsCollectionLog.itemFlowPane.isVisible()) {
                         Platform.runLater(() -> {
-                            App.updateToolTip(obtainedPane, "Not Collected");
-                            obtainedPane.setBackground(new Background(new BackgroundImage(App.notObtainedImage, null, null, null, null)));
+                            BorderlandsCollectionLog.updateToolTip(obtainedPane, "Not Collected");
+                            obtainedPane.setBackground(new Background(new BackgroundImage(BorderlandsCollectionLog.notObtainedImage, null, null, null, null)));
                         });
                     }
                     itemCounts(-1);
                     obtained = false;
                 } else {
                     itemCounts(1);
-                    Element newItemElement = App.profileDocument.createElement("item");
-                    Element newIDElement = App.profileDocument.createElement("id");
-                    newIDElement.appendChild(App.profileDocument.createTextNode(id));
+                    Element newItemElement = BorderlandsCollectionLog.profileDocument.createElement("item");
+                    Element newIDElement = BorderlandsCollectionLog.profileDocument.createElement("id");
+                    newIDElement.appendChild(BorderlandsCollectionLog.profileDocument.createTextNode(id));
                     newItemElement.appendChild(newIDElement);
-                    Element newDateElement = App.profileDocument.createElement("date");
-                    String dateString = App.getDate() + " " + App.getTime();
-                    newDateElement.appendChild(App.profileDocument.createTextNode(dateString));
+                    Element newDateElement = BorderlandsCollectionLog.profileDocument.createElement("date");
+                    String dateString = BorderlandsCollectionLog.getDate() + " " + BorderlandsCollectionLog.getTime();
+                    newDateElement.appendChild(BorderlandsCollectionLog.profileDocument.createTextNode(dateString));
                     newItemElement.appendChild(newDateElement);
-                    App.profileDocument.getDocumentElement().appendChild(newItemElement);
-                    App.writeToXml(App.profileDocument, new File(App.userDataDirectory + "/profiles", App.loadedProfile + ".xml"));
-                    if (!App.itemFlowPane.isVisible()) {
+                    BorderlandsCollectionLog.profileDocument.getDocumentElement().appendChild(newItemElement);
+                    BorderlandsCollectionLog.writeToXml(BorderlandsCollectionLog.profileDocument, new File(BorderlandsCollectionLog.userDataDirectory + "/profiles", BorderlandsCollectionLog.loadedProfile + ".xml"));
+                    if (!BorderlandsCollectionLog.itemFlowPane.isVisible()) {
                         Platform.runLater(() -> {
-                            App.updateToolTip(obtainedPane, "Collected\n" + dateString);
-                            obtainedPane.setBackground(new Background(new BackgroundImage(App.obtainedImage, null, null, null, null)));
+                            BorderlandsCollectionLog.updateToolTip(obtainedPane, "Collected\n" + dateString);
+                            obtainedPane.setBackground(new Background(new BackgroundImage(BorderlandsCollectionLog.obtainedImage, null, null, null, null)));
                         });
                     }
                     obtained = true;
                 }
                 Platform.runLater(() -> {
-                    App.resetDisplayedCards(App.searchTextField.getText());
-                    App.updateBannerLabels();
+                    BorderlandsCollectionLog.resetDisplayedCards(BorderlandsCollectionLog.searchTextField.getText());
+                    BorderlandsCollectionLog.updateBannerLabels();
                 });
             }).start();
         });
@@ -459,7 +459,7 @@ public class ItemCard {
             itemNameLabel.setTextFill(Paint.valueOf("#ff69b4"));
             itemBackgroundColor.setStyle("-fx-background-color: #ff69b4;");
         } else if (rarity.toLowerCase().equals("effervescent")) {
-            itemBackgroundColor.setBackground(new Background(new BackgroundImage(App.effervescentBackground, null, null, null, null)));
+            itemBackgroundColor.setBackground(new Background(new BackgroundImage(BorderlandsCollectionLog.effervescentBackground, null, null, null, null)));
             //GraalVM doesn't seem to parse gradients properly on compilation on linux so
             //we need to create a literal gradient image to set as the text
             // 1. Estimate the size boundaries of your text string
@@ -534,16 +534,16 @@ public class ItemCard {
                 itemTextVBox.getChildren().addAll(tempSourceTextLabel);
                 if (!location.isEmpty()) {
                     if (!locationTextSplit[i].isEmpty()) {
-                        App.addToolTip(tempSourceTextLabel, "");
+                        BorderlandsCollectionLog.addToolTip(tempSourceTextLabel, "");
                         try {
                             String[] chanceTextSplitSplit = chanceTextSplit[i].split("#@");
                             String sourceString = locationTextSplit[i];
                             for (String string : chanceTextSplitSplit) {
                                 sourceString = sourceString + "\n" + string;
                             }
-                            App.updateToolTip(tempSourceTextLabel, sourceString);
+                            BorderlandsCollectionLog.updateToolTip(tempSourceTextLabel, sourceString);
                         } catch (Exception e) {
-                            App.updateToolTip(tempSourceTextLabel, locationTextSplit[i]);
+                            BorderlandsCollectionLog.updateToolTip(tempSourceTextLabel, locationTextSplit[i]);
                         }
                     }
                 }
@@ -554,44 +554,44 @@ public class ItemCard {
         indicatorTray.setId("indicatorTray");
         //Item wiki indicator button
         if (!wiki.isEmpty()) {
-            ImageView itemWikiLinkImageView = new ImageView(App.wikiMiniImage);
+            ImageView itemWikiLinkImageView = new ImageView(BorderlandsCollectionLog.wikiMiniImage);
             Pane itemWikiLinkPane = new Pane(itemWikiLinkImageView);
             itemWikiLinkPane.setId("indicatorLink");
-            App.addToolTip(itemWikiLinkPane, "Borderlands Wiki\n" + wiki);
+            BorderlandsCollectionLog.addToolTip(itemWikiLinkPane, "Borderlands Wiki\n" + wiki);
             itemWikiLinkPane.setOnMouseClicked(event -> {
-                App.hostService.showDocument(wiki);
+                BorderlandsCollectionLog.hostService.showDocument(wiki);
             });
             indicatorTray.getChildren().add(itemWikiLinkPane);
         }
         //Lootlemon indicator button
         if (!lootlemon.isEmpty()) {
-            ImageView lootlemonLinkImageView = new ImageView(App.miniLootlemonImage);
+            ImageView lootlemonLinkImageView = new ImageView(BorderlandsCollectionLog.miniLootlemonImage);
             lootlemonLinkImageView.setFitWidth(17);
             Pane lootlemonLinkPane = new Pane(lootlemonLinkImageView);
             lootlemonLinkPane.setId("indicatorLink");
-            App.addToolTip(lootlemonLinkPane, "LootLemon\n" + lootlemon);
+            BorderlandsCollectionLog.addToolTip(lootlemonLinkPane, "LootLemon\n" + lootlemon);
             lootlemonLinkPane.setOnMouseClicked(event -> {
-                App.hostService.showDocument(lootlemon);
+                BorderlandsCollectionLog.hostService.showDocument(lootlemon);
             });
             indicatorTray.getChildren().add(lootlemonLinkPane);
         }
         //World drop indicator
         if (worldDrop) {
-            ImageView worldDropImageView = new ImageView(App.worldDropImage);
+            ImageView worldDropImageView = new ImageView(BorderlandsCollectionLog.worldDropImage);
             Pane worldDropPane = new Pane(worldDropImageView);
-            App.addToolTip(worldDropPane, "World drop");
+            BorderlandsCollectionLog.addToolTip(worldDropPane, "World drop");
             indicatorTray.getChildren().add(worldDropPane);
         }
         //DLC indicator
         if (!dlc.isEmpty()) {
-            ImageView dlcImageView = new ImageView(App.dlcImage);
+            ImageView dlcImageView = new ImageView(BorderlandsCollectionLog.dlcImage);
             Pane dlcPane = new Pane(dlcImageView);
-            App.addToolTip(dlcPane, "DLC required\n" + dlc);
+            BorderlandsCollectionLog.addToolTip(dlcPane, "DLC required\n" + dlc);
             indicatorTray.getChildren().add(dlcPane);
         }
         //Mod indicator
         if (!mod.isEmpty()) {
-            ImageView modLinkImageView = new ImageView(App.modImage);
+            ImageView modLinkImageView = new ImageView(BorderlandsCollectionLog.modImage);
             Pane modLinkPane = new Pane(modLinkImageView);
             modLinkPane.setId("indicatorLink");
             String modStrings[] = mod.split("#@")[0].split("_");
@@ -607,10 +607,10 @@ public class ItemCard {
             for (String string : modStrings) {
                 modContent = modContent + string + "\n";
             }
-            App.addToolTip(modLinkPane, "Item added by a mod\n" + modContent);
+            BorderlandsCollectionLog.addToolTip(modLinkPane, "Item added by a mod\n" + modContent);
             if (!modLink.isEmpty()) {
                 modLinkPane.setOnMouseClicked(event -> {
-                    App.hostService.showDocument(modLink);
+                    BorderlandsCollectionLog.hostService.showDocument(modLink);
                 });
             } else {
                 modLinkPane.setStyle("-fx-cursor: none;");
@@ -626,17 +626,17 @@ public class ItemCard {
                 for (String string2 : stringSplit) {
                     missionText = missionText + string2 + "\n";
                 }
-                ImageView missionImageView = new ImageView(App.missionImage);
+                ImageView missionImageView = new ImageView(BorderlandsCollectionLog.missionImage);
                 Pane missionPane = new Pane(missionImageView);
-                App.addToolTip(missionPane, missionText);
+                BorderlandsCollectionLog.addToolTip(missionPane, missionText);
                 indicatorTray.getChildren().add(missionPane);
             }
         }
         //BL2 game mode indicator
         if (!mode.isEmpty()) {
-            ImageView gameModeImageView = new ImageView(App.gameModeImage);
+            ImageView gameModeImageView = new ImageView(BorderlandsCollectionLog.gameModeImage);
             Pane gameModePane = new Pane(gameModeImageView);
-            App.addToolTip(gameModePane, mode + " required");
+            BorderlandsCollectionLog.addToolTip(gameModePane, mode + " required");
             indicatorTray.getChildren().add(gameModePane);
         }
         //BL2 currency indicator
@@ -644,38 +644,38 @@ public class ItemCard {
             String currencyText = currency.equals("torgue") ? "Torgue tokens" : currency + " Seraph crystals";
             ImageView currencyImageView = new ImageView();
             if (currency.equals("torgue")) {
-                currencyImageView.setImage(App.torgueImage);
+                currencyImageView.setImage(BorderlandsCollectionLog.torgueImage);
             } else {
-                currencyImageView.setImage(App.seraphImage);
+                currencyImageView.setImage(BorderlandsCollectionLog.seraphImage);
             }
             Pane currencyPane = new Pane(currencyImageView);
-            App.addToolTip(currencyPane, "Can be bought with\n" + currencyText);
+            BorderlandsCollectionLog.addToolTip(currencyPane, "Can be bought with\n" + currencyText);
             indicatorTray.getChildren().add(currencyPane);
         }
         //BLTPS grinder indicator
         if (!grinder.isEmpty()) {
-            ImageView grinderImageView = new ImageView(App.grinderImage);
+            ImageView grinderImageView = new ImageView(BorderlandsCollectionLog.grinderImage);
             Pane grinderPane = new Pane(grinderImageView);
-            App.addToolTip(grinderPane, "Obtainable from the Grinder\n" + grinder); 
+            BorderlandsCollectionLog.addToolTip(grinderPane, "Obtainable from the Grinder\n" + grinder); 
             indicatorTray.getChildren().add(grinderPane);
         }
         //BL3 mayhem indicator
         if (!mayhem.isEmpty()) {
-            ImageView mayhemImageView = new ImageView(App.mayhemImage);
+            ImageView mayhemImageView = new ImageView(BorderlandsCollectionLog.mayhemImage);
             Pane mayhemPane = new Pane(mayhemImageView);
-            App.addToolTip(mayhemPane, "Mayhem " + mayhem + " required"); 
+            BorderlandsCollectionLog.addToolTip(mayhemPane, "Mayhem " + mayhem + " required"); 
             indicatorTray.getChildren().add(mayhemPane);
         }
         //BL3 earl indicator
         if (earl) {
-            ImageView earlImageView = new ImageView(App.earlImage);
+            ImageView earlImageView = new ImageView(BorderlandsCollectionLog.earlImage);
             Pane earlPane = new Pane(earlImageView);
-            App.addToolTip(earlPane, "Reobtainable from Earl's\nVeteran Rewards Vending Machine");
+            BorderlandsCollectionLog.addToolTip(earlPane, "Reobtainable from Earl's\nVeteran Rewards Vending Machine");
             indicatorTray.getChildren().add(earlPane);
         }
         //BL3/4 vault card indicator
         if (!card.isEmpty()) {
-            ImageView cardImageView = new ImageView(App.cardImage);
+            ImageView cardImageView = new ImageView(BorderlandsCollectionLog.cardImage);
             Pane cardPane = new Pane(cardImageView);
             String keysTickets = "";
             if (game.equals("3")) {
@@ -683,14 +683,14 @@ public class ItemCard {
             } else {
                 keysTickets = "10 tickets";
             }
-            App.addToolTip(cardPane, "Vault card reward\n" + card + "\n" + keysTickets);
+            BorderlandsCollectionLog.addToolTip(cardPane, "Vault card reward\n" + card + "\n" + keysTickets);
             indicatorTray.getChildren().add(cardPane);
         }
         //BL4 Phosphene indicator
         if (!phosphene.isEmpty()) {
-            ImageView phospheneImageView = new ImageView(App.phospheneImage);
+            ImageView phospheneImageView = new ImageView(BorderlandsCollectionLog.phospheneImage);
             Pane phosphenePane = new Pane(phospheneImageView);
-            App.addToolTip(phosphenePane, "Phosphene\n" + phosphene);
+            BorderlandsCollectionLog.addToolTip(phosphenePane, "Phosphene\n" + phosphene);
             indicatorTray.getChildren().add(phosphenePane);
         }
 
