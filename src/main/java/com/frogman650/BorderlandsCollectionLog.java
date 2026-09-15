@@ -1,10 +1,8 @@
 package com.frogman650;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -277,20 +275,11 @@ public class BorderlandsCollectionLog extends Application {
         if (windows) {
             itemsDirectory = new File(executableDirectory, "items");
         } else if (linux) {
-            //Flatpak
-            if (executableDirectory.toString().toLowerCase().contains("tmp")) {
-                itemsDirectory = new File(executableDirectory.getParent(), "lib/items");
-            //AppImage
-            } else if (executableDirectory.toString().toLowerCase().contains("/app/bin")) {
-                itemsDirectory = new File(executableDirectory.getParent(), "share/BorderlandsCollectionLog/items");
-            //.deb & .rpm
-            } else if (executableDirectory.toString().toLowerCase().contains("/usr/libexec")) {
-                itemsDirectory = new File(executableDirectory.getParent(), "share/BorderlandsCollectionLog/items");
-            //Arch
-            } else if (executableDirectory.toString().toLowerCase().contains("/usr/bin")) {
-                itemsDirectory = new File(executableDirectory.getParent(), "share/BorderlandsCollectionLog/items");
-            } else {
+            //For testing
+            if (executableDirectory.toString().toLowerCase().contains("/github/borderlandscollectionlog/target")) {
                 itemsDirectory = new File(executableDirectory, "items");
+            } else {
+                itemsDirectory = new File(executableDirectory.getParent(), "share/BorderlandsCollectionLog/items");
             }
         }
         //Get/create settings file
