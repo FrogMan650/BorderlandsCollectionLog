@@ -16,6 +16,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4001</id>
 	</item>
 	<item>
@@ -34,6 +35,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4002</id>
 	</item>
 	<item>
@@ -52,6 +54,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4003</id>
 	</item>
 	<item>
@@ -70,6 +73,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4004</id>
 	</item>
 	<item>
@@ -88,6 +92,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4005</id>
 	</item>
 	<item>
@@ -106,6 +111,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4006</id>
 	</item>
 	<item>
@@ -124,6 +130,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene/>
 		<card>Vault x Hunter</card>
+		<mission/>
 		<id>4007</id>
 	</item>
 	<item>
@@ -142,6 +149,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4008</id>
 	</item>
 	<item>
@@ -160,6 +168,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4009</id>
 	</item>
 	<item>
@@ -178,6 +187,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4010</id>
 	</item>
 	<item>
@@ -196,6 +206,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4011</id>
 	</item>
 	<item>
@@ -214,6 +225,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4012</id>
 	</item>
 	<item>
@@ -232,6 +244,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4013</id>
 	</item>
 	<item>
@@ -250,6 +263,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4014</id>
 	</item>
 	<item>
@@ -268,6 +282,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4015</id>
 	</item>
 	<item>
@@ -286,6 +301,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4016</id>
 	</item>
 	<item>
@@ -304,6 +320,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4017</id>
 	</item>
 	<item>
@@ -322,6 +339,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4018</id>
 	</item>
 	<item>
@@ -340,6 +358,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4019</id>
 	</item>
 	<item>
@@ -358,6 +377,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4020</id>
 	</item>
 	<item>
@@ -376,6 +396,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4021</id>
 	</item>
 	<item>
@@ -394,6 +415,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4022</id>
 	</item>
 	<item>
@@ -412,6 +434,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4023</id>
 	</item>
 	<item>
@@ -430,6 +453,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4024</id>
 	</item>
 	<item>
@@ -448,6 +472,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4025</id>
 	</item>
 	<item>
@@ -466,6 +491,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4026</id>
 	</item>
 	<item>
@@ -484,6 +510,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4027</id>
 	</item>
 	<item>
@@ -502,6 +529,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4028</id>
 	</item>
 	<item>
@@ -520,6 +548,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4029</id>
 	</item>
 	<item>
@@ -538,6 +567,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4030</id>
 	</item>
 	<item>
@@ -556,6 +586,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4031</id>
 	</item>
 	<item>
@@ -574,6 +605,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4032</id>
 	</item>
 	<item>
@@ -592,6 +624,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4033</id>
 	</item>
 	<item>
@@ -610,6 +643,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4034</id>
 	</item>
 	<item>
@@ -628,6 +662,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4035</id>
 	</item>
 	<item>
@@ -646,6 +681,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4036</id>
 	</item>
 	<item>
@@ -664,6 +700,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4037</id>
 	</item>
 	<item>
@@ -682,6 +719,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4038</id>
 	</item>
 	<item>
@@ -700,6 +738,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4039</id>
 	</item>
 	<item>
@@ -718,6 +757,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4040</id>
 	</item>
 	<item>
@@ -736,6 +776,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4041</id>
 	</item>
 	<item>
@@ -754,6 +795,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4042</id>
 	</item>
 	<item>
@@ -772,6 +814,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4043</id>
 	</item>
 	<item>
@@ -790,6 +833,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4044</id>
 	</item>
 	<item>
@@ -808,6 +852,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4045</id>
 	</item>
 	<item>
@@ -826,6 +871,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4046</id>
 	</item>
 	<item>
@@ -844,6 +890,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4047</id>
 	</item>
 	<item>
@@ -862,6 +909,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4048</id>
 	</item>
 	<item>
@@ -880,6 +928,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4049</id>
 	</item>
 	<item>
@@ -898,6 +947,7 @@
 		<dlc/>
 		<phosphene>0.0146</phosphene>
 		<card/>
+		<mission/>
 		<id>4050</id>
 	</item>
 	<item>
@@ -916,6 +966,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4051</id>
 	</item>
 	<item>
@@ -934,6 +985,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4052</id>
 	</item>
 	<item>
@@ -952,6 +1004,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4053</id>
 	</item>
 	<item>
@@ -970,6 +1023,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4054</id>
 	</item>
 	<item>
@@ -988,6 +1042,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4055</id>
 	</item>
 	<item>
@@ -1006,6 +1061,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4056</id>
 	</item>
 	<item>
@@ -1024,6 +1080,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4057</id>
 	</item>
 	<item>
@@ -1042,6 +1099,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4058</id>
 	</item>
 	<item>
@@ -1060,6 +1118,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4059</id>
 	</item>
 	<item>
@@ -1078,6 +1137,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4060</id>
 	</item>
 	<item>
@@ -1096,6 +1156,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene/>
 		<card>Arcade Invaders</card>
+		<mission/>
 		<id>4061</id>
 	</item>
 	<item>
@@ -1114,6 +1175,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene/>
 		<card>Vault x Hunter</card>
+		<mission/>
 		<id>4062</id>
 	</item>
 	<item>
@@ -1132,6 +1194,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4063</id>
 	</item>
 	<item>
@@ -1150,6 +1213,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4064</id>
 	</item>
 	<item>
@@ -1168,6 +1232,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4065</id>
 	</item>
 	<item>
@@ -1186,6 +1251,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4066</id>
 	</item>
 	<item>
@@ -1204,6 +1270,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4067</id>
 	</item>
 	<item>
@@ -1222,6 +1289,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4068</id>
 	</item>
 	<item>
@@ -1240,6 +1308,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4069</id>
 	</item>
 	<item>
@@ -1258,6 +1327,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4070</id>
 	</item>
 	<item>
@@ -1276,6 +1346,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4071</id>
 	</item>
 	<item>
@@ -1294,6 +1365,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4072</id>
 	</item>
 	<item>
@@ -1312,6 +1384,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4073</id>
 	</item>
 	<item>
@@ -1330,6 +1403,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4074</id>
 	</item>
 	<item>
@@ -1348,6 +1422,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4075</id>
 	</item>
 	<item>
@@ -1366,6 +1441,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene/>
 		<card>Desert Dreams</card>
+		<mission/>
 		<id>4076</id>
 	</item>
 	<item>
@@ -1384,6 +1460,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4077</id>
 	</item>
 	<item>
@@ -1402,6 +1479,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4078</id>
 	</item>
 	<item>
@@ -1420,6 +1498,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4079</id>
 	</item>
 	<item>
@@ -1438,6 +1517,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4080</id>
 	</item>
 	<item>
@@ -1456,6 +1536,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4081</id>
 	</item>
 	<item>
@@ -1474,6 +1555,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4082</id>
 	</item>
 	<item>
@@ -1492,6 +1574,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4083</id>
 	</item>
 	<item>
@@ -1510,6 +1593,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4084</id>
 	</item>
 	<item>
@@ -1528,6 +1612,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4085</id>
 	</item>
 	<item>
@@ -1546,6 +1631,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4086</id>
 	</item>
 	<item>
@@ -1564,6 +1650,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4087</id>
 	</item>
 	<item>
@@ -1582,6 +1669,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4088</id>
 	</item>
 	<item>
@@ -1600,6 +1688,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4089</id>
 	</item>
 	<item>
@@ -1618,6 +1707,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4090</id>
 	</item>
 	<item>
@@ -1636,6 +1726,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4091</id>
 	</item>
 	<item>
@@ -1654,6 +1745,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4092</id>
 	</item>
 	<item>
@@ -1672,6 +1764,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4093</id>
 	</item>
 	<item>
@@ -1690,6 +1783,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4094</id>
 	</item>
 	<item>
@@ -1708,6 +1802,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4095</id>
 	</item>
 	<item>
@@ -1726,6 +1821,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4096</id>
 	</item>
 	<item>
@@ -1744,6 +1840,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4097</id>
 	</item>
 	<item>
@@ -1762,6 +1859,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4098</id>
 	</item>
 	<item>
@@ -1780,6 +1878,7 @@
 		<dlc>Gilded Glory Cosmetic Pack</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4099</id>
 	</item>
 	<item>
@@ -1798,6 +1897,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4100</id>
 	</item>
 	<item>
@@ -1816,6 +1916,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4101</id>
 	</item>
 	<item>
@@ -1834,6 +1935,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4102</id>
 	</item>
 	<item>
@@ -1852,6 +1954,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4103</id>
 	</item>
 	<item>
@@ -1870,6 +1973,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4104</id>
 	</item>
 	<item>
@@ -1888,6 +1992,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4105</id>
 	</item>
 	<item>
@@ -1906,6 +2011,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4106</id>
 	</item>
 	<item>
@@ -1924,6 +2030,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4107</id>
 	</item>
 	<item>
@@ -1942,6 +2049,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4108</id>
 	</item>
 	<item>
@@ -1960,6 +2068,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4109</id>
 	</item>
 	<item>
@@ -1978,6 +2087,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4110</id>
 	</item>
 	<item>
@@ -1996,6 +2106,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4111</id>
 	</item>
 	<item>
@@ -2014,6 +2125,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4112</id>
 	</item>
 	<item>
@@ -2032,6 +2144,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4113</id>
 	</item>
 	<item>
@@ -2050,6 +2163,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4114</id>
 	</item>
 	<item>
@@ -2068,6 +2182,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4115</id>
 	</item>
 	<item>
@@ -2086,6 +2201,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4116</id>
 	</item>
 	<item>
@@ -2104,6 +2220,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene/>
 		<card>Desert Dreams</card>
+		<mission/>
 		<id>4117</id>
 	</item>
 	<item>
@@ -2122,6 +2239,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4118</id>
 	</item>
 	<item>
@@ -2140,6 +2258,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4119</id>
 	</item>
 	<item>
@@ -2158,6 +2277,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4120</id>
 	</item>
 	<item>
@@ -2176,6 +2296,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4121</id>
 	</item>
 	<item>
@@ -2194,6 +2315,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4122</id>
 	</item>
 	<item>
@@ -2212,6 +2334,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4123</id>
 	</item>
 	<item>
@@ -2230,6 +2353,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4124</id>
 	</item>
 	<item>
@@ -2248,6 +2372,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4125</id>
 	</item>
 	<item>
@@ -2266,6 +2391,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4126</id>
 	</item>
 	<item>
@@ -2284,6 +2410,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4127</id>
 	</item>
 	<item>
@@ -2302,6 +2429,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4128</id>
 	</item>
 	<item>
@@ -2320,6 +2448,7 @@
 		<dlc>How Rush Saved Mercenary Day</dlc>
 		<phosphene/>
 		<card>Happy Mercenary Day!</card>
+		<mission/>
 		<id>4129</id>
 	</item>
 	<item>
@@ -2338,6 +2467,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4130</id>
 	</item>
 	<item>
@@ -2356,6 +2486,7 @@
 		<dlc>How Rush Saved Mercenary Day</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4131</id>
 	</item>
 	<item>
@@ -2374,6 +2505,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4132</id>
 	</item>
 	<item>
@@ -2392,6 +2524,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4133</id>
 	</item>
 	<item>
@@ -2410,6 +2543,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4134</id>
 	</item>
 	<item>
@@ -2428,6 +2562,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4135</id>
 	</item>
 	<item>
@@ -2446,6 +2581,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4136</id>
 	</item>
 	<item>
@@ -2464,6 +2600,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4137</id>
 	</item>
 	<item>
@@ -2482,6 +2619,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4138</id>
 	</item>
 	<item>
@@ -2500,6 +2638,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4139</id>
 	</item>
 	<item>
@@ -2518,6 +2657,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4140</id>
 	</item>
 	<item>
@@ -2536,6 +2676,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4141</id>
 	</item>
 	<item>
@@ -2554,6 +2695,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4142</id>
 	</item>
 	<item>
@@ -2572,6 +2714,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4143</id>
 	</item>
 	<item>
@@ -2590,6 +2733,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4144</id>
 	</item>
 	<item>
@@ -2608,6 +2752,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4145</id>
 	</item>
 	<item>
@@ -2626,6 +2771,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4146</id>
 	</item>
 	<item>
@@ -2644,6 +2790,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4147</id>
 	</item>
 	<item>
@@ -2662,6 +2809,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4148</id>
 	</item>
 	<item>
@@ -2680,6 +2828,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4149</id>
 	</item>
 	<item>
@@ -2698,6 +2847,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4150</id>
 	</item>
 	<item>
@@ -2716,6 +2866,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4151</id>
 	</item>
 	<item>
@@ -2734,6 +2885,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4152</id>
 	</item>
 	<item>
@@ -2752,6 +2904,7 @@
 		<dlc>How Rush Saved Mercenary Day</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4153</id>
 	</item>
 	<item>
@@ -2770,6 +2923,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4154</id>
 	</item>
 	<item>
@@ -2788,6 +2942,7 @@
 		<dlc/>
 		<phosphene>0.36-2.16%</phosphene>
 		<card/>
+		<mission/>
 		<id>4155</id>
 	</item>
 	<item>
@@ -2806,6 +2961,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4156</id>
 	</item>
 	<item>
@@ -2824,6 +2980,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4157</id>
 	</item>
 	<item>
@@ -2842,6 +2999,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4158</id>
 	</item>
 	<item>
@@ -2860,6 +3018,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4159</id>
 	</item>
 	<item>
@@ -2878,6 +3037,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4160</id>
 	</item>
 	<item>
@@ -2896,6 +3056,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4161</id>
 	</item>
 	<item>
@@ -2914,6 +3075,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4162</id>
 	</item>
 	<item>
@@ -2932,6 +3094,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4163</id>
 	</item>
 	<item>
@@ -2950,6 +3113,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4164</id>
 	</item>
 	<item>
@@ -2968,6 +3132,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4165</id>
 	</item>
 	<item>
@@ -2986,6 +3151,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4166</id>
 	</item>
 	<item>
@@ -3004,6 +3170,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4167</id>
 	</item>
 	<item>
@@ -3022,6 +3189,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4168</id>
 	</item>
 	<item>
@@ -3040,6 +3208,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4169</id>
 	</item>
 	<item>
@@ -3058,6 +3227,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4170</id>
 	</item>
 	<item>
@@ -3076,6 +3246,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4171</id>
 	</item>
 	<item>
@@ -3094,6 +3265,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4172</id>
 	</item>
 	<item>
@@ -3112,6 +3284,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4173</id>
 	</item>
 	<item>
@@ -3130,6 +3303,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4174</id>
 	</item>
 	<item>
@@ -3148,6 +3322,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene/>
 		<card>Arcade Invaders</card>
+		<mission/>
 		<id>4175</id>
 	</item>
 	<item>
@@ -3166,6 +3341,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4176</id>
 	</item>
 	<item>
@@ -3184,6 +3360,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4177</id>
 	</item>
 	<item>
@@ -3202,6 +3379,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4178</id>
 	</item>
 	<item>
@@ -3220,6 +3398,7 @@
 		<dlc/>
 		<phosphene>0.9-1.6% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4179</id>
 	</item>
 	<item>
@@ -3238,6 +3417,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4180</id>
 	</item>
 	<item>
@@ -3256,6 +3436,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4181</id>
 	</item>
 	<item>
@@ -3274,6 +3455,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4182</id>
 	</item>
 	<item>
@@ -3292,6 +3474,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4183</id>
 	</item>
 	<item>
@@ -3310,6 +3493,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4184</id>
 	</item>
 	<item>
@@ -3328,6 +3512,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4185</id>
 	</item>
 	<item>
@@ -3346,6 +3531,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4186</id>
 	</item>
 	<item>
@@ -3364,6 +3550,7 @@
 		<dlc/>
 		<phosphene>0.9-1.6% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4187</id>
 	</item>
 	<item>
@@ -3382,6 +3569,7 @@
 		<dlc/>
 		<phosphene>0.36-2.16%</phosphene>
 		<card/>
+		<mission/>
 		<id>4188</id>
 	</item>
 	<item>
@@ -3400,6 +3588,7 @@
 		<dlc>Gilded Glory Cosmetic Pack</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4189</id>
 	</item>
 	<item>
@@ -3418,6 +3607,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene/>
 		<card>Vault x Hunter</card>
+		<mission/>
 		<id>4190</id>
 	</item>
 	<item>
@@ -3436,6 +3626,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4191</id>
 	</item>
 	<item>
@@ -3454,6 +3645,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4192</id>
 	</item>
 	<item>
@@ -3472,6 +3664,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4193</id>
 	</item>
 	<item>
@@ -3490,6 +3683,7 @@
 		<dlc>How Rush Saved Mercenary Day</dlc>
 		<phosphene/>
 		<card>Happy Mercenary Day!</card>
+		<mission/>
 		<id>4194</id>
 	</item>
 	<item>
@@ -3508,6 +3702,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4195</id>
 	</item>
 	<item>
@@ -3526,6 +3721,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4196</id>
 	</item>
 	<item>
@@ -3544,6 +3740,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4197</id>
 	</item>
 	<item>
@@ -3562,6 +3759,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4198</id>
 	</item>
 	<item>
@@ -3580,6 +3778,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4199</id>
 	</item>
 	<item>
@@ -3598,6 +3797,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4200</id>
 	</item>
 	<item>
@@ -3616,6 +3816,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4201</id>
 	</item>
 	<item>
@@ -3634,6 +3835,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4202</id>
 	</item>
 	<item>
@@ -3652,6 +3854,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4203</id>
 	</item>
 	<item>
@@ -3670,6 +3873,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4204</id>
 	</item>
 	<item>
@@ -3688,6 +3892,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene/>
 		<card>Arcade Invaders</card>
+		<mission/>
 		<id>4205</id>
 	</item>
 	<item>
@@ -3706,6 +3911,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4206</id>
 	</item>
 	<item>
@@ -3724,6 +3930,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4207</id>
 	</item>
 	<item>
@@ -3742,6 +3949,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4208</id>
 	</item>
 	<item>
@@ -3760,6 +3968,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4209</id>
 	</item>
 	<item>
@@ -3778,6 +3987,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4210</id>
 	</item>
 	<item>
@@ -3796,6 +4006,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4211</id>
 	</item>
 	<item>
@@ -3814,6 +4025,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4212</id>
 	</item>
 	<item>
@@ -3832,6 +4044,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4213</id>
 	</item>
 	<item>
@@ -3850,6 +4063,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4214</id>
 	</item>
 	<item>
@@ -3868,6 +4082,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4215</id>
 	</item>
 	<item>
@@ -3886,6 +4101,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4216</id>
 	</item>
 	<item>
@@ -3904,6 +4120,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4217</id>
 	</item>
 	<item>
@@ -3922,6 +4139,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4218</id>
 	</item>
 	<item>
@@ -3940,6 +4158,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4219</id>
 	</item>
 	<item>
@@ -3958,6 +4177,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4220</id>
 	</item>
 	<item>
@@ -3976,6 +4196,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene/>
 		<card>Desert Dreams</card>
+		<mission/>
 		<id>4221</id>
 	</item>
 	<item>
@@ -3994,6 +4215,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4222</id>
 	</item>
 	<item>
@@ -4012,6 +4234,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4223</id>
 	</item>
 	<item>
@@ -4030,6 +4253,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4224</id>
 	</item>
 	<item>
@@ -4048,6 +4272,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4225</id>
 	</item>
 	<item>
@@ -4066,6 +4291,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4226</id>
 	</item>
 	<item>
@@ -4084,6 +4310,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4227</id>
 	</item>
 	<item>
@@ -4102,6 +4329,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4228</id>
 	</item>
 	<item>
@@ -4120,6 +4348,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4229</id>
 	</item>
 	<item>
@@ -4138,6 +4367,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4230</id>
 	</item>
 	<item>
@@ -4156,6 +4386,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4231</id>
 	</item>
 	<item>
@@ -4174,6 +4405,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4232</id>
 	</item>
 	<item>
@@ -4192,6 +4424,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4233</id>
 	</item>
 	<item>
@@ -4210,6 +4443,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4234</id>
 	</item>
 	<item>
@@ -4228,6 +4462,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4235</id>
 	</item>
 	<item>
@@ -4246,6 +4481,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4236</id>
 	</item>
 	<item>
@@ -4264,6 +4500,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4237</id>
 	</item>
 	<item>
@@ -4282,6 +4519,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4238</id>
 	</item>
 	<item>
@@ -4300,6 +4538,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4239</id>
 	</item>
 	<item>
@@ -4318,6 +4557,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4240</id>
 	</item>
 	<item>
@@ -4336,6 +4576,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4241</id>
 	</item>
 	<item>
@@ -4354,6 +4595,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4242</id>
 	</item>
 	<item>
@@ -4372,6 +4614,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4243</id>
 	</item>
 	<item>
@@ -4390,6 +4633,7 @@
 		<dlc>A Zane to Kill for</dlc>
 		<phosphene/>
 		<card>Arcade Invaders</card>
+		<mission/>
 		<id>4244</id>
 	</item>
 	<item>
@@ -4408,6 +4652,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4245</id>
 	</item>
 	<item>
@@ -4426,6 +4671,7 @@
 		<dlc>How Rush Saved Mercenary Day</dlc>
 		<phosphene/>
 		<card>Happy Mercenary Day!</card>
+		<mission/>
 		<id>4246</id>
 	</item>
 	<item>
@@ -4444,6 +4690,7 @@
 		<dlc>How Rush Saved Mercenary Day</dlc>
 		<phosphene/>
 		<card>Happy Mercenary Day!</card>
+		<mission/>
 		<id>4247</id>
 	</item>
 	<item>
@@ -4462,6 +4709,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4248</id>
 	</item>
 	<item>
@@ -4480,6 +4728,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4249</id>
 	</item>
 	<item>
@@ -4498,6 +4747,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4250</id>
 	</item>
 	<item>
@@ -4516,6 +4766,7 @@
 		<dlc>How Rush Saved Mercenary Day</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4251</id>
 	</item>
 	<item>
@@ -4534,6 +4785,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4252</id>
 	</item>
 	<item>
@@ -4552,6 +4804,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4253</id>
 	</item>
 	<item>
@@ -4570,6 +4823,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4254</id>
 	</item>
 	<item>
@@ -4588,6 +4842,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4255</id>
 	</item>
 	<item>
@@ -4606,6 +4861,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4256</id>
 	</item>
 	<item>
@@ -4624,6 +4880,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4257</id>
 	</item>
 	<item>
@@ -4642,6 +4899,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4258</id>
 	</item>
 	<item>
@@ -4660,6 +4918,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4259</id>
 	</item>
 	<item>
@@ -4678,6 +4937,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4260</id>
 	</item>
 	<item>
@@ -4696,6 +4956,7 @@
 		<dlc/>
 		<phosphene>0.9-1.6% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4261</id>
 	</item>
 	<item>
@@ -4714,6 +4975,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4262</id>
 	</item>
 	<item>
@@ -4732,6 +4994,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4263</id>
 	</item>
 	<item>
@@ -4750,6 +5013,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4264</id>
 	</item>
 	<item>
@@ -4768,6 +5032,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4265</id>
 	</item>
 	<item>
@@ -4786,6 +5051,7 @@
 		<dlc/>
 		<phosphene>0.36-2.16%</phosphene>
 		<card/>
+		<mission/>
 		<id>4266</id>
 	</item>
 	<item>
@@ -4804,6 +5070,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4267</id>
 	</item>
 	<item>
@@ -4822,6 +5089,7 @@
 		<dlc>Gilded Glory Cosmetic Pack</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4268</id>
 	</item>
 	<item>
@@ -4840,6 +5108,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4269</id>
 	</item>
 	<item>
@@ -4858,6 +5127,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4270</id>
 	</item>
 	<item>
@@ -4876,6 +5146,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4271</id>
 	</item>
 	<item>
@@ -4894,6 +5165,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4272</id>
 	</item>
 	<item>
@@ -4912,6 +5184,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4273</id>
 	</item>
 	<item>
@@ -4930,6 +5203,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4274</id>
 	</item>
 	<item>
@@ -4948,6 +5222,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4275</id>
 	</item>
 	<item>
@@ -4966,6 +5241,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4276</id>
 	</item>
 	<item>
@@ -4984,6 +5260,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4277</id>
 	</item>
 	<item>
@@ -5002,6 +5279,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4278</id>
 	</item>
 	<item>
@@ -5020,6 +5298,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4279</id>
 	</item>
 	<item>
@@ -5038,6 +5317,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4280</id>
 	</item>
 	<item>
@@ -5056,6 +5336,7 @@
 		<dlc>Murders and Acquisitions</dlc>
 		<phosphene/>
 		<card>Desert Dreams</card>
+		<mission/>
 		<id>4281</id>
 	</item>
 	<item>
@@ -5074,6 +5355,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4282</id>
 	</item>
 	<item>
@@ -5092,6 +5374,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4283</id>
 	</item>
 	<item>
@@ -5110,6 +5393,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4284</id>
 	</item>
 	<item>
@@ -5128,6 +5412,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4285</id>
 	</item>
 	<item>
@@ -5146,6 +5431,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4286</id>
 	</item>
 	<item>
@@ -5164,6 +5450,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4287</id>
 	</item>
 	<item>
@@ -5182,6 +5469,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4288</id>
 	</item>
 	<item>
@@ -5200,6 +5488,7 @@
 		<dlc/>
 		<phosphene>0.36-2.16%</phosphene>
 		<card/>
+		<mission/>
 		<id>4289</id>
 	</item>
 	<item>
@@ -5218,6 +5507,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4290</id>
 	</item>
 	<item>
@@ -5236,6 +5526,7 @@
 		<dlc/>
 		<phosphene>0.0146</phosphene>
 		<card/>
+		<mission/>
 		<id>4291</id>
 	</item>
 	<item>
@@ -5254,6 +5545,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4292</id>
 	</item>
 	<item>
@@ -5272,6 +5564,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4293</id>
 	</item>
 	<item>
@@ -5290,6 +5583,7 @@
 		<dlc>Legend of the Stone Demon</dlc>
 		<phosphene/>
 		<card>Vault x Hunter</card>
+		<mission/>
 		<id>4294</id>
 	</item>
 	<item>
@@ -5308,6 +5602,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4295</id>
 	</item>
 	<item>
@@ -5326,6 +5621,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4296</id>
 	</item>
 	<item>
@@ -5344,6 +5640,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4297</id>
 	</item>
 	<item>
@@ -5362,6 +5659,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4298</id>
 	</item>
 	<item>
@@ -5380,6 +5678,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4299</id>
 	</item>
 	<item>
@@ -5398,6 +5697,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4300</id>
 	</item>
 	<item>
@@ -5416,6 +5716,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4301</id>
 	</item>
 	<item>
@@ -5434,6 +5735,7 @@
 		<dlc>Gilded Glory Cosmetic Pack</dlc>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4302</id>
 	</item>
 	<item>
@@ -5452,6 +5754,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4303</id>
 	</item>
 	<item>
@@ -5470,6 +5773,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4304</id>
 	</item>
 	<item>
@@ -5488,6 +5792,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4305</id>
 	</item>
 	<item>
@@ -5506,6 +5811,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4306</id>
 	</item>
 	<item>
@@ -5524,6 +5830,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4307</id>
 	</item>
 	<item>
@@ -5542,6 +5849,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4308</id>
 	</item>
 	<item>
@@ -5560,6 +5868,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4309</id>
 	</item>
 	<item>
@@ -5578,6 +5887,7 @@
 		<dlc>Mad Ellie and the Vault of the Damned</dlc>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4310</id>
 	</item>
 	<item>
@@ -5596,6 +5906,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4311</id>
 	</item>
 	<item>
@@ -5614,6 +5925,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4312</id>
 	</item>
 	<item>
@@ -5632,6 +5944,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4313</id>
 	</item>
 	<item>
@@ -5650,6 +5963,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4314</id>
 	</item>
 	<item>
@@ -5668,6 +5982,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4315</id>
 	</item>
 	<item>
@@ -5686,6 +6001,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4316</id>
 	</item>
 	<item>
@@ -5704,6 +6020,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4317</id>
 	</item>
 	<item>
@@ -5722,6 +6039,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4318</id>
 	</item>
 	<item>
@@ -5740,6 +6058,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4319</id>
 	</item>
 	<item>
@@ -5758,6 +6077,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4320</id>
 	</item>
 	<item>
@@ -5776,6 +6096,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4321</id>
 	</item>
 	<item>
@@ -5794,6 +6115,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4322</id>
 	</item>
 	<item>
@@ -5812,6 +6134,7 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4323</id>
 	</item>
 	<item>
@@ -5830,6 +6153,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4324</id>
 	</item>
 	<item>
@@ -5848,6 +6172,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4325</id>
 	</item>
 	<item>
@@ -5866,6 +6191,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4326</id>
 	</item>
 	<item>
@@ -5884,6 +6210,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4327</id>
 	</item>
 	<item>
@@ -5902,6 +6229,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4328</id>
 	</item>
 	<item>
@@ -5920,6 +6248,7 @@
 		<dlc/>
 		<phosphene/>
 		<card/>
+		<mission/>
 		<id>4329</id>
 	</item>
 	<item>
@@ -5938,6 +6267,634 @@
 		<dlc/>
 		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
 		<card/>
+		<mission/>
 		<id>4330</id>
+	</item>
+	<item>
+		<name>Astonisher</name>
+		<type>shotgun</type>
+		<game>4</game>
+		<rarity>Pearlescent</rarity>
+		<source>Lieutenant Harmony</source>
+		<text>I really like beer.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Astonisher</wiki>
+		<points>0</points>
+		<location>Tediore FOB Bravo Lima 4.2</location>
+		<chance>3-4.75%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/astonisher-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene/>
+		<card/>
+		<mission/>
+		<id>4331</id>
+	</item>
+	<item>
+		<name>Quadratus</name>
+		<type>heavy ordnance</type>
+		<game>4</game>
+		<rarity>Pearlescent</rarity>
+		<source>Tediore Digi-Rift bosses</source>
+		<text>Quadrupled Quality, Quarrelously Questioned.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Quadratus</wiki>
+		<points>0</points>
+		<location>Last Resort DLC</location>
+		<chance>3-4.75%</chance>
+		<lootlemon>https://www.lootlemon.com/grenade-mod/quadratus-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene/>
+		<card/>
+		<mission/>
+		<id>4332</id>
+	</item>
+	<item>
+		<name>Lovelorn</name>
+		<type>ar</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Dr. Elena Smith</source>
+		<text>EZ PZ NBD.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Lovelorn</wiki>
+		<points>0</points>
+		<location>Chamber Pavilion</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/lovelorn-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4333</id>
+	</item>
+	<item>
+		<name>Devourer</name>
+		<type>sniper</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Ducky</source>
+		<text>Just as Saturn devoured his children so too shall I devour this sandwich.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Devourer_(Borderlands_4_Sniper_Rifle)</wiki>
+		<points>0</points>
+		<location>Pyroclast Field</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/devourer-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4334</id>
+	</item>
+	<item>
+		<name>Hand Frag</name>
+		<type>smg</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>RelaxMech</source>
+		<text>It can hold so much!</text>
+		<wiki>https://borderlands.fandom.com/wiki/HandFrag</wiki>
+		<points>0</points>
+		<location>Vine Pointe Lodge</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/hand-frag-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4335</id>
+	</item>
+	<item>
+		<name>Shardenfreude</name>
+		<type>ar</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Jr. Manager Warrant Baggett</source>
+		<text>For those hiding in Glass Houses.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Shardenfreude</wiki>
+		<points>0</points>
+		<location>Vinechoked Canopy</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/shardenfreude-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4336</id>
+	</item>
+	<item>
+		<name>Infection</name>
+		<type>pistol</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Lieutenant Harmony</source>
+		<text>You will suffer me.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Infection_(Borderlands_4)</wiki>
+		<points>0</points>
+		<location>Tediore FOB Bravo Lima 4.2</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/infection-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4337</id>
+	</item>
+	<item>
+		<name>Hippo Gun</name>
+		<type>shotgun</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Kolavalin</source>
+		<text>This one's for the big guy.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Hippo_Gun</wiki>
+		<points>0</points>
+		<location>Tediore FOB Bravo Lima 4.2</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/hippo-gun-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4338</id>
+	</item>
+	<item>
+		<name>Exhibition</name>
+		<type>sniper</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Drilla Killa</source>
+		<text>A bit of a showoff...</text>
+		<wiki>https://borderlands.fandom.com/wiki/Exhibition</wiki>
+		<points>0</points>
+		<location>Bagheera Range</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/exhibition-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4339</id>
+	</item>
+	<item>
+		<name>Avarice</name>
+		<type>ar</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Vulkorr</source>
+		<text>Struggle for the legal tender.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Avarice</wiki>
+		<points>0</points>
+		<location>Bagheera Range</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/avarice-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4340</id>
+	</item>
+	<item>
+		<name>Virtue</name>
+		<type>pistol</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source/>
+		<text>I'm breaking from the weight of the wait.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Virtue</wiki>
+		<points>0</points>
+		<location/>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/virtue-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission>Burnt Offering_Pyroclast Grotto</mission>
+		<id>4341</id>
+	</item>
+	<item>
+		<name>Petanque</name>
+		<type>sniper</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Unreal Steel</source>
+		<text>The inertia can be contained no more than a bullet leaving a gun.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Petanque</wiki>
+		<points>0</points>
+		<location>Pyroclast Field</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/petanque-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4342</id>
+	</item>
+	<item>
+		<name>Decompiler</name>
+		<type>shotgun</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Blackgrin</source>
+		<text>Some disassembly required.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Decompiler</wiki>
+		<points>0</points>
+		<location>Pyroclast Field</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/decompiler-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4343</id>
+	</item>
+	<item>
+		<name>Honeymooner</name>
+		<type>smg</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Megan</source>
+		<text>Bang, Zoom!</text>
+		<wiki>https://borderlands.fandom.com/wiki/Honeymooner</wiki>
+		<points>0</points>
+		<location>Bagheera Range</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/honeymooner-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4344</id>
+	</item>
+	<item>
+		<name>Fourier's Malady</name>
+		<type>shotgun</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Lieutenant Bume</source>
+		<text>I like to wait until the series is complete.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Fourier%27s_Malady</wiki>
+		<points>0</points>
+		<location>Bagheera Range</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/fouriers-malady-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4345</id>
+	</item>
+	<item>
+		<name>Ripple</name>
+		<type>ar</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Experiment C-23</source>
+		<text>One for the brutality. Two more for the show.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Ripple</wiki>
+		<points>0</points>
+		<location>Tediore FOB Bravo Lima 4.2</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/ripple-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4346</id>
+	</item>
+	<item>
+		<name>Critical Decay</name>
+		<type>pistol</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Logistics Manager Reyes</source>
+		<text>Imminent Meltdown.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Critical_Decay</wiki>
+		<points>0</points>
+		<location>Tediore FOB Bravo Lima 4.2</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/critical-decay-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4347</id>
+	</item>
+	<item>
+		<name>Exfoliatrix</name>
+		<type>shield</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Tediore Digi-Rift bosses</source>
+		<text>The only ex worth keeping in your life.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Exfoliatrix</wiki>
+		<points>0</points>
+		<location>Last Resort DLC</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/shield/exfoliatrix-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene/>
+		<card/>
+		<mission/>
+		<id>4348</id>
+	</item>
+	<item>
+		<name>Font of Life</name>
+		<type>repkit</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Volcanus</source>
+		<text>Spring forth, burly protector, and save me!</text>
+		<wiki>https://borderlands.fandom.com/wiki/Font_of_Life</wiki>
+		<points>0</points>
+		<location>Pyroclast Field</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/bonus-item/font-of-life-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene/>
+		<card/>
+		<mission/>
+		<id>4349</id>
+	</item>
+	<item>
+		<name>Li'l Brudder</name>
+		<type>grenade ordnance</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Big Bada Boom Drone</source>
+		<text>I can make it on my own!</text>
+		<wiki>https://borderlands.fandom.com/wiki/Li%27l_Brudder</wiki>
+		<points>0</points>
+		<location>Bagheera Range</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/grenade-mod/lil-brudder-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene/>
+		<card/>
+		<mission/>
+		<id>4350</id>
+	</item>
+	<item>
+		<name>Paperclip</name>
+		<type>pistol</type>
+		<game>4</game>
+		<rarity>unique_purple</rarity>
+		<source/>
+		<text>Could trade this for a house.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Paperclip</wiki>
+		<points>0</points>
+		<location/>
+		<chance/>
+		<lootlemon>https://www.lootlemon.com/weapon/paperclip-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene/>
+		<card/>
+		<mission>Barter Up_Pyroclast Field</mission>
+		<id>4351</id>
+	</item>
+	<item>
+		<name>Secured Relief</name>
+		<type>pistol</type>
+		<game>4</game>
+		<rarity>unique_purple</rarity>
+		<source/>
+		<text>Off duty dootie.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Secured_Relief</wiki>
+		<points>0</points>
+		<location/>
+		<chance/>
+		<lootlemon>https://www.lootlemon.com/weapon/secured-relief-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>FL4K and the Last Resort</dlc>
+		<phosphene/>
+		<card/>
+		<mission>The Relieving of the Guard_Pyroclast Field</mission>
+		<id>4352</id>
+	</item>
+	<item>
+		<name>AeroDramatic</name>
+		<type>shotgun</type>
+		<game>4</game>
+		<rarity>Pearlescent</rarity>
+		<source>Vile Grasp</source>
+		<text>HA! BOOM BABY!</text>
+		<wiki>https://borderlands.fandom.com/wiki/AeroDramatic</wiki>
+		<points>0</points>
+		<location>Dark Side of Elpis</location>
+		<chance>0.6-0.95%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/aerodramatic-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene/>
+		<card/>
+		<mission/>
+		<id>4353</id>
+	</item>
+	<item>
+		<name>Triplicate</name>
+		<type>ar</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Test Zero</source>
+		<text>Did you actually aim for that?</text>
+		<wiki>https://borderlands.fandom.com/wiki/Triplicate</wiki>
+		<points>0</points>
+		<location>Nuada Cove</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/triplicate-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4354</id>
+	</item>
+	<item>
+		<name>Pragmate</name>
+		<type>shotgun</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Hybrid Thresher</source>
+		<text>I'll guide this dagger into the heart of my enemy.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Pragmate</wiki>
+		<points>0</points>
+		<location>Dark Side of Elpis</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/pragmate-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4355</id>
+	</item>
+	<item>
+		<name>Enumeration</name>
+		<type>smg</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Test Zero</source>
+		<text>Let me count the ways...</text>
+		<wiki>https://borderlands.fandom.com/wiki/Enumeration</wiki>
+		<points>0</points>
+		<location>Nuada Cove</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/enumeration-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4356</id>
+	</item>
+	<item>
+		<name>Clarity</name>
+		<type>sniper</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Vile Grasp</source>
+		<text>It all makes sense now.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Clarity</wiki>
+		<points>0</points>
+		<location>Dark Side of Elpis</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/clarity-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4357</id>
+	</item>
+	<item>
+		<name>Wind Skimmer</name>
+		<type>sniper</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Hybrid Thresher</source>
+		<text>The sky and the winds are mine.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Wind_Skimmer</wiki>
+		<points>0</points>
+		<location>Dark Side of Elpis</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/weapon/wind-skimmer-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene>0.3-1% Big encore: 1.5%</phosphene>
+		<card/>
+		<mission/>
+		<id>4358</id>
+	</item>
+	<item>
+		<name>Outburst</name>
+		<type>repkit</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source>Vile Grasp</source>
+		<text>You did what?!</text>
+		<wiki>https://borderlands.fandom.com/wiki/Outburst</wiki>
+		<points>0</points>
+		<location>Dark Side of Elpis</location>
+		<chance>9-23% Big Encore: 30%</chance>
+		<lootlemon>https://www.lootlemon.com/bonus-item/outburst-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene/>
+		<card/>
+		<mission/>
+		<id>4359</id>
+	</item>
+	<item>
+		<name>Shield Overflow</name>
+		<type>pistol</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source/>
+		<text>NOW EAT THIS SUCKA!</text>
+		<wiki>https://borderlands.fandom.com/wiki/Shield_Overflow</wiki>
+		<points>0</points>
+		<location/>
+		<chance/>
+		<lootlemon>https://www.lootlemon.com/weapon/shield-overflow-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene/>
+		<card>Warped and Weird</card>
+		<mission/>
+		<id>4360</id>
+	</item>
+	<item>
+		<name>Flash Fuel</name>
+		<type>ar</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source/>
+		<text>It's not the heat - it's the humidity.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Flash_Fuel</wiki>
+		<points>0</points>
+		<location/>
+		<chance/>
+		<lootlemon>https://www.lootlemon.com/weapon/flash-fuel-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene/>
+		<card>Warped and Weird</card>
+		<mission/>
+		<id>4361</id>
+	</item>
+	<item>
+		<name>Tempered Essence</name>
+		<type>smg</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source/>
+		<text>A patina of raw power.</text>
+		<wiki>https://borderlands.fandom.com/wiki/Tempered_Essence</wiki>
+		<points>0</points>
+		<location/>
+		<chance/>
+		<lootlemon>https://www.lootlemon.com/weapon/tempered-essence-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene/>
+		<card>Warped and Weird</card>
+		<mission/>
+		<id>4362</id>
+	</item>
+	<item>
+		<name>Alignment</name>
+		<type>grenade ordnance</type>
+		<game>4</game>
+		<rarity>Legendary</rarity>
+		<source/>
+		<text>All in agreement?</text>
+		<wiki>https://borderlands.fandom.com/wiki/Alignment</wiki>
+		<points>0</points>
+		<location/>
+		<chance/>
+		<lootlemon>https://www.lootlemon.com/grenade-mod/alignment-bl4</lootlemon>
+		<worldDrop/>
+		<dlc>Amara and the Vile Shadows</dlc>
+		<phosphene/>
+		<card>Warped and Weird</card>
+		<mission/>
+		<id>4363</id>
 	</item>
 </items>
